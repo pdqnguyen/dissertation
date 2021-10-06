@@ -48,7 +48,7 @@ The coupling mechanism can be modeled in the frequency domain as a linear system
 	h(f) = C(f) x(f),
 \end{equation}
 where $h(f)$ is the amplitude of the detector response, $x$ is the amplitude of the injection signal as measured by the sensor, and $C(f)$ is the \textit{coupling function}, which represents the amplitude of gravitational wave strain noise per unit amplitude in the sensor.
-By convention, the strain is typically converted to differential arm length, so $C(f)$ represents the displacement in the test mass mirrors (in meters) per unit sensor amplitude.
+By convention, the strain is typically converted to \ac{DARM}, in meters, in which case $C(f)$ represents  test mass displacement per calibrated unit of sensor amplitude.
 If the injection signal is an acoustic signal and the sensor a microphone measuring in Pa, for instance, the acoustic coupling function is in units of m/Pa.
 
 The coupling function can be computed by measuring the \acp{ASD} of the \ac{GW} detector and the witness sensor during the time of the injection (\textit{injection time}) to their \acp{ASD} during a time when both are at observation-mode noise levels (\textit{background time}).
@@ -113,7 +113,7 @@ Due to hardware limitations it can be possible for an injection signal to be str
 For frequency bins where this is the case, an upper limit on $\mathcal{C}_{ij}(f_k)$ can be established by assuming, as a worst-case scenario, that all of the detector noise at that frequency is produced by the coupling alone
 
 \begin{equation}\label{eq:siul}
-	\mathrm{C}_{ul}(f) = \frac{h_{i,\textrm{bkg}}(f)}{\sqrt{[ij,x_{\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
+	\mathrm{C}_{ul}(f) = \frac{h_{i,\textrm{bkg}}(f)}{\sqrt{[x_{ij,\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
 \end{equation}
 The larger the injection amplitude, the better this upper limit can be constrained.
 The boundaries between measurements, upper limits, and null results are established by two \ac{ASD} ratio thresholds: a sensor threshold and a detector threshold.
@@ -127,23 +127,22 @@ The higher choice of $t_x$ is due to the environmental sensors being much more s
 The coupling function as approximated in eq.~\ref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{subsec:vetting}).
 References to a sensor's coupling function will hereafter refer to this approximate quantity.
 Figure~\ref{fig:composite} provides an example of an estimated ambient for an accelerometer on the HAM6 vacuum chamber (which houses the interferometer output optics).
-The PEM website provides coupling functions for all accelerometers, microphones, and magnetometers produced from the most recent campaign of injections~\cite{PEM_website}.
+The \ac{PEM} website provides coupling functions for all accelerometers, microphones, and magnetometers produced from the most recent campaign of injections~\cite{PEM_website}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/ham6-injection.png}
+	\includegraphics[width=\textwidth]{figures/injection-example.pdf}
 	\caption{
-		Vibrational coupling excited by a broadband (60-200\,Hz) acoustic injection near the output arm of the interferometer (HAM5 and HAM6 in Figure~\ref{fig:sensors}).
+		Vibrational coupling excited by a broadband (60-200\,Hz) acoustic injection at the input arm at \ac{LLO}.
 		The left plot shows the displacement of an accelerometer in the \ac{PSL} room during background time (black) and injection time (orange).
 		The middle plot shows the interferometer readout during background time (black) and injection time (orange).
-		Estimated ambient levels for the accelerometer are also shown as dark blue dots, with upper limits shown as light blue crosses; they are produced from the single-injection coupling function in the right plot.
-		A vibrational single-injection coupling function represents meters of differential test mass displacement per meter of sensor displacement, hence the units of m/m.}
+		Estimated ambient levels for the accelerometer are also shown as dark blue dots, with upper limits shown as light blue crosses; they are produced from the single-injection coupling function in the right plot.}
 	\label{fig:injection}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/composite.png}
+	\includegraphics{figures/composite.pdf}
 	\caption{
 		Ambient noise level for the \ac{LHO} HAM6 Y-axis accelerometer estimated from a composite coupling function, using acoustic and seismic injections near the output arm.
 		For simplicity only five injections were used to produce this example, however in practice the number of injections performed near a sensor can be many times higher.}
@@ -186,8 +185,8 @@ This uncertainty also propagates to projected noise levels in the \ac{GW} channe
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/injection-locations.png}
-	\caption{Single-injection coupling functions (upper limits not shown) for the HAM5 Y-axis accelerometer from shaking injections made from three different locations (on top of HAM5, on top of HAM6, and on the HAM5 chamber door) show the typical spread in coupling that results from varying the injection location. Multiple injections at different frequency bands are shown for each source location. On average the coupling measured from different locations varies by a 1.4.}
+	\includegraphics[width=\textwidth]{figures/injection-locations.pdf}
+	\caption{Single-injection coupling functions (upper limits not shown) for the HAM5 Y-axis accelerometer for three different shaker injection locations (on top of HAM5, on top of HAM6, and on the HAM5 chamber door) show the typical spread in coupling that results from varying the injection location. Multiple injections at different frequency bands are shown for each source location. On average the coupling measured from different locations varies by a 1.4.}
 	\label{fig:injection_locations}
 \end{figure}
 
