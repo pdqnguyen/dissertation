@@ -76,8 +76,8 @@ markersizes = dict(
     vib=2,
     mag=5,
 )
-fig, ax = plt.subplots(2, 2, figsize=(5, 4))
-plt.subplots_adjust(left=0.17, bottom=0.12, right=0.99, top=0.93, wspace=0.05, hspace=0.2)
+fig, ax = plt.subplots(2, 2, figsize=(6, 4))
+plt.subplots_adjust(left=0.14, bottom=0.12, right=0.99, top=0.93, wspace=0.05, hspace=0.2)
 for j, coupling_type in enumerate(data.keys()):
     for i, (observatory, df) in enumerate(data[coupling_type].items()):
         ax[i, j].loglog(df.frequency, df.darm / 4000, 'k-')
