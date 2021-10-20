@@ -28,7 +28,6 @@ They can also cause modulate the paths of light that is scattered off of surface
 Understanding environmental influences on the detectors requires comprehensive monitoring of its physical surroundings.
 This is done through the \ac{PEM} system of auxiliary sensors, which consists of accelerometers for high-frequency vibrations (between tens to thousands of Hertz), seismometers for low-frequency vibrations (up to tens of Hertz), microphones, magnetometers, voltage monitors that measure the voltage of electric power supplied to the detector sites, radio-frequency (RF) receivers, a cosmic-ray detector for high-energy particles, and wind, temperature and humidity sensors.
 Detailed information on PEM sensors, including example background spectra and calibration data, can be found on the PEM website, PEM.LIGO.org~\cite{PEM_website}.
-The site also provides links to long-term summaries of ground tilt, seismic motion, and wind (on the Environmental Studies pages).
 
 \subsection{Tests of environmental coupling}\label{subsec:injections}
 
@@ -38,6 +37,8 @@ The most common examples are acoustic injections, generated using speakers, seis
 
 \subsubsection{Vibrational injections}
 
+
+
 \subsubsection{Magnetic injections}
 
 \begin{figure}[h]
@@ -45,13 +46,13 @@ The most common examples are acoustic injections, generated using speakers, seis
 	\includegraphics{figures/wallcoil.pdf}
 	\caption{
 		Comparison of new and old magnetic injection equipment.
-		The $5\times5$\,m coil allows for broadband injections at the same amplitudes that on the 1\,m coil required using comb injections. This tremendously improves coverage of potential magnetic coupling sources.}
+		The $5\times5$\hyp m coil allows for broadband injections at the same amplitudes that on the 1\hyp m coil required using comb injections. This tremendously improves coverage of potential magnetic coupling sources.}
 	\label{fig:wallcoil}
 \end{figure}
 
 \subsection{Coupling functions}
 
-\subsubsection{Simple model of coupling}
+\subsubsection{Single coupling site, sensor, and injection}
 
 Suppose there exists exactly one coupling site, i.e. one location at which incident environmental signals result in excess noise in the \ac{GW} strain data.
 Suppose also that a sensor is placed at the location of the coupling site, and a noise injection is performed that produces a signal observable by the sensor and the interferometer readout.
@@ -73,7 +74,7 @@ The coupling function at some frequency $f$ is given by the ratio of excess powe
 Here $x_{\textrm{bkg}}(f)$ and $x_{\textrm{inj}}(f)$ are the \acp{ASD} of the witness sensor at background and injection times, respectively, and $h_{\textrm{bkg}}(f)$ and $h_{\textrm{inj}}(f)$ are the \ac{GW} detector \acp{ASD} at background and injection times.
 The coupling function for a sensor is produced by computing a \textit{coupling factor} at each frequency bin in which excess noise is detectable in the sensor.
 
-\subsubsection{Expanded model}
+\subsubsection{Multiple coupling sites, sensors, and injections}
 
 Suppose now there are multiple coupling sites, and a sensor is placed at the location of each site.
 The detector response to an environmental signal now becomes a linear combination of the sensor signals and their sensor-specific coupling functions:
@@ -238,7 +239,7 @@ Helicopter flyovers can produce narrow-band features up to tens of seconds long.
 Coupling functions of various sensors at both observatories can predict the amplitudes of lines produced by multiple helicopter flyovers during O3 to within a factor of two in most cases~\cite{alog_helicopter}.
 Long-duration noise due to vibrations from rain and the building \ac{HVAC} is also well characterized by coupling functions at \ac{LHO}~\cite{alog_rain, alog_hvac_coupling}.
 
-\subsection{The \pemcoupling package}
+\subsection{The {\fontfamily{pcr}\selectfont pemcoupling}\xspace package}
 
 This section covers the technical details of the \pemcoupling python package, which includes command-line tools for processing large numbers of injections and producing single-injection coupling functions, composite coupling functions, and multi-channel summary coupling functions.
 
@@ -258,19 +259,33 @@ For each single-injection coupling function, the data are saved in the following
 	\renewcommand{\arraystretch}{1.5}
 	\begin{tabular}{|ll|}
 		\hline
-		\multicolumn{1}{|l}{\textbf{column}} & \multicolumn{1}{l|}{\textbf{description}}                             \\ \hline
-		frequency      & bin center frequency {[}Hz{]}                                                               \\
-		factor         & coupling factor in {[}m/calibrated sensor unit{]}                                           \\ 
-		factor\_counts & coupling factor in {[}m/ADC count{]}                                                        \\ 
-		flag           & ``Measured", ``Upper Limit", ``Thresholds not met", or ``No data"                           \\ 
-		sensINJ        & sensor amplitude at injection time {[}calibrated sensor unit $\cdot\,\rthz${]}              \\ 
-		sensBG         & sensor amplitude at background time {[}calibrated sensor unit $\cdot\,\rthz${]}             \\ 
-		darmINJ        & \ac{GW} channel amplitude at injection time $[\meter\,\rthz]$                                    \\ 
-		darmBG         & \ac{GW} channel amplitude at background time $[\meter\,\rthz]$                                   \\ \hline
+		\multicolumn{1}{|l}{\textbf{column}} & \multicolumn{1}{l|}{\textbf{description}}\\ \hline
+		\code{frequency}      & bin center frequency {[}Hz{]}\\
+		\code{factor}         & coupling factor in {[}m/calibrated sensor unit{]}\\ 
+		\code{factor\_counts} & coupling factor in {[}m/ADC count{]}\\ 
+		\code{flag}           & ``Measured", ``Upper Limit", ``Thresholds not met", or ``No data"\\ 
+		\code{sensINJ}        & sensor amplitude at injection time {[}calibrated sensor unit$/\rthz${]}\\ 
+		\code{sensBG}         & sensor amplitude at background time {[}calibrated sensor unit$/\rthz${]}\\ 
+		\code{darmINJ}        & \ac{GW} channel amplitude at injection time $[\meter/\rthz]$\\ 
+		\code{darmBG}         & \ac{GW} channel amplitude at background time $[\meter/\rthz]$\\ \hline
 	\end{tabular}
 	\caption{Column descriptions for the single-injection coupling function output of the \pemcoupling package.}
 \end{table}
 
 \subsection{Environmental noise in the third LIGO/Virgo observing run}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figures/ambient_vib.pdf}
+	\caption{Ambient estimate of vibrational noise levels at \ac{LHO} (top) and \ac{LLO} (bottom). The \ac{DARM} background of each detector is shown in black, the \ac{aLIGO} sensitivity is shown in orange, and the noise estimates are shown in dark and light blue (for measurements and upper limits, respectively).}
+	\label{fig:ambient_vib}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/ambient_mag.pdf}
+\caption{Ambient estimate of magnetic noise levels at \ac{LHO} (top) and \ac{LLO} (bottom). The \ac{DARM} background of each detector is shown in black, the \ac{aLIGO} sensitivity is shown in orange, and the noise estimates are shown in dark and light blue (for measurements and upper limits, respectively).}
+\label{fig:ambient_mag}
+\end{figure}
 
 \subsection{Validation of gravitational wave event candidates}\label{subsec:vetting}
