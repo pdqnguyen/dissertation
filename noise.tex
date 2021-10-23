@@ -1,6 +1,6 @@
-\section{Environmental noise}
+\chapter{Environmental noise}
 
-Environmental noise refers to any signal originating from outside the structure of a \ac{GW} detector that can impact the detector's sensitivity or disrupt its ability to achieve and maintain lock.
+Environmental noise refers to any signal originating from outside the structure of a \ac{GW} detector that can impact the detector's sensitivity or disrupt its ability to achieve and maintain lock~\cite{Effler2015,Nguyen2021}.
 The effects of environmental noise on detector sensitivity can range from persistent excess noise in the \ac{GW} strain data, to short-duration transient signals, or \textit{glitches}.
 
 One goal of studying environmental noise is to aid in the validation of \ac{GW} events.
@@ -16,20 +16,20 @@ Thus it is important to have a quantitative solution for identifying and evaluat
 
 The second goal is to improve the sensitivity and performance of the detector by localizing noise sources and coupling mechanisms. Once tracked down, they can be mitigated by eliminating the noise sources, attenuating the propagation of the signal, or modifying the detector itself.
 
-\subsection{Sources of environmental noise}
+\section{Sources of environmental noise}
 
 The environment can influence a \ac{GW} detector through physical contact (via vibrations or temperature fluctuations), electromagnetic waves, static electric and magnetic fields, and possibly high-energy radiation.
 
 Vibrations can affect the data by directly moving the test masses.
 They can also cause modulate the paths of light that is scattered off of surfaces inside the interferometer, or introduce fluctuations in the alignment of the input laser beam.
 
-\subsection{The PEM sensor array}
+\section{The PEM sensor array}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{figures/channels.png}
 	\caption{
-		The \ac{PEM} system layout at \ac{LLO} during \ac{O3}, as seen on the \ac{PEM} public website~\cite{PEM_website}.
+		The \ac{PEM} system layout at \ac{LLO} during \ac{O3}, as seen on the \ac{PEM} public website.
 		The path of the main interferometer laser is shown as a red line; core optics, such as the test masses, are represented by rectangles inside the vacuum chambers.
 		The most major changes during \ac{aLIGO} have been made to the accelerometer locations and the addition of new magnetometers, e.g. in the electronics bays.}
 	\label{fig:channels}
@@ -39,7 +39,7 @@ Understanding environmental influences on the detectors requires comprehensive m
 This is done through the \ac{PEM} system of auxiliary sensors (Figure~\ref{fig:channels}), which consists of accelerometers for high-frequency vibrations (between tens to thousands of Hertz), seismometers for low-frequency vibrations (up to tens of Hertz), microphones, magnetometers, voltage monitors that measure the voltage of electric power supplied to the detector sites, radio-frequency (RF) receivers, a cosmic-ray detector for high-energy particles, and wind, temperature and humidity sensors.
 Detailed information on \ac{PEM} sensors, including example background spectra and calibration data, can be found on the \ac{PEM} website, PEM.LIGO.org~\cite{PEM_website}.
 
-\subsection{Tests of environmental coupling}\label{subsec:injections}
+\section{Tests of environmental coupling}\label{subsec:injections}
 
 \begin{figure}[h!]
 	\centering
@@ -88,7 +88,7 @@ Table~\ref{tab:injectors} summarizes the current equipment used and Figure~\ref{
 	\label{fig:injection_equipment}
 \end{figure}
 
-\subsubsection{Vibrational injections}
+\subsection{Vibrational injections}
 
 Acoustic injections are produced by large speakers. For the corner stations, a pair of speakers mounted on a vibrationally isolated cart (to minimize ground-based vibrational signals) are used.
 Typically, the injection signal is white noise band-passed between 20-2000\,Hz, with narrower bands being used for special follow-up of particular coupling sites.
@@ -103,7 +103,8 @@ Two new injection techniques have been developed for localizing vibration coupli
 The techniques rely on the slow propagation speeds (hundreds of meters per second) of vibrations on the steel vacuum enclosure walls or, for acoustic injections, in air.
 These two techniques aided in the localization of a coupling site that was producing a 48\,Hz peak in the \ac{GW} channel throughout the first half of O3, as discussed in Section~\ref{sec:scattering}.
 
-\textit{Beating-shakers technique.}
+\subsubsection{Beating-shakers technique}
+
 The beating-shakers technique is narrow-band, and involves vibrating the vacuum enclosure at two slightly different frequencies, each injected from a shaker or a speaker at a different location (e.g. a shaker at one location injects a sine wave at frequency $f$ and a shaker at the other location injections at frequency $f + 0.01$\,Hz).
 The two injections are adjusted in amplitude to produce strong beats in the \ac{GW} channel.
 
@@ -126,7 +127,8 @@ Black glass was used to block scattered light at this location and the peak was 
 	\label{fig:beats}
 \end{figure}
 
-\textit{Impulse injections}
+\subsubsection{Impulse injections}
+
 The second injection technique, which is broad band, involves propagation delays in impulse injections.
 Impulse injections are performed by striking the vacuum enclosure directly with enough force to produce a transient in the \ac{GW} channel and in nearby accelerometers.
 The vibrational impulse propagates through the structure of the vacuum enclosure, arriving at different accelerometers and coupling sites at different times.
@@ -155,9 +157,9 @@ This provides further support that the septum is the dominant coupling site in t
 \end{figure}
 
 
-\subsubsection{Magnetic injections}\label{sec:magnetic-injections}
+\subsection{Magnetic injections}\label{sec:magnetic-injections}
 
-Improvements have also been made to the magnetic field injection equipment. In order to generate fields strong enough to couple into the \ac{GW} channel using the 1\,m magnetic field coils built during \ac{iLIGO}~\cite{Effler_2015}, we must focus the power of the coil into narrow bands and combs instead of injecting broadband signals. This was sufficient in \ac{iLIGO} when strong magnetic coupling occurred primarily through permanent magnets. However, due to the removal of permanent magnets from the test masses, coupling from those sources has decreased and cables and connectors have become the dominant coupling sites above about 80\,Hz, introducing more structure to the coupling functions and requiring stronger injections.
+Improvements have also been made to the magnetic field injection equipment. In order to generate fields strong enough to couple into the \ac{GW} channel using the 1\,m magnetic field coils built during \ac{iLIGO}~\cite{Effler2015}, we must focus the power of the coil into narrow bands and combs instead of injecting broadband signals. This was sufficient in \ac{iLIGO} when strong magnetic coupling occurred primarily through permanent magnets. However, due to the removal of permanent magnets from the test masses, coupling from those sources has decreased and cables and connectors have become the dominant coupling sites above about 80\,Hz, introducing more structure to the coupling functions and requiring stronger injections.
 
 \begin{figure}[h!]
 	\centering
@@ -171,9 +173,9 @@ Improvements have also been made to the magnetic field injection equipment. In o
 
 To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3; the project will be completed by the start of O4.
 
-\subsection{Coupling functions}\label{sec:cf}
+\section{Coupling functions}\label{sec:cf}
 
-\subsubsection{Single coupling site, sensor, and injection}
+\subsection{Single coupling site, sensor, and injection}
 
 Suppose there exists exactly one coupling site, i.e. one location at which incident environmental signals result in excess noise in the \ac{GW} strain data.
 Suppose also that a sensor is placed at the location of the coupling site, and a noise injection is performed that produces a signal observable by the sensor and the interferometer readout.
@@ -195,7 +197,7 @@ The coupling function at some frequency $f$ is given by the ratio of excess powe
 Here $x_{\textrm{bkg}}(f)$ and $x_{\textrm{inj}}(f)$ are the \acp{ASD} of the witness sensor at background and injection times, respectively, and $h_{\textrm{bkg}}(f)$ and $h_{\textrm{inj}}(f)$ are the \ac{GW} detector \acp{ASD} at background and injection times.
 The coupling function for a sensor is produced by computing a \textit{coupling factor} at each frequency bin in which excess noise is detectable in the sensor.
 
-\subsubsection{Multiple coupling sites, sensors, and injections}
+\subsection{Multiple coupling sites, sensors, and injections}
 
 Suppose now there are multiple coupling sites, and a sensor is placed at the location of each site.
 The detector response to an environmental signal now becomes a linear combination of the sensor signals and their sensor-specific coupling functions:
@@ -216,7 +218,7 @@ A sensor, even if it is near a coupling site, only measures the injection amplit
 Therefore, when using real-world sensors, eq.~\ref{eq:cf} is only an estimate of the true coupling, and eq.~\ref{eq:cf_full} is not an exact model of all the coupling mechanisms.
 Nevertheless, as explained above, sensors are distributed in order to maximize coverage of coupling sites and this has been sufficient for producing reliable coupling functions for all sensors, as discussed further in Section~\ref{subsec:uncertainties}.
 
-\subsubsection{Solving the coupling equations}
+\subsection{Solving the coupling equations}
 
 One hurdle remains in attempting to solve~\ref{eq:cf_full}.
 In practice, typically $n<m$ due to logistical constraints on the number of injections one could perform during a realistic time window, which makes the system of equations underdetermined.
@@ -285,16 +287,16 @@ The \ac{PEM} website provides coupling functions for all accelerometers, microph
 	\label{fig:composite}
 \end{figure}
 
-\subsection{Uncertainties and limitations of coupling functions}\label{subsec:uncertainties}
+\section{Uncertainties and limitations of coupling functions}\label{subsec:uncertainties}
 
-\subsubsection{Comparison to transfer functions}
+\subsection{Comparison to transfer functions}
 
 Environmental coupling is characterized using coupling functions instead of transfer functions because perfect coherence is not assumed in the system.
 Low coherence can arise either due to non-linearity in the coupling or due to the spacing between the sensor and coupling site.
 On a superficial level, a coupling function lacks a phase response component, representing only the magnitude response in the system.
 Coupling functions also differ fundamentally from transfer functions in the sense that they do not assume the input signal to be the true actuation signal, but rather merely a witness of the actuation, while the actuation is in fact occurring at the location of the true coupling site.
 
-\subsubsection{Assumptions about coupling mechanisms}
+\subsection{Assumptions about coupling mechanisms}
 
 Equation~\ref{eq:cf} relies on two assumptions about the coupling mechanism.
 First, the coupling is assumed to be linear in amplitude, e.g. doubling the amplitude of the injection would double the amplitude of the \ac{GW} detector response.
@@ -306,7 +308,7 @@ Frequency changes from non-linear coupling can be an issue in broadband injectio
 We split broadband injections into smaller frequency bands to avoid this effect when necessary.
 One approach for quantifying non-linear coupling is presented in Washimi et al.\ (2020)~\cite{Washimi_2020}.
 
-\subsubsection{Hardware limitations}
+\subsection{Hardware limitations}
 
 \textit{Amplitude limitations}. To measure coupling, we inject signals large enough to produce a response in the detector, but the maximum amplitude of injections is limited by the sensitive range of the environmental sensors (saturation produces an overestimate of coupling).
 This effectively limits how far below the detector noise background we can probe for coupling or establish upper limits.
@@ -339,7 +341,7 @@ Averaged across all frequency bins, the geometric standard deviation between inj
 %	\includegraphics[width=\textwidth]{figures/injection-locations.pdf}
 	\caption{
 		Single-injection coupling functions (upper limits not shown) for various magnetometers and various injections at both observatories.}
-	\label{fig:injection_locations}
+	\label{fig:injection_locations_mag}
 \end{figure}
 
 A similar study was performed combining geometric standard deviations for various magnetometers at both observatories.
@@ -363,7 +365,7 @@ On the other hand, smoothing of spectra can also result in less accurate couplin
 For accelerometer spectra, analyzing injections with various smoothing parameters show that a logarithmically-scaled window which is \XX\,Hz wide at 100\,Hz and \XX\,Hz wide at 1000\,Hz best satisfy these constraints.
 Since microphones are much more sensitive to nodal artifacts while being less sensitive to narrow mechanical resonances (they would have to be strong enough to produce audible signals), their spectra can be smoothed much more aggressively: a logarithmically-scaled window is used which is 15\,Hz wide at 100\,Hz and 150\,Hz wide at 1000\,Hz.
 
-\subsection{Tests of coupling functions}
+\section{Tests of coupling functions}
 
 Although the injections used to measure coupling functions are designed to best replicate environmental noise, there are still differences and it is useful to test the coupling functions with different environmental events by comparing noise seen in the \ac{GW} strain data during such events to noise levels predicted by PEM sensors and their coupling functions.
 Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz.
@@ -372,7 +374,7 @@ Helicopter flyovers can produce narrow-band features up to tens of seconds long.
 Coupling functions of various sensors at both observatories can predict the amplitudes of lines produced by multiple helicopter flyovers during O3 to within a factor of two in most cases~\cite{alog_helicopter}.
 Long-duration noise due to vibrations from rain and the building \ac{HVAC} is also well characterized by coupling functions at \ac{LHO}~\cite{alog_rain, alog_hvac_coupling}.
 
-\subsection{The {\fontfamily{pcr}\selectfont pemcoupling}\xspace package}
+\section{The {\fontfamily{pcr}\selectfont pemcoupling}\xspace package}
 
 This section covers the technical details of the \pemcoupling python package, which includes command-line tools for processing large numbers of injections and producing single-injection coupling functions, coupling functions, and multi-channel summary coupling functions.
 
@@ -407,7 +409,7 @@ For each single-injection coupling function, the data are saved in the following
 
 Post-processing, to aggregate single-injection coupling functions into coupling functions, and produce site-wide coupling plots, is done via additional commands, \code{pemcoupling-composite} and \code{pemcoupling-summary}.
 
-\subsection{Vibrational noise studies during O3}
+\section{Vibrational noise studies during O3}
 
 \begin{figure}[h!]
 	\centering
@@ -423,7 +425,7 @@ At the end of \ac{O3}, the vibration noise background at both observatories was 
 At \ac{LHO},  the dominant coupling region below 100\,Hz was the output arm.
 At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band and the output arm in the 60-100\,Hz band.
 
-\subsubsection{Input beam jitter}
+\subsection{Input beam jitter}
 
 \begin{figure}
 	\centering
@@ -432,9 +434,9 @@ At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band 
 	\label{fig:jitter}
 \end{figure}
 
-\subsubsection{Scattered light at the HAM5/6 septum}
+\subsection{Scattered light at the HAM5/6 septum}
 
-\subsubsection{Search for the source of a 48-Hz peak}
+\subsection{Search for the source of a 48-Hz peak}
 
 \begin{figure}
 	\centering
@@ -443,7 +445,7 @@ At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band 
 	\label{fig:48hz}
 \end{figure}
 
-\subsection{Magnetic noise studies during O3}
+\section{Magnetic noise studies during O3}
 
 \begin{figure}[h!]
 	\centering
@@ -464,7 +466,7 @@ Mitigation of coupling to cables and connectors has required a continuing progra
 This program consists of making weekly, broadband magnetic field injections using the large wall-mounted coils described in Section~\ref{sec:magnetic-injections}.
 The injections have shown that peaks can appear or disappear, as well as shift in frequency, on a weekly basis.
 
-\subsubsection{Fluctuations in magnetic coupling}
+\subsection{Fluctuations in magnetic coupling}
 
 \begin{figure}
 	\centering
@@ -481,7 +483,7 @@ The injections have shown that peaks can appear or disappear, as well as shift i
 	\label{fig:weekly-mag-variation}
 \end{figure}
 
-\subsection{Validation of gravitational wave event candidates}\label{subsec:vetting}
+\section{Validation of gravitational wave event candidates}\label{subsec:vetting}
 
 In addition to investigating sources of environmental influences, knowledge acquired from environmental studies contributes to the vetting of \ac{GW} event candidates.
 Analysis pipelines search the strain data for astrophysical signals.
