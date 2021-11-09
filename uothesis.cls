@@ -1,4 +1,12 @@
 % ----------------------------------------------------------------
+%% Philippe's version of uothesis.cls, cloned from https://github.com/unofficial-uoregon-dissertation-formats/unofficial-uoregon-grad-school-dissertation-latex-markdown-apa-format
+%% Git hash: cf6938e (Oct 5)
+%% 
+%% Philippe's notes:
+%% - I modified section and subsection spacing to be double-spaced as well (see line 1000ish)
+
+
+% ----------------------------------------------------------------
 %% uothesis.cls
 %% Support for formatting of documents associated
 %% with the graduate requirements for the doctoral degrees as
@@ -989,8 +997,8 @@ Draft of \@longdraftdate\\
     \renewcommand{\thesubsubsection}{}
     \renewcommand{\theequation}{\thechapter.\arabic{equation}}
   \else
-    \def\section{\@startsection{section}{1}{\z@}{.01ex}{.01ex}{\normalfont\normalsize\bfseries}}
-    \def\subsection{\@startsection{subsection}{2}{\parindent}{\z@}{-1em}{\normalfont\normalsize\bfseries\addperi}}
+    \def\section{\@startsection{section}{1}{\z@}{3ex}{2ex}{\normalfont\normalsize\bfseries}}
+    \def\subsection{\@startsection{subsection}{2}{\z@}{3ex}{2ex}{\normalfont\normalsize\bfseries}}
     \def\subsubsection{\@startsection{subsubsection}{3}{\parindent}{\z@}{-1ex}{\normalfont\normalsize\bfseries\itshape\addperi}}
   \fi
 \fi
