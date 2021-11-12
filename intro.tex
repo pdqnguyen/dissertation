@@ -4,7 +4,9 @@
 
 To develop theory of \acp{GW}, we begin with the Einstein field equations
 $$G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}$$
-where $T_{\mu\nu}$ is the stress-energy tensor and $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu}$ is the Einstein tensor, comprised of the Ricci tensor $R_{\mu\nu}$, Ricci scalar $R$, and spacetime metric $g_{\mu\nu}$. We can approximate the solution as the flat Minkowski metric $\eta_{\mu\nu}$ plus a perturbation $h_{\mu\nu}$: $g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu}$. Assuming the perturbation is small $\abs{h_{\mu\nu}} \ll 1$, we can construct the linearized Ricci tensor
+where $T_{\mu\nu}$ is the stress-energy tensor and $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu}$ is the Einstein tensor, comprised of the Ricci tensor $R_{\mu\nu}$, Ricci scalar $R$, and spacetime metric $g_{\mu\nu}$.
+We can approximate the solution as the flat Minkowski metric $\eta_{\mu\nu}$ plus a perturbation $h_{\mu\nu}$: $g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu}$.
+Assuming the perturbation is small $\abs{h_{\mu\nu}} \ll 1$, we can construct the linearized Ricci tensor
 $$R_{\mu\nu} = \frac{1}{2} (\partial_{\sigma}\partial_{\mu}h_{\nu}^{\sigma} + (\mu \leftrightarrow \nu) - \partial_{\mu}\partial_{\nu}h - \Box h_{\mu\nu})$$
 where $h = \eta^{\mu\nu}h_{\mu\nu}$ is the trace of $h_{\mu\nu}$, and the linearized Ricci scalar
 $$R = \eta_{\mu\nu}R^{\mu\nu} = \partial_{\mu}\partial_{\nu}h - \Box h_{\mu\nu}$$
@@ -12,21 +14,29 @@ This yields the linearized Einstein tensor
 $$G_{\mu\nu} = \frac{1}{2} \left( \partial_{\mu}\partial_{\sigma}\Bar{h}_{\nu}^{\rho} + (\mu \leftrightarrow \nu) - \eta^{\sigma\rho}\partial_{\sigma}\partial_{\rho}\Bar{h}_{\mu\nu} - \eta_{\mu\nu}\partial_{\sigma}\partial_{\rho}\Bar{h}^{\sigma\rho} \right)$$
 where $\Bar{h}_{\mu\nu} := h_{\mu\nu} - \frac{1}{2}\eta_{\mu\nu}h$ is the trace-reversed metric perturbation.
 
-We can simplify these terms further by choosing the appropriate gauge. The Lorenz, or harmonic, gauge, allows us to drop the terms containing the divergence of $\Bar{h}_{\mu\nu}$. In this gauge we fix $\partial_{\mu}\Bar{h}^{\mu\sigma} = 0$, reducing the linearized Einstein field equations to simply
+We can simplify these terms further by choosing the appropriate gauge.
+The Lorenz, or harmonic, gauge allows us to drop the terms containing the divergence of $\Bar{h}_{\mu\nu}$.
+In this gauge we fix $\partial_{\mu}\Bar{h}^{\mu\sigma} = 0$, reducing the linearized Einstein field equations to simply
 \begin{equation}\label{eq:EFE}
 	-\Box \Bar{h}_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
 \end{equation}
 
 In the Newtonian (slowly-varying) limit, the D'Alembertian operator becomes a spatial Laplace operator, and it can be shown that the trace-reversed perturbation reduces to the Newtonian gravitational potential $\Phi$ and the stress-energy tensor reduces to just the mass density, recovering the Poisson equation for Newtonian gravity: $\nabla^2\Phi = 4\pi G\rho$.
 
-In vacuum, the field equation is simply $\Box\Bar{h}_{\mu\nu}=0$, the solution to which is a gravitational wave (GW) propagating at the speed of light: $\Bar{h}_{\mu\nu} = A_{\mu\nu}\cos\left(k_\sigma x^\sigma - \phi_{\mu\nu}\right)$, where $A_{\mu\nu}$ and $\phi_{\mu\nu}$ are the amplitude and phase of the wave.
+In vacuum, the field equation is simply $\Box\Bar{h}_{\mu\nu}=0$, the solution to which is a \ac{GW} propagating at the speed of light: $\Bar{h}_{\mu\nu} = A_{\mu\nu}\cos\left(k_\sigma x^\sigma - \phi_{\mu\nu}\right)$, where $A_{\mu\nu}$ and $\phi_{\mu\nu}$ are the amplitude and phase of the wave.
 
-In the slowly-varying case the gauge condition can be further restricted by making the metric perturbation purely spatial, ($h_{00}=h_{0i}=0$) and traceless ($h=h_i^i$=0). In this transverse-traceless (TT) gauge, we write the metric perturbation as $h_{\mu\nu}^{TT}$ (no overline necessary because trace-reversal has no effect on the traceless perturbation). The gravitational wave described by $h_{\mu\nu}^{TT}$ is transverse to its direction of propagation. These gauge conditions cause all components to vanish except two independent ones. For a monochromatic plane wave propagating in the $z$ direction, these two components are
+In the slowly-varying case the gauge condition can be further restricted by making the metric perturbation purely spatial, ($h_{00}=h_{0i}=0$) and traceless ($h=h_i^i$=0).
+In this transverse-traceless (TT) gauge, we write the metric perturbation as $h_{\mu\nu}^{TT}$ (no overline necessary because trace-reversal has no effect on the traceless perturbation).
+The gravitational wave described by $h_{\mu\nu}^{TT}$ is transverse to its direction of propagation.
+These gauge conditions cause all components to vanish except two independent ones.
+For a monochromatic plane wave propagating in the $z$ direction, these two components are
 $$h_{11}^{TT} = -h_{22}^{TT} = h_+(t-z)$$
 $$h_{12}^{TT} = h_{21}^{TT} = h_{\times}(t-z)$$
-and are called the plus and cross polarizations, respectively. The effect of these polarizations on an array of test particles is a stretching and compressing of the distances between the particles in the $xy$ plane.
+and are called the plus and cross polarizations, respectively.
+The effect of these polarizations on an array of test particles is a stretching and compressing of the distances between the particles in the $xy$ plane.
 
-The general solution to (\ref{eq:EFE}) is analogous to the problem of solving for the vector potential given a source current, where here we solve for the metric perturbation given a stress-energy tensor describing the gravitational wave source. The result is an integral of the stress-energy tensor:
+The general solution to (\ref{eq:EFE}) is analogous to the problem of solving for the vector potential given a source current, where here we solve for the metric perturbation given a stress-energy tensor describing the gravitational wave source.
+The result is an integral of the stress-energy tensor:
 $$\Bar{h}_{\mu\nu}(t, \vec{x}) = \frac{4G}{c^4} \int\frac{T_{\mu\nu}(t - \norm{\vec{x} - \vec{x}'}/c, \vec{x}')}{\norm{\vec{x} - \vec{x}'}} d^3x'$$
 If the source is slowly moving and the gravitational wave energy is small, the solution can be simplified to
 \begin{equation}\label{eq:quadrupole}
@@ -36,13 +46,26 @@ where $I_{ij}^{TT}$ is the transverse-traceless projections of the quadrupole mo
 
 \section{Sources of gravitational waves}
 
-Eq. \ref{eq:quadrupole} shows that any system whose quadrupole moment has a non-vanishing second derivative can generate \acp{GW}, which requires some non-spherically symmetric motion of masses. The frequency of the waves is determined by the motion, usually some rotational frequency, of the masses. Generating strong waves requires high masses and speeds, so it is reasonable to look for \acp{GW} from astrophysical sources.
+Eq. \ref{eq:quadrupole} shows that any system whose quadrupole moment has a non-vanishing second derivative can generate \acp{GW}, which requires some non-spherically symmetric motion of masses.
+The frequency of the waves is determined by the motion, usually some rotational frequency, of the masses.
+Generating strong waves requires high masses and speeds, so it is reasonable to look for \acp{GW} from astrophysical sources.
 
-The simplest example is a system of two masses in a circular orbit; binary systems that include neutron stars and black holes make good candidates. For most of their lifetime, they generate continuous \acp{GW} at a more-or-less steady frequency twice their orbital frequency. Over time, the orbit of a binary system decays due to the loss of energy to \ac{GW} emission, causing the frequency and amplitude to increase. The time evolution scales with the component masses, so higher-mass systems, e.g. black hole-black hole binaries, generate gravitational waves that sweep up in frequency and amplitude more quickly than less massive ones, e.g. binary neutron star systems.  The coalescence of a binary creates a distinct \ac{GW} signature, characterized by a short-duration ($<1$ s for black-hole binaries, $\sim100$ s for neutron-star binaries), high frequency ($\sim10-1000$ Hz) chirp. These violent merger events happen very frequently, making them the best candidate for detecting gravitational waves with existing detectors.
+The simplest example is a binary system of massive, compact objects, such as \acp{NS} or \acp{BH}.
+For most of their lifetime, the binary generates continuous \acp{GW} at a more-or-less steady frequency twice the orbital frequency of the components.
+Over time, the orbit decays due to the loss of energy to \ac{GW} emission, causing the frequency and amplitude of the emission to increase.
+The time evolution scales with the component masses, so highly massive binaries, e.g. \ac{BBH} systems, generate gravitational waves that sweep up in frequency and amplitude more quickly than less massive ones, e.g. \ac{BNS} and \ac{NSBH}  systems.
+These \acp{CBC} creates a distinct \ac{GW} signature, characterized by a short-duration ($<1$ s for \acp{BBH}, $\sim100$ s for \acp{BNS}), high frequency ($\sim10-1000$ Hz) chirp.
+These violent merger events happen very frequently, making them the best candidate for detecting gravitational waves with existing detectors.
 
-Continuous \acp{GW} generated from binary systems range from very low frequency ($\sim$ nHz) waves from supermassive black hole binaries, to $\sim$ mHz waves from stellar-mass galactic binaries, but in higher frequency bands the best candidates are isolated, rapidly rotating neutron stars~\citep{Riles_2017}. If such a neutron star exhibits any asymmetry with respect to its rotational axis, it generates \acp{GW} at twice its rotational frequency.
+Continuous \acp{GW} generated from binary systems range from very low frequency ($\sim$ nHz) waves from supermassive \ac{BH} binaries, to $\sim$ mHz waves from stellar-mass galactic binaries, but in higher frequency bands the best candidates are isolated, rapidly rotating \acp{NS}~\citep{Riles_2017}.
+If such \iac{NS} exhibits any asymmetry with respect to its rotational axis, it generates \acp{GW} at twice its rotational frequency.
 
-Burst sources of \acp{GW} are short duration events not generated by binary mergers; their time evolution is too difficult to model due to their unpredictable or poorly understood dynamical behavior. Core-collapse supernovae are the most promising source to be detected, but their \ac{GW} emission is still expected to be too weak for detecting events outside the galactic neighborhood. Other potential sources include magnetar flares and cosmic string cusps.
+Burst sources of \acp{GW} are short duration events not generated by binary mergers; their time evolution is too difficult to model due to their unpredictable or poorly understood dynamical behavior.
+Core-collapse supernovae are the most promising source to be detected, but their \ac{GW} emission is still expected to be too weak for detecting events outside the galactic neighborhood.
+Other potential sources include magnetar flares and cosmic string cusps.
 
-The superposition of all \acp{GW} forms a stochastic \ac{GW} background analogous to the cosmic microwave background~\citep{Christensen_2018}.
-This background is comprised of stellar mass binary BH and NS mergers at frequencies currently observable by \ac{GW} detectors, but at lower frequencies galactic white dwarf binaries and supermassive BH mergers would also contribute to the stochastic background. At cosmological distances, relic gravitational waves from the very early universe could be detectable via their effect on the polarization of the CMB radiation.
+The superposition of all \acp{GW} forms a stochastic \ac{GW} background analogous to the \ac{CMB}~\citep{Christensen_2018}.
+This background is comprised of stellar-mass binary \ac{BH} and \ac{NS} mergers at frequencies currently observable by \ac{GW} detectors, but at lower frequencies galactic white dwarf binaries and supermassive BH mergers would also contribute to the stochastic background.
+At cosmological distances, relic gravitational waves from the very early universe could be detectable via their effect on the polarization of the \ac{CMB} radiation.
+
+Thus far, \XX gravitational wave signals originating from \acp{CBC} have been detected by existing \ac{GW} detectors~\citep{gwtc3}. Of these, the vast majority, \XX, originated from the mergers of \acp{BBH}, \XX from \acp{BNS}, and \XX from \acp{NSBH}. There has yet to be a detection of a \ac{GW} signal with a significant probability of having a non-\ac{CBC} origin.
