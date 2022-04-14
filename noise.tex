@@ -93,7 +93,7 @@ Acoustic injections are produced by large speakers. For the corner stations, a p
 Typically, the injection signal is white noise band-passed between 20-2000\,Hz, with narrower bands being used for special follow-up of particular coupling sites.
 
 Seismic injections at low frequency (up to tens of Hertz) during \ac{iLIGO} were performed with small electromagnetic and piezoelectric shakers and a weighted cart.%~\citep{bk, piezo} and a weighted cart.
-%A large shaker~\citep{big_shaker} 
+%A large shaker~\citep{big_shaker}
 A large shaker has been used since the beginning of noise studies for \ac{O3}.
 The large shaker can impart up to 133\,N of sine force and a peak-to-peak displacement of 158\,mm, compared to the electromagnetic shaker which imparts up to 45\,N of force and a displacement of 8\,mm.
 While smaller shakers can be directly clamped to the interferometer supports, a rigid fiberglass rod is used to connect the large shaker to the interferometer.
@@ -171,6 +171,15 @@ Improvements have also been made to the magnetic field injection equipment. In o
 
 To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3; the project will be completed by the start of O4.
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% COUPLING FUNCTIONS %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 \section{Coupling functions}\label{sec:cf}
 
 \subsection{Single coupling site, sensor, and injection}
@@ -182,18 +191,25 @@ The coupling mechanism can be modeled in the frequency domain as a linear system
 \begin{equation}\label{eq:cf_model}
 	h(f) = C(f) x(f),
 \end{equation}
-where $h(f)$ is the amplitude of the detector response, $x$ is the amplitude of the injection signal as measured by the sensor, and $C(f)$ is the \textit{coupling function}, which represents the amplitude of gravitational wave strain noise per unit amplitude in the sensor.
-By convention, the strain is typically converted to \ac{DARM}, in meters, in which case $C(f)$ represents  test mass displacement per calibrated unit of sensor amplitude.
-If the injection signal is an acoustic signal and the sensor a microphone measuring in Pa, for instance, the acoustic coupling function is in units of m/Pa.
+where $h(f)$ is the \ac{ASD} of the detector (strain) response, $x$ is the \ac{ASD} of the injection signal as measured by the sensor, and $C(f)$ is the \textit{coupling function}, which represents the amplitude of gravitational wave strain noise per unit amplitude in the sensor.
+By convention, the strain is typically converted to \ac{DARM}, in meters, in which case $C(f)$ represents  test mass displacement per unit of sensor amplitude.
+If the injection signal is an acoustic signal and the sensor is a microphone measuring amplitude in Pa, for instance, then the acoustic coupling function is in units of m/Pa.
 
-The coupling function can be computed by measuring the \acp{ASD} of the \ac{GW} detector and the witness sensor during the time of the injection (\textit{injection time}) to their \acp{ASD} during a time when both are at observation-mode noise levels (\textit{background time}).
-The coupling function at some frequency $f$ is given by the ratio of excess power in the detector to the ratio of excess power in the sensor~\citep{Kruk_2016, pem_code}:
+In both the witness sensor and the detector, some ambient background noise is always present whether or not an injection is produced. Let $h\bkg(f)$ and $h\inj(f)$ be the \acp{ASD} of the detector during a period of background noise and during the injection, respectively. Likewise let $x\bkg(f)$ and $h\inj(f)$ be the background and injection \acp{ASD} of the sensor. The observed \acp{PSD} during an injection are the sum of the background and injected \acp{PSD}:
+
+\begin{align}
+	\begin{split}\label{eq:excess_power}
+		\left[h\inj(f)\right]^2 &= \left[h\bkg(f)\right]^2 + \left[h(f)\right]^2\\
+		\left[x\inj(f)\right]^2 &= \left[x\bkg(f)\right]^2 + \left[x(f)\right]^2
+	\end{split}
+\end{align}
+
+Combining~\ref{eq:cf_model} and~\ref{eq:excess_power}, we can measure the coupling function from the background and injection \acp{ASD}~\citep{Kruk_2016, pem_code}:
 
 \begin{equation}\label{eq:cf}
 	\mathrm{C}(f) = \sqrt{\frac{[h_{\textrm{inj}}(f)]^2 - [h_{\textrm{bkg}}(f)]^2}{[x_{\textrm{inj}}(f)]^2 - [x_{\textrm{bkg}}(f)]^2}}.
 \end{equation}
-Here $x_{\textrm{bkg}}(f)$ and $x_{\textrm{inj}}(f)$ are the \acp{ASD} of the witness sensor at background and injection times, respectively, and $h_{\textrm{bkg}}(f)$ and $h_{\textrm{inj}}(f)$ are the \ac{GW} detector \acp{ASD} at background and injection times.
-The coupling function for a sensor is produced by computing a \textit{coupling factor} at each frequency bin in which excess noise is detectable in the sensor.
+In the discrete case, a \textit{coupling factor} $C(f_k)$ is computed at each frequency bin $f_k$.
 
 \subsection{Multiple coupling sites, sensors, and injections}
 
@@ -395,12 +411,12 @@ For each single-injection coupling function, the data are saved in the following
 		\hline
 		\multicolumn{1}{|l}{\textbf{column}} & \multicolumn{1}{l|}{\textbf{description}}\\ \hline
 		\code{frequency}      & bin center frequency {[}Hz{]}\\
-		\code{factor}         & coupling factor in {[}m/calibrated sensor unit{]}\\ 
-		\code{factor\_counts} & coupling factor in {[}m/ADC count{]}\\ 
-		\code{flag}           & ``Measured", ``Upper Limit", ``Thresholds not met", or ``No data"\\ 
-		\code{sensINJ}        & sensor amplitude at injection time {[}calibrated sensor unit$/\rthz${]}\\ 
-		\code{sensBG}         & sensor amplitude at background time {[}calibrated sensor unit$/\rthz${]}\\ 
-		\code{darmINJ}        & \ac{GW} channel amplitude at injection time $[\meter/\rthz]$\\ 
+		\code{factor}         & coupling factor in {[}m/calibrated sensor unit{]}\\
+		\code{factor\_counts} & coupling factor in {[}m/ADC count{]}\\
+		\code{flag}           & ``Measured", ``Upper Limit", ``Thresholds not met", or ``No data"\\
+		\code{sensINJ}        & sensor amplitude at injection time {[}calibrated sensor unit$/\rthz${]}\\
+		\code{sensBG}         & sensor amplitude at background time {[}calibrated sensor unit$/\rthz${]}\\
+		\code{darmINJ}        & \ac{GW} channel amplitude at injection time $[\meter/\rthz]$\\
 		\code{darmBG}         & \ac{GW} channel amplitude at background time $[\meter/\rthz]$\\ \hline
 	\end{tabular}
 	\caption{Column descriptions for the single-injection coupling function output of the \pemcoupling package.}
@@ -497,7 +513,7 @@ Environmental noise is also particularly relevant to un-modeled searches. Unlike
 The first observation of a \ac{GW} occurred on 14 Sept 2015~\citep{gw150914}.
 The event, a short-duration binary black hole merger designated GW150914, required a number of follow-up investigations to find potential noise sources around the time of the event~\citep{Detchar_2016}.
 This included an examination of the status of all \ac{PEM} sensors and any significant signals they observed for possible contamination of the GW signal~\citep{Schofield_150914}.
-A few of the \ac{PEM} sensors were not working, but because of redundancy, coverage was sufficient. 
+A few of the \ac{PEM} sensors were not working, but because of redundancy, coverage was sufficient.
 
 Comparisons between Q-transform spectrograms~\citep{Chatterji_2004} of all coincident events in environmental sensors to the time-frequency path of the event revealed that no environmental signals had paths similar to the event candidate.
 Q-transforms produce a quality-factor-optimized logarithmic tiling of the time-frequency space, making them useful for visualizing transients.
