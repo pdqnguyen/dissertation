@@ -228,7 +228,7 @@ If $n = m$,~\cref{eq:cf_full} could be solved to determine the coupling function
 Thus far it has been assumed that the witness sensors are placed precisely at the locations of the coupling mechanisms, but such perfect placement is not realistically feasible given that there are an unknown number of coupling sites at unknown locations.
 A sensor, even if it is near a coupling site, only measures the injection amplitude at its own location, not at the coupling location.
 Therefore, when using real-world sensors,~\cref{eq:x_inj} is not exact, so~\cref{eq:cf} does not exactly describe the coupling at the coupling site.
-Nevertheless, as explained above, sensors are distributed in order to maximize coverage of coupling sites and this has been sufficient for producing reliable coupling functions for all sensors, as discussed further in Section~\ref{subsec:uncertainties}.
+Nevertheless, as explained above, sensors are distributed in order to maximize coverage of coupling sites and this has been sufficient for producing reliable coupling functions for all sensors, as discussed further in Section~\ref{sec:uncertainties}.
 
 \subsection{Solving the coupling equations}
 
@@ -256,7 +256,7 @@ That is, for a frequency $f_k$ and a set of injections $\mathcal{I}$, one can me
 	\widetilde{\mathrm{C}}_j(f_k) := \mathcal{C}_{lj}(f_k)\ \mathrm{where}\ l = \mathop{argmax}_{i\in\mathcal{I}}\ (x_{ij}(f_k)).
 \end{equation}
 If the distribution of injection locations provides sufficient coverage of sensor locations, then $\widetilde{\mathrm{C}}_j(f) \approx \mathrm{C}_j(f)$.
-Shortcomings of this assumption are discussed in Section~\ref{subsec:uncertainties}.
+Shortcomings of this assumption are discussed in Section~\ref{sec:uncertainties}.
 
 Figure~\ref{fig:injection} provides an example of a coupling function measurement for a \ac{PSL} acoustic injection.
 Figure~\ref{fig:composite} shows an estimated ambient noise based on an accelerometer coupling function constructed from five single-injection coupling functions.
@@ -278,7 +278,7 @@ Due to hardware limitations it can be possible for an injection signal to be str
 For frequency bins where this is the case, an upper limit on $\mathcal{C}_{ij}(f_k)$ can be established by assuming, as a worst-case scenario, that all of the detector noise at that frequency is produced by the coupling alone
 
 \begin{equation}\label{eq:siul}
-	\mathrm{C}_{ul}(f) = \frac{h_{i,\textrm{bkg}}(f)}{\sqrt{[x_{ij,\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
+	\mathrm{C}_{ij, \mathrm{UL}}(f) = \frac{h_{i,\textrm{bkg}}(f)}{\sqrt{[x_{ij,\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
 \end{equation}
 The larger the injection amplitude, the better this upper limit can be constrained.
 The boundaries between measurements, upper limits, and null results are established by two \ac{ASD} ratio thresholds: a sensor threshold and a detector threshold.
@@ -286,6 +286,12 @@ Let $r_x := x_{ij,\textrm{inj}}(f) / x_{ij,\textrm{bkg}}(f)$ and $r_h := h_{i,\t
 If $r_x \geq t_x$ and $r_h \geq t_h$, where $t_x$ is the sensor threshold and $t_h$ is the detector threshold, then a measurement is computed via eq.~\ref{eq:sicf}.
 Otherwise, if $r_x \geq t_x$ but $r_h < t_h$, then eq.~\ref{eq:siul} is used to place an upper limit on the coupling.
 If $r_x < t_x$ and $r_h < t_h$, then neither a measurement nor upper limit is computed.
+The null hypothesis is thus assumed:
+
+\begin{equation}\label{eq:sinull}
+	\mathrm{C}_{ij, \mathrm{null}}(f) = \frac{h_{i,\textrm{bkg}}(f)}{x_{i,\textrm{bkg}}(f)}.
+\end{equation}
+
 The values of $t_x$ and $t_h$ are determined based on typical level of random fluctuations observed in the spectra, but often values of $t_x = 10$ and $t_h = 2$ are used for most types of sensors and injections.
 The higher choice of $t_x$ is due to the environmental sensors being much more sensitive to random fluctuations in the ambient noise level than the interferometer is.
 
@@ -302,7 +308,7 @@ The \ac{PEM} website provides coupling functions for all accelerometers, microph
 	\label{fig:composite}
 \end{figure}
 
-\section{Uncertainties and limitations of coupling functions}\label{subsec:uncertainties}
+\section{Uncertainties and limitations of coupling functions}\label{sec:uncertainties}
 
 \subsection{Comparison to transfer functions}
 
@@ -323,7 +329,7 @@ Frequency changes from non-linear coupling can be an issue in broadband injectio
 We split broadband injections into smaller frequency bands to avoid this effect when necessary.
 One approach for quantifying non-linear coupling is presented in Washimi et al.\ (2020).%~\citep{Washimi_2020}.
 
-\subsection{Hardware limitations}
+\subsection{Hardware limitations}\label{subsec:hardware_limitations}
 
 \textit{Amplitude limitations}. To measure coupling, we inject signals large enough to produce a response in the detector, but the maximum amplitude of injections is limited by the sensitive range of the environmental sensors (saturation produces an overestimate of coupling).
 This effectively limits how far below the detector noise background we can probe for coupling or establish upper limits.
@@ -393,9 +399,34 @@ This section covers the technical details of the \pemcoupling python package~\ci
 
 The package uses the \code{gwpy} library for fetching raw time series data and producing \acp{ASD} of the \ac{GW} strain channel and auxiliary channels from user-provided background and injection times.
 
-Pre-processing of the time series and spectra is done mainly using \code{numpy} functions.
+\subsection{Pre-processing}
+A number of pre-processing steps are performed to condition the data for analysis.
+First, the auxiliary channel time series are examined for evidence of saturation.
+Injections can cause saturation in two ways: actuator saturation due to overdriven amplifiers, or sensor saturation due to hitting the maximum amplitude the sensor can record.
 
-For each single-injection coupling function, the data are saved in the following forms:
+The amplitude of a magnetic injection typically has to exceed background by a few orders of magnitude to produce noise in the \ac{GW} channel, so comb magnetic injections are the most likely to saturate at the actuator.
+They are also capable of saturating the sensors if performed too close (such as in the electronics racks).
+In either case, intermodulation distortion occurs, generating peaks at sums and differences of the comb line frequencies while also reducing signal power in the injection lines.
+If the saturation is occuring at the actuator, the measured coupling is still accurate, but upper limits are higher due to the reduced signal power.
+On the other hand, sensor saturation results in inaccurate coupling measurements, because the line amplitudes no longer reflect the true magnetic signal at the sensor location.
+
+Accelerometers can saturate in the presence of broadband vibrational injections.
+This results in a $1/f$ noise in the amplitude spectra, as if a low-frequency broadband was being generated.
+The consequence is measuring a lower coupling function at frequencies where the saturation artifact dominates.
+
+For these reasons, coupling functions are only measured for sensors that do not exceed 32k sensor counts, as this is the sign of sensor saturation.
+
+Once the time series are converted to \acp{ASD}, tri-axial magnetometer channels are combined in quadrature.
+Each magnetometer measures the $x$, $y$, and $z$ components of its local magnetic field independently.
+An artificial channel is produced to represent the absolute magnitude of the field.
+
+All \ac{PEM} channels have accompanying calibration measurements~\citep{PEM_website}. Calibration for microphones and magnetometers is simply a constant conversion of Pa/count or T/count, respecitvely.
+Accelerometer \acp{ASD} are converted to acceleration ()$\mathrm{m/s^2}$), then to displacement ($\meter$) by dividing each bin by $(2\pi f)^2$ where $f$ is the bin frequency.
+
+For acoustic injections, spectral smoothing is applied at this point, in order to surpress nodal artifacts as explained in Section~\ref{subsec:hardware_limitations}.
+Finally, the single-injection coupling funcitons $\mathcal{C}_{ij}(f)$ and upper limits $\mathcal{C}_{ul}(f)$ are measured as in~\cref{eq:sicf}.
+
+For each $\mathcal{C}_{ij}(f)$, the data are saved in the following forms:
 \begin{enumerate}
 	\item comma-separated text file consisting of data as described in Table~\ref{tab:pemcoupling_format}
 	\item plot of the  raw coupling function (units of meters per analog-to-digital counts)
