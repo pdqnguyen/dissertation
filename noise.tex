@@ -1,5 +1,10 @@
 \chapter{Environmental noise}
 
+{\color{red}
+First three sections here are mostly copied verbatim from PEM paper.
+I think this needs to be split into multiple chapters.
+Not sure how though.}
+
 Environmental noise refers to any signal originating from outside the structure of a \ac{GW} detector that can impact the detector's sensitivity or disrupt its ability to achieve and maintain lock~\citep{Effler_2015,Nguyen_2021}.
 The effects of environmental noise on detector sensitivity can range from persistent excess noise in the \ac{GW} strain data, to short-duration transient signals, or \textit{glitches}.
 
@@ -182,6 +187,11 @@ To achieve high-amplitude broadband magnetic injections, seven wall-mounted coil
 
 \section{Coupling functions}\label{sec:cf}
 
+{\color{red}
+Goal here is to give much more mathematical rigor to coupling function model than was provided in the relatively terse CF section of the PEM paper.
+Still trying different notation conventions.
+Hard to choose a convention for the many variables and indices that isn't confusing, since there are many similar but not identical quantities.}
+
 \subsection{Single coupling site, sensor, and injection}
 
 Suppose there exists exactly one coupling site, i.e. one location at which incident environmental signals result in excess noise in the \ac{GW} strain data.
@@ -278,7 +288,7 @@ Due to hardware limitations it can be possible for an injection signal to be str
 For frequency bins where this is the case, an upper limit on $\mathcal{C}_{ij}(f_k)$ can be established by assuming, as a worst-case scenario, that all of the detector noise at that frequency is produced by the coupling alone
 
 \begin{equation}\label{eq:siul}
-	\mathrm{C}_{ij, \mathrm{UL}}(f) = \frac{h_{i,\textrm{bkg}}(f)}{\sqrt{[x_{ij,\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
+	\mathcal{C}_{ij, \mathrm{UL}}(f) = \frac{h_{i,\textrm{bkg}}(f)}{\sqrt{[x_{ij,\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
 \end{equation}
 The larger the injection amplitude, the better this upper limit can be constrained.
 The boundaries between measurements, upper limits, and null results are established by two \ac{ASD} ratio thresholds: a sensor threshold and a detector threshold.
@@ -289,7 +299,7 @@ If $r_x < t_x$ and $r_h < t_h$, then neither a measurement nor upper limit is co
 The null hypothesis is thus assumed:
 
 \begin{equation}\label{eq:sinull}
-	\mathrm{C}_{ij, \mathrm{null}}(f) = \frac{h_{i,\textrm{bkg}}(f)}{x_{i,\textrm{bkg}}(f)}.
+	\mathcal{C}_{ij, \mathrm{null}}(f) = \frac{h_{i,\textrm{bkg}}(f)}{x_{i,\textrm{bkg}}(f)}.
 \end{equation}
 
 The values of $t_x$ and $t_h$ are determined based on typical level of random fluctuations observed in the spectra, but often values of $t_x = 10$ and $t_h = 2$ are used for most types of sensors and injections.
@@ -386,6 +396,10 @@ Since microphones are much more sensitive to nodal artifacts while being less se
 
 \section{Tests of coupling functions}
 
+{\color{red}
+Pretty much just copied from PEM paper.
+Goal is to include most or all of the referenced calculations and figures here.}
+
 Although the injections used to measure coupling functions are designed to best replicate environmental noise, there are still differences and it is useful to test the coupling functions with different environmental events by comparing noise seen in the \ac{GW} strain data during such events to noise levels predicted by PEM sensors and their coupling functions.
 Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz.
 At \ac{LLO}, coupling functions for several accelerometers at the Y end station, where vibrational coupling was the highest, are capable of estimating the amplitude of multiple noise transients to within a factor two during a particularly loud thunderstorm.%~\citep{alog_thunder}.
@@ -399,12 +413,18 @@ This section covers the technical details of the \pemcoupling python package~\ci
 
 The package uses the \code{gwpy} library for fetching raw time series data and producing \acp{ASD} of the \ac{GW} strain channel and auxiliary channels from user-provided background and injection times.
 
-\subsection{Pre-processing}
+\subsection{Processing steps}
+
+{\color{red}
+This subsection is quite messy.
+The confusion comes from talking about different sensors at different steps.
+I think I could try splitting it by sensor type, like list all steps for accelerometers and microphones, then all steps for magnetometers.}
+
 A number of pre-processing steps are performed to condition the data for analysis.
 First, the auxiliary channel time series are examined for evidence of saturation.
 Injections can cause saturation in two ways: actuator saturation due to overdriven amplifiers, or sensor saturation due to hitting the maximum amplitude the sensor can record.
 
-The amplitude of a magnetic injection typically has to exceed background by a few orders of magnitude to produce noise in the \ac{GW} channel, so comb magnetic injections are the most likely to saturate at the actuator.
+During magnetic injections, the injection amplitude typically has to exceed background by a few orders of magnitude to produce noise in the \ac{GW} channel, so comb magnetic injections are the most likely to saturate at the actuator.
 They are also capable of saturating the sensors if performed too close (such as in the electronics racks).
 In either case, intermodulation distortion occurs, generating peaks at sums and differences of the comb line frequencies while also reducing signal power in the injection lines.
 If the saturation is occuring at the actuator, the measured coupling is still accurate, but upper limits are higher due to the reduced signal power.
@@ -414,17 +434,22 @@ Accelerometers can saturate in the presence of broadband vibrational injections.
 This results in a $1/f$ noise in the amplitude spectra, as if a low-frequency broadband was being generated.
 The consequence is measuring a lower coupling function at frequencies where the saturation artifact dominates.
 
-For these reasons, coupling functions are only measured for sensors that do not exceed 32k sensor counts, as this is the sign of sensor saturation.
+For these reasons, coupling functions are only measured for sensors that do not exceed 32,000 counts, as this is the sign of sensor saturation.
 
 Once the time series are converted to \acp{ASD}, tri-axial magnetometer channels are combined in quadrature.
 Each magnetometer measures the $x$, $y$, and $z$ components of its local magnetic field independently.
 An artificial channel is produced to represent the absolute magnitude of the field.
 
 All \ac{PEM} channels have accompanying calibration measurements~\citep{PEM_website}. Calibration for microphones and magnetometers is simply a constant conversion of Pa/count or T/count, respecitvely.
-Accelerometer \acp{ASD} are converted to acceleration ()$\mathrm{m/s^2}$), then to displacement ($\meter$) by dividing each bin by $(2\pi f)^2$ where $f$ is the bin frequency.
+Accelerometer \acp{ASD} are converted to acceleration ($\mathrm{m/s^2}$), then to displacement ($\meter$) by dividing each bin by $(2\pi f)^2$ where $f$ is the bin frequency.
 
 For acoustic injections, spectral smoothing is applied at this point, in order to surpress nodal artifacts as explained in Section~\ref{subsec:hardware_limitations}.
 Finally, the single-injection coupling funcitons $\mathcal{C}_{ij}(f)$ and upper limits $\mathcal{C}_{ul}(f)$ are measured as in~\cref{eq:sicf}.
+
+{\color{red}
+Paragraph or two on the CF calculation step.}
+
+\subsection{Data products}
 
 For each $\mathcal{C}_{ij}(f)$, the data are saved in the following forms:
 \begin{enumerate}
@@ -453,6 +478,9 @@ For each $\mathcal{C}_{ij}(f)$, the data are saved in the following forms:
 
 Post-processing, to aggregate single-injection coupling functions into coupling functions, and produce site-wide coupling plots, is done via additional commands, \code{pemcoupling-composite} and \code{pemcoupling-summary}.
 
+{\color{red}
+Expand on these final steps a bit.}
+
 \section{Vibrational noise studies during O3}
 
 \begin{figure}[h!]
@@ -470,6 +498,10 @@ At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band 
 
 \subsection{Input beam jitter}
 
+{\color{red}
+Short discussion, summarize measurements and improvement.
+Will make sure to discuss impact of test mass defect on jitter noise.}
+
 \begin{figure}
 	\centering
 %	\includegraphics[width=\textwidth]{}
@@ -479,7 +511,13 @@ At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band 
 
 \subsection{Scattered light at the HAM5/6 septum}
 
+{\color{red}
+Gonna be a long one.}
+
 \subsection{Search for the source of a 48-Hz peak}
+
+{\color{red}
+To-do.}
 
 \begin{figure}
 	\centering
@@ -490,7 +528,7 @@ At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band 
 
 \section{Magnetic noise studies during O3}
 
-\begin{figure}[h!]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{figures/ambient_mag.pdf}
 	\caption{
@@ -577,3 +615,6 @@ The event could be retracted, if gating or filtering out the environmental contr
 
 During \ac{O3}, no candidates were retracted on the basis of the environmental coupling check alone.
 Some human input was still required for all of the \XX events reported in~\citep{gwtc2}, although little to no signal overlap of environmental transients was seen.
+
+{\color{red}
+Discuss new pemcheck method.}
