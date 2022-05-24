@@ -135,21 +135,42 @@ The longer duration of this event (75\,s) unsurprisingly overlapped with many en
 Based on the coupling functions for those sensors, several of these environmental events were loud enough (estimated \ac{DARM} signals of up to SNR~4) to have contributed to the interferometer readout, but not enough to account for the \ac{GW} signal.
 Furthermore, none of them had a time-frequency morphology that correlated with any features in the candidate signal.
 
-Since \ac{O3}, most of the procedure described above has been automated in order to handle the increase in detection rate.
+\subsection{Automated event validation}
+
+Since the start of \ac{O3}, most of the procedure described above has been automated in order to handle the increase in detection rate.
 The automated vetting is performed by the \code{pemcheck} routine, which is a part of the \ac{DQR}.
 When an event is detected by the astrophysical search pipelines, a \ac{DQR} is initiated and assembles a plethora of tasks for assessing the data quality at each observatory during the time of the event.
 Among these tasks, an omega scan pipeline~\citep{Davis_2021, Chatterji_2004} is used to search for transient noise in all \ac{PEM} sensors in the time window spanning the event candidate.
 It does so by producing a Q-transform for each sensor and reporting those in which there is a transient signal with a false-alarm rate below $10^{-3}$\,Hz.
 The omega scan also reports the frequency and amplitude of the most significant tile for each sensor.
-The \code{pemcheck} uses the output of the omega scan to estimate each sensor's potential affect on the data quality of the detector.
-The coupling function of each sensor is interpolated at the peak frequency and multiplied by the peak amplitude, producing an estimated \ac{DARM} amplitude.
+The \code{pemcheck} in \ac{O3} used the output of the omega scan to estimate each sensor's potential affect on the data quality of the detector.
+The coupling function of each sensor was interpolated at the peak frequency and multiplied by the peak amplitude, producing an estimated \ac{DARM} amplitude.
 
-Sensors whose estimated contribution exceed one tenth of the \ac{DARM} background level are flagged for human input, requiring a comparison of the environmental signal morphology to that of the event candidate.
-If there is sufficient signal overlap, reviewers may advise that analysts perform some noise removal in the data, such as by gating or filtering out the appropriate time or frequency range, before performing further follow up analyses.
+Sensors whose estimated contribution exceed one tenth of the \ac{DARM} background level were flagged for human input, requiring a comparison of the environmental signal morphology to that of the event candidate.
+If there was sufficient signal overlap, reviewers may advise that analysts perform some noise removal in the data, such as by gating or filtering out the appropriate time or frequency range, before performing further follow up analyses.
 The event could be retracted, if gating or filtering out the environmental contribution would reduce the signal-to-noise ratio of the candidate to a level no longer consistent with a GW detection.
 
 During \ac{O3}, no candidates were retracted on the basis of the environmental coupling check alone.
 Some human input was still required for all of the \XX events reported in~\citep{gwtc2}, although little to no signal overlap of environmental transients was seen.
 
-{\color{red}
-Discuss new pemcheck method.}
+\subsection{Event validation in O4}
+
+With the \ac{GW} detection rate expected to increase in \ac{O4}, a more sophisticated and streamlined vetting routine is necessary.
+The \ac{DQR} in \ac{O4} will report a p-value for each vetting task, including the \code{pemcheck} task.
+In the case of environmental noise vetting, this p-value represents the null-hypothesis probability, i.e. the probability that environmental disturbances are not contaminating the \ac{GW} event signal.
+This probability is defined based on the uncertainty of the coupling functions.
+The coupling in a single frequency bin is described by a log-normal probability distribution with $\mu=\log{C(f_k)}$ and $\sigma^2=1$, if $C(f_k)$ is a measurement:
+
+\begin{equation}
+	P(x) = \mathrm{LogNormal}(\mu, \sigma^2) = \frac{1}{x \sigma \sqrt{2\pi}} \exp(-\frac{(\ln(x) - \mu^2)}{2 \sigma^2})
+\end{equation}
+
+If $C(f_k)$ is an upper limit, then the coupling is assumed to be equal to or less than $C(f_k)$, so it is described by the uniform probability distribution
+
+\begin{equation}
+	P(x) =
+		\begin{cases}
+      \frac{1}{C(f_k)} & \text{if}\ x < C(f_k)\\
+      0 & \text{otherwise}
+    \end{cases}
+\end{equation}
