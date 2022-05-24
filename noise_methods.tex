@@ -341,8 +341,27 @@ One approach for quantifying non-linear coupling is presented in Washimi et al.\
 
 \subsection{Hardware limitations}\label{subsec:hardware_limitations}
 
-\textit{Amplitude limitations}. To measure coupling, we inject signals large enough to produce a response in the detector, but the maximum amplitude of injections is limited by the sensitive range of the environmental sensors (saturation produces an overestimate of coupling).
+\textit{Injection amplitudes}. To measure coupling, we inject signals large enough to produce a response in the detector, but the maximum amplitude of injections is limited by the sensitive range of the environmental sensors (saturation produces an overestimate of coupling).
 This effectively limits how far below the detector noise background we can probe for coupling or establish upper limits.
+
+Recall that Eq.~\ref{eq:ccf} was based on assuming that injection amplitudes are equivalent.
+However, this assumption is ambitious: since injections vary with distance to sensors, the amplitudes used have to be adjusted to achieve a large signals in the sensors and in the \ac{GW} channel.
+This means that the highest-amplitude injection measured by a sensor is not necessarily the nearest injection to that sensor.
+If a further injection was performed using a much larger amplitude, its measured amplitude can trump that of a nearer injection, leading to the algorithm choose a more distant injection source location when determining $\widetilde{\mathrm{C}}_j$.
+To prevent this issue, once $\mathcal{C}_{ij}$ is computed for all sensors for a single injection, an additional sensor threshold is applied that is a fraction of the highest amplitude observed by all sensors.
+This threshold is used only to demote measurements to upper limits.
+By doing so, this injection-dependent threshold vetos measurements produced by sensors that are far from the injection.
+For the \ac{O3} injections, the threshold was set at one third, meaning that a coupling measurement is demoted to an upper limit if the sensor measuring it observes the injection at less than a third of the amplitude observed by the sensor closest to the injection.
+
+{\color{red}
+Need to talk about this a lot more.
+Injection-depended thresholding reflects a fundamental issue with the distribution of sensors and injections.
+In principle if you have many one-to-one correspondence b/w sensors and injections,
+you would just have each injection produce measurements in its nearest sensor, which is effectively what you get by setting this threshold to one.
+But in absence of that ideal injection distribution you have to lower the threshold by some amount and it's not obvious how to operationalize this.
+Nevertheless some even as an ad hoc thresholding scheme it works very well for preventing inaccurate coupling functions from misattributing the nearest injection to a sensor.
+
+I need to emphasize that this is basically a way of normalizing injections.}
 
 \textit{Uncertainty due to injection locations}.
 As mentioned above, the model in ~\cref{eq:cf_full} relies on the assumption that the environment is monitored at the coupling site.
@@ -431,7 +450,7 @@ If the saturation is occuring at the actuator, the measured coupling is still ac
 On the other hand, sensor saturation results in inaccurate coupling measurements, because the line amplitudes no longer reflect the true magnetic signal at the sensor location.
 
 Accelerometers can saturate in the presence of broadband vibrational injections.
-This results in a $1/f$ noise in the amplitude spectra, as if a low-frequency broadband was being generated.
+This results in artificial broadband noise in the amplitude spectra.
 The consequence is measuring a lower coupling function at frequencies where the saturation artifact dominates.
 
 For these reasons, coupling functions are only measured for sensors that do not exceed 32,000 counts, as this is the sign of sensor saturation.
