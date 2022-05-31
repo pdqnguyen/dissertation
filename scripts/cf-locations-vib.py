@@ -7,7 +7,7 @@ from utils import load_cf
 plt.style.use('./custom-style.mplstyle')
 
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/injection-locations/')
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/cf-locations-vib/')
 OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures')
 
 
@@ -53,7 +53,7 @@ def plot_injection_locations():
     plt.yscale('log')
     plt.grid(which='both', axis='both')
     plt.legend(loc='lower right')
-    fig.savefig(os.path.join(OUT_DIR, 'injection-locations.pdf'))
+    fig.savefig(os.path.join(OUT_DIR, 'cf-locations-vib.pdf'))
     return
 
 

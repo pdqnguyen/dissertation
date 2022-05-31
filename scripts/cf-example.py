@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 plt.style.use('./custom-style.mplstyle')
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/')
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/cf-example')
 PSL_INJECTION_PATH = os.path.join(DATA_DIR, 'psl-injection.txt')
 
 OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/')
@@ -92,4 +92,4 @@ ax1.set_title('PSL accelerometer')
 ax2.set_title('Detector response')
 ax3.set_title('Coupling function')
 
-plt.savefig(os.path.join(OUT_DIR, 'injection-example.pdf'))
+plt.savefig(os.path.join(OUT_DIR, 'cf-example.pdf'))

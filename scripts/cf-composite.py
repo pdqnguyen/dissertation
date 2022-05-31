@@ -9,7 +9,7 @@ from utils import logbin, interp1d, load_cf
 plt.style.use('./custom-style.mplstyle')
 
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/composite')
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/cf-composite')
 FILES = [
     'HAM5_shaker_20-100_Hz.txt',
     'HAM6_shaker_5-100_Hz.txt',
@@ -95,7 +95,7 @@ def plot_composite():
     ax.grid(True, which='major', axis='y')
     # ax.legend(handles, labels, loc='upper left', bbox_to_anchor=(1, 1))
     ax.legend(handles, labels, ncol=2, loc='lower right', bbox_to_anchor=(1, 1.02))
-    fig.savefig(os.path.join(OUT_DIR, 'composite.pdf'))
+    fig.savefig(os.path.join(OUT_DIR, 'cf-composite.pdf'))
     return
 
 

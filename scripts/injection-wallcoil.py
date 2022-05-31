@@ -8,7 +8,7 @@ from utils import load_cf
 plt.style.use('./custom-style.mplstyle')
 
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/wallcoil')
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/injection-wallcoil')
 OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures')
 
 
@@ -40,7 +40,7 @@ def plot_wallcoil():
     ax.set_ylim(ylim)
     ax.grid(True, which='major', axis='both')
     ax.legend(loc='upper right')
-    fig.savefig(os.path.join(OUT_DIR, 'wallcoil.pdf'))
+    fig.savefig(os.path.join(OUT_DIR, 'injection-wallcoil.pdf'))
     return
 
 

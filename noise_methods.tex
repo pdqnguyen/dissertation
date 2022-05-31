@@ -32,14 +32,13 @@ They can also cause modulate the paths of light that is scattered off of surface
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/channels.png}
-	\caption{
-		The PEM system layout at LLO during O3, as seen on the PEM public website.}
-	\label{fig:channels}
+	\includegraphics[width=\textwidth]{figures/pem-channels.png}
+	\caption{\raggedright The PEM system layout at LLO during O3, as seen on the PEM public website.}
+	\label{fig:pem_channels}
 \end{figure}
 
 Understanding environmental influences on the detectors requires comprehensive monitoring of its physical surroundings.
-This is done through the \ac{PEM} system of auxiliary sensors (Figure~\ref{fig:channels}), which consists of accelerometers for high-frequency vibrations (between tens to thousands of Hertz), seismometers for low-frequency vibrations (up to tens of Hertz), microphones, magnetometers, voltage monitors that measure the voltage of electric power supplied to the detector sites, radio-frequency (RF) receivers, a cosmic-ray detector for high-energy particles, and wind, temperature and humidity sensors.
+This is done through the \ac{PEM} system of auxiliary sensors (Figure~\ref{fig:pem_channels}), which consists of accelerometers for high-frequency vibrations (between tens to thousands of Hertz), seismometers for low-frequency vibrations (up to tens of Hertz), microphones, magnetometers, voltage monitors that measure the voltage of electric power supplied to the detector sites, radio-frequency (RF) receivers, a cosmic-ray detector for high-energy particles, and wind, temperature and humidity sensors.
 Detailed information on \ac{PEM} sensors, including example background spectra and calibration data, can be found on the \ac{PEM} website, PEM.LIGO.org~\citep{PEM_website}.
 
 \section{Tests of environmental coupling}\label{subsec:injections}
@@ -47,7 +46,7 @@ Detailed information on \ac{PEM} sensors, including example background spectra a
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{figures/injection-map.png}
-	\caption{
+	\caption{\raggedright
 		Standard locations for vibration and magnetic injections at the LHO corner station (left), Y end station (top right), and X end stations (bottom right).}
 	\label{fig:injection_map}
 \end{figure}
@@ -62,19 +61,21 @@ The number and locations of shaker injections vary between injection campaigns. 
 Additionally, impulse injections (not shown) are made at locations where vibrational injections have revealed strong coupling sites.
 
 \begin{table}[h!]
-\caption{\label{tab:injectors}Specifications for injection equipment.}
-\begin{tabular}{|ll|}
-	\hline
-	Equipment & Injection type \\
-	\hline
-	Custom enclosure with two 14-in. speakers & Acoustic\\
-	Various smaller speakers & Acoustic\\
-	APS 113 Electro-Seis\reg Long Stroke Shaker~\citep{big_shaker} & Vibrational\\
-	Piezosystem\reg~\citep{piezo} shaker with custom reaction mass & Vibrational\\
-	Br\"uel \& Kj\ae r\reg~\citep{bk} EM shaker with custom reaction mass & Vibrational\\
-	1\,m diameter copper coil (100\,turns) & Magnetic\\
-	3\,x\,3\,m and 5\,x\,5\,m coils (80-100\,turns) & Magnetic\\ \hline
-\end{tabular}
+	\centering%
+	\caption{\label{tab:injectors}Specifications for injection equipment.}
+	\begin{tabularx}{\linewidth}{X>{\hsize=.3\hsize}X}
+		\toprule
+		Equipment & Injection type \\
+		\midrule
+		Custom enclosure with two 14-in. speakers & Acoustic\\
+		Various smaller speakers & Acoustic\\
+		APS 113 Electro-Seis\reg Long Stroke Shaker~\citep{big_shaker} & Vibrational\\
+		Piezosystem\reg~\citep{piezo} shaker with custom reaction mass & Vibrational\\
+		Br\"uel \& Kj\ae r\reg~\citep{bk} EM shaker with custom reaction mass & Vibrational\\
+		1\,m diameter copper coil (100\,turns) & Magnetic\\
+		3\,x\,3\,m and 5\,x\,5\,m coils (80-100\,turns) & Magnetic\\
+		\bottomrule
+	\end{tabularx}
 \end{table}
 
 
@@ -88,7 +89,8 @@ Table~\ref{tab:injectors} summarizes the current equipment used and Figure~\ref{
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{figures/injection-equipment.png}
-	\caption{Injection equipment photos. From left to right: wall-mounted magnetic field injection coil; 14-in. speakers; APS 113 shaker connected to the door of a vacuum chamber by a rigid fiberglass rod; modified Piezosystem shaker clamped to an electronics rack; modified B\&K shaker clamped to a beam tube support.}
+	\caption{\raggedright
+	Injection equipment photos. From left to right: wall-mounted magnetic field injection coil; 14-in. speakers; APS 113 shaker connected to the door of a vacuum chamber by a rigid fiberglass rod; modified Piezosystem shaker clamped to an electronics rack; modified B\&K shaker clamped to a beam tube support.}
 	\label{fig:injection_equipment}
 \end{figure}
 
@@ -168,13 +170,13 @@ Improvements have also been made to the magnetic field injection equipment. In o
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics{figures/wallcoil.pdf}
+	\includegraphics{figures/injection-wallcoil.pdf}
 	\caption{
 		Comparison of the old small-coil comb magnetic field injections with the new large-coil broadband injections.}
-	\label{fig:wallcoil}
+	\label{fig:injection_wallcoil}
 \end{figure}
 
-To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3; the project will be completed by the start of O4.
+To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:injection_wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3; the project will be completed by the start of O4.
 
 
 
@@ -268,20 +270,20 @@ That is, for a frequency $f_k$ and a set of injections $\mathcal{I}$, one can me
 If the distribution of injection locations provides sufficient coverage of sensor locations, then $\widetilde{\mathrm{C}}_j(f) \approx \mathrm{C}_j(f)$.
 Shortcomings of this assumption are discussed in Section~\ref{sec:uncertainties}.
 
-Figure~\ref{fig:injection} provides an example of a coupling function measurement for a \ac{PSL} acoustic injection.
-Figure~\ref{fig:composite} shows an estimated ambient noise based on an accelerometer coupling function constructed from five single-injection coupling functions.
+Figure~\ref{fig:cf-example} provides an example of a coupling function measurement for a \ac{PSL} acoustic injection.
+Figure~\ref{fig:cf-composite} shows an estimated ambient noise based on an accelerometer coupling function constructed from five single-injection coupling functions.
 For simplicity only five injections were used to produce this example, however in practice the number of injections performed near a sensor can be much higher.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/injection-example.pdf}
+	\includegraphics[width=\textwidth]{figures/cf-example.pdf}
 	\caption{
 		Example of a broadband acoustic noise injection and measurement of a single-injection coupling function.
 		Top: displacement of an accelerometer in the PSL room during background time (black) and injection time (orange).
 		Middle: DARM during background time (black) and injection time (orange).
 		Estimated ambient levels for the accelerometer are shown as dark blue dots, with upper limits shown as light blue crosses.
 		Bottom: single-injection coupling function used to produce estimated ambient above.}
-	\label{fig:injection}
+	\label{fig:cf-example}
 \end{figure}
 
 Due to hardware limitations it can be possible for an injection signal to be strong enough to produce excess noise in a sensor \ac{ASD} but not in the \ac{GW} detector \ac{ASD}.
@@ -307,15 +309,15 @@ The higher choice of $t_x$ is due to the environmental sensors being much more s
 
 The coupling function as approximated in eq.~\ref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{subsec:vetting}).
 References to a sensor's coupling function will hereafter refer to this approximate quantity.
-Figure~\ref{fig:composite} provides an example of an estimated ambient for an accelerometer on the HAM6 vacuum chamber (which houses the interferometer output optics).
+Figure~\ref{fig:cf-composite} provides an example of an estimated ambient for an accelerometer on the HAM6 vacuum chamber (which houses the interferometer output optics).
 The \ac{PEM} website provides coupling functions for all accelerometers, microphones, and magnetometers produced from the most recent campaign of injections~\citep{PEM_website}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics{figures/composite.pdf}
+	\includegraphics{figures/cf-composite.pdf}
 	\caption{
 		Ambient noise level for the LHO HAM6 Y-axis accelerometer estimated from a composite coupling function, using acoustic and seismic injections near the output arm.}
-	\label{fig:composite}
+	\label{fig:cf-composite}
 \end{figure}
 
 \section{Uncertainties and limitations of coupling functions}\label{sec:uncertainties}
@@ -373,23 +375,23 @@ This uncertainty also propagates to projected noise levels in the \ac{GW} channe
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/injection-locations.pdf}
+	\includegraphics[width=\textwidth]{figures/cf-locations-vib.pdf}
 	\caption{
 		Single-injection coupling functions (upper limits not shown) for the HAM5 Y-axis accelerometer for three different shaker injection locations (on top of HAM5, on top of HAM6, and on the HAM5 chamber door).}
-	\label{fig:injection_locations}
+	\label{fig:cf_locations_vib}
 \end{figure}
 
 Since the uncertainty manifests as a multiplicative scaling of $\mathcal{C}_{ij}(f)$, it can be described by computing a geometric standard deviation of $\mathcal{C}_{ij}(f)$ for a single sensor over a range of injection locations, at each frequency bin.
-Figure~\ref{fig:injection_locations} shows single-injection coupling functions for an accelerometer measured from shaker injections produced from three locations (the distribution of injection locations is discussed in Section~\ref{subsec:injections}.
+Figure~\ref{fig:cf_locations_vib} shows single-injection coupling functions for an accelerometer measured from shaker injections produced from three locations (the distribution of injection locations is discussed in Section~\ref{subsec:injections}.
 Since the injection locations are close enough to the accelerometer, it can be assumed that the variance is primarily due to finite spacing effect.
 Averaged across all frequency bins, the geometric standard deviation between injection locations is 1.4, i.e. coupling functions measured from vibrational injections can be expected to vary by a factor of 1.4 when measured by different injection locations.
 
 \begin{figure}[h!]
 	\centering
-%	\includegraphics[width=\textwidth]{figures/injection-locations-mag.pdf}
+%	\includegraphics[width=\textwidth]{figures/cf-locations-mag.pdf}
 	\caption{
 		Single-injection coupling functions (upper limits not shown) for various magnetometers and various injections at both observatories.}
-	\label{fig:injection_locations_mag}
+	\label{fig:cf_locations_mag}
 \end{figure}
 
 A similar study was performed combining geometric standard deviations for various magnetometers at both observatories.

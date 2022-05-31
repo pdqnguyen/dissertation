@@ -6,7 +6,7 @@ import h5py
 
 plt.style.use('./custom-style.mplstyle')
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/ambient')
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/noise-ambient')
 ALIGO_SENS_PATH = os.path.join(DATA_DIR, 'aligo-sens.h5')
 DARM_LHO_PATH = os.path.join(DATA_DIR, 'darm-lho.txt')
 DARM_LLO_PATH = os.path.join(DATA_DIR, 'darm-llo.txt')
@@ -44,7 +44,7 @@ markersizes = dict(
 for coupling_type in ambient_dict.keys():
     fig, ax = plt.subplots(2, 1, figsize=(5, 4))
     plt.subplots_adjust(left=0.2, bottom=0.12, right=0.99, top=0.95, hspace=0.2)
-    path = os.path.join(OUT_DIR, f"ambient_{coupling_type}.pdf")
+    path = os.path.join(OUT_DIR, f"noise-ambient-{coupling_type}.pdf")
     for i, (observatory, df) in enumerate(ambient_dict[coupling_type].items()):
         darm = darm_dict[observatory]
         ax[i].loglog(darm.frequency, darm.darm, 'k-')
@@ -116,5 +116,4 @@ for j, coupling_type in enumerate(ambient_dict.keys()):
         ax[0, j].set_xticklabels([])
         ax[i, -1].set_yticklabels([])
         ax[0, j].set_title(coupling_names[coupling_type])
-    plt.savefig(os.path.join(OUT_DIR, 'ambient.pdf'))
-
+    plt.savefig(os.path.join(OUT_DIR, 'noise-ambient.pdf'))
