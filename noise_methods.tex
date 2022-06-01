@@ -224,8 +224,8 @@ This can be done by ordering the sensors by distance from the injection source a
 Issues can arise if there are sensors that are never near enough to any injection source, causing them to zeroed out for all injections; this requires that injections be distributed such that each sensor is near enough to at least one injection.
 
 \textit{Nearest-injection approximation}.
-Instead of solving ~\cref{eq:cf_full} in full, one can approximate $\mathrm{C}_j(f)$ for each sensor independently of other sensors.
-Given a sensor $j$, ~\cref{eq:cf} can be repurposed by replacing $x$ with $x_{ij}$ and $h$ with $h_i$ to compute a single-injection ``coupling function'' $\mathcal{C}_{ij}(f)$ for each injection:
+Instead of solving \cref{eq:cf_full} in full, one can approximate $\mathrm{C}_j(f)$ for each sensor independently of other sensors.
+Given a sensor $j$, \cref{eq:cf} can be repurposed by replacing $x$ with $x_{ij}$ and $h$ with $h_i$ to compute a single-injection ``coupling function'' $\mathcal{C}_{ij}(f)$ for each injection:
 
 \begin{equation}\label{eq:sicf}
 	\mathcal{C}_{ij}(f) = \sqrt{\frac{[h_{i,\textrm{inj}}(f)]^2 - [h_{i,\textrm{bkg}}(f)]^2}{[x_{ij,\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
@@ -265,8 +265,8 @@ For frequency bins where this is the case, an upper limit on $\mathcal{C}_{ij}(f
 The larger the injection amplitude, the better this upper limit can be constrained.
 The boundaries between measurements, upper limits, and null results are established by two \ac{ASD} ratio thresholds: a sensor threshold and a detector threshold.
 Let $r_x := x_{ij,\textrm{inj}}(f) / x_{ij,\textrm{bkg}}(f)$ and $r_h := h_{i,\textrm{inj}}(f) / h_{i,\textrm{bkg}}(f)$ represent the injection signal-to-noise ratios if the sensor and \ac{GW} detector \acp{ASD}, respectively.
-If $r_x \geq t_x$ and $r_h \geq t_h$, where $t_x$ is the sensor threshold and $t_h$ is the detector threshold, then a measurement is computed via eq.~\ref{eq:sicf}.
-Otherwise, if $r_x \geq t_x$ but $r_h < t_h$, then eq.~\ref{eq:siul} is used to place an upper limit on the coupling.
+If $r_x \geq t_x$ and $r_h \geq t_h$, where $t_x$ is the sensor threshold and $t_h$ is the detector threshold, then a measurement is computed via \cref{eq:sicf}.
+Otherwise, if $r_x \geq t_x$ but $r_h < t_h$, then \cref{eq:siul} is used to place an upper limit on the coupling.
 If $r_x < t_x$ and $r_h < t_h$, then neither a measurement nor upper limit is computed.
 The null hypothesis is thus assumed:
 
@@ -277,7 +277,7 @@ The null hypothesis is thus assumed:
 The values of $t_x$ and $t_h$ are determined based on typical level of random fluctuations observed in the spectra, but often values of $t_x = 10$ and $t_h = 2$ are used for most types of sensors and injections.
 The higher choice of $t_x$ is due to the environmental sensors being much more sensitive to random fluctuations in the ambient noise level than the interferometer is.
 
-The coupling function as approximated in eq.~\ref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{sec:vetting}).
+The coupling function as approximated in \cref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{sec:vetting}).
 References to a sensor's coupling function will hereafter refer to this approximate quantity.
 Figure~\ref{fig:cf-composite} provides an example of an estimated ambient for an accelerometer on the HAM6 vacuum chamber (which houses the interferometer output optics).
 The \ac{PEM} website provides coupling functions for all accelerometers, microphones, and magnetometers produced from the most recent campaign of injections~\citep{PEM_website}.
@@ -316,7 +316,7 @@ One approach for quantifying non-linear coupling is presented in \citet{Washimi_
 \textit{Injection amplitudes}. To measure coupling, we inject signals large enough to produce a response in the detector, but the maximum amplitude of injections is limited by the sensitive range of the environmental sensors (saturation produces an overestimate of coupling).
 This effectively limits how far below the detector noise background we can probe for coupling or establish upper limits.
 
-Recall that Eq.~\ref{eq:ccf} was based on assuming that injection amplitudes are equivalent.
+Recall that \cref{eq:ccf} was based on assuming that injection amplitudes are equivalent.
 However, this assumption is ambitious: since injections vary with distance to sensors, the amplitudes used have to be adjusted to achieve a large signals in the sensors and in the \ac{GW} channel.
 This means that the highest-amplitude injection measured by a sensor is not necessarily the nearest injection to that sensor.
 If a further injection was performed using a much larger amplitude, its measured amplitude can trump that of a nearer injection, leading to the algorithm choose a more distant injection source location when determining $\widetilde{\mathrm{C}}_j$.
@@ -336,10 +336,10 @@ Nevertheless some even as an ad hoc thresholding scheme it works very well for p
 I need to emphasize that this is basically a way of normalizing injections.}
 
 \textit{Uncertainty due to injection locations}.
-As mentioned above, the model in ~\cref{eq:cf_full} relies on the assumption that the environment is monitored at the coupling site.
+As mentioned above, the model in \cref{eq:cf_full} relies on the assumption that the environment is monitored at the coupling site.
 The density of sensors is not great enough for this to be strictly true, especially if the source of the environmental signal is closer to the coupling site than the sensor is.
 The detector response to an injection depends on the distance between the injection and coupling site, whereas the sensor response depends on the distance between the injection and sensor.
-Varying the injection location therefore varies the relative scaling of the numerator and denominator of ~\cref{eq:sicf}, affecting the measurement of $\mathcal{C}_{ij}(f)$ and subsequently the sensor coupling function via ~\cref{eq:ccf}.
+Varying the injection location therefore varies the relative scaling of the numerator and denominator of \cref{eq:sicf}, affecting the measurement of $\mathcal{C}_{ij}(f)$ and subsequently the sensor coupling function via \cref{eq:ccf}.
 Therefore, a finite spacing of sensors leads to some degree of uncertainty in the coupling functions.
 This uncertainty also propagates to projected noise levels in the \ac{GW} channel using these coupling functions.
 
