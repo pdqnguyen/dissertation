@@ -12,15 +12,15 @@ Introduce how observing/engineering runs work, O3 schedule, etc.}
 	\includegraphics[width=\textwidth]{figures/noise-ambient-vib.pdf}
 	\caption{
 		Ambient estimate of vibrational noise levels at LHO (top) and LLO (bottom).}
-	\label{fig:noise_ambient-vib}
+	\label{fig:noise_ambient_vib}
 \end{figure}
 
-Figure~\ref{fig:noise_ambient-vib} shows the ambient contribution of vibrational noise during \ac{O3}, produced by combining the highest coupling factors among accelerometers and microphones measured from an injection campaign at the beginning of \ac{O3}.
-At the end of \ac{O3}, the vibration noise background at both observatories was dominated by input beam jitter above 100\,Hz (discussed in Section~\ref{sec:jitter}).
+Figure~\ref{fig:noise_ambient_vib} shows the ambient contribution of vibrational noise during \ac{O3}, produced by combining the highest coupling factors among accelerometers and microphones measured from an injection campaign at the beginning of \ac{O3}.
+At the end of \ac{O3}, the vibration noise background at both observatories was dominated by input beam jitter above 100\,Hz (discussed in Section~\ref{sec:noise-vib-septum}).
 At \ac{LHO},  the dominant coupling region below 100\,Hz was the output arm.
 At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band and the output arm in the 60-100\,Hz band.
 
-\subsection{Scattered light at the HAM5/6 septum}\label{sec:noise-vib-scatter}
+\subsection{Scattered light at the HAM5/6 septum}\label{sec:noise-vib-septum}
 
 A major source of detector noise and reduced sensitivity to \acp{GW} is the scattering of light from the beam spot on a test mass or other optic to surfaces that are moving relative to the optic, like vacuum chamber walls.
 A very small fraction of the light reaching the moving surface is reflected to the originating or another beam spot, where it scatters back into the main interferometer beam.
@@ -54,7 +54,7 @@ This provides further support that the septum is the dominant coupling site in t
 
 
 
-\subsection{Search for the source of a 48-Hz peak}\label{sec:noise_vib_48hz}
+\subsection{Search for the source of a 48-Hz peak}\label{sec:noise-vib-48hz}
 
 Figure~\ref{fig:noise_beats} shows spectrograms of a beating-shakers injection used to localize the coupling site responsible for a 48\hyp Hz noise peak in the \ac{DARM} spectrum.
 The shakers were injecting at 48 and 48.01\,Hz. The Y-axes of the spectrograms are centered along at 48\,Hz and show the combined signal in each sensor modulating at the beat frequency (0.01\,Hz).
@@ -99,17 +99,17 @@ Will make sure to discuss impact of test mass defect on jitter noise.}
 	\includegraphics[width=\textwidth]{figures/noise-ambient-mag.pdf}
 	\caption{
 		Ambient estimate of magnetic noise levels at LHO (top) and LLO (bottom).}
-	\label{fig:noise-ambient-mag}
+	\label{fig:noise_ambient_mag}
 \end{figure}
 
 Magnetic injections early in \ac{aLIGO} suggested that coupling to permanent magnets in the suspension system  could prevent \ac{LIGO} from reaching design sensitivity in the 10-20\,Hz regions~\citep{Schofield_2013}.
 While the test mass actuator is electrostatic and not magnetic (as in \ac{iLIGO}), a number of permanent magnets were used in the suspensions, including for actuation in the first three of the four levels of the isolation chain and for eddy current damping.
 The greatest number of permanent magnets were in the eddy current damping arrays and these were removed.
-Nevertheless, ambient fields are still predicted to produce noise at greater than one-tenth of the design sensitivity in the 10-20\,Hz band (Figure~\ref{fig:noise-ambient-mag}), and may need to be further addressed as we reach design sensitivity in the 10\,Hz region.
+Nevertheless, ambient fields are still predicted to produce noise at greater than one-tenth of the design sensitivity in the 10-20\,Hz band (Figure~\ref{fig:noise_ambient_mag}), and may need to be further addressed as we reach design sensitivity in the 10\,Hz region.
 
 At higher frequencies, generally above about 30\,Hz, the dominant magnetic coupling appears to be through induction of currents in cables and at connectors, mainly to actuator cabling and other cabling in the control system.
 Mitigation of coupling to cables and connectors has required a continuing program of monitoring coupling since cables are often disconnected and reconnected during runs as electronics are replaced for problems or upgrades.
-This program consists of making weekly, broadband magnetic field injections using the large wall-mounted coils described in Section~\ref{sec:magnetic-injections}.
+This program consists of making weekly, broadband magnetic field injections using the large wall-mounted coils described in Section~\ref{sec:injections-magnetic}.
 The injections have shown that peaks can appear or disappear, as well as shift in frequency, on a weekly basis.
 
 \subsection{Fluctuations in magnetic coupling}\label{sec:noise-mag-weekly}
@@ -129,7 +129,7 @@ The injections have shown that peaks can appear or disappear, as well as shift i
 	\label{fig:weekly-mag-variation}
 \end{figure}
 
-\section{Validation of gravitational wave event candidates}\label{subsec:vetting}
+\section{Validation of gravitational wave event candidates}\label{sec:vetting}
 
 In addition to investigating sources of environmental influences, knowledge acquired from environmental studies contributes to the vetting of \ac{GW} event candidates.
 Analysis pipelines search the strain data for astrophysical signals.
