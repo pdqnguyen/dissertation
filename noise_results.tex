@@ -5,6 +5,25 @@ Introduce how observing/engineering runs work, O3 schedule, etc.}
 
 \ac{O3} was preceded by an engineering run, a month-long period during with the interferometer is operational at low-noise levels but not observing \ac{GW} events, to provide time for detector commissioning and noise studies.
 
+\section{Evaluation of coupling functions}\label{sec:noise-tests}
+
+{\color{red}
+Pretty much just copied from PEM paper.
+Goal is to include most or all of the referenced calculations and figures here.}
+
+Before discussing results of injection studies and coupling function measurements in \ac{O3}, it is necessary that we take a moment to assess how well they estimate excess noise in the interferometer when the noise source is known to be the result of environmental coupling.
+Of course, one could do this by applying coupling functions to a set of ``test'' injections, but this would require performing more injections, which as mentioned before is typically not feasible.
+Furthermore, since the intention of the coupling functions is to estimate the impact of noise signals originating from a broad variety of sources, it make sense to use non-laboratory signals when evaluating coupling estimates.
+Therefore, we use noise events not produced by injection equipment to evaluate how accurately the coupling functions recover the actual excess noise observed in the \ac{GW} strain data.
+
+Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz.
+At \ac{LLO}, coupling functions for several accelerometers at the Y end station, where vibrational coupling was the highest, are capable of estimating the amplitude of multiple noise transients to within a factor two during a particularly loud thunderstorm~\citep{alog_thunder}.
+
+Helicopter flyovers can produce narrow-band features up to tens of seconds long.
+Coupling functions of various sensors at both observatories can predict the amplitudes of lines produced by multiple helicopter flyovers during O3 to within a factor of two in most cases~\citep{alog_helicopter}.
+
+Long-duration noise due to vibrations from rain and the building \ac{HVAC} is also well characterized by coupling functions at \ac{LHO}~\citep{alog_rain, alog_hvac_coupling}.
+
 \section{Vibrational noise studies during O3}\label{sec:noise-vib}
 
 \begin{figure}[h!]

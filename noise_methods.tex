@@ -41,7 +41,7 @@ Understanding environmental influences on the detectors requires comprehensive m
 This is done through the \ac{PEM} system of auxiliary sensors (Figure~\ref{fig:pem-channels}), which consists of accelerometers for high-frequency vibrations (between tens to thousands of Hertz), seismometers for low-frequency vibrations (up to tens of Hertz), microphones, magnetometers, voltage monitors that measure the voltage of electric power supplied to the detector sites, radio-frequency (RF) receivers, a cosmic-ray detector for high-energy particles, and wind, temperature and humidity sensors.
 Detailed information on \ac{PEM} sensors, including example background spectra and calibration data, can be found on the \ac{PEM} website, PEM.LIGO.org~\citep{PEM_website}.
 
-\section{Tests of environmental coupling}\label{sec:injections}
+\section{Environmental noise injections}\label{sec:injections}
 
 \begin{figure}[h!]
 	\centering
@@ -384,19 +384,6 @@ The moving average window must be on the scale of a few Hz since this is typical
 On the other hand, smoothing of spectra can also result in less accurate coupling measurements when narrow mechanical resonances are present, so the window must balance the smoothing of artifacts against this disadvantage.
 For accelerometer spectra, analyzing injections with various smoothing parameters show that a logarithmically-scaled window which is \XX\,Hz wide at 100\,Hz and \XX\,Hz wide at 1000\,Hz best satisfy these constraints.
 Since microphones are much more sensitive to nodal artifacts while being less sensitive to narrow mechanical resonances (they would have to be strong enough to produce audible signals), their spectra can be smoothed much more aggressively: a logarithmically-scaled window is used which is 15\,Hz wide at 100\,Hz and 150\,Hz wide at 1000\,Hz.
-
-\section{Tests of coupling functions}
-
-{\color{red}
-Pretty much just copied from PEM paper.
-Goal is to include most or all of the referenced calculations and figures here.}
-
-Although the injections used to measure coupling functions are designed to best replicate environmental noise, there are still differences and it is useful to test the coupling functions with different environmental events by comparing noise seen in the \ac{GW} strain data during such events to noise levels predicted by PEM sensors and their coupling functions.
-Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz.
-At \ac{LLO}, coupling functions for several accelerometers at the Y end station, where vibrational coupling was the highest, are capable of estimating the amplitude of multiple noise transients to within a factor two during a particularly loud thunderstorm.%~\citep{alog_thunder}.
-Helicopter flyovers can produce narrow-band features up to tens of seconds long.
-Coupling functions of various sensors at both observatories can predict the amplitudes of lines produced by multiple helicopter flyovers during O3 to within a factor of two in most cases.%~\citep{alog_helicopter}.
-Long-duration noise due to vibrations from rain and the building \ac{HVAC} is also well characterized by coupling functions at \ac{LHO}.%~\citep{alog_rain, alog_hvac_coupling}.
 
 \section{The {\fontfamily{pcr}\selectfont pemcoupling}\xspace package}
 
