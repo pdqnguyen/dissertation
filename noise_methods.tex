@@ -34,11 +34,11 @@ They can also cause modulate the paths of light that is scattered off of surface
 	\centering
 	\includegraphics[width=\textwidth]{figures/pem-channels.png}
 	\caption{\raggedright The PEM system layout at LLO during O3, as seen on the PEM public website.}
-	\label{fig:pem_channels}
+	\label{fig:pem-channels}
 \end{figure}
 
 Understanding environmental influences on the detectors requires comprehensive monitoring of its physical surroundings.
-This is done through the \ac{PEM} system of auxiliary sensors (Figure~\ref{fig:pem_channels}), which consists of accelerometers for high-frequency vibrations (between tens to thousands of Hertz), seismometers for low-frequency vibrations (up to tens of Hertz), microphones, magnetometers, voltage monitors that measure the voltage of electric power supplied to the detector sites, radio-frequency (RF) receivers, a cosmic-ray detector for high-energy particles, and wind, temperature and humidity sensors.
+This is done through the \ac{PEM} system of auxiliary sensors (Figure~\ref{fig:pem-channels}), which consists of accelerometers for high-frequency vibrations (between tens to thousands of Hertz), seismometers for low-frequency vibrations (up to tens of Hertz), microphones, magnetometers, voltage monitors that measure the voltage of electric power supplied to the detector sites, radio-frequency (RF) receivers, a cosmic-ray detector for high-energy particles, and wind, temperature and humidity sensors.
 Detailed information on \ac{PEM} sensors, including example background spectra and calibration data, can be found on the \ac{PEM} website, PEM.LIGO.org~\citep{PEM_website}.
 
 \section{Tests of environmental coupling}\label{sec:injections}
@@ -48,7 +48,7 @@ Detailed information on \ac{PEM} sensors, including example background spectra a
 	\includegraphics[width=\textwidth]{figures/injection-map.png}
 	\caption{\raggedright
 		Standard locations for vibration and magnetic injections at the LHO corner station (left), Y end station (top right), and X end stations (bottom right).}
-	\label{fig:injection_map}
+	\label{fig:injection-map}
 \end{figure}
 
 The effect of environmental influences on the sensitivity of a \ac{GW} detector can be studied by making noise \textit{injections}.
@@ -79,19 +79,19 @@ Additionally, impulse injections (not shown) are made at locations where vibrati
 \end{table}
 
 
-Injection locations are chosen to best mimic disturbances from outside the detector (Figure~\ref{fig:injection_map}).
+Injection locations are chosen to best mimic disturbances from outside the detector (Figure~\ref{fig:injection-map}).
 To do so we choose them to be as far from the detector and environmental sensors as possible, but we are usually limited by the size of the detector sites themselves (some injections can be made from outside).
 Time dedicated to these tests has to be balanced against other instrumental work and observing time, which leads to a trade-off between measurement uncertainty and coverage.
 We perform injections from as many locations as time allows in order to maximize coverage of potential coupling sites.
 Increased time allocation toward environmental studies in recent years has allowed for a significant increase in the number of injection locations.
-Table~\ref{tab:injectors} summarizes the current equipment used and Figure~\ref{fig:injection_equipment} shows photos of some of the equipment.
+Table~\ref{tab:injectors} summarizes the current equipment used and Figure~\ref{fig:injection-equipment} shows photos of some of the equipment.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{figures/injection-equipment.png}
 	\caption{\raggedright
 	Injection equipment photos. From left to right: wall-mounted magnetic field injection coil; 14-in. speakers; APS 113 shaker connected to the door of a vacuum chamber by a rigid fiberglass rod; modified Piezosystem shaker clamped to an electronics rack; modified B\&K shaker clamped to a beam tube support.}
-	\label{fig:injection_equipment}
+	\label{fig:injection-equipment}
 \end{figure}
 
 \subsection{Vibrational injections}~\label{sec:injections-vib}
@@ -143,10 +143,10 @@ Improvements have also been made to the magnetic field injection equipment. In o
 	\includegraphics{figures/injection-wallcoil.pdf}
 	\caption{
 		Comparison of the old small-coil comb magnetic field injections with the new large-coil broadband injections.}
-	\label{fig:injection_wallcoil}
+	\label{fig:injection-wallcoil}
 \end{figure}
 
-To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:injection_wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3; the project will be completed by the start of O4.
+To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:injection-wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3; the project will be completed by the start of O4.
 
 
 
@@ -309,7 +309,7 @@ Such non-linear coupling can be very significant for scattering noise and biline
 One way to check for non-linear coupling is by sweeping single frequency injections over time and searching for off-frequency responses in the \ac{GW} detector.
 Frequency changes from non-linear coupling can be an issue in broadband injections where up- or down-converted noise in the interferometer readout appears in the injection band, resulting in artificially higher estimates at those frequencies.
 We split broadband injections into smaller frequency bands to avoid this effect when necessary.
-One approach for quantifying non-linear coupling is presented in Washimi et al.\ (2020).%~\citep{Washimi_2020}.
+One approach for quantifying non-linear coupling is presented in \citet{Washimi_2020}.
 
 \subsection{Hardware limitations}\label{sec:hardware-limitations}
 
@@ -348,11 +348,11 @@ This uncertainty also propagates to projected noise levels in the \ac{GW} channe
 	\includegraphics[width=\textwidth]{figures/cf-locations-vib.pdf}
 	\caption{
 		Single-injection coupling functions (upper limits not shown) for the HAM5 Y-axis accelerometer for three different shaker injection locations (on top of HAM5, on top of HAM6, and on the HAM5 chamber door).}
-	\label{fig:cf_locations_vib}
+	\label{fig:cf-locations-vib}
 \end{figure}
 
 Since the uncertainty manifests as a multiplicative scaling of $\mathcal{C}_{ij}(f)$, it can be described by computing a geometric standard deviation of $\mathcal{C}_{ij}(f)$ for a single sensor over a range of injection locations, at each frequency bin.
-Figure~\ref{fig:cf_locations_vib} shows single-injection coupling functions for an accelerometer measured from shaker injections produced from three locations (the distribution of injection locations is discussed in Section~\ref{sec:injections}.
+Figure~\ref{fig:cf-locations-vib} shows single-injection coupling functions for an accelerometer measured from shaker injections produced from three locations (the distribution of injection locations is discussed in Section~\ref{sec:injections}.
 Since the injection locations are close enough to the accelerometer, it can be assumed that the variance is primarily due to finite spacing effect.
 Averaged across all frequency bins, the geometric standard deviation between injection locations is 1.4, i.e. coupling functions measured from vibrational injections can be expected to vary by a factor of 1.4 when measured by different injection locations.
 
@@ -361,7 +361,7 @@ Averaged across all frequency bins, the geometric standard deviation between inj
 %	\includegraphics[width=\textwidth]{figures/cf-locations-mag.pdf}
 	\caption{
 		Single-injection coupling functions (upper limits not shown) for various magnetometers and various injections at both observatories.}
-	\label{fig:cf_locations_mag}
+	\label{fig:cf-locations-mag}
 \end{figure}
 
 A similar study was performed combining geometric standard deviations for various magnetometers at both observatories.
