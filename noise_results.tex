@@ -30,22 +30,53 @@ In addition to this sensitivity to recombined scattered light, the scattering no
 At \ac{LHO}, investigations throughout \ac{O3} showed that scattering noise produces noise near the detector noise background in the frequency range of 38--100\,Hz.
 The sensors with the highest ambient projections in this band were accelerometers located on the HAM 5 and HAM 6 vacuum chambers, which contain the \ac{GW} channel readout, as well as the optics of the output mode cleaner, squeezed light system, and signal recycling cavity.
 The coupling was excited most strongly by injections around the output arm, but acoustic noise produced as far as the Y-arm manifold $\approx 50$\,m away produced excess noise in \ac{DARM}.
-Spectra from the nearest injections also show non-linear coupling, with peaks appearing at harmonics of 50\,Hz.
-
+Spectra from the nearest injections also show non-linear coupling behavior ({\color{red}Expand on this}).
 Shaker injections were also performed throughout the corner station, confirming that the dominant coupling site was in the HAM 5 and 6 area.
+Nonlin
+This evidence suggested that the coupling was caused by scattered light within HAM 5 or HAM 6.
+A more thorough investigation was required to localize the exact scattering surface.
+
+Figure~\ref{fig:noise_impulse} shows time series and spectrograms of a single impulse injection performed in the \ac{HAM} 5/6 area.
+The plots show a single impulse injection signal in the \ac{GW} channel and in various output optics accelerometers.
+Multiple sensors observe an impulse time-of-arrival matching that of the \ac{GW} channel, but repeating the injection from various other locations rules out sensors that do not match it consistently across multiple injections.
+In this case the septum (separating the HAM5 and HAM6 chambers) accelerometer signal matches the \ac{DARM} signal most consistently (other injections not shown for brevity).
+
+Spectrograms of the same impulse injection for \ac{DARM} and the three sensors with the closest matching time-of-arrival to that of \ac{DARM} reveals similarities between the frequency structure of the septum accelerometer signal and that of \ac{DARM}.
+This provides further support that the septum is the dominant coupling site in the output arm.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/noise-impulse.png}
+	\caption{
+		Time series (left) and spectrograms (right) of a vibrational impulse injection produced at the output arm of the LHO detector.}
+	\label{fig:noise_impulse}
+\end{figure}
 
 
 
-\subsection{Search for the source of a 48-Hz peak}\label{sec:noise-vib-48hz}
+\subsection{Search for the source of a 48-Hz peak}\label{sec:noise_vib_48hz}
 
-{\color{red}
-To-do.}
+Figure~\ref{fig:noise_beats} shows spectrograms of a beating-shakers injection used to localize the coupling site responsible for a 48\hyp Hz noise peak in the \ac{DARM} spectrum.
+The shakers were injecting at 48 and 48.01\,Hz. The Y-axes of the spectrograms are centered along at 48\,Hz and show the combined signal in each sensor modulating at the beat frequency (0.01\,Hz).
+This set of spectrograms suggests that the accelerometers on the \ac{ITM} chambers and the Y-axis HAM2 accelerometer are likely not close to the true coupling location, since the beat envelopes are the furthest offset from the beat envelope in the \ac{DARM} response.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/noise-beat-spectrograms.png}
+	\caption{
+		Spectrograms of DARM and various accelerometers near the input arm and beam splitter showing a beating-shakers injection at 48\,Hz.}
+	\label{fig:noise_beats}
+\end{figure}
+
+Multiple other injections were made (not shown here) with varying shaker locations in order to rule out other sensors until the most likely candidate remaining was the HAM3 Y-axis accelerometer.
+Black glass was used to block scattered light at this location and the peak was eliminated for the second half of the O3 observation run.
+Figure~\ref{fig:noise_48hz} shows the noise reduction in the \ac{GW} channel after the light scattering was mitigated.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/48Hz.png}
+	\includegraphics[width=\textwidth]{figures/noise-48Hz.png}
 	\caption{LHO DARM spectrum before and after mitigation of the 48-Hz peak.}
-	\label{fig:48hz}
+	\label{fig:noise_48hz}
 \end{figure}
 
 \subsection{Input beam jitter}\label{sec:noise-vib-jitter}

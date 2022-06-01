@@ -120,48 +120,18 @@ As a result, the phase of the beat envelope varies with position, and different 
 The sites with accelerometer signals that have the same beat envelope phase as the \ac{DARM} signal are candidates for the scattering sites on the vacuum enclosure walls.
 Other sensors that are not near the coupling site may also match the phase by chance, but these false positives can be rejected by varying the locations of the shakers.
 
-Figure~\ref{fig:beats} provides an example of a beating-shakers injection used to localize the coupling site responsible for a 48\hyp Hz noise peak in the \ac{DARM} spectrum.
-The shakers were injecting at 48 and 48.01\,Hz. The Y-axes of the spectrograms are centered along at 48\,Hz and show the combined signal in each sensor modulating at the beat frequency (0.01\,Hz).
-This set of spectrograms suggests that the accelerometers on the \ac{ITM} chambers and the Y-axis HAM2 accelerometer are likely not close to the true coupling location, since the beat envelopes are the furthest offset from the beat envelope in the \ac{DARM} response.
-Multiple other injections were made (not shown here) with varying shaker locations in order to rule out other sensors until the most likely candidate remaining was the HAM3 Y-axis accelerometer.
-Black glass was used to block scattered light at this location and the peak was eliminated for the second half of the O3 observation run.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\textwidth]{figures/beat-spectrograms.png}
-	\caption{
-		Spectrograms of DARM and various accelerometers near the input arm and beam splitter showing a beating-shakers injection at 48\,Hz.}
-	\label{fig:beats}
-\end{figure}
-
 \subsubsection{Impulse injections}
 
 The second injection technique, which is broad band, involves propagation delays in impulse injections.
 Impulse injections are performed by striking the vacuum enclosure directly with enough force to produce a transient in the \ac{GW} channel and in nearby accelerometers.
 The vibrational impulse propagates through the structure of the vacuum enclosure, arriving at different accelerometers and coupling sites at different times.
 
-We can distinguish these arrival times because the propagation velocity is much slower than in solid material, and is only roughly 300\,m/s in our case. Using time series plots, the arrival time of the impulse in the \ac{GW} channel is compared to the arrival time of the impulse in multiple accelerometers (Figure~\ref{fig:impulse}, left).
+We can distinguish these arrival times because the propagation velocity is much slower than in solid material, and is only roughly 300\,m/s in our case. Using time series plots, the arrival time of the impulse in the \ac{GW} channel is compared to the arrival time of the impulse in multiple accelerometers.
 The accelerometers that show the same arrival time as in the \ac{GW} channel are more likely to be near a coupling site than those that observe the impulse much earlier or later.
 Again, varying the location of the injection eliminates sensors that match the detector time-of-arrival by chance but are actually far from the coupling site.
 
 An additional consistency check is that the coupling of accelerometers near the coupling site will vary less between different impulse locations than that of accelerometers far from the coupling site.
-Finally, if the accelerometer is at the coupling site, the impulse in the \ac{GW} channel will have a resonance structure that is similar to the resonance structure of the accelerometer signal, which can be judged from spectrograms (Figure~\ref{fig:impulse}, right).
-
-Example time series and spectrograms are provided in Figure~\ref{fig:impulse}.
-The plots show a single impulse injection signal in the \ac{GW} channel and in various output optics accelerometers.
-Multiple sensors observe an impulse time-of-arrival matching that of the \ac{GW} channel, but repeating the injection from various other locations rules out sensors that do not match it consistently across multiple injections.
-In this case the septum (separating the HAM5 and HAM6 chambers) accelerometer signal matches the \ac{DARM} signal most consistently (other injections not shown for brevity).
-
-Spectrograms of the same impulse injection for \ac{DARM} and the three sensors with the closest matching time-of-arrival to that of \ac{DARM} reveals similarities between the frequency structure of the septum accelerometer signal and that of \ac{DARM}.
-This provides further support that the septum is the dominant coupling site in the output arm.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\textwidth]{figures/impulse.png}
-	\caption{
-		Time series (left) and spectrograms (right) of a vibrational impulse injection produced at the output arm of the LHO detector.}
-	\label{fig:impulse}
-\end{figure}
+Finally, if the accelerometer is at the coupling site, the impulse in the \ac{GW} channel will have a resonance structure that is similar to the resonance structure of the accelerometer signal, which can be judged from spectrograms.
 
 
 \subsection{Magnetic injections}\label{sec:magnetic-injections}
