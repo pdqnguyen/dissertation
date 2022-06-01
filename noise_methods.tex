@@ -41,6 +41,47 @@ Understanding environmental influences on the detectors requires comprehensive m
 This is done through the \ac{PEM} system of auxiliary sensors (Figure~\ref{fig:pem-channels}), which consists of accelerometers for high-frequency vibrations (between tens to thousands of Hertz), seismometers for low-frequency vibrations (up to tens of Hertz), microphones, magnetometers, voltage monitors that measure the voltage of electric power supplied to the detector sites, radio-frequency (RF) receivers, a cosmic-ray detector for high-energy particles, and wind, temperature and humidity sensors.
 Detailed information on \ac{PEM} sensors, including example background spectra and calibration data, can be found on the \ac{PEM} website, PEM.LIGO.org~\citep{PEM_website}.
 
+Most sensors produce an analog signal that is converted to a digital signal via an \ac{ADC}, then processed by a data acquisition system and saved into frame files.
+The frame file are the primary data format for \ac{GW} detector data~\citep{frame_file} and are remotely accessible via the \ac{LIGO} grid computing clusters located at the observatories as well as various \ac{LIGO}-affiliated institutions.
+From here on, I will use \textit{sensor} to refer to the physical monitoring device and \textit{channel} to refer to the data stream as read from frame files.
+
+\subsection{Monitoring the monitors with \ligocam}\label{sec:ligocam}
+
+Maintaining an extensive, ever-expanding array of auxiliary sensors requires a scalable solution for monitoring their behavior.
+Frequent changes to the sensors, as well as of interferometer hardware, result in changes in ambient spectral characteristics.
+Worse yet, sensors, their power supplies, their \acp{ADC}, and the data acquisition system that process their signals all have the potential to malfunction, leaving blind spots in our ability to detect signals that may affect the \ac{GW} strain data.
+
+The \ac{LIGO} channel activity monitor, or \ligocam, is a program that checks for various signs of unusual sensor behavior using a number of spectral cues~\citep{ligocam}.
+The goal of \ligocam is to produce human-readable summaries of sensor behavior for the entire \ac{PEM} network at an observatory, and send email alerts to experts when significant malfunctions are identified.
+
+Leveraging the \ac{LIGO} data grid computing clusters, \ligocam parallelizes its analysis by splitting the full channel list (over 100 channels), processing only five per job.
+This allows it to run hourly, scheduled by a \code{cron} job, outputing a summary page and transmitting email alerts (if applicable) within minutes.
+A \code{cron} job is scheduled at each of the \ac{LIGO} observatories.
+Although such expediency is not necessary for fixing malfunctioning hardware, it is important to have up-to-date channel status when validating recently detected \ac{GW} event candidates, as discussed in Section~\ref{sec:cf-vetting}.
+
+The program reads in time series data using the \code{gwpy} library~\citep{gwpy} and converts each time series to an \ac{ASD}.
+When run for the first time, \ligocam saves the current \acp{ASD} as reference \acp{ASD}.
+On each subsequent run at a later time $t$, the new \ac{ASD} $X_t(f)$ is compared to the reference $\overline{X}_{t-1}(f)$ to determine if there is anomalous behavior present.
+If $X_t(f)$, shows no anomalous behavior relative to $\overline{X}_{t-1}(f)$, then the reference is updated as an exponential average of all past non-anomalous \acp{ASD}:
+
+\begin{equation}
+	\overline{X}_t(f) =
+		\begin{cases}
+			X_0(f), & t=0\\
+			\alpha X_t(t) + (1 - \alpha) \cdot \overline{X}_{t-1}(f), & t > 0
+		\end{cases}
+\end{equation}
+where $\alpha^{-1}$ is the averaging decay length.
+If \ligocam is run hourly with $\alpha^{-1}=1/6$, for instance, then $\overline{X}_t(f)$ is roughly the average of the past six hours of channel data.
+If any anomalous behavior is detected, it is reported on the output HTML page and (if sufficiently egregious) via email to the relevant parties, and $\overline{X}_t(f)$ is not updated.
+
+Anomalies are identified and reported in a number of ways.
+Noise far above or below the reference is a sign of changes to hardware or infrastructure in the vicinity of the sensor, which may not adversely affect coverage of the area but could adversely affect nosie estimates as described in Section~\ref{sec:cf-vetting}.
+If $X_t(f)$ is many orders of magnitude below the reference but still above the electronic noise background of the \ac{ADC}, the sensor is considered to be faulty.
+Some sensors, especially magnetometers, can have background noise levels low enough to be near the \ac{ADC} noise floor.
+For this reason, checks for magnetometers are performed specifically on the 60\,Hz mains signal, while other sensors (accelerometers, microphones, etc.) are analyzed for broadband variations.
+If the signal is even weaker than the electronic noise background, then the data acquisition system is blamed for the failure.
+
 \section{Environmental noise injections}\label{sec:injections}
 
 \begin{figure}[h!]
@@ -277,7 +318,7 @@ The null hypothesis is thus assumed:
 The values of $t_x$ and $t_h$ are determined based on typical level of random fluctuations observed in the spectra, but often values of $t_x = 10$ and $t_h = 2$ are used for most types of sensors and injections.
 The higher choice of $t_x$ is due to the environmental sensors being much more sensitive to random fluctuations in the ambient noise level than the interferometer is.
 
-The coupling function as approximated in \cref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{sec:vetting}).
+The coupling function as approximated in \cref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{sec:noise-vetting}).
 References to a sensor's coupling function will hereafter refer to this approximate quantity.
 Figure~\ref{fig:cf-composite} provides an example of an estimated ambient for an accelerometer on the HAM6 vacuum chamber (which houses the interferometer output optics).
 The \ac{PEM} website provides coupling functions for all accelerometers, microphones, and magnetometers produced from the most recent campaign of injections~\citep{PEM_website}.
@@ -370,7 +411,7 @@ The result of this study is that magnetic coupling measurements and noise projec
 This is slightly greater than that of vibrational measurements, since the lower number of magnetometers means that the distances between coupling sites and sensors is greater, amplifying the finite spacing effect.
 
 For both vibrational and magnetic coupling, these estimated uncertainties are acceptable given that conclusions made from coupling functions are often more qualitative than strictly quantitative, i.e. identifying and localizing coupling mechanisms is more important that precise estimates of the detector response.
-That said, more precise noise estimates may become important for quantifying the impact of environmental transients on \ac{GW} event candidates, as discussed in Section~\ref{sec:vetting}.
+That said, more precise noise estimates may become important for quantifying the impact of environmental transients on \ac{GW} event candidates, as discussed in Section~\ref{sec:noise-vetting}.
 
 \textit{Nodal artifacts from acoustic injections}.
 In the case of acoustic injections, the uncertainty in a coupling function can be exacerbated when nodes and anti-nodes in the acoustic signal coincide with the location of a sensor but not a coupling site.
@@ -458,3 +499,8 @@ Post-processing, to aggregate single-injection coupling functions into coupling 
 
 {\color{red}
 Expand on these final steps a bit.}
+
+\section{Noise estimation with coupling functions}\label{sec:cf-vetting}
+
+{\color{red}
+This is where I'll talk about the methodology for vetting, including O4 pemcheck work (still in progress), as well as ligocam considerations.}
