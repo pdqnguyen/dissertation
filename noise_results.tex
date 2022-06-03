@@ -210,24 +210,50 @@ The event could be retracted, if gating or filtering out the environmental contr
 During \ac{O3}, no candidates were retracted on the basis of the environmental coupling check alone.
 Some human input was still required for all of the \XX events reported in~\citep{gwtc2}, although little to no signal overlap of environmental transients was seen.
 
+
 \subsection{Event validation in O4}
 
 With the \ac{GW} detection rate expected to increase in \ac{O4}, a more sophisticated and streamlined vetting routine is necessary.
 The \ac{DQR} in \ac{O4} will report a p-value for each vetting task, including the \code{pemcheck} task.
 In the case of environmental noise vetting, this p-value represents the null-hypothesis probability, i.e. the probability that environmental disturbances are not contaminating the \ac{GW} event signal.
 This probability is defined based on the uncertainty of the coupling functions.
-The coupling in a single frequency bin is described by a log-normal probability distribution with $\mu=\log{C(f_k)}$ and $\sigma^2=1$, if $C(f_k)$ is a measurement:
+
+Suppose we have measured the coupling for a sensor at a single frequency bin, $C(f_k)$.
+As we know systematic uncertainties result in coupling measurements to be log-normally distributed (see Section~\ref{sec:hardware-limitations}), we can describe the true coupling with a log-normal distribution with mean $\ln C(f_k)$ and standard deviation $\ln 2$ (corresponding to a factor two uncertainty).
+If only an upper limit is available, then the coupling must be equal to or less than the upper limit, so it can be described by a uniform probability distribution between 0 and the upper limit.
+Thus multiplying these distributions by the sensor ambient we get a probability distribution for the projected noise level $h_p(f_k)$ in the \ac{GW} channel in terms of $\mu = C(f_k) \cdot X(f_k)$:
 
 \begin{equation}
-	P(x) = \mathrm{LogNormal}(\mu, \sigma^2) = \frac{1}{x \sigma \sqrt{2\pi}} \exp(-\frac{(\ln(x) - \mu^2)}{2 \sigma^2})
+	P(h_p) = \frac{1}{h_p \sqrt{2\pi} (\ln 2)^2} \exp \left[ -\frac{\ln h_p - (\ln \mu)^2}{2 (\ln 2)^2} \right]
 \end{equation}
-
-If $C(f_k)$ is an upper limit, then the coupling is assumed to be equal to or less than $C(f_k)$, so it is described by the uniform probability distribution
+for measurements and
 
 \begin{equation}
-	P(x) =
+	P(h_p) =
 		\begin{cases}
-      \frac{1}{C(f_k)} & \text{if}\ x < C(f_k)\\
+      \frac{1}{CX} & \text{if}\ x < CX\\
       0 & \text{otherwise}
     \end{cases}
 \end{equation}
+for upper limits.
+
+We can write the probability that the projected noise actually exceeds some \ac{GW} channel background level $h_{\text{bkg}}(f_k)$ based on the corresponding cumulative distribution functions:
+
+\begin{equation}
+	P(h_p > h_{\text{bkg}}) =
+		\begin{cases}
+			1 - \frac{1}{2} \left[ \erf \left( \frac{\ln h_p - \ln \mu}{\sqrt{2} \ln 2} \right) \right] & \text{(measurement)}\\
+			1 - \min(1, \frac{h_p}{\mu}), & \text{(upper limit)}
+		\end{cases}
+\end{equation}
+
+This is computed for every time-frequency pixel of a spectrogram, producing a probability spectrogram image that shows how likely there is to be excess noise within each pixel.
+We can then search for the highest probability within pixels that overlap a \ac{GW} transient in order to report the probability that environmental noise in the vicinity of the \ac{PEM} sensor is contaminating the signal of interest.
+This algorithm is run on every \ac{PEM} sensor with an available coupling function and the highest probability among all sensors is reported.
+
+There are still limitations to how well this method can predict the presence of excess noise in the \ac{GW} channel, discussed below.
+
+\textit{Coupling function tuning}. Paragraph or two about CF tuning.
+
+
+\textit{Grouping nearby sensors}. Paragraph about grouping channels.
