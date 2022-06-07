@@ -130,7 +130,9 @@ Table~\ref{tab:injectors} summarizes the current equipment used and Figure~\ref{
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{figures/injection-equipment.png}
-	\caption{\raggedright
+	\caption
+	[Injection equipment photos]
+	{\raggedright
 	Injection equipment photos. From left to right: wall-mounted magnetic field injection coil; 14-in. speakers; APS 113 shaker connected to the door of a vacuum chamber by a rigid fiberglass rod; modified Piezosystem shaker clamped to an electronics rack; modified B\&K shaker clamped to a beam tube support.}
 	\label{fig:injection-equipment}
 \end{figure}
@@ -252,6 +254,14 @@ Thus far it has been assumed that the witness sensors are placed precisely at th
 A sensor, even if it is near a coupling site, only measures the injection amplitude at its own location, not at the coupling location.
 Therefore, when using real-world sensors,~\cref{eq:x_inj} is not exact, so~\cref{eq:cf} does not exactly describe the coupling at the coupling site.
 Nevertheless, as explained above, sensors are distributed in order to maximize coverage of coupling sites and this has been sufficient for producing reliable coupling functions for all sensors, as discussed further in Section~\ref{sec:uncertainties}.
+As seen in Figure~\ref{fig:cf-cartoon1}, the sensor coupling function $C_j(f)$ is a good approximation to the true coupling $C(f)$ if the injection distance is much greater than the distance between the coupling site and sensor.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{figures/cf-cartoon1.pdf}
+	\caption{
+		Diagram of a coupling function measurement.}
+	\label{fig:cf-cartoon1}
+\end{figure}
 
 \subsection{Solving the coupling equations}
 
@@ -272,6 +282,8 @@ Given a sensor $j$, \cref{eq:cf} can be repurposed by replacing $x$ with $x_{ij}
 	\mathcal{C}_{ij}(f) = \sqrt{\frac{[h_{i,\textrm{inj}}(f)]^2 - [h_{i,\textrm{bkg}}(f)]^2}{[x_{ij,\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
 \end{equation}
 The closer an injection is to a sensor $i$, the more accurately $\mathcal{C}_{ij}(f)$ approximates $\mathrm{C}_j(f)$, since the detector response would be dominated by coupling near sensor $j$.
+This is illustrated in Figure~\ref{fig:cf-cartoon2}:
+in the nearest-injection approximation the coupling of sensor $j$, $C_j(f)$, is measured using the observation of the nearest injection, in this case $x_{ij}(f)$, while $C_{j'}(f)$ is measured using $x_{i'j'}(f)$.).
 Therefore one can construct the sensor coupling function by choosing at each frequency bin the coupling factor corresponding to the nearest injection, determined by the highest sensor amplitude (using the assumption that injection amplitudes are equivalent).
 That is, for a frequency $f_k$ and a set of injections $\mathcal{I}$, one can measure the sensor amplitudes $\{x_{ij}(f_k)\ |\ i \in \mathcal{I}\}$, compute the single-injection coupling functions $\{\mathcal{C}_{ij}(f_k)\ |\ i \in \mathcal{I}\}$, and construct the approximate sensor coupling function
 
@@ -281,19 +293,30 @@ That is, for a frequency $f_k$ and a set of injections $\mathcal{I}$, one can me
 If the distribution of injection locations provides sufficient coverage of sensor locations, then $\widetilde{\mathrm{C}}_j(f) \approx \mathrm{C}_j(f)$.
 Shortcomings of this assumption are discussed in Section~\ref{sec:uncertainties}.
 
-Figure~\ref{fig:cf-example} provides an example of a coupling function measurement for a \ac{PSL} acoustic injection.
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{figures/cf-cartoon2.pdf}
+	\caption{
+		Expanding Figure~\ref{fig:cf-cartoon2} to more than one sensor and coupling site.
+	}
+	\label{fig:cf-cartoon2}
+\end{figure}
+
+Figure~\ref{fig:cf-example} provides an example of a single-injection coupling function measurement for a \ac{PSL} acoustic injection.
 Figure~\ref{fig:cf-composite} shows an estimated ambient noise based on an accelerometer coupling function constructed from five single-injection coupling functions.
 For simplicity only five injections were used to produce this example, however in practice the number of injections performed near a sensor can be much higher.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{figures/cf-example.pdf}
-	\caption{
+	\caption
+	[Example of a broadband acoustic noise injection and measurement of a single-injection coupling function]
+	{
 		Example of a broadband acoustic noise injection and measurement of a single-injection coupling function.
 		Top: displacement of an accelerometer in the PSL room during background time (black) and injection time (orange).
 		Middle: DARM during background time (black) and injection time (orange).
 		Estimated ambient levels for the accelerometer are shown as dark blue dots, with upper limits shown as light blue crosses.
-		Bottom: single-injection coupling function used to produce estimated ambient above.}
+		Bottom: single-injection coupling function used to produce estimated ambient above.
+		}
 	\label{fig:cf-example}
 \end{figure}
 
@@ -326,8 +349,11 @@ The \ac{PEM} website provides coupling functions for all accelerometers, microph
 \begin{figure}[h!]
 	\centering
 	\includegraphics{figures/cf-composite.pdf}
-	\caption{
-		Ambient noise level for the LHO HAM6 Y-axis accelerometer estimated from a composite coupling function, using acoustic and seismic injections near the output arm.}
+	\caption
+	[Ambient noise level for the LHO HAM6 Y-axis accelerometer]
+	{
+		Ambient noise level for the LHO HAM6 Y-axis accelerometer estimated from a composite coupling function, using acoustic and seismic injections near the output arm.
+		}
 	\label{fig:cf-composite}
 \end{figure}
 
