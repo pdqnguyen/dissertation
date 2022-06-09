@@ -251,9 +251,57 @@ This is computed for every time-frequency pixel of a spectrogram, producing a pr
 We can then search for the highest probability within pixels that overlap a \ac{GW} transient in order to report the probability that environmental noise in the vicinity of the \ac{PEM} sensor is contaminating the signal of interest.
 This algorithm is run on every \ac{PEM} sensor with an available coupling function and the highest probability among all sensors is reported.
 
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{figures/cf-vetting-spectrogram1.png}
+	\includegraphics[width=\textwidth]{figures/cf-vetting-spectrogram2.png}
+	\caption
+	[Probability spectrogram of an ETMY accelerometer at LLO and a constant-Q transform of the GW strain channel]
+	{
+		Probability spectrogram of an ETMY accelerometer at LLO (top) and a constant-Q transform of the GW strain channel (bottom).
+		The red lines show the time-frequency path of GW event candidate S190510g.}
+	\label{fig:cf-vetting-spectrogram}
+\end{figure}
+
+Figure~\ref{fig:cf-vetting-spectrogram} provides an example of a probability spectrogram output by \code{pemcheck} for an \ac{O3} \ac{GW} event candidate, S190510g.
+The candidate signal coincides with scattering noise produced at the \ac{LLO} Y-end station by a thunderstorm.
+The coupling projection predicts a peak probability of 0.87, meaning there is an 87\% probability that noise is present in the interferometer overlapping the time-frequency window of the \ac{GW} event.
+
 There are still limitations to how well this method can predict the presence of excess noise in the \ac{GW} channel, discussed below.
 
-\textit{Coupling function tuning}. Paragraph or two about CF tuning.
+\subsubsection{Coupling function tuning}
+
+Coupling function projections often overestimate the \ac{GW} background level for a number of reasons.
+The most common causes are all linked to the fact that coupling functions can only be measured during extended periods of detector maintenance, usually at the start of an observing run, leaving them vulnerable to becoming outdated as noise sources are introduced, changed, or mitigated.
+If a noise source is introduced near a sensor, such as through the installation of new hardware, the sensor ambient can increase dramatically whether or not the noise source actually couples to the \ac{GW} channel.
+If the new noise does not couple, then the projection overestimates the detector amplitude, leading to a spurious claim that a \ac{GW} candidate signal may be affected by environmental noise.
+Conversely, if an existing noise source is removed or its coupling mechanism mitigated, then the \ac{GW} background drops, potentially below the level of estimated ambient noise projections.
+
+For these reasons, coupling functions must be tuned to account for overestimated noise in the time around an event candidate.
+This is done by simply treating background noise in a long stretch of time before the candidate as if it were a new injection.
+Rather than re-measuring the coupling function, we can check for frequencies where projections estimate ambient coupling to exceed the \ac{GW} background, dividing the coupling function by the ratio by which it is overestimating.
+The result is a coupling function that at most projects noise at background levels.
+
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{figures/cf-vetting-tuning1.png}
+	\includegraphics[width=\textwidth]{figures/cf-vetting-tuning2.png}
+	\caption
+	[Coupling function tuning and the resulting probability spectrogram]
+	{
+		Coupling function tuning (top) and the resulting probability spectrogram (bottom).}
+	\label{fig:cf-vetting-tuning}
+\end{figure}
+
+Figure~\ref{fig:cf-vetting-tuning} shows an egregious case of projected noise for an accelerometer on the squeezed light optics table overestimating the strain background amplitude.
+The tuning reduces this to match the strain background, and the resulting probability spectrogram does not estimate a significant probability that excess noise is present.
 
 
-\textit{Grouping nearby sensors}. Paragraph about grouping channels.
+\subsubsection{Grouping nearby sensors}
+
+Even after tuning coupling functions, overestimations can occur due to short duration ($\leq$ 1\,s) transients that are not likely to couple based on physical reasons.
+Rack magnetometers (placed on the metal racks that hold the various control systems, data acquisitions systems, and power supplies in the electronics rooms) observe the highest rates of localized short-duration transients, routinely picking up magnetic fields from changes in nearby currents.
+When these glitches coincide with a \ac{GW} event candidate they predict a probability of environmental usually above 90\%.
+Although the coincident rate is low for typical (\ac{BBH}) events, a long-duration \ac{GW} signal such as a \ac{BNS} will typically overlap with at least a few electronics glitches.
+
+Since coupling functions are only intended to be used for noise sources distant from the sensors, projections from sensors placed close to each other ($\leqslant$ 1\,m) should be highly correlated if the input noise is environmental and not local to the individual sensors.
+To incorporate this knowledge, \code{pemcheck} groups together magnetometers each electronics rooms; their probability spectrograms are stacked and a pixel-wise minimum is computed to generate a combined group spectrogram.
+This surpresses signals that project above the strain background in one magnetometer but not the others, so the projected excess noise probabilities are much lower than any of the peak probabilities reported by the individual sensors.
