@@ -24,22 +24,22 @@ Coupling functions of various sensors at both observatories can predict the ampl
 
 Long-duration noise due to vibrations from rain and the building \ac{HVAC} is also well characterized by coupling functions at \ac{LHO}~\citep{alog_rain, alog_hvac_coupling}.
 
-\section{Vibrational noise studies during O3}\label{sec:noise-vib}
+\section{Vibrational noise studies during O3}\label{sec:vib}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-ambient-vib.pdf}
+	\includegraphics[width=\textwidth]{figures/noise-studies/vib-ambient.pdf}
 	\caption{
 		Ambient estimate of vibrational noise levels at LHO (top) and LLO (bottom).}
-	\label{fig:noise_ambient_vib}
+	\label{fig:vib-ambient}
 \end{figure}
 
-Figure~\ref{fig:noise_ambient_vib} shows the ambient contribution of vibrational noise during \ac{O3}, produced by combining the highest coupling factors among accelerometers and microphones measured from an injection campaign at the beginning of \ac{O3}.
-At the end of \ac{O3}, the vibration noise background at both observatories was dominated by input beam jitter above 100\,Hz (discussed in Section~\ref{sec:noise-vib-septum}).
+Figure~\ref{fig:vib-ambient} shows the ambient contribution of vibrational noise during \ac{O3}, produced by combining the highest coupling factors among accelerometers and microphones measured from an injection campaign at the beginning of \ac{O3}.
+At the end of \ac{O3}, the vibration noise background at both observatories was dominated by input beam jitter above 100\,Hz (discussed in Section~\ref{sec:vib-septum}).
 At \ac{LHO},  the dominant coupling region below 100\,Hz was the output arm.
 At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band and the output arm in the 60-100\,Hz band.
 
-\subsection{Scattered light at the HAM5/6 septum}\label{sec:noise-vib-septum}
+\subsection{Scattered light at the HAM5/6 septum}\label{sec:vib-septum}
 
 A major source of detector noise and reduced sensitivity to \acp{GW} is the scattering of light from the beam spot on a test mass or other optic to surfaces that are moving relative to the optic, like vacuum chamber walls.
 A very small fraction of the light reaching the moving surface is reflected to the originating or another beam spot, where it scatters back into the main interferometer beam.
@@ -55,7 +55,7 @@ Nonlin
 This evidence suggested that the coupling was caused by scattered light within HAM 5 or HAM 6.
 A more thorough investigation was required to localize the exact scattering surface.
 
-Figure~\ref{fig:noise_impulse} shows time series and spectrograms of a single impulse injection performed in the \ac{HAM} 5/6 area.
+Figure~\ref{fig:vib-impulse} shows time series and spectrograms of a single impulse injection performed in the \ac{HAM} 5/6 area.
 The plots show a single impulse injection signal in the \ac{GW} channel and in various output optics accelerometers.
 Multiple sensors observe an impulse time-of-arrival matching that of the \ac{GW} channel, but repeating the injection from various other locations rules out sensors that do not match it consistently across multiple injections.
 In this case the septum (separating the HAM5 and HAM6 chambers) accelerometer signal matches the \ac{DARM} signal most consistently (other injections not shown for brevity).
@@ -65,40 +65,40 @@ This provides further support that the septum is the dominant coupling site in t
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-impulse.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/vib-impulse.png}
 	\caption{
 		Time series (left) and spectrograms (right) of a vibrational impulse injection produced at the output arm of the LHO detector.}
-	\label{fig:noise_impulse}
+	\label{fig:vib-impulse}
 \end{figure}
 
 
 
-\subsection{Search for the source of a 48-Hz peak}\label{sec:noise-vib-48hz}
+\subsection{Search for the source of a 48-Hz peak}\label{sec:vib-48hz}
 
-Figure~\ref{fig:noise_beats} shows spectrograms of a beating-shakers injection used to localize the coupling site responsible for a 48\hyp Hz noise peak in the \ac{DARM} spectrum.
+Figure~\ref{fig:vib-beat-spectrograms} shows spectrograms of a beating-shakers injection used to localize the coupling site responsible for a 48\hyp Hz noise peak in the \ac{DARM} spectrum.
 The shakers were injecting at 48 and 48.01\,Hz. The Y-axes of the spectrograms are centered along at 48\,Hz and show the combined signal in each sensor modulating at the beat frequency (0.01\,Hz).
 This set of spectrograms suggests that the accelerometers on the \ac{ITM} chambers and the Y-axis HAM2 accelerometer are likely not close to the true coupling location, since the beat envelopes are the furthest offset from the beat envelope in the \ac{DARM} response.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-beat-spectrograms.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/vib-beat-spectrograms.png}
 	\caption{
 		Spectrograms of DARM and various accelerometers near the input arm and beam splitter showing a beating-shakers injection at 48\,Hz.}
-	\label{fig:noise_beats}
+	\label{fig:vib-beat-spectrograms}
 \end{figure}
 
 Multiple other injections were made (not shown here) with varying shaker locations in order to rule out other sensors until the most likely candidate remaining was the HAM3 Y-axis accelerometer.
 Black glass was used to block scattered light at this location and the peak was eliminated for the second half of the O3 observation run.
-Figure~\ref{fig:noise_48hz} shows the noise reduction in the \ac{GW} channel after the light scattering was mitigated.
+Figure~\ref{fig:vib-48hz} shows the noise reduction in the \ac{GW} channel after the light scattering was mitigated.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-48Hz.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/vib-48Hz.png}
 	\caption{LHO DARM spectrum before and after mitigation of the 48-Hz peak.}
-	\label{fig:noise_48hz}
+	\label{fig:vib-48hz}
 \end{figure}
 
-\subsection{Input beam jitter}\label{sec:noise-vib-jitter}
+\subsection{Input beam jitter}\label{sec:vib-jitter}
 
 {\color{red}
 Short discussion, summarize measurements and improvement.
@@ -106,56 +106,56 @@ Will make sure to discuss impact of test mass defect on jitter noise.}
 
 \begin{figure}
 	\centering
-%	\includegraphics[width=\textwidth]{}
+%	\includegraphics[width=\textwidth]{figures/noise-studies/vib-jitter}
 	\caption{Improvement in jitter coupling at LHO (left) and LLO (right) between the start and end of O3.}
-	\label{fig:jitter}
+	\label{fig:vib-jitter}
 \end{figure}
 
-\section{Magnetic noise studies during O3}\label{sec:noise-mag}
+\section{Magnetic noise studies during O3}\label{sec:mag}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-ambient-mag.pdf}
+	\includegraphics[width=\textwidth]{figures/noise-studies/mag-ambient.pdf}
 	\caption{
 		Ambient estimate of magnetic noise levels at LHO (top) and LLO (bottom).}
-	\label{fig:noise_ambient_mag}
+	\label{fig:mag-ambient}
 \end{figure}
 
 Magnetic injections early in \ac{aLIGO} suggested that coupling to permanent magnets in the suspension system  could prevent \ac{LIGO} from reaching design sensitivity in the 10-20\,Hz regions~\citep{Schofield_2013}.
 While the test mass actuator is electrostatic and not magnetic (as in \ac{iLIGO}), a number of permanent magnets were used in the suspensions, including for actuation in the first three of the four levels of the isolation chain and for eddy current damping.
 The greatest number of permanent magnets were in the eddy current damping arrays and these were removed.
-Nevertheless, ambient fields are still predicted to produce noise at greater than one-tenth of the design sensitivity in the 10-20\,Hz band (Figure~\ref{fig:noise_ambient_mag}), and may need to be further addressed as we reach design sensitivity in the 10\,Hz region.
+Nevertheless, ambient fields are still predicted to produce noise at greater than one-tenth of the design sensitivity in the 10-20\,Hz band (Figure~\ref{fig:mag-ambient}), and may need to be further addressed as we reach design sensitivity in the 10\,Hz region.
 
 At higher frequencies, generally above about 30\,Hz, the dominant magnetic coupling appears to be through induction of currents in cables and at connectors, mainly to actuator cabling and other cabling in the control system.
 Mitigation of coupling to cables and connectors has required a continuing program of monitoring coupling since cables are often disconnected and reconnected during runs as electronics are replaced for problems or upgrades.
 This program consists of making weekly, broadband magnetic field injections using the large wall-mounted coils described in Section~\ref{sec:injections-magnetic}.
 The injections have shown that peaks can appear or disappear, as well as shift in frequency, on a weekly basis.
 
-\subsection{Fluctuations in magnetic coupling}\label{sec:noise-mag-weekly}
+\subsection{Fluctuations in magnetic coupling}\label{sec:mag-weekly}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-mag-weekly-cf.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/mag-weekly-cf.png}
 	\caption{
 		LHO magnetic coupling measured by weekly wall-mounted coil injections during the last five weeks of O3.}
-	\label{fig:noise-mag-weekly-cf}
+	\label{fig:mag-weekly-cf}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-mag-weekly-bands.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/mag-weekly-bands.png}
 	\caption{Time-lines of magnetic coupling changes relative to the start of the observing run.}
-	\label{fig:noise-mag-weekly-bands}
+	\label{fig:mag-weekly-bands}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-mag-weekly-peaks.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/mag-weekly-peaks.png}
 	\caption{Weekly trends in frequency (top) and amplitude (top) of peaks in the magnetic coupling functions.}
-	\label{fig:noise-mag-weekly-peaks}
+	\label{fig:mag-weekly-peaks}
 \end{figure}
 
-\section{Validation of gravitational wave event candidates}\label{sec:noise-vetting}
+\section{Validation of gravitational wave event candidates}\label{sec:vetting}
 
 In addition to investigating sources of environmental influences, knowledge acquired from environmental studies contributes to the vetting of \ac{GW} event candidates.
 Analysis pipelines search the strain data for astrophysical signals.
@@ -219,7 +219,7 @@ In the case of environmental noise vetting, this p-value represents the null-hyp
 This probability is defined based on the uncertainty of the coupling functions.
 
 Suppose we have measured the coupling for a sensor at a single frequency bin, $C(f_k)$.
-As we know systematic uncertainties result in coupling measurements to be log-normally distributed (see Section~\ref{sec:hardware-limitations}), we can describe the true coupling with a log-normal distribution with mean $\ln C(f_k)$ and standard deviation $\ln 2$ (corresponding to a factor two uncertainty).
+As we know systematic uncertainties result in coupling measurements to be log-normally distributed (see Section~\ref{sec:uncertainties-hardware}), we can describe the true coupling with a log-normal distribution with mean $\ln C(f_k)$ and standard deviation $\ln 2$ (corresponding to a factor two uncertainty).
 If only an upper limit is available, then the coupling must be equal to or less than the upper limit, so it can be described by a uniform probability distribution between 0 and the upper limit.
 Thus multiplying these distributions by the sensor ambient we get a probability distribution for the projected noise level $h_p(f_k)$ in the \ac{GW} channel in terms of $\mu = C(f_k) \cdot X(f_k)$:
 
@@ -252,17 +252,17 @@ We can then search for the highest probability within pixels that overlap a \ac{
 This algorithm is run on every \ac{PEM} sensor with an available coupling function and the highest probability among all sensors is reported.
 
 \begin{figure}[h!]
-	\includegraphics[width=\textwidth]{figures/cf-vetting-spectrogram1.png}
-	\includegraphics[width=\textwidth]{figures/cf-vetting-spectrogram2.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-spectrogram1.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-spectrogram2.png}
 	\caption
 	[Probability spectrogram of an ETMY accelerometer at LLO and a constant-Q transform of the GW strain channel]
 	{
 		Probability spectrogram of an ETMY accelerometer at LLO (top) and a constant-Q transform of the GW strain channel (bottom).
 		The red lines show the time-frequency path of GW event candidate S190510g.}
-	\label{fig:cf-vetting-spectrogram}
+	\label{fig:vetting-spectrograms}
 \end{figure}
 
-Figure~\ref{fig:cf-vetting-spectrogram} provides an example of a probability spectrogram output by \code{pemcheck} for an \ac{O3} \ac{GW} event candidate, S190510g.
+Figure~\ref{fig:vetting-spectrograms} provides an example of a probability spectrogram output by \code{pemcheck} for an \ac{O3} \ac{GW} event candidate, S190510g.
 The candidate signal coincides with scattering noise produced at the \ac{LLO} Y-end station by a thunderstorm.
 The coupling projection predicts a peak probability of 0.87, meaning there is an 87\% probability that noise is present in the interferometer overlapping the time-frequency window of the \ac{GW} event.
 
@@ -282,16 +282,16 @@ Rather than re-measuring the coupling function, we can check for frequencies whe
 The result is a coupling function that at most projects noise at background levels.
 
 \begin{figure}[h!]
-	\includegraphics[width=\textwidth]{figures/cf-vetting-tuning1.png}
-	\includegraphics[width=\textwidth]{figures/cf-vetting-tuning2.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-tuning1.png}
+	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-tuning2.png}
 	\caption
 	[Coupling function tuning and the resulting probability spectrogram]
 	{
 		Coupling function tuning (top) and the resulting probability spectrogram (bottom).}
-	\label{fig:cf-vetting-tuning}
+	\label{fig:vetting-tuning}
 \end{figure}
 
-Figure~\ref{fig:cf-vetting-tuning} shows an egregious case of projected noise for an accelerometer on the squeezed light optics table overestimating the strain background amplitude.
+Figure~\ref{fig:vetting-tuning} shows an egregious case of projected noise for an accelerometer on the squeezed light optics table overestimating the strain background amplitude.
 The tuning reduces this to match the strain background, and the resulting probability spectrogram does not estimate a significant probability that excess noise is present.
 
 

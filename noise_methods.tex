@@ -32,7 +32,7 @@ They can also cause modulate the paths of light that is scattered off of surface
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/pem-channels.png}
+	\includegraphics[width=\textwidth]{figures/noise-methods/pem-channels.png}
 	\caption{\raggedright The PEM system layout at LLO during O3, as seen on the PEM public website.}
 	\label{fig:pem-channels}
 \end{figure}
@@ -86,7 +86,7 @@ If the signal is even weaker than the electronic noise background, then the data
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/injection-map.png}
+	\includegraphics[width=\textwidth]{figures/noise-methods/injection-map.png}
 	\caption{\raggedright
 		Standard locations for vibration and magnetic injections at the LHO corner station (left), Y end station (top right), and X end stations (bottom right).}
 	\label{fig:injection-map}
@@ -129,7 +129,7 @@ Table~\ref{tab:injectors} summarizes the current equipment used and Figure~\ref{
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/injection-equipment.png}
+	\includegraphics[width=\textwidth]{figures/noise-methods/injection-equipment.png}
 	\caption
 	[Injection equipment photos]
 	{\raggedright
@@ -151,7 +151,7 @@ This has an added benefit of being better able to adjust the direction of the ac
 
 Two new injection techniques have been developed for localizing vibration coupling sites connected to the vacuum enclosure, such as locations on the vacuum enclosure that reflect scattered light.
 The techniques rely on the slow propagation speeds (hundreds of meters per second) of vibrations on the steel vacuum enclosure walls or, for acoustic injections, in air.
-These two techniques were essential in the localization of coupling sites in \ac{O3}, as discussed in Section~\ref{sec:noise-vib}.
+These two techniques were essential in the localization of coupling sites in \ac{O3}, as discussed in Section~\ref{sec:vib}.
 
 \subsubsection{Beating-shakers technique}~\label{sec:injections-vib-beats}
 
@@ -183,13 +183,13 @@ Improvements have also been made to the magnetic field injection equipment. In o
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics{figures/injection-wallcoil.pdf}
+	\includegraphics{figures/noise-methods/injection-wallcoil.pdf}
 	\caption{
 		Comparison of the old small-coil comb magnetic field injections with the new large-coil broadband injections.}
 	\label{fig:injection-wallcoil}
 \end{figure}
 
-To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:injection-wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3; the project will be completed by the start of O4.
+To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:injection-wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3 (discussed in Section~\ref{sec:mag-weekly}); the project will be completed by the start of O4.
 
 
 
@@ -257,7 +257,7 @@ Nevertheless, as explained above, sensors are distributed in order to maximize c
 As seen in Figure~\ref{fig:cf-cartoon1}, the sensor coupling function $C_j(f)$ is a good approximation to the true coupling $C(f)$ if the injection distance is much greater than the distance between the coupling site and sensor.
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{figures/cf-cartoon1.pdf}
+	\includegraphics[width=\textwidth]{figures/noise-methods/cf-cartoon1.pdf}
 	\caption{
 		Diagram of a coupling function measurement.}
 	\label{fig:cf-cartoon1}
@@ -294,7 +294,7 @@ If the distribution of injection locations provides sufficient coverage of senso
 Shortcomings of this assumption are discussed in Section~\ref{sec:uncertainties}.
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{figures/cf-cartoon2.pdf}
+	\includegraphics[width=\textwidth]{figures/noise-methods/cf-cartoon2.pdf}
 	\caption{
 		Expanding Figure~\ref{fig:cf-cartoon2} to more than one sensor and coupling site.
 	}
@@ -307,7 +307,7 @@ For simplicity only five injections were used to produce this example, however i
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/cf-example.pdf}
+	\includegraphics[width=\textwidth]{figures/noise-methods/cf-example.pdf}
 	\caption
 	[Example of a broadband acoustic noise injection and measurement of a single-injection coupling function]
 	{
@@ -341,14 +341,14 @@ The null hypothesis is thus assumed:
 The values of $t_x$ and $t_h$ are determined based on typical level of random fluctuations observed in the spectra, but often values of $t_x = 10$ and $t_h = 2$ are used for most types of sensors and injections.
 The higher choice of $t_x$ is due to the environmental sensors being much more sensitive to random fluctuations in the ambient noise level than the interferometer is.
 
-The coupling function as approximated in \cref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{sec:noise-vetting}).
+The coupling function as approximated in \cref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{sec:vetting}).
 References to a sensor's coupling function will hereafter refer to this approximate quantity.
 Figure~\ref{fig:cf-composite} provides an example of an estimated ambient for an accelerometer on the HAM6 vacuum chamber (which houses the interferometer output optics).
 The \ac{PEM} website provides coupling functions for all accelerometers, microphones, and magnetometers produced from the most recent campaign of injections~\citep{PEM_website}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics{figures/cf-composite.pdf}
+	\includegraphics{figures/noise-methods/cf-composite.pdf}
 	\caption
 	[Ambient noise level for the LHO HAM6 Y-axis accelerometer]
 	{
@@ -378,7 +378,7 @@ Frequency changes from non-linear coupling can be an issue in broadband injectio
 We split broadband injections into smaller frequency bands to avoid this effect when necessary.
 One approach for quantifying non-linear coupling is presented in \citet{Washimi_2020}.
 
-\subsection{Hardware limitations}\label{sec:hardware-limitations}
+\subsection{Hardware limitations}\label{sec:uncertainties-hardware}
 
 \textit{Injection amplitudes}. To measure coupling, we inject signals large enough to produce a response in the detector, but the maximum amplitude of injections is limited by the sensitive range of the environmental sensors (saturation produces an overestimate of coupling).
 This effectively limits how far below the detector noise background we can probe for coupling or establish upper limits.
@@ -412,7 +412,7 @@ This uncertainty also propagates to projected noise levels in the \ac{GW} channe
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\textwidth]{figures/cf-locations-vib.pdf}
+	\includegraphics[width=\textwidth]{figures/noise-methods/cf-locations-vib.pdf}
 	\caption{
 		Single-injection coupling functions (upper limits not shown) for the HAM5 Y-axis accelerometer for three different shaker injection locations (on top of HAM5, on top of HAM6, and on the HAM5 chamber door).}
 	\label{fig:cf-locations-vib}
@@ -425,7 +425,7 @@ Averaged across all frequency bins, the geometric standard deviation between inj
 
 \begin{figure}[h!]
 	\centering
-%	\includegraphics[width=\textwidth]{figures/cf-locations-mag.pdf}
+%	\includegraphics[width=\textwidth]{figures/noise-methods/cf-locations-mag.pdf}
 	\caption{
 		Single-injection coupling functions (upper limits not shown) for various magnetometers and various injections at both observatories.}
 	\label{fig:cf-locations-mag}
@@ -437,7 +437,7 @@ The result of this study is that magnetic coupling measurements and noise projec
 This is slightly greater than that of vibrational measurements, since the lower number of magnetometers means that the distances between coupling sites and sensors is greater, amplifying the finite spacing effect.
 
 For both vibrational and magnetic coupling, these estimated uncertainties are acceptable given that conclusions made from coupling functions are often more qualitative than strictly quantitative, i.e. identifying and localizing coupling mechanisms is more important that precise estimates of the detector response.
-That said, more precise noise estimates may become important for quantifying the impact of environmental transients on \ac{GW} event candidates, as discussed in Section~\ref{sec:noise-vetting}.
+That said, more precise noise estimates may become important for quantifying the impact of environmental transients on \ac{GW} event candidates, as discussed in Section~\ref{sec:vetting}.
 
 \textit{Nodal artifacts from acoustic injections}.
 In the case of acoustic injections, the uncertainty in a coupling function can be exacerbated when nodes and anti-nodes in the acoustic signal coincide with the location of a sensor but not a coupling site.
@@ -488,7 +488,7 @@ An artificial channel is produced to represent the absolute magnitude of the fie
 All \ac{PEM} channels have accompanying calibration measurements~\citep{PEM_website}. Calibration for microphones and magnetometers is simply a constant conversion of Pa/count or T/count, respecitvely.
 Accelerometer \acp{ASD} are converted to acceleration ($\mathrm{m/s^2}$), then to displacement ($\meter$) by dividing each bin by $(2\pi f)^2$ where $f$ is the bin frequency.
 
-For acoustic injections, spectral smoothing is applied at this point, in order to surpress nodal artifacts as explained in Section~\ref{sec:hardware-limitations}.
+For acoustic injections, spectral smoothing is applied at this point, in order to surpress nodal artifacts as explained in Section~\ref{sec:uncertainties-hardware}.
 Finally, the single-injection coupling funcitons $\mathcal{C}_{ij}(f)$ and upper limits $\mathcal{C}_{ul}(f)$ are measured as in~\cref{eq:sicf}.
 
 {\color{red}
@@ -498,13 +498,13 @@ Paragraph or two on the CF calculation step.}
 
 For each $\mathcal{C}_{ij}(f)$, the data are saved in the following forms:
 \begin{enumerate}
-	\item comma-separated text file consisting of data as described in Table~\ref{tab:pemcoupling_format}
+	\item comma-separated text file consisting of results and \ac{ASDs}
 	\item plot of the  raw coupling function (units of meters per analog-to-digital counts)
 	\item plot of the coupling function in physical units (meters per calibrated sensor unit, e.g. Tesla for magnetometers)
 	\item figure containing two subplots: one showing the background and injection spectra of the auxiliary sensor, and one showing the background and injection spectra of the \ac{GW} strain data and the estimated environmental noise projection.
 \end{enumerate}
 
-\begin{table}\label{tab:pemcoupling_format}
+\begin{table}\label{table:pemcoupling-format}
 	\renewcommand{\arraystretch}{1.5}
 	\begin{tabular}{|ll|}
 		\hline
