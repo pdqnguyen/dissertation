@@ -1,10 +1,5 @@
 \chapter{Methods for studying environmental noise}
 
-{\color{red}
-First three sections here are mostly copied verbatim from PEM paper.
-I think this needs to be split into multiple chapters.
-Not sure how though.}
-
 Environmental noise refers to any signal originating from outside the structure of a \ac{GW} detector that can impact the detector's sensitivity or disrupt its ability to achieve and maintain lock~\citep{Effler_2015,Nguyen_2021}.
 The effects of environmental noise on detector sensitivity can range from persistent excess noise in the \ac{GW} strain data, to short-duration transient signals, or \textit{glitches}.
 
@@ -21,14 +16,17 @@ Thus it is important to have a quantitative solution for identifying and evaluat
 
 The second goal is to improve the sensitivity and performance of the detector by localizing noise sources and coupling mechanisms. Once tracked down, they can be mitigated by eliminating the noise sources, attenuating the propagation of the signal, or modifying the detector itself.
 
-\section{Sources of environmental noise}
+In this chapter I introduce sources of environmental noise (Section~\ref{sec:noise-sources}), describe the hardware used to monitor those noise sources (Section~\ref{sec:pem-channels}) and to reproduce them experimentally (Section~\ref{sec:injections}).
+I present a method for quantifying environmental coupling (Section~\ref{sec:cf}), then I discuss the limitations (Section~\ref{sec:uncertainties}) and software implementation (Section~\ref{sec:pemcoupling}) of the method.
+
+\section{Sources of environmental noise}\label{sec:noise-sources}
 
 The environment can influence a \ac{GW} detector through physical contact (via vibrations or temperature fluctuations), electromagnetic waves, static electric and magnetic fields, and possibly high-energy radiation.
 
 Vibrations can affect the data by directly moving the test masses.
-They can also cause modulate the paths of light that is scattered off of surfaces inside the interferometer, or introduce fluctuations in the alignment of the input laser beam.
+They can also modulate the paths of light that is scattered off of surfaces inside the interferometer, or introduce fluctuations in the alignment of the input laser beam.
 
-\section{The PEM sensor array}
+\section{The PEM sensor array}\label{sec:pem-channels}
 
 \begin{figure}[h!]
 	\centering
@@ -57,7 +55,7 @@ The goal of \ligocam is to produce human-readable summaries of sensor behavior f
 Leveraging the \ac{LIGO} data grid computing clusters, \ligocam parallelizes its analysis by splitting the full channel list (over 100 channels), processing only five per job.
 This allows it to run hourly, scheduled by a \code{cron} job, outputing a summary page and transmitting email alerts (if applicable) within minutes.
 A \code{cron} job is scheduled at each of the \ac{LIGO} observatories.
-Although such expediency is not necessary for fixing malfunctioning hardware, it is important to have up-to-date channel status when validating recently detected \ac{GW} event candidates, as discussed in Section~\ref{sec:cf-vetting}.
+Although such expediency is not necessary for fixing malfunctioning hardware, it is important to have up-to-date channel status when validating recently detected \ac{GW} event candidates, as discussed in Section~\ref{sec:vetting}.
 
 The program reads in time series data using the \code{gwpy} library~\citep{gwpy} and converts each time series to an \ac{ASD}.
 When run for the first time, \ligocam saves the current \acp{ASD} as reference \acp{ASD}.
@@ -76,7 +74,7 @@ If \ligocam is run hourly with $\alpha^{-1}=1/6$, for instance, then $\overline{
 If any anomalous behavior is detected, it is reported on the output HTML page and (if sufficiently egregious) via email to the relevant parties, and $\overline{X}_t(f)$ is not updated.
 
 Anomalies are identified and reported in a number of ways.
-Noise far above or below the reference is a sign of changes to hardware or infrastructure in the vicinity of the sensor, which may not adversely affect coverage of the area but could adversely affect nosie estimates as described in Section~\ref{sec:cf-vetting}.
+Noise far above or below the reference is a sign of changes to hardware or infrastructure in the vicinity of the sensor, which may not adversely affect coverage of the area but could adversely affect nosie estimates as described in Section~\ref{sec:vetting}.
 If $X_t(f)$ is many orders of magnitude below the reference but still above the electronic noise background of the \ac{ADC}, the sensor is considered to be faulty.
 Some sensors, especially magnetometers, can have background noise levels low enough to be near the \ac{ADC} noise floor.
 For this reason, checks for magnetometers are performed specifically on the 60\,Hz mains signal, while other sensors (accelerometers, microphones, etc.) are analyzed for broadband variations.
@@ -254,19 +252,43 @@ Thus far it has been assumed that the witness sensors are placed precisely at th
 A sensor, even if it is near a coupling site, only measures the injection amplitude at its own location, not at the coupling location.
 Therefore, when using real-world sensors,~\cref{eq:x_inj} is not exact, so~\cref{eq:cf} does not exactly describe the coupling at the coupling site.
 Nevertheless, as explained above, sensors are distributed in order to maximize coverage of coupling sites and this has been sufficient for producing reliable coupling functions for all sensors, as discussed further in Section~\ref{sec:uncertainties}.
-As seen in Figure~\ref{fig:cf-cartoon1}, the sensor coupling function $C_j(f)$ is a good approximation to the true coupling $C(f)$ if the injection distance is much greater than the distance between the coupling site and sensor.
+As seen in Figure~\ref{fig:cf-cartoon-simple}, the sensor coupling function $C_j(f)$ is a good approximation to the true coupling $C(f)$ if the injection distance from the sensor $r_{ij}$ is much greater than the distance between the coupling site and sensor.
+This allows us to estimate excess noise in the \ac{GW} channel $h_i(f)$ without directly measuring the coupling actuation $A_i(f)$.
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{figures/noise-methods/cf-cartoon1.pdf}
-	\caption{
-		Diagram of a coupling function measurement.}
-	\label{fig:cf-cartoon1}
+	\includegraphics[width=\textwidth]{figures/noise-methods/cf-cartoon-simple.pdf}
+	\caption
+	[Diagram of a trivial coupling function measurement in the trivial case.]
+	{
+		Diagram of a coupling function measurement in the trivial case.
+		An injection $i$ produces a signal $A_i(f)$ at a coupling site, which cannot be measured directly.
+		If the injection is performed sufficiently far, then $\Delta r_{ij} \ll |\vec{r}_{ij}|$, so $C_j(f) \approx C(f)$.
+	}
+	\label{fig:cf-cartoon-simple}
+\end{figure}
+
+In Figure~\ref{fig:cf-cartoon-full} we can see how complex the experiment system becomes when there are multiple coupling sites of unknown location.
+If there are two coupling sites $A$ and $B$, at least two injections $i_1$ and $i_2$ are required to distinguish between the coupling mechanisms.
+The \ac{GW} channel response to injection $i_1$ is therefore the sum of the contributions of the actuation signals $A_{i_1}(f)$ and $B_{i_1}(f)$, and likewise for injection ${i_2}$.
+Again, at best we merely approximate the actuations $A_i(f)$ and $B_i(f)$ with sufficiently close sensors, although we do not know \textit{a priori} which sensors are near coupling sites.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{figures/noise-methods/cf-cartoon-full.pdf}
+	\caption
+	[Expanding Figure~\ref{fig:cf-cartoon-simple} to more than one sensor and coupling site.]
+	{
+		Expanding Figure~\ref{fig:cf-cartoon-simple} to two injections $i_1$ and $i_2$, two sensors $j_1$ and $j_2$, and two coupling sites $A$ and $B$.
+		Each injection response $h_i(f)$ is itself a sum across contributions from $A$ and $B$.
+		The goal is to determine the sensor couplings $C_j(f)$ that reproduce $h_i(f)$ using the sensor measurements $x_{ij}(f)$ since the true coupling actuations $A_i(f)$ and $B_i(f)$ are not known.
+	}
+	\label{fig:cf-cartoon-full}
 \end{figure}
 
 \subsection{Solving the coupling equations}
 
 One hurdle remains in attempting to solve ~\cref{eq:cf_full}.
 In practice, typically $n<m$ due to logistical constraints on the number of injections one could perform during a realistic time window, which makes the system of equations underdetermined.
+A straight-forward least-squares regression is therefore not always feasible.
 Below are two approximation methods for determining $C_j(f)$ for all sensors.
 
 \textit{Nearest-sensors approximation}.
@@ -282,8 +304,6 @@ Given a sensor $j$, \cref{eq:cf} can be repurposed by replacing $x$ with $x_{ij}
 	\mathcal{C}_{ij}(f) = \sqrt{\frac{[h_{i,\textrm{inj}}(f)]^2 - [h_{i,\textrm{bkg}}(f)]^2}{[x_{ij,\textrm{inj}}(f)]^2 - [x_{ij,\textrm{bkg}}(f)]^2}}.
 \end{equation}
 The closer an injection is to a sensor $i$, the more accurately $\mathcal{C}_{ij}(f)$ approximates $\mathrm{C}_j(f)$, since the detector response would be dominated by coupling near sensor $j$.
-This is illustrated in Figure~\ref{fig:cf-cartoon2}:
-in the nearest-injection approximation the coupling of sensor $j$, $C_j(f)$, is measured using the observation of the nearest injection, in this case $x_{ij}(f)$, while $C_{j'}(f)$ is measured using $x_{i'j'}(f)$.).
 Therefore one can construct the sensor coupling function by choosing at each frequency bin the coupling factor corresponding to the nearest injection, determined by the highest sensor amplitude (using the assumption that injection amplitudes are equivalent).
 That is, for a frequency $f_k$ and a set of injections $\mathcal{I}$, one can measure the sensor amplitudes $\{x_{ij}(f_k)\ |\ i \in \mathcal{I}\}$, compute the single-injection coupling functions $\{\mathcal{C}_{ij}(f_k)\ |\ i \in \mathcal{I}\}$, and construct the approximate sensor coupling function
 
@@ -292,14 +312,6 @@ That is, for a frequency $f_k$ and a set of injections $\mathcal{I}$, one can me
 \end{equation}
 If the distribution of injection locations provides sufficient coverage of sensor locations, then $\widetilde{\mathrm{C}}_j(f) \approx \mathrm{C}_j(f)$.
 Shortcomings of this assumption are discussed in Section~\ref{sec:uncertainties}.
-
-\begin{figure}[h]
-	\includegraphics[width=\textwidth]{figures/noise-methods/cf-cartoon2.pdf}
-	\caption{
-		Expanding Figure~\ref{fig:cf-cartoon2} to more than one sensor and coupling site.
-	}
-	\label{fig:cf-cartoon2}
-\end{figure}
 
 Figure~\ref{fig:cf-example} provides an example of a single-injection coupling function measurement for a \ac{PSL} acoustic injection.
 Figure~\ref{fig:cf-composite} shows an estimated ambient noise based on an accelerometer coupling function constructed from five single-injection coupling functions.
@@ -453,6 +465,7 @@ For accelerometer spectra, analyzing injections with various smoothing parameter
 Since microphones are much more sensitive to nodal artifacts while being less sensitive to narrow mechanical resonances (they would have to be strong enough to produce audible signals), their spectra can be smoothed much more aggressively: a logarithmically-scaled window is used which is 15\,Hz wide at 100\,Hz and 150\,Hz wide at 1000\,Hz.
 
 \section{The {\fontfamily{pcr}\selectfont pemcoupling}\xspace package}
+\label{sec:pemcoupling}
 
 This section covers the technical details of the \pemcoupling python package~\citep{pem_code}, which includes command-line tools for processing large numbers of injections and producing single-injection coupling functions, coupling functions, and multi-channel summary coupling functions.
 
@@ -498,13 +511,13 @@ Paragraph or two on the CF calculation step.}
 
 For each $\mathcal{C}_{ij}(f)$, the data are saved in the following forms:
 \begin{enumerate}
-	\item comma-separated text file consisting of results and \ac{ASDs}
+	\item comma-separated text file consisting of coupling measurements, flags, and raw spectra
 	\item plot of the  raw coupling function (units of meters per analog-to-digital counts)
 	\item plot of the coupling function in physical units (meters per calibrated sensor unit, e.g. Tesla for magnetometers)
 	\item figure containing two subplots: one showing the background and injection spectra of the auxiliary sensor, and one showing the background and injection spectra of the \ac{GW} strain data and the estimated environmental noise projection.
 \end{enumerate}
 
-\begin{table}\label{table:pemcoupling-format}
+\begin{table}\label{tab:pemcoupling-format}
 	\renewcommand{\arraystretch}{1.5}
 	\begin{tabular}{|ll|}
 		\hline
@@ -525,8 +538,3 @@ Post-processing, to aggregate single-injection coupling functions into coupling 
 
 {\color{red}
 Expand on these final steps a bit.}
-
-\section{Noise estimation with coupling functions}\label{sec:cf-vetting}
-
-{\color{red}
-This is where I'll talk about the methodology for vetting, including O4 pemcheck work (still in progress), as well as ligocam considerations.}
