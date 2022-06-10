@@ -53,7 +53,7 @@ The \ac{LIGO} channel activity monitor, or \ligocam, is a program that checks fo
 The goal of \ligocam is to produce human-readable summaries of sensor behavior for the entire \ac{PEM} network at an observatory, and send email alerts to experts when significant malfunctions are identified.
 
 Leveraging the \ac{LIGO} data grid computing clusters, \ligocam parallelizes its analysis by splitting the full channel list (over 100 channels), processing only five per job.
-This allows it to run hourly, scheduled by a \code{cron} job, outputing a summary page and transmitting email alerts (if applicable) within minutes.
+This allows it to run hourly, scheduled by a \code{cron} job, outputting a summary page and transmitting email alerts (if applicable) within minutes.
 A \code{cron} job is scheduled at each of the \ac{LIGO} observatories.
 Although such expediency is not necessary for fixing malfunctioning hardware, it is important to have up-to-date channel status when validating recently detected \ac{GW} event candidates, as discussed in Section~\ref{sec:vetting}.
 
@@ -74,7 +74,7 @@ If \ligocam is run hourly with $\alpha^{-1}=1/6$, for instance, then $\overline{
 If any anomalous behavior is detected, it is reported on the output HTML page and (if sufficiently egregious) via email to the relevant parties, and $\overline{X}_t(f)$ is not updated.
 
 Anomalies are identified and reported in a number of ways.
-Noise far above or below the reference is a sign of changes to hardware or infrastructure in the vicinity of the sensor, which may not adversely affect coverage of the area but could adversely affect nosie estimates as described in Section~\ref{sec:vetting}.
+Noise far above or below the reference is a sign of changes to hardware or infrastructure in the vicinity of the sensor, which may not adversely affect coverage of the area but could adversely affect noise estimates as described in Section~\ref{sec:vetting}.
 If $X_t(f)$ is many orders of magnitude below the reference but still above the electronic noise background of the \ac{ADC}, the sensor is considered to be faulty.
 Some sensors, especially magnetometers, can have background noise levels low enough to be near the \ac{ADC} noise floor.
 For this reason, checks for magnetometers are performed specifically on the 60\,Hz mains signal, while other sensors (accelerometers, microphones, etc.) are analyzed for broadband variations.
