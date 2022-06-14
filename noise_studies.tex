@@ -128,17 +128,22 @@ Nevertheless, ambient fields are still predicted to produce noise at greater tha
 At higher frequencies, generally above about 30\,Hz, the dominant magnetic coupling appears to be through induction of currents in cables and at connectors, mainly to actuator cabling and other cabling in the control system.
 Mitigation of coupling to cables and connectors has required a continuing program of monitoring coupling since cables are often disconnected and reconnected during runs as electronics are replaced for problems or upgrades.
 This program consists of making weekly, broadband magnetic field injections using the large wall-mounted coils described in Section~\ref{sec:injections-magnetic}.
-The injections have shown that peaks can appear or disappear, as well as shift in frequency, on a weekly basis.
-
-\subsection{Fluctuations in magnetic coupling}\label{sec:mag-weekly}
+Since the injections are scheduled for every Tuesday morning before the routine detector maintenance period, the interferometer may or may not be in a locked state at the time, so an injections were not always performed.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{figures/noise-studies/mag-weekly-cf.png}
 	\caption{
-		LHO magnetic coupling measured by weekly wall-mounted coil injections during the last five weeks of O3.}
+		LHO magnetic coupling measured by the last five wall-mounted coil injections performed in O3.}
 	\label{fig:mag-weekly-cf}
 \end{figure}
+
+Figures~\ref{fig:mag-weekly-cf}, \ref{fig:mag-weekly-bands}, and \ref{fig:mag-weekly-peaks} are automatically generated every week by the code that analyzes the injections.
+Figure~\ref{fig:mag-weekly-cf} shows magnetic coupling functions measured over the last five weeks for which a broadband injection was performed.
+Changes can be seen in both the broadband and narrowband structure of the coupling fuction.
+Just within these five weeks, the level of broadband coupling varied by as much as a factor of about 1.5.
+Since the injection is produced from a same location and at the same amplitude every time, uncertainties due to the injection source as discussed in Section~\ref{sec:uncertainties} do not account for these variations.
+Broadband changes over specific frequency ranges tracked over the full course of \ac{O3} (Figure~\ref{fig:mag-weekly-bands}) show significant fluctuations throughout the run.
 
 \begin{figure}[h]
 	\centering
@@ -146,6 +151,12 @@ The injections have shown that peaks can appear or disappear, as well as shift i
 	\caption{Time-lines of magnetic coupling changes relative to the start of the observing run.}
 	\label{fig:mag-weekly-bands}
 \end{figure}
+
+Furthermore, a large peak in the coupling is seen migrating between 90 and 110 Hz.
+This is precisely the type of feature often missed by comb injections but will be routinely discovered by broadband injections in future obesrving runs.
+Figure~\ref{fig:mag-weekly-peaks} shows frequency and amplitude fluctuations in couping peaks such as this.
+Although the coupling of the \~100\,Hz peak is still well below the level that would produce excess noise in the \ac{GW} channel, its presence gives reason to be concerned that similar peaks could arise in the future that do couple significantly.
+These weekly injections would help in identifying when the coupling changed, so instrumentalists can deduce what changes to the electronics may have affected it.
 
 \begin{figure}[h]
 	\centering
