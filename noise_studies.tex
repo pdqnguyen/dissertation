@@ -309,9 +309,9 @@ The tuning reduces this to match the strain background, and the resulting probab
 
 Even after tuning coupling functions, overestimations can occur due to short duration ($\leq$ 1\,s) transients that are not likely to couple based on physical reasons.
 Rack magnetometers (placed on the metal racks that hold the various control systems, data acquisitions systems, and power supplies in the electronics rooms) observe the highest rates of localized short-duration transients, routinely picking up magnetic fields from changes in nearby currents.
-When these glitches coincide with a \ac{GW} event candidate they predict a probability of environmental usually above 90\%.
+When these glitches coincide with a \ac{GW} event candidate they predict a probability of excess noise usually above 90\%.
 Although the coincident rate is low for typical (\ac{BBH}) events, a long-duration \ac{GW} signal such as a \ac{BNS} will typically overlap with at least a few electronics glitches.
 
-Since coupling functions are only intended to be used for noise sources distant from the sensors, projections from sensors placed close to each other ($\leqslant$ 1\,m) should be highly correlated if the input noise is environmental and not local to the individual sensors.
-To incorporate this knowledge, \code{pemcheck} groups together magnetometers each electronics rooms; their probability spectrograms are stacked and a pixel-wise minimum is computed to generate a combined group spectrogram.
+Since coupling functions are only intended to be used for noise sources distant from the sensors, projections from sensors placed close to each other ($\lesssim$ 1\,m) should be highly correlated if the input noise is environmental and not local to the individual sensors.
+To incorporate this knowledge, \code{pemcheck} groups together magnetometers in each electronics room; their probability spectrograms are stacked and a pixel-wise minimum is computed to generate a combined group spectrogram.
 This suppresses signals that project above the strain background in one magnetometer but not the others, so the projected excess noise probabilities are much lower than any of the peak probabilities reported by the individual sensors.
