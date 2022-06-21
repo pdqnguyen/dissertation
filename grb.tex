@@ -1,6 +1,6 @@
-\chapter{Gravitational waves associated with gamma-ray bursts}
+\chapter{Gravitational waves associated with gamma-ray bursts}\label{ch:grb}
 
-\section{Gamma-ray bursts}
+\section{Gamma-ray bursts}\label{sec:grb-astro}
 
 \Acp{GRB} are short, energetic bursts of gamma rays in the MeV range, first discovered in 1967~\citep{Klebesadel_1973}.
 Observations throughout the following decades revealed that \acp{GRB} could be classified based on duration and spectral hardness~\citep{Kouveliotou_1993}.
@@ -17,7 +17,7 @@ Extreme emission models predict a wide variety of signals, often longer in durat
 Matter surrounding the remnant of a \ac{CCSN} forms an accretion disk, in which turbulent behavior can arise.
 For instance, instabilities in the accretion disk can lead to the formation of a clump of matter which can then migrate inwards, shedding angular momentum in the form of gravitational waves.
 
-\section{GW searches}
+\section{GW searches}\label{sec:grb-searches}
 
 In 2017, the first binary neutron star merger GW170817 was detected by advanced LIGO and Virgo, immediately accompanied by the detection of a relatively low-luminosity gamma-ray burst GRB170817A by Fermi \ac{GBM} two seconds later~\citep{gw170817}.
 This prompted a global effort to find an optical, UV, and infrared counterpart that would make up the signature of a kilonova.
@@ -47,21 +47,131 @@ These observations instead favored a wide-angled, structured jet model for GRB17
 A structured jet model may refer to any luminosity function that decreases gradually with $\theta_{\mathrm{obs}}$ rather than abruptly, e.g. a Gaussian or power-law with uniform center.
 One mechanism that would explain such a model is a cocoon emission, in which the relativistic jet interacts dissipatively with the surrounding merger ejecta, depositing its energy into a cocoon fireball that results in a structured jet~\citep{gw170817_grb}.
 
-\subsection{X-Pipeline}
+The \ac{LIGO}-Virgo collaboration searches for gravitational waves associated with \acp{GRB} detected by Fermi \ac{GBM} and Swift \ac{BAT} using two analyses: a template-based mathed-filter search using the \pygrb pipeline and a generic transient search using \xpip.
+The \pygrb pipeline is used for analyzing short and ambiguous \acp{GRB}, while \xpip is used for all \acp{GRB}, short, ambiguous or long.
+The \acp{GRB} sample for a LIGO-Virgo observing run is collected from the Fermi and Swift \ac{GRB} catalogs, and the best sky localization and timing information is used.
+The \ac{GRB} classifications are determined based on $T_{90}$ (and their associated $\delta T_{90}$), the time interval over which 90\% of the total background-subtracted photon counts are observed by the reporting \ac{GRB} detector.
+\Acp{GRB} are considered short if $T_{90} + \abs{\delta T_{90}} < 2\,\text{s}$, long if $T_{90} - \abs{\delta T_{90}} > 4\,\text{s}$, and ambigous if they lie in between.
+In particular, it does not account for short GRBs that are followed by periods of extended emission~\citep{Norris_2006, vanPutten_2014}, for which measures of $T_{90}$ may substantially exceed these thresholds.
+For more robust classification one must also consider spectral properties, most commonly the spectral hardness or peak energy of the event, but since our sample consists of observations from multiple observatories with different spectral sensitivities we do not employ such quantities when organizing our sample.
 
-One of the analyses searching for \acp{GW} associated with \acp{GRB} uses the generic transient search library \code{X-pipeline}.
+\subsection{X-Pipeline}\label{sec:grb-x}
+
+One of the analyses searching for \acp{GW} associated with \acp{GRB} uses the generic transient search library \xpip.
+This pipeline analyzes \ac{GW} strain data from multiple observatories around the time of a \ac{GRB}.
 This is an unmodeled method for finding \acp{GW}, as it does not rely on template-based matched-filtering.
-Instead, \code{X-pipeline} searches for excess power coherent between LIGO-Virgo detectors.
+Instead, given a \ac{GRB} event, \xpip searches for excess power coherent between LIGO-Virgo detectors and consistent with the sky localization and time window of the \ac{GRB}.
+The search time window starts 600\,s before the GRB trigger time and ends at 60\,s after trigger time, or at $T_{90}$ if $T_{90} > 60\,\text{s}$.
+This is sufficient to cover the time delay between GW emission from a progenitor and any GRB prompt emission~\citep{Koshut_1995, Aloy_2000, MacFadyen_2001, Zhang_2003, Lazzati_2005, Wang_2007, Burlon_2008, Burlon_2009, Lazzati_2009, Vedrenne_2009}.
+While some GW emissions, such as from core-collapse SNe, are expected to reach frequencies up to a few kilohertz~\citep{Radice_2019}, we restrict our search frequency range to the most sensitive band of the GW detectors, 20–500\,Hz, since detecting such signals above a few hundred hertz requires extremely high GW energies~\citep{burst_o2} and expanding the frequency range would also significantly increase the computational cost. To constrain the sky location of the GRB event, the search is using a grid based on the best localization known either from Fermi \ac{GBM} or Swift \ac{BAT}.
+
+\xpip produces time–frequency maps of the \ac{GW} data coherently combined between the detectors.
+These maps give access to the temporal evolution of the spectral properties of the signal and enable the pipeline to search for clusters of pixels containing excess energy.
+The pipeline assigns each cluster a detection statistic based on energy and ranks them accordingly.
+A coherent consistency test, based on correlations between data in different detectors, then vetoes clusters that are associated with noise transients.
+The surviving cluster with the largest ranking statistic is the best candidate for a GW detection, and the search quantifies its significance as the probability of the event being produced by the background alone.
+This is determined by comparing the \ac{SNR} of the trigger within the 660\,s on-source window to the distribution of the \acp{SNR} of the loudest triggers in the 660\,s off-source windows.
+As a requirement, the off-source data consist of at least \~1.5\,hr of coincident data from at least two detectors around the time of a \ac{GRB}.
+This is small enough to select data where the detectors should be in a similar state of operation as during the \ac{GRB} on-source window, and large enough so that probability estimates using artificial time-shifting of the data are at the sub-percent level.
+
+We quantify the sensitivity of the generic transient search by injecting simulated signals into off-source data.
+For each waveform family injected we determine the largest significance of any surviving cluster associated with the injections.
+We compute the percentage of injections that have a significance higher than the best event candidate and look for the amplitude at which this percentage is above 90\%, which sets the upper limit.
+We include O3b calibration errors~\citep{Acernese_2022, Sun_2021} by jittering the amplitude and arrival time according to a Gaussian distribution representative of the calibration uncertainties.
+As with the modeled search, these injection sets allow us to calculate the 90\% exclusion distance, $D_{90}$, for each injection waveform.
+These $D_{90}$ estimates represent the distance within which our null result is 90\% likely to exclude the existence of a \ac{GW} signal caused by the emission mechanism for that waveform.
+
+We choose simulated waveforms to cover the search parameter space of three distinct sets of circularly polarized \ac{GW} waveforms: \ac{BNS} and \ac{NSBH} binary inspiral signals, stellar collapse signals, and disk instability signals.
+
+\Ac{CSG} injections represent GW emission from stellar collapses defined in Equation (1) of~\citet{grb_o1} with a $Q$ factor of 9 and varying center frequency of 70, 100, 150, and 300\,Hz.
+In all cases, we assume an optimistic emission of energy in \acp{GW} of $E_{\text{GW}} = 10^{-2} \msol c^2$.
+This set of waveforms covers a number of emission models for short-duration \acp{GW} occurring during the collapse of the star.
+
+Binary inspiral injections are characterized by a Gaussian distribution centered at 1.4\,$\msol$, with a width of 0.2\,$\msol$ for an \ac{NS} in a \ac{BNS}, and with a width of 0.4\,$\msol$ for an \ac{NS} in an \ac{NSBH}.
+The distribution for \acp{GW} emitted by \ac{BNS} mergers addresses the case of short \ac{GRB} events as in~\citet{grb_o1} and adopted in the \pygrb search.
+
+Long-duration \Ac{ADI} injections are used to represent \acp{GW} produced by instabilities in the magnetically suspended torus around a rapidly spinning \ac{BH}~\citep{vanPutten_2001, vanPutten_2004}.
+The model for these waveforms is parameterized by the mass $M$ and dimensionless spin parameter $\chi$ of the central \ac{BH}, and the fraction $\epsilon$ of the  accretion disk mass (which is fixed at $1.5\,\msol$) that forms clumps.
+The parameters used to generate the five families of \ac{ADI} signals are shown in Table~\ref{tab:adi}, along with the duration, frequency, and $E_{\text{GW}}$ of each waveform.
+
+\begin{table}[h!]
+	\centering
+	\caption
+  {Parameters and properties for accretion disk instability waveform injections.
+  \label{tab:adi}}
+	\begin{tabular}{c c c c c c c}
+		\hline
+		Waveform & $M$ ($\msol$) & $\chi$ & $\epsilon$ & Duration & Frequency & $E_{\text{GW}}$ \\
+		Label &  &  &  & (s) & (Hz) & $(\msol c^2)$ \\
+		\hline
+  	\hline
+    ADI-A & 5 & 0.30 & 0.050 & 39 & 135-166 & 0.02 \\
+    ADI-B & 10 & 0.95 & 0.200 & 9 & 110-209 & 0.22 \\
+    ADI-C & 10 & 0.95 & 0.040 & 236 & 130–251 & 0.25 \\
+    ADI-D & 3 & 0.70 & 0.035 & 142 & 119–173 & 0.02 \\
+    ADI-E & 8 & 0.99 & 0.065 & 76 & 111–234 & 0.17 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\section{O3b search for GWs associated with GRBs}\label{sec:grb-o3b}
+
+Since \ac{O3} was split into two halves, O3a and O3b, the \ac{LIGO}-Virgo \ac{GRB} search was also split in two.
+Changes in the detector during the in-between commissioning phase resulted in minor improvements to the LIGO detector senstivities, and a major change was made to \xpip to deal with noise issues.
+
+In the O3a search, the sensitivity to long-duration ($\geq 10\,\text{s}$) signals was often limited by loud background noise transients known as glitches (Davis et al. 2021).
+While X-Pipeline's coherent consistency tests easily veto these glitches, many long-duration simulated signals would overlap such a glitch by chance.
+In these cases the simulated signal and glitch would be clustered together and subsequently vetoed together.
+To address this problem, an ``autogating'' procedure was implemented for O3b. For each detector, the total energy in the whitened data stream is computed over a 1\,s window.
+If this total fluctuates by more than 50 standard deviations above the median value, then the data is zeroed out over the interval where the threshold is exceeded.
+A 1\,s inverse Tukey window is applied at each end of the zeroed interval to transition smoothly between the whitened and zeroed data.
+To minimize the possibility of a loud GW transient triggering a gate, the procedure cancels a gate if there is a simultaneous energy excursion above 10 standard deviations in any other detector.
+The threshold of 50 standard deviations is low enough to gate the most problematic loud glitches, while being high enough that the only GWs zeroed out by the gate would have been detectable by all-sky searches.
+Empirically we find that this procedure is effective at reducing the impact of loud glitches without affecting the sensitivity to low-amplitude GW signals.
+
+In the O3b search, autogating was performed on more than half of the \acp{GRB} analyzed by \xpip.
+Even though loud injections zeroed out by the glitch would have been detectable by all-sky searches, we ran \xpip on each \ac{GRB} without autogating first, and performed an autogated rerun only if the closed box results suggest that autogating would improve the sensitivity of the search.
+Running \xpip itself produces a ``closed-box'' results page, which summarizes the results of the search on a ``dummy'' on-source window chosen from among the off-source windows.
+This allows us to tune the parameters of the search, the injections, or the pre- and postprocessing to produce the most sensitive closed-box results before actually analyzing the on-source data (the ``open-box'' analysis).
+The glitches targeted by autogating affect the ability of \xpip to detect long-duration signals, so we can determine if a closed-box analysis would perform better with autogating applied by looking for a clear plateau or dip in the detection efficiency curves of the long-duration \ac{ADI} waveforms.
+If such a problem does exist, then the closed-box analysis is rerun with autogating, and the box with better efficiency curves (usually the autogated version) is opened.
+Otherwise, if autogating is not likely to affect the results, then we open the box for the non-autogated analysis.
 
 
-\section{O3 search for GWs associated with GRBs}
+\subsection{GRB sample}\label{sec:grb-o3b-sample}
+
+The full sample of \acp{GRB} occuring in O3b consists of seven short \acp{GRB}, 12 ambiguous \acp{GRB}, and 89 long \acp{GRB}.
+Of these, only two have known redshifts: GRB 191221B ($z = 1.148$)~\citep{Kuin_2019, Vielfaure_2019} and GRB 200205B ($z = 1.465$)~\citep{Vielfaure_2020}.
+Since \xpip searches for coincident excess power, we perform the generic transient search for \acp{GRB} where at least two of the three LIGO-Virgo detectors were active.
+This leads to 86 GRBs to analyze and is also compatible with the network observing time of at least two detectors (85.3%).
+
+\subsection{Results of the O3b search}\label{sec:grb-o3b-results}
+
+We rank each candidate by calculating a p-value, the probability of an event or a louder one in the on-source data, given the background distribution, under the null hypothesis.
+The p-value is calculated by counting the fraction of background trials that contain an event with a greater signal-to-noise ratio than that of the loudest on-source event.
+Figure~\ref{fig:grb-o3b-x-pval} shows the distribution of p-values for the 86 \acp{GRB} analyzed by \xpip.
+In this plot, a significant event would appear at a much lower p-value in the lower left corner of the plots, and be outside (to the left) of the 90\% confidence region.
+The plot shows that the p-value distribution is consistent with the background.
+The lowest reported p-value found during O3b for the generic transient search was $7.95\times 10^{-3}$ (GRB 200224B). Although this p-value is very small, it is not unexpected given the high number of GRBs analyzed.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{figures/grb/o3b-x-pval.pdf}
-  \caption{P-values of O3b X-pipeline analyses.}
+  \caption
+  [Cumulative distribution of p-values for the loudest on-source events of the O3b X-pipeline analyses.]
+  {
+    Cumulative distribution of p-values for the loudest on-source events of the O3b X-pipeline analyses.
+    The dashed line indicates an expected uniform distribution of p-values under a no-signal hypothesis, with the corresponding 90\% band as the dotted lines.}
   \label{fig:grb-o3b-x-pval}
 \end{figure}
+
+Given that no loud \ac{GW} signals are observed coincident with any of the \acp{GRB} in this search, we perform a weighted binomial test to determine the probability of observing our set of p-values assuming a uniform background distribution~\citep{grb_s6}.
+A small probability would suggest that there may be a population of subthreshold \ac{GW} signals that our search did not identify.
+This type of weighted binomial test uses the lowest re-weighted p-values from the searches.
+For the generic transient search, the test gives a probability of 0.76.
+The same test carried out in O3a returned a probabilit of 0.30~\citep{grb_o3a}.
+In \ac{O2} (removing GW170817/GRB 170817A) and the first observing run of Advanced LIGO and Advanced Virgo (O1) the probabilities were 0.75 and 0.75, respectively~\citep{grb_o2, grb_o1}.
+As in these previous analyses, the probabilities obtained in O3b suggest that no weak GWs can be attributed to the population of GRBs.
 
 \begin{figure}[h]
   \centering
@@ -70,8 +180,75 @@ Instead, \code{X-pipeline} searches for excess power coherent between LIGO-Virgo
   \label{fig:grb-o3b-x-exclusion}
 \end{figure}
 
-\subsection{GRB sample}
+We derive a 90\% confidence level lower limit on the distance for each of the 86 GRBs analyzed with the generic transient search, based on the different emission models.
+Figure~\ref{fig:grb-o3b-x-exclusion} shows the distribution of $D_{90}$ values for the ADI-A model and for a CSG with central frequency of 150\,Hz.
+The limits reported depend on the sensitivity of the instruments in the network, which change with time and sky localization of the GRB events.
+We marginalize these limits over errors introduced by detector calibration.
+Table~\ref{tab:grb-o3b-x-exclusion} reports the median $D_{90}$, for the set of GRBs for the different signals.
+The limits vary by nearly an order of magnitude due to the variety of signals used in our analysis.
+On average, the median values for the O3b generic transient search are about 50\% greater than those reported in O3a~\citep{grb_o3a}.
 
-\subsection{Results}
+\begin{table}[h]
+  \hspace{0.5cm}
+  \caption
+  {\label{tab:grb-o3b-x-exclusion} Median 90\% exclusion distances ($D_{90}$) for the generic transient search during O3b.}
+  \begin{tabular}{c c c c c}
+    \hline
+    \hline
+    \rule{0pt}{4ex}
+    & CSG 70\,Hz & CSG 100\,Hz & CSG 150\,Hz & CSG 300\,Hz \\
+    \hline
+    \rule[-2ex]{0pt}{4ex}
+    $D_{90}$ [Mpc] & 166 & 126 & 92 & 42
+  \end{tabular}
+  %
+  \begin{tabular}{c c c c c c}
+    \hline
+    \hline
+    \rule{0pt}{4ex}
+    & ADI-A & ADI-B & ADI-C & ADI-D & ADI-E \\
+    \hline
+    \rule[-2ex]{0pt}{4ex}
+    $D_{90}$ [Mpc] & 34 & 140 & 54 & 22 & 52 \\
+    \hline
+  \end{tabular}
+\end{table}
 
-\subsection{Noise assessment}
+We can primarily attribute this improvement to the use of autogating in O3b: the increase in exclusion distances is highest (up to a factor of 2) for the longest-duration waveforms, which are most impacted by the glitches removed by autogating.
+The exclusion distances for the shorter-duration CSG waveforms, which are not expected to be affected by autogating, increased by about 30\% on average.
+This is more than could be accounted for by chance differences in the LIGO–Virgo antenna factors between the two samples.
+Rather, the increase is likely due to improvements in the performance of the detectors themselves, such as through the reduction of noise caused by scattered light in the LIGO detectors~\cite{Soni_2020} or the improvement in sensitivity of the Virgo detector~\cite{Davis_2021}.
+% The $D_90$ values found for each GRB in the case of simulated ADI-A and 150-Hz CSG signals in Table~\ref{tab:grb-o3b-full}.
+
+
+% \begin{table}
+%   \caption{\label{tab:grb-o3b-full}%
+%     GRB details and associated GW emission limits for
+%     each of the Fermi and Swift GRBs followed up on
+%     during O3b.}
+%     % The GRB Name column reports each GRB's formal designation
+%     % or the Fermi GBM trigger ID when a formal designation has not been assigned.
+%     % The UTC times reported are rounded to the earlier integer second.
+%     % The Satellite column gives the satellite that provided the
+%     % GRB sky localization used in the GW analysis. The
+%     % Network column lists the GW detector network used: H1 = LIGO
+%     % Hanford, L1 = LIGO Livingston, V1 = Virgo.
+%     % The $^\dagger$ symbol indicates that the GRB's $T_{90} > 60\,\mathrm{s}$,
+%     % so the generic transient search's on-source window was extended.
+%     % Where the generic transient search and the modeled search used a different
+%     % IFO network, the network used by the modeled search is shown in parentheses.
+%     % The last 5 columns show the 90\% confidence exclusion distances
+%     % for each GRB ($D_{90}$) for the following emission scenarios:
+%     % BNS, generic and aligned-spin NSBH from the modeled search,
+%     % and from the generic transient search, ADI-A, and CSG
+%     % GW burst at 150\,HZ with total radiated energy $E_{\text{GW}} = 10^{-2}\,\msol c^2$.}%
+%   \begin{tabular}{c c c c c c c c c c c c}
+%     \input{figures/grb/grb_table}
+%   \end{tabular}
+% \end{table}
+
+
+
+\subsection{Effects of detector noise on the generic transient search sensitivity}\label{sec:grb-o3b-noise}
+
+Here I compare exclusion distances of the O3a and O3b search to determine the impact of detector and search pipeline improvements on the sensitivity of generic transient analysis.
