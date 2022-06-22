@@ -1,0 +1,95 @@
+\chapter{Gravitational wave astronomy}\label{ch:gw}
+
+{\color{red}
+Add a little history about GW astro.}
+This chapter gives an overview of the theoretical background necessary for understanding the emission of \acp{GW} (Section~\ref{sec:gw-gr}), known and expected sources of \ac{GW} radiation (Section~\ref{sec:gw-sources}), and how a \ac{GW} interferometer works (Section~\ref{sec:gw-detectors}).
+
+\section{Gravitational waves}\label{sec:gw-gr}
+
+To develop theory of \acp{GW}, we begin with the Einstein field equations
+$$G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}$$
+where $T_{\mu\nu}$ is the stress-energy tensor and $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu}$ is the Einstein tensor, comprised of the Ricci tensor $R_{\mu\nu}$, Ricci scalar $R$, and spacetime metric $g_{\mu\nu}$.
+We can approximate the solution as the flat Minkowski metric $\eta_{\mu\nu}$ plus a perturbation $h_{\mu\nu}$: $g_{\mu \nu} = \eta_{\mu \nu} + h_{\mu \nu}$.
+Assuming the perturbation is small $\abs{h_{\mu\nu}} \ll 1$, we can construct the linearized Ricci tensor
+$$R_{\mu\nu} = \frac{1}{2} (\partial_{\sigma}\partial_{\mu}h_{\nu}^{\sigma} + (\mu \leftrightarrow \nu) - \partial_{\mu}\partial_{\nu}h - \Box h_{\mu\nu})$$
+where $h = \eta^{\mu\nu}h_{\mu\nu}$ is the trace of $h_{\mu\nu}$, and the linearized Ricci scalar
+$$R = \eta_{\mu\nu}R^{\mu\nu} = \partial_{\mu}\partial_{\nu}h - \Box h_{\mu\nu}$$
+This yields the linearized Einstein tensor
+$$G_{\mu\nu} = \frac{1}{2} \left( \partial_{\mu}\partial_{\sigma}\Bar{h}_{\nu}^{\rho} + (\mu \leftrightarrow \nu) - \eta^{\sigma\rho}\partial_{\sigma}\partial_{\rho}\Bar{h}_{\mu\nu} - \eta_{\mu\nu}\partial_{\sigma}\partial_{\rho}\Bar{h}^{\sigma\rho} \right)$$
+where $\Bar{h}_{\mu\nu} := h_{\mu\nu} - \frac{1}{2}\eta_{\mu\nu}h$ is the trace-reversed metric perturbation.
+
+We can simplify these terms further by choosing the appropriate gauge.
+The Lorenz, or harmonic, gauge allows us to drop the terms containing the divergence of $\Bar{h}_{\mu\nu}$.
+In this gauge we fix $\partial_{\mu}\Bar{h}^{\mu\sigma} = 0$, reducing the linearized Einstein field equations to simply
+\begin{equation}\label{eq:EFE}
+	-\Box \Bar{h}_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
+\end{equation}
+
+In the Newtonian (slowly-varying) limit, the D'Alembertian operator becomes a spatial Laplace operator, and it can be shown that the trace-reversed perturbation reduces to the Newtonian gravitational potential $\Phi$ and the stress-energy tensor reduces to just the mass density, recovering the Poisson equation for Newtonian gravity: $\nabla^2\Phi = 4\pi G\rho$.
+
+In vacuum, the field equation is simply $\Box\Bar{h}_{\mu\nu}=0$, the solution to which is a \ac{GW} propagating at the speed of light: $\Bar{h}_{\mu\nu} = A_{\mu\nu}\cos\left(k_\sigma x^\sigma - \phi_{\mu\nu}\right)$, where $A_{\mu\nu}$ and $\phi_{\mu\nu}$ are the amplitude and phase of the wave.
+
+In the slowly-varying case the gauge condition can be further restricted by making the metric perturbation purely spatial, ($h_{00}=h_{0i}=0$) and traceless ($h=h_i^i$=0).
+In this transverse-traceless (TT) gauge, we write the metric perturbation as $h_{\mu\nu}^{TT}$ (no overline necessary because trace-reversal has no effect on the traceless perturbation).
+The gravitational wave described by $h_{\mu\nu}^{TT}$ is transverse to its direction of propagation.
+These gauge conditions cause all components to vanish except two independent ones.
+For a monochromatic plane wave propagating in the $z$ direction, these two components are
+$$h_{11}^{TT} = -h_{22}^{TT} = h_+(t-z)$$
+$$h_{12}^{TT} = h_{21}^{TT} = h_{\times}(t-z)$$
+and are called the plus and cross polarizations, respectively.
+The effect of these polarizations on an array of test particles is a stretching and compressing of the distances between the particles in the $xy$ plane.
+
+The general solution to (\ref{eq:EFE}) is analogous to the problem of solving for the vector potential given a source current, where here we solve for the metric perturbation given a stress-energy tensor describing the gravitational wave source.
+The result is an integral of the stress-energy tensor:
+$$\Bar{h}_{\mu\nu}(t, \vec{x}) = \frac{4G}{c^4} \int\frac{T_{\mu\nu}(t - \norm{\vec{x} - \vec{x}'}/c, \vec{x}')}{\norm{\vec{x} - \vec{x}'}} d^3x'$$
+If the source is slowly moving and the gravitational wave energy is small, the solution can be simplified to
+\begin{equation}\label{eq:quadrupole}
+	h_{ij}^{TT}(t, \vec{x}) \simeq \frac{2G}{c^4r} \Ddot{I}_{ij}^{TT}(t - r/c)
+\end{equation}
+where $I_{ij}^{TT}$ is the transverse-traceless projections of the quadrupole moment tensor of the source, $I_{ij}(t) = \int x_i x_j \rho(t, \vec{x}) d^3x$.
+
+\section{Sources of gravitational waves}\label{sec:gw-sources}
+
+Eq. \ref{eq:quadrupole} shows that any system whose quadrupole moment has a non-vanishing second derivative can generate \acp{GW}, which requires some non-spherically symmetric motion of masses.
+The frequency of the waves is determined by the motion, usually some rotational frequency, of the masses.
+Generating strong waves requires high masses and speeds, so it is reasonable to look for \acp{GW} from astrophysical sources.
+
+The simplest example is a binary system of massive, compact objects, such as \acp{NS} or \acp{BH}.
+For most of their lifetime, the binary generates continuous \acp{GW} at a more-or-less steady frequency twice the orbital frequency of the components.
+Over time, the orbit decays due to the loss of energy to \ac{GW} emission, causing the frequency and amplitude of the emission to increase.
+The time evolution scales with the component masses, so highly massive binaries, e.g. \ac{BBH} systems, generate gravitational waves that sweep up in frequency and amplitude more quickly than less massive ones, e.g. \ac{BNS} and \ac{NSBH}  systems.
+These \acp{CBC} creates a distinct \ac{GW} signature, characterized by a short-duration ($<1$ s for \acp{BBH}, $\sim100$ s for \acp{BNS}), high frequency ($\sim10-1000$ Hz) chirp.
+These violent merger events happen very frequently, making them the best candidate for detecting gravitational waves with existing detectors.
+
+Continuous \acp{GW} generated from binary systems range from very low frequency ($\sim$ nHz) waves from supermassive \ac{BH} binaries, to $\sim$ mHz waves from stellar-mass galactic binaries, but in higher frequency bands the best candidates are isolated, rapidly rotating \acp{NS}~\citep{Riles_2017}.
+If such \iac{NS} exhibits any asymmetry with respect to its rotational axis, it generates \acp{GW} at twice its rotational frequency.
+
+Burst sources of \acp{GW} are short duration events not generated by binary mergers; their time evolution is too difficult to model due to their unpredictable or poorly understood dynamical behavior.
+Core-collapse supernovae are the most promising source to be detected, but their \ac{GW} emission is still expected to be too weak for detecting events outside the galactic neighborhood.
+Other potential sources include magnetar flares and cosmic string cusps.
+
+The superposition of all \acp{GW} forms a stochastic \ac{GW} background analogous to the \ac{CMB}~\citep{Christensen_2018}.
+This background is comprised of stellar-mass binary \ac{BH} and \ac{NS} mergers at frequencies currently observable by \ac{GW} detectors, but at lower frequencies galactic white dwarf binaries and supermassive BH mergers would also contribute to the stochastic background.
+At cosmological distances, relic gravitational waves from the very early universe could be detectable via their effect on the polarization of the \ac{CMB} radiation.
+
+Thus far, \XX gravitational wave signals originating from \acp{CBC} have been detected by existing \ac{GW} detectors~\citep{gwtc3}. Of these, the vast majority, \XX, originated from the mergers of \acp{BBH}, \XX from \acp{BNS}, and \XX from \acp{NSBH}. There has yet to be a detection of a \ac{GW} signal with a significant probability of having a non-\ac{CBC} origin.
+
+
+\section{Gravitational wave detectors}\label{sec:gw-detectors}
+
+Detection of gravitational waves requires measuring the transverse stretching and compressing of space. The earliest attempt at this was done through resonant mass detectors, solid, vibrationally isolated cylinders tuned to a particular frequency that could be used to detect the effect of gravitational waves on the length of the cylinders. These proved incapable of reaching the required sensitivity for detecting even the strongest gravitational waves in the frequency band they were designed for ($\sim1$ kHz).
+
+The current era of \ac{GW} detection is dominated by laser interferometers inspired by the simple Michelson interferometer. There are currently three observatories in operation: \ac{LIGO}, consisting of \ac{LHO} in Washington and \ac{LLO} in Louisiana, and the Virgo observatory in Italy. Additional detectors in Japan (Kagra) and India (\ac{LIGO} India) are under construction, and projects for next-generation detectors (Einstein Telescope, Cosmic Explorer, and \ac{LISA}) are on the horizon.
+
+A \ac{GW} interferometer is configured so that the anti-symmetric output port (the output not leading back to the laser source) observes no signal due to destructive interference. If one interferometer arm is elongated relative to the other, the phase shift between the signals from both arms results in some constructive interference; thus the amplitude of a gravitational wave passing through the plane of the detector arms is converted to an amplitude in laser light measured at the output port. Sensitivity scales with interferometer arm length, but the incredible length required to detect gravitational waves from even the loudest sources (100s of km in order to observe black hole binary mergers) makes this infeasible. However, the effective arm length can be increased by making the arms Fabry-Perot cavities, so that light travels many ($\sim300$) times back and forth in each arm before leaving through the beam splitter.
+
+{\color{red}Probably talk about a bunch of instrument noise sources here, e.g. shot noise and thermal noise.}
+
+Other methods that have been implemented to dramatically improve the sensitivity current-generation of \ac{aLIGO} and Advanced Virgo include increasing laser power or injecting squeezed light to reduce the effects of photon shot noise; implementing a power recycling cavity at the symmetric output that sends the constructively-interfering light leaving in that direction back into the interferometer; implementing a signal recycling cavity at the anti-symmetric output to tune the most sensitive frequency band of the detector; larger mirrors to combat radiation pressure on the mirrors due to high laser power~\citep{Creighton_2011}.
+
+The two \ac{LIGO} detectors began \ac{O1} on September 12, 2015, and made the first detection of a \ac{GW} from a \ac{BBH} merger on September 14, 2015~\citep{gw150914}.
+This was followed by two more \ac{BBH} detections before the end of the run on January 16, 2016~\citep{gwtc1}.
+\Ac{O2} began on November 30, 2016 after a period of detector upgrades and ended on August 25, 2017.
+During that run, in addition to several more \ac{BBH} detections, the \ac{LIGO} network (with the addition of Virgo towards the end of the run) observed the first \ac{BNS} merger on August 17, 2017~\citep{gw170817}.
+\Ac{O3}, which spanned April 1, 2019 to March 27, 2020, came after another round of major improvements in the performance of the detectors~\citep{Buikema_2020} and the full inclusion of the Virgo detector in the \ac{GW} network.
+Throughout \ac{O3}, \ac{LIGO} and Virgo observed a total of 74 \ac{GW} events~\citep{gwtc2,gwtc3}.
