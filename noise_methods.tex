@@ -10,7 +10,7 @@ That said, glitches capable of influencing analyses occur frequently at both obs
 Unlike instrumental noise, environmental noise can potentially be correlated between different detectors, i.e. stemming from a common source as opposed to stemming from chance coincidence.
 Such correlated noise is not accounted for in the estimation of false-alarm probabilities, which is done by time-shifting background data from each \ac{LIGO} detector to produce long stretches of coincident background.
 
-Environmental noise is particularly important in searches for un-modeled sources of gravitational waves, as these look for excess power without the use of waveform templates.
+Environmental noise is particularly important in searches for unmodeled sources of gravitational waves, as these look for excess power without the use of waveform templates.
 Even for highly significant \ac{CBC} events, contamination of the strain data can be detrimental to parameter estimation analyses that infer source properties from the morphology of the event.
 Thus it is important to have a quantitative solution for identifying and evaluating the impact of environmental transients when they occur coincide with candidate events.
 
@@ -270,7 +270,7 @@ This allows us to estimate excess noise in the \ac{GW} channel $h_i(f)$ without 
 In Figure~\ref{fig:cf-cartoon-full} we can see how complex the experiment system becomes when there are multiple coupling sites of unknown location.
 If there are two coupling sites $A$ and $B$, at least two injections $i_1$ and $i_2$ are required to distinguish between the coupling mechanisms.
 The \ac{GW} channel response to injection $i_1$ is therefore the sum of the contributions of the actuation signals $A_{i_1}(f)$ and $B_{i_1}(f)$, and likewise for injection ${i_2}$.
-Again, at best we merely approximate the actuations $A_i(f)$ and $B_i(f)$ with sufficiently close sensors, although we do not know \textit{a priori} which sensors are near coupling sites.
+Again, at best we merely approximate the actuation signals $A_i(f)$ and $B_i(f)$ with sufficiently close sensors, although we do not know \textit{a priori} which sensors are near coupling sites.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{figures/noise-methods/cf-cartoon-full.pdf}
@@ -401,7 +401,7 @@ This means that the highest-amplitude injection measured by a sensor is not nece
 If a further injection was performed using a much larger amplitude, its measured amplitude can trump that of a nearer injection, leading to the algorithm choose a more distant injection source location when determining $\widetilde{\mathrm{C}}_j$.
 To prevent this issue, once $\mathcal{C}_{ij}$ is computed for all sensors for a single injection, an additional sensor threshold is applied that is a fraction of the highest amplitude observed by all sensors.
 This threshold is used only to demote measurements to upper limits.
-By doing so, this injection-dependent threshold vetos measurements produced by sensors that are far from the injection.
+By doing so, this injection-dependent threshold vetoes measurements produced by sensors that are far from the injection.
 For the \ac{O3} injections, the threshold was set at one third, meaning that a coupling measurement is demoted to an upper limit if the sensor measuring it observes the injection at less than a third of the amplitude observed by the sensor closest to the injection.
 
 {\color{red}
@@ -480,12 +480,12 @@ I think I could try splitting it by sensor type, like list all steps for acceler
 
 A number of pre-processing steps are performed to condition the data for analysis.
 First, the auxiliary channel time series are examined for evidence of saturation.
-Injections can cause saturation in two ways: actuator saturation due to overdriven amplifiers, or sensor saturation due to hitting the maximum amplitude the sensor can record.
+Injections can cause saturation in two ways: actuator saturation due to over-driven amplifiers, or sensor saturation due to hitting the maximum amplitude the sensor can record.
 
 During magnetic injections, the injection amplitude typically has to exceed background by a few orders of magnitude to produce noise in the \ac{GW} channel, so comb magnetic injections are the most likely to saturate at the actuator.
 They are also capable of saturating the sensors if performed too close (such as in the electronics racks).
 In either case, intermodulation distortion occurs, generating peaks at sums and differences of the comb line frequencies while also reducing signal power in the injection lines.
-If the saturation is occuring at the actuator, the measured coupling is still accurate, but upper limits are higher due to the reduced signal power.
+If the saturation is occurring at the actuator, the measured coupling is still accurate, but upper limits are higher due to the reduced signal power.
 On the other hand, sensor saturation results in inaccurate coupling measurements, because the line amplitudes no longer reflect the true magnetic signal at the sensor location.
 
 Accelerometers can saturate in the presence of broadband vibrational injections.
@@ -494,15 +494,15 @@ The consequence is measuring a lower coupling function at frequencies where the 
 
 For these reasons, coupling functions are only measured for sensors that do not exceed 32,000 counts, as this is the sign of sensor saturation.
 
-Once the time series are converted to \acp{ASD}, tri-axial magnetometer channels are combined in quadrature.
+Once the time series are converted to \acp{ASD}, triaxial magnetometer channels are combined in quadrature.
 Each magnetometer measures the $x$, $y$, and $z$ components of its local magnetic field independently.
 An artificial channel is produced to represent the absolute magnitude of the field.
 
-All \ac{PEM} channels have accompanying calibration measurements~\citep{PEM_website}. Calibration for microphones and magnetometers is simply a constant conversion of Pa/count or T/count, respecitvely.
+All \ac{PEM} channels have accompanying calibration measurements~\citep{PEM_website}. Calibration for microphones and magnetometers is simply a constant conversion of Pa/count or T/count, respectively.
 Accelerometer \acp{ASD} are converted to acceleration ($\mathrm{m/s^2}$), then to displacement ($\meter$) by dividing each bin by $(2\pi f)^2$ where $f$ is the bin frequency.
 
-For acoustic injections, spectral smoothing is applied at this point, in order to surpress nodal artifacts as explained in Section~\ref{sec:uncertainties-hardware}.
-Finally, the single-injection coupling funcitons $\mathcal{C}_{ij}(f)$ and upper limits $\mathcal{C}_{ul}(f)$ are measured as in~\cref{eq:sicf}.
+For acoustic injections, spectral smoothing is applied at this point, in order to suppress nodal artifacts as explained in Section~\ref{sec:uncertainties-hardware}.
+Finally, the single-injection coupling functions $\mathcal{C}_{ij}(f)$ and upper limits $\mathcal{C}_{ul}(f)$ are measured as in~\cref{eq:sicf}.
 
 {\color{red}
 Paragraph or two on the CF calculation step.}

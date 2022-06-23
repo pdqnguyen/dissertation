@@ -11,7 +11,7 @@ A multitude of models have been proposed throughout the decades to explain the o
 
 Photometry and spectroscopy data provide evidence that long \acp{GRB} originate from \acp{CCSN}, whereas short \acp{GRB} are believed to be associated with compact binary mergers, such as the \ac{BNS} merger GW170817~\citep{gw170817_grb}.
 
-In the case of long \acp{GRB}, some models predice the emission of \acp{GW} as a result of asymmetries in the core-collapse phase.
+In the case of long \acp{GRB}, some models predict the emission of \acp{GW} as a result of asymmetries in the core-collapse phase.
 Such \acp{GW} would be short, lasting less than a second.
 Extreme emission models predict a wide variety of signals, often longer in duration.
 Matter surrounding the remnant of a \ac{CCSN} forms an accretion disk, in which turbulent behavior can arise.
@@ -47,11 +47,11 @@ These observations instead favored a wide-angled, structured jet model for GRB17
 A structured jet model may refer to any luminosity function that decreases gradually with $\theta_{\mathrm{obs}}$ rather than abruptly, e.g. a Gaussian or power-law with uniform center.
 One mechanism that would explain such a model is a cocoon emission, in which the relativistic jet interacts dissipatively with the surrounding merger ejecta, depositing its energy into a cocoon fireball that results in a structured jet~\citep{gw170817_grb}.
 
-The \ac{LIGO}-Virgo collaboration searches for gravitational waves associated with \acp{GRB} detected by Fermi \ac{GBM} and Swift \ac{BAT} using two analyses: a template-based mathed-filter search using the \pygrb pipeline and a generic transient search using \xpip.
+The \ac{LIGO}-Virgo collaboration searches for gravitational waves associated with \acp{GRB} detected by Fermi \ac{GBM} and Swift \ac{BAT} using two analyses: a template-based matched-filter search using the \pygrb pipeline and a generic transient search using \xpip.
 The \pygrb pipeline is used for analyzing short and ambiguous \acp{GRB}, while \xpip is used for all \acp{GRB}, short, ambiguous or long.
 The \acp{GRB} sample for a LIGO-Virgo observing run is collected from the Fermi and Swift \ac{GRB} catalogs, and the best sky localization and timing information is used.
 The \ac{GRB} classifications are determined based on $T_{90}$ (and their associated $\delta T_{90}$), the time interval over which 90\% of the total background-subtracted photon counts are observed by the reporting \ac{GRB} detector.
-\Acp{GRB} are considered short if $T_{90} + \abs{\delta T_{90}} < 2\,\text{s}$, long if $T_{90} - \abs{\delta T_{90}} > 4\,\text{s}$, and ambigous if they lie in between.
+\Acp{GRB} are considered short if $T_{90} + \abs{\delta T_{90}} < 2\,\text{s}$, long if $T_{90} - \abs{\delta T_{90}} > 4\,\text{s}$, and ambiguous if they lie in between.
 In particular, it does not account for short GRBs that are followed by periods of extended emission~\citep{Norris_2006, vanPutten_2014}, for which measures of $T_{90}$ may substantially exceed these thresholds.
 For more robust classification one must also consider spectral properties, most commonly the spectral hardness or peak energy of the event, but since our sample consists of observations from multiple observatories with different spectral sensitivities we do not employ such quantities when organizing our sample.
 
@@ -63,7 +63,7 @@ This is an unmodeled method for finding \acp{GW}, as it does not rely on templat
 Instead, given a \ac{GRB} event, \xpip searches for excess power coherent between LIGO-Virgo detectors and consistent with the sky localization and time window of the \ac{GRB}.
 The search time window starts 600\,s before the GRB trigger time and ends at 60\,s after trigger time, or at $T_{90}$ if $T_{90} > 60\,\text{s}$.
 This is sufficient to cover the time delay between GW emission from a progenitor and any GRB prompt emission~\citep{Koshut_1995, Aloy_2000, MacFadyen_2001, Zhang_2003, Lazzati_2005, Wang_2007, Burlon_2008, Burlon_2009, Lazzati_2009, Vedrenne_2009}.
-While some GW emissions, such as from core-collapse SNe, are expected to reach frequencies up to a few kilohertz~\citep{Radice_2019}, we restrict our search frequency range to the most sensitive band of the GW detectors, 20–500\,Hz, since detecting such signals above a few hundred hertz requires extremely high GW energies~\citep{burst_o2} and expanding the frequency range would also significantly increase the computational cost. To constrain the sky location of the GRB event, the search is using a grid based on the best localization known either from Fermi \ac{GBM} or Swift \ac{BAT}.
+While some GW emissions, such as from \ac{CCSN}, are expected to reach frequencies up to a few kilohertz~\citep{Radice_2019}, we restrict our search frequency range to the most sensitive band of the GW detectors, 20–500\,Hz, since detecting such signals above a few hundred hertz requires extremely high GW energies~\citep{burst_o2} and expanding the frequency range would also significantly increase the computational cost. To constrain the sky location of the GRB event, the search is using a grid based on the best localization known either from Fermi \ac{GBM} or Swift \ac{BAT}.
 
 \xpip produces time–frequency maps of the \ac{GW} data coherently combined between the detectors.
 These maps give access to the temporal evolution of the spectral properties of the signal and enable the pipeline to search for clusters of pixels containing excess energy.
@@ -117,7 +117,7 @@ The parameters used to generate the five families of \ac{ADI} signals are shown 
 \section{O3b search for GWs associated with GRBs}\label{sec:grb-o3b}
 
 Since \ac{O3} was split into two halves, O3a and O3b, the \ac{LIGO}-Virgo \ac{GRB} search was also split in two.
-Changes in the detector during the in-between commissioning phase resulted in minor improvements to the LIGO detector senstivities, and a major change was made to \xpip to deal with noise issues.
+Changes in the detector during the in-between commissioning phase resulted in minor improvements to the sensitivity of the LIGO detectors, and a major change was made to \xpip to deal with noise issues.
 
 In the O3a search, the sensitivity to long-duration ($\geq 10\,\text{s}$) signals was often limited by loud background noise transients known as glitches (Davis et al. 2021).
 While X-Pipeline's coherent consistency tests easily veto these glitches, many long-duration simulated signals would overlap such a glitch by chance.
@@ -140,7 +140,7 @@ Otherwise, if autogating is not likely to affect the results, then we open the b
 
 \subsection{GRB sample}\label{sec:grb-o3b-sample}
 
-The full sample of \acp{GRB} occuring in O3b consists of seven short \acp{GRB}, 12 ambiguous \acp{GRB}, and 89 long \acp{GRB}.
+The full sample of \acp{GRB} occurring in O3b consists of seven short \acp{GRB}, 12 ambiguous \acp{GRB}, and 89 long \acp{GRB}.
 Of these, only two have known redshifts: GRB 191221B ($z = 1.148$)~\citep{Kuin_2019, Vielfaure_2019} and GRB 200205B ($z = 1.465$)~\citep{Vielfaure_2020}.
 Since \xpip searches for coincident excess power, we perform the generic transient search for \acp{GRB} where at least two of the three LIGO-Virgo detectors were active.
 This leads to 86 GRBs to analyze and is also compatible with the network observing time of at least two detectors (85.3%).
@@ -169,7 +169,7 @@ Given that no loud \ac{GW} signals are observed coincident with any of the \acp{
 A small probability would suggest that there may be a population of subthreshold \ac{GW} signals that our search did not identify.
 This type of weighted binomial test uses the lowest re-weighted p-values from the searches.
 For the generic transient search, the test gives a probability of 0.76.
-The same test carried out in O3a returned a probabilit of 0.30~\citep{grb_o3a}.
+The same test carried out in O3a returned a probability of 0.30~\citep{grb_o3a}.
 In \ac{O2} (removing GW170817/GRB 170817A) and the first observing run of Advanced LIGO and Advanced Virgo (O1) the probabilities were 0.75 and 0.75, respectively~\citep{grb_o2, grb_o1}.
 As in these previous analyses, the probabilities obtained in O3b suggest that no weak GWs can be attributed to the population of GRBs.
 
@@ -250,7 +250,7 @@ Rather, the increase is likely due to improvements in the performance of the det
 
 \subsection{Model exclusion}\label{sec:grb-o3b-models}
 
-Although \xpip is an entirely unmodeled \ac{GW} search pipeline, given the substantial improvement in the exclusion distances in O3b, we may be approaching the point at which extreme GW emission models can be excluded using out null results and the senstivity estimates for injected waveforms.
+Although \xpip is an entirely unmodeled \ac{GW} search pipeline, given the substantial improvement in the exclusion distances in O3b, we may be approaching the point at which extreme GW emission models can be excluded using out null results and the sensitivity estimates for injected waveforms.
 Using detection efficiency curves of both the O3a and O3b searches, we can compute for each model an exclusion confidence using the method described in~\citet{Kalmus_2013} for supernova searches~\citep{burst_o2}.
 The model exclusion probability given $N$ targeted GRBs is
 
@@ -300,10 +300,10 @@ This is repeated 1,000 times and $P_{\text{excl}}$ is averaged for each model ac
 
 The averages are presented in Table~\ref{tab:grb-o3b-model-exclusion}.
 The model with the highest exclusion probability is the 70-Hz sine-Gaussian model.
-Assuming that the Swift redshift distribution is representative of the GRBs analyzed by \xpip, it is more likely than not that we can rule out the very optimistic energies simulated by the low-frequency 70-Hz and 100-Hz sine-Gaussian injections ($E_{\text{GW}} = 10^{-2}\,\msol$) based on the lack of GW-GRB joint detections at O3 sensitivity.
+Assuming that the Swift redshift distribution is representative of the GRBs analyzed by \xpip, it is more likely than not that we can rule out the very optimistic energies simulated by the low-frequency 70-Hz and 100-Hz sine-Gaussian injections ($E_{\text{GW}} = 10^{-2}\,\msol c^2$) based on the lack of GW-GRB joint detections at O3 sensitivity.
 
 If search sensitivity continues to improve in \ac{O4}, we may well be able to begin ruling out the most extreme emission models.
-The exclusion probability for the ADI-B model is 0.62, making it the only unfavorable ADI model so far.
+The exclusion probability for the ADI-B model is 0.61, making it the only unfavorable ADI model so far.
 This accretion disk instability model is simulated for a central \ac{BH} mass of $M=10\,\msol$, a dimensionless spin parameter of $\chi=0.95$, and a very large clump mass of $\epsilon=0.2$ times that the central \ac{BH}.
 It is the most extreme of the ADI models, and it would not be surprising to see it being ruled out in future searches.
 
@@ -316,7 +316,7 @@ Table~\ref{tab:grb-o3b-compare-o3a} presents the improvement in the median $D_{9
 Given the large number of GRBs analyzed, it would be unlikely for the difference to be explained by chance improvement in antenna response (i.e. due to more GRBs lining up with the sky region where the GW detector network is most sensitive).
 \xpip reports the antenna response of the GW detectors for each GRB analyzed.
 These can be summed up over the active detectors for each GRB and averaged over the full GRB sample.
-The result is a 9.2\% improvement in antenna reponse, which is not negligible but can only account for a small portion of the differences in exclusion distances.
+The result is a 9.2\% improvement in antenna response, which is not negligible but can only account for a small portion of the differences in exclusion distances.
 
 \begin{table}[h]
   \hspace{0.5cm}
@@ -346,7 +346,7 @@ The result is a 9.2\% improvement in antenna reponse, which is not negligible bu
 
 For the longest duration ADI-C, ADI-D, and ADI-E waveforms, we see the greatest improvements, over 50\% higher than in O3a (Figure~\ref{fig:grb-o3b-compare-o3a}, top).
 For short-duration waveforms, the highest-frequency 300-Hz sine-Gaussian injections show the greatest change (Figure~\ref{fig:grb-o3b-compare-o3a}, bottom).
-These are all well above the change expected from a chance difference in antenna reponse.
+These are all well above the change expected from a chance difference in antenna response.
 
 \begin{figure}[h]
   \centering
@@ -358,7 +358,7 @@ These are all well above the change expected from a chance difference in antenna
   \label{fig:grb-o3b-compare-o3a}
 \end{figure}
 
-Considering that longer-duration waveforms see greater improvement, the most obvious likely contributer is the implementation of autogating.
+Considering that longer-duration waveforms see greater improvement, the most obvious likely contributor is the implementation of autogating.
 However, autogating cannot account for the changes in the $D_{90}$ of short-duration models.
 These can only be explained by better GW detector sensitivity and/or reduced rates of short-duration glitches that overlap the injected signal.
 Such glitches cause the entire injection to be vetoed, so it is not recovered by the search pipeline.

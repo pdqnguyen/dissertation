@@ -140,7 +140,7 @@ Since the injections are scheduled for every Tuesday morning before the routine 
 
 Figures~\ref{fig:mag-weekly-cf}, \ref{fig:mag-weekly-bands}, and \ref{fig:mag-weekly-peaks} are automatically generated every week by the code that analyzes the injections.
 Figure~\ref{fig:mag-weekly-cf} shows magnetic coupling functions measured over the last five weeks for which a broadband injection was performed.
-Changes can be seen in both the broadband and narrowband structure of the coupling fuction.
+Changes can be seen in both the broadband and narrowband structure of the coupling function.
 Just within these five weeks, the level of broadband coupling varied by as much as a factor of about 1.5.
 Since the injection is produced from a same location and at the same amplitude every time, uncertainties due to the injection source as discussed in Section~\ref{sec:uncertainties} do not account for these variations.
 Broadband changes over specific frequency ranges tracked over the full course of \ac{O3} (Figure~\ref{fig:mag-weekly-bands}) show significant fluctuations throughout the run.
@@ -153,8 +153,8 @@ Broadband changes over specific frequency ranges tracked over the full course of
 \end{figure}
 
 Furthermore, a large peak in the coupling is seen migrating between 90 and 110 Hz.
-This is precisely the type of feature often missed by comb injections but will be routinely discovered by broadband injections in future obesrving runs.
-Figure~\ref{fig:mag-weekly-peaks} shows frequency and amplitude fluctuations in couping peaks such as this.
+This is precisely the type of feature often missed by comb injections but will be routinely discovered by broadband injections in future observing runs.
+Figure~\ref{fig:mag-weekly-peaks} shows frequency and amplitude fluctuations in coupling peaks such as this.
 Although the coupling of the \~100\,Hz peak is still well below the level that would produce excess noise in the \ac{GW} channel, its presence gives reason to be concerned that similar peaks could arise in the future that do couple significantly.
 These weekly injections would help in identifying when the coupling changed, so instrumentalists can deduce what changes to the electronics may have affected it.
 
@@ -169,15 +169,15 @@ These weekly injections would help in identifying when the coupling changed, so 
 
 In addition to investigating sources of environmental influences, knowledge acquired from environmental studies contributes to the vetting of \ac{GW} event candidates.
 Analysis pipelines search the strain data for astrophysical signals.
-They are categorized into modeled searches for binary mergers that match the data to template waveforms (e.g. GstLAL~\citep{Cannon_2012} and PyCBC~\citep{Usman_2016}) and un-modeled searches that identify excess energy coherent between multiple detectors (e.g. cWB~\citep{Klimenko_2008}, oLIB~\citep{Lynch_2017}, and BW~\citep{Cornish_2015}).
+They are categorized into modeled searches for binary mergers that match the data to template waveforms (e.g. GstLAL~\citep{Cannon_2012} and PyCBC~\citep{Usman_2016}) and unmodeled searches that identify excess energy coherent between multiple detectors (e.g. cWB~\citep{Klimenko_2008}, oLIB~\citep{Lynch_2017}, and BW~\citep{Cornish_2015}).
 
 Contamination of the \ac{GW} data can occur through any of the means discussed in previous sections.
 Environmental noise has the potential to be correlated between detectors by stemming from a common source, such as through electromagnetic signals from distant sources or glitches in GPS-correlated electronics.
-The analysis pipelines estimate the false-alarm probabilities for GW events based on the background rate of randomly coincident events in the detector network.
-They generate background events by time-shifting the data stream of one detector relative to another by time steps much longer than the light travel time between detectors and longer than the duration of GW signals.%~\citep{Was_2009}.
+The analysis pipelines estimate the false-alarm probabilities for \ac{GW} events based on the background rate of randomly coincident events in the detector network.
+They generate background events by time-shifting the data stream of one detector relative to another by time steps much longer than the light travel time between detectors and longer than the duration of \ac{GW} signals.%~\citep{Was_2009}.
 This method does not account for the possibility of transients being correlated between the detectors due to a common environmental source.
 
-Environmental noise is also particularly relevant to un-modeled searches. Unlike template-based methods, these searches make minimal assumptions about the signal waveform and rely more heavily on signal correlation between sites.
+Environmental noise is also particularly relevant to unmodeled searches. Unlike template-based methods, these searches make minimal assumptions about the signal waveform and rely more heavily on signal correlation between sites.
 
 The first observation of a \ac{GW} occurred on 14 Sept 2015~\citep{gw150914}.
 The event, a short-duration binary black hole merger designated GW150914, required a number of follow-up investigations to find potential noise sources around the time of the event~\citep{Detchar_2016}.
@@ -199,7 +199,7 @@ In conclusion there was no reason to veto the first detection based on environme
 Subsequent detections throughout \ac{O1} and \ac{O2} employed a similar procedure; however the development of the method described in Section~\ref{sec:cf} for producing coupling functions for all sensors expedited the process.
 This was especially important for examining environmental noise during GW170817, the first long-duration event detected by \ac{LIGO}~\citep{gw170817, Schofield_170817}.
 The longer duration of this event (75\,s) unsurprisingly overlapped with many environmental signals.
-Based on the coupling functions for those sensors, several of these environmental events were loud enough (estimated \ac{DARM} signals of up to SNR~4) to have contributed to the interferometer readout, but not enough to account for the \ac{GW} signal.
+Based on the coupling functions for those sensors, several of these environmental events were loud enough (estimated \ac{DARM} signals of up to \ac{SNR}~4) to have contributed to the interferometer readout, but not enough to account for the \ac{GW} signal.
 Furthermore, none of them had a time-frequency morphology that correlated with any features in the candidate signal.
 
 \subsection{Automated validation of O3 events}
@@ -307,7 +307,7 @@ The tuning reduces this to match the strain background, and the resulting probab
 
 \subsubsection{Grouping nearby sensors}
 
-Even after tuning coupling functions, overestimations can occur due to short duration ($\leq$ 1\,s) transients that are not likely to couple based on physical reasons.
+Even after tuning coupling functions, projections can still be overestimated in the presence of short duration ($\leq$ 1\,s) transients that are not likely to couple based on physical reasons.
 Rack magnetometers (placed on the metal racks that hold the various control systems, data acquisitions systems, and power supplies in the electronics rooms) observe the highest rates of localized short-duration transients, routinely picking up magnetic fields from changes in nearby currents.
 When these glitches coincide with a \ac{GW} event candidate they predict a probability of excess noise usually above 90\%.
 Although the coincident rate is low for typical (\ac{BBH}) events, a long-duration \ac{GW} signal such as a \ac{BNS} will typically overlap with at least a few electronics glitches.
