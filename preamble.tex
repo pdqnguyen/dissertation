@@ -1,10 +1,12 @@
 %%% COPIED FROM https://github.com/unofficial-uoregon-dissertation-formats/unofficial-uoregon-grad-school-dissertation-latex-markdown-apa-format/blob/master/latex_files/0_uothesis_preamble.tex
 
 % Draft copy, only if acknowledgements excluded
-\documentclass[dissertation, final, draftcopy, apacite, copyright]{uothesis}
+% This sucks, it breaks if table of contents exceeds two pages... who knows why
+% \documentclass[dissertation, final, draftcopy, apacite, copyright]{uothesis}
 
 % Final version
-% \documentclass[dissertation, final, apacite, copyright]{uothesis}
+% I just ended up editing in this mode to avoid any gotchas when switching over
+\documentclass[dissertation, final, apacite, copyright]{uothesis}
 
 \usepackage[USenglish,UKenglish]{babel}
 \usepackage{mathtools,amsmath,amsfonts,amsthm,amssymb,bm, bbm}
