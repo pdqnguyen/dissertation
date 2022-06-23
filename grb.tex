@@ -248,7 +248,107 @@ Rather, the increase is likely due to improvements in the performance of the det
 % \end{table}
 
 
+\subsection{Model exclusion}\label{sec:grb-o3b-models}
 
-\subsection{Effects of detector noise on the generic transient search sensitivity}\label{sec:grb-o3b-noise}
+Although \xpip is an entirely unmodeled \ac{GW} search pipeline, given the substantial improvement in the exclusion distances in O3b, we may be approaching the point at which extreme GW emission models can be excluded using out null results and the senstivity estimates for injected waveforms.
+Using detection efficiency curves of both the O3a and O3b searches, we can compute for each model an exclusion confidence using the method described in~\citet{Kalmus_2013} for supernova searches~\citep{burst_o2}.
+The model exclusion probability given $N$ targeted GRBs is
 
-Here I compare exclusion distances of the O3a and O3b search to determine the impact of detector and search pipeline improvements on the sensitivity of generic transient analysis.
+\begin{equation}
+	P_{\text{excl}} = 1 - \prod_{i=1}^N \left[ 1 - \varepsilon_i(d_i) \right]
+\end{equation}
+where $\varepsilon_i(d_i)$ is the detection efficiency at the source distance of $d_i$.
+Of the 86 GRBs analyzed in the O3b search by \xpip, only one, GRB 191221B has a redshift measurement (GRB 200205B did not occur at a time when at least two detectors were active and was therefore not included).
+For the remaining GRBs, we have no distance measurement, but instead we can sample $d_i$ from the distribution of redshifts measured by Swift \ac{BAT}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{figures/grb/redshifts.pdf}
+  \caption{Histogram of redshift measurements for GRBs detected by Swift BAT}
+  \label{fig:grb-o3b-redshifts}
+\end{figure}
+
+There are 457 GRBs detected by Swift for which a redshift has been measured.
+Figure~\ref{fig:grb-o3b-redshifts} shows the distribution of those measurements, from which we sample distances for the 86 GRBs analyzed, using inverse transform sampling, and compute exclusion probability for each model.
+This is repeated 1,000 times and $P_{\text{excl}}$ is averaged for each model across all trials.
+
+\begin{table}[h]
+  \hspace{0.5cm}
+  \caption
+  {\label{tab:grb-o3b-model-exclusion} Exclusion confidence for each injected waveform model.}
+  \begin{tabular}{c c c c c}
+    \hline
+    \hline
+    \rule{0pt}{4ex}
+    & CSG 70\,Hz & CSG 100\,Hz & CSG 150\,Hz & CSG 300\,Hz \\
+    \hline
+    \rule[-2ex]{0pt}{4ex}
+		$P_{\text{excl}}$ & \textbf{0.78} & \textbf{0.66} & 0.44 & 0.10
+  \end{tabular}
+  %
+  \begin{tabular}{c c c c c c}
+    \hline
+    \hline
+    \rule{0pt}{4ex}
+    & ADI-A & ADI-B & ADI-C & ADI-D & ADI-E \\
+    \hline
+    \rule[-2ex]{0pt}{4ex}
+    $P_{\text{excl}}$ & 0.04 & \textbf{0.62} & 0.13 & 0.00 & 0.15 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+The averages are presented in Table~\ref{tab:grb-o3b-model-exclusion}.
+The model with the highest exclusion probability is the 70-Hz sine-Gaussian model.
+Assuming that the Swift redshift distribution is representative of the GRBs analyzed by \xpip, it is more likely than not that we can rule out the very optimistic energies simulated by the low-frequency 70-Hz and 100-Hz sine-Gaussian injections ($E_{\text{GW}} = 10^{-2}\,\msol$) based on the lack of GW-GRB joint detections at O3 sensitivity.
+
+If search sensitivity continues to improve in \ac{O4}, we may well be able to begin ruling out the most extreme emission models.
+The exclusion probability for the ADI-B model is 0.62, making it the only unfavorable ADI model so far.
+This accretion disk instability model is simulated for a central \ac{BH} mass of $M=10\,\msol$, a dimensionless spin parameter of $\chi=0.95$, and a very large clump mass of $\epsilon=0.2$ times that the central \ac{BH}.
+It is the most extreme of the ADI models, and it would not be surprising to see it being ruled out in future searches.
+
+
+\subsection{Noise effects in the generic transient search}\label{sec:grb-o3b-noise}
+
+Comparing the exclusion distances of the O3a and O3b search sheds some light on the impact of detector and search pipeline improvements on the sensitivity of the \xpip analysis.
+Given the large number of GRBs analyzed, it would be unlikely for the difference to be explained by chance improvement in antenna response (i.e. due to more GRBs lining up with the sky region where the GW detector network is most sensitive).
+\xpip reports the antenna response of the GW detectors for each GRB analyzed.
+These can be summed up over the active detectors for each GRB and averaged over the full GRB sample.
+The result is a 9.2\% improvement in antenna reponse, which can only account for a small portion of the exclusion distance improvement.
+
+\begin{table}[h]
+  \hspace{0.5cm}
+  \caption
+  {\label{tab:grb-o3b-compare-o3a} Relative increase in median $D_{90}$ for each \xpip simulated waveform.}
+  \begin{tabular}{c c c c c}
+    \hline
+    \hline
+    \rule{0pt}{4ex}
+    & CSG 70\,Hz & CSG 100\,Hz & CSG 150\,Hz & CSG 300\,Hz \\
+    \hline
+    \rule[-2ex]{0pt}{4ex}
+		$\Delta D_{90} / D_{90, \text{O3a}}$ & 0.12 & 0.19 & 0.25 & 0.49
+  \end{tabular}
+  %
+  \begin{tabular}{c c c c c c}
+    \hline
+    \hline
+    \rule{0pt}{4ex}
+    & ADI-A & ADI-B & ADI-C & ADI-D & ADI-E \\
+    \hline
+    \rule[-2ex]{0pt}{4ex}
+    $\Delta D_{90} / D_{90, \text{O3a}}$ & 0.43 & 0.14 & 0.85 & 0.92 & 0.55 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Table~\ref{tab:grb-o3b-compare-o3a} presents the improvement in the median $D_{90}$ for each waveform model as a fraction of the O3a value.
+For the longest duration ADI-C, ADI-D, and ADI-E waveforms, we see the greatest improvements, over 50\% higher than in O3a.
+For short-duration waveforms, the highest-frequency 300-Hz sine-Gaussian injections show the greatest change.
+Indeed these are all well above the change expected from a chance difference in antenna reponse.
+
+Considering that longer-duration waveforms see greater improvment, the most obvious likely contributer is the implementation of autogating.
+However, autogating cannot account for the changes in the $D_{90}$ of short-duration models.
+These can only be explained by better GW detector sensitivity and/or reduced rates of short-duration glitches that overlap the injected signal.
+Such glitches cause the entire injection to be vetoed, so it is not recovered by the search pipeline.
+In particular, glitches caused by low-frequency scattering noise (such as those discussed in Section~\ref{sec:vib}) can pepper a stretch of time with short-duration glitches, overlapping injections made at multiple points.
