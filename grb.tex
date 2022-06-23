@@ -176,7 +176,7 @@ As in these previous analyses, the probabilities obtained in O3b suggest that no
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{figures/grb/o3b-x-exclusion.pdf}
-  \caption{Cumulative distribution of O3b X-pipeline exclusion distances for 150-Hz sine-Gaussian and ADI-A waveforms.}
+  \caption{Cumulative distributions of O3b X-pipeline exclusion distances for 150-Hz sine-Gaussian and ADI-A waveforms.}
   \label{fig:grb-o3b-x-exclusion}
 \end{figure}
 
@@ -263,12 +263,12 @@ For the remaining GRBs, we have no distance measurement, but instead we can samp
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{figures/grb/redshifts.pdf}
-  \caption{Histogram of redshift measurements for GRBs detected by Swift BAT}
+  \includegraphics{figures/grb/redshifts.pdf}
+  \caption{Histogram of redshift measurements for GRBs detected by Swift BAT.}
   \label{fig:grb-o3b-redshifts}
 \end{figure}
 
-There are 457 GRBs detected by Swift for which a redshift has been measured.
+The Swift GRB archive has redshift measurements for 411 triggers~\cite{swift_archive}.
 Figure~\ref{fig:grb-o3b-redshifts} shows the distribution of those measurements, from which we sample distances for the 86 GRBs analyzed, using inverse transform sampling, and compute exclusion probability for each model.
 This is repeated 1,000 times and $P_{\text{excl}}$ is averaged for each model across all trials.
 
@@ -283,7 +283,7 @@ This is repeated 1,000 times and $P_{\text{excl}}$ is averaged for each model ac
     & CSG 70\,Hz & CSG 100\,Hz & CSG 150\,Hz & CSG 300\,Hz \\
     \hline
     \rule[-2ex]{0pt}{4ex}
-		$P_{\text{excl}}$ & \textbf{0.78} & \textbf{0.66} & 0.44 & 0.10
+		$P_{\text{excl}}$ & \textbf{0.74} & \textbf{0.63} & 0.44 & 0.12
   \end{tabular}
   %
   \begin{tabular}{c c c c c c}
@@ -293,7 +293,7 @@ This is repeated 1,000 times and $P_{\text{excl}}$ is averaged for each model ac
     & ADI-A & ADI-B & ADI-C & ADI-D & ADI-E \\
     \hline
     \rule[-2ex]{0pt}{4ex}
-    $P_{\text{excl}}$ & 0.04 & \textbf{0.62} & 0.13 & 0.00 & 0.15 \\
+    $P_{\text{excl}}$ & 0.04 & \textbf{0.61} & 0.15 & 0.00 & 0.18 \\
     \hline
   \end{tabular}
 \end{table}
@@ -343,11 +343,21 @@ The result is a 9.2\% improvement in antenna reponse, which can only account for
 \end{table}
 
 Table~\ref{tab:grb-o3b-compare-o3a} presents the improvement in the median $D_{90}$ for each waveform model as a fraction of the O3a value.
-For the longest duration ADI-C, ADI-D, and ADI-E waveforms, we see the greatest improvements, over 50\% higher than in O3a.
-For short-duration waveforms, the highest-frequency 300-Hz sine-Gaussian injections show the greatest change.
+For the longest duration ADI-C, ADI-D, and ADI-E waveforms, we see the greatest improvements, over 50\% higher than in O3a (Figure~\ref{fig:grb-o3b-compare-o3a}, top).
+For short-duration waveforms, the highest-frequency 300-Hz sine-Gaussian injections show the greatest change (Figure~\ref{fig:grb-o3b-compare-o3a}, bottom).
 Indeed these are all well above the change expected from a chance difference in antenna reponse.
 
-Considering that longer-duration waveforms see greater improvment, the most obvious likely contributer is the implementation of autogating.
+\begin{figure}[h]
+  \centering
+  \includegraphics{figures/grb/compare-o3a.pdf}
+  \caption
+	[Cumulative distributions of O3a and O3b X-pipeline exclusion distances for the ADI-C (top) and 300-Hz sine-Gaussian (bottom) waveforms.]
+	{Cumulative distributions of O3a and O3b X-pipeline exclusion distances for the ADI-C (top) and 300-Hz sine-Gaussian (bottom) waveforms.
+	These show the greatest improvement between O3a and O3b among their respective waveform sets.}
+  \label{fig:grb-o3b-compare-o3a}
+\end{figure}
+
+Considering that longer-duration waveforms see greater improvement, the most obvious likely contributer is the implementation of autogating.
 However, autogating cannot account for the changes in the $D_{90}$ of short-duration models.
 These can only be explained by better GW detector sensitivity and/or reduced rates of short-duration glitches that overlap the injected signal.
 Such glitches cause the entire injection to be vetoed, so it is not recovered by the search pipeline.
