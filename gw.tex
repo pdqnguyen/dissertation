@@ -287,7 +287,11 @@ The first corrections yield frequency evolution terms that capture the ratio of 
 Continuous \acp{GW} generated from binary systems may range from very low frequency (nanoHertz-range) waves from supermassive \ac{BH} binaries, to milliHertz waves from stellar-mass galactic binaries, but in higher frequency bands the best candidate sources for continuous waves are isolated rapidly-rotating \acp{NS}~\citep{Riles_2017}.
 If such \iac{NS} is non-axisymmetric, it generates \acp{GW} with a characteristic amplitude dependent on the $z$-axis moment of inertia, the ellipticity of the star $\varepsilon$,  and its rotational frequency $f_0$:
 \begin{equation}
-	h_0 = 4.2 \times 10^{-25} \frac{\varepsilon}{10^{-5}} \frac{I^{33}}{10^{45 g cm^2}} \left( \frac{f_0}{100\,\mathrm{Hz}} \right)^2 \left( \frac{r}{10\,\mathrm{kpc}} \right)^{-1}.
+	h_0 = 4.2 \times 10^{-25}
+		\left( \frac{\varepsilon}{10^{-5}} \right)
+		\left( \frac{I_{33}}{10^{45}\,\mathrm{g\,cm^2}} \right)
+		\left( \frac{f_0}{100\,\mathrm{Hz}} \right)^2
+		\left( \frac{r}{10\,\mathrm{kpc}} \right)^{-1}.
 \end{equation}
 These emissions would have to be much closer to be observable, but unlike \acp{CBC}, isolated \acp{NS} are much more abundant within our galaxy.
 Low-mass X-ray binaries, consisting of a neutron star accreting matter from a stellar companion, are another potential source of continuous \acp{GW}.
@@ -305,6 +309,23 @@ These simulations also face many hurdles that limit their accuracy: they have to
 Different models also focus on different phases of the collapse, and account for different supernova remnants (either a neutron star or a black hole).
 In summary, models have been formulated predicting GW emission from asymmetries in the core bounce phase due to stellar rotation or an asymmetric core; from convection processes, or bar-mode instabilities in the proto-neutron star (if one forms); from fragmentation of the core itself, or within a massive accreting disk if the remnant becomes a black hole; and from Rossby wave (r-mode) instabilities in a cooling proto-neutron star.
 The result is a wide range of predictions for the amplitude, frequency evolution, and duration of the gravitational waves produced by CCSN.
+
+That said, we can still roughly estimate a characteristic GW amplitude for core-collapse emission.
+\citet{Sutton_2013} provides a rule of thumb for relating the energy emitted by a gravitational-wave burst $E_{\mathrm{GW}}$ for an isotropic emission scenario to the root-sum-squared GW amplitude $h_{\mathrm{rss}}$, which we can write as
+\begin{align}
+	\label{gw-hrss}
+	h_{\mathrm{rss}}
+		&\equiv \int_{-\infty}^{\infty} [h_+^2(t) + h_{\times}^2(t)] dt\\
+		\label{gw-egw}
+		&= \left( \frac{G E_{\mathrm{GW}}}{\pi^2 c^3} \right)^{1/2} \frac{1}{r f_0}\\
+		&\simeq 6.7 \times 10^{-20}\,\mathrm{Hz}^{-1/2}
+			\left( \frac{10\,\mathrm{kpc}}{r} \right)
+			\left( \frac{100\,\mathrm{Hz}}{f_0} \right)
+			\left( \frac{E_{\mathrm{GW}}}{10^{-2}\,\msol c^2} \right)^{1/2}
+\end{align}
+where $f_0$ is the central frequency of the GW burst.
+An emission energy of $10^{-2}\,\msol c^2$ lies on the optimistic end of expectations.
+Predictions for $E_{\mathrm{GW}}$ from core-collapse models range across a few orders of magnitude.
 
 A number of other non-CBC emission models exist for various astrophysical objects and phenomena.
 For example, neutron stars with extremely strong magnetic fields exhibit X-ray flaring behavior believed to originate from the cracking of their crusts due to magnetic field interactions, which may also produce gravitational waves by exciting oscillatory modes in the neutron star~\citep{Lasky_2015}.
