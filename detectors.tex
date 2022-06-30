@@ -4,11 +4,39 @@ Detection of gravitational waves requires measuring the transverse stretching an
 
 The current era of \ac{GW} detection is dominated by laser interferometers inspired by the simple Michelson interferometer. There are currently three observatories in operation: \ac{LIGO}, consisting of \ac{LHO} in Washington and \ac{LLO} in Louisiana, and the Virgo observatory in Italy. Additional detectors in Japan (Kagra) and India (\ac{LIGO} India) are under construction, and projects for next-generation detectors (Einstein Telescope, Cosmic Explorer, and \ac{LISA}) are on the horizon.
 
-A \ac{GW} interferometer is configured so that the anti-symmetric output port (the output not leading back to the laser source) observes no signal due to destructive interference. If one interferometer arm is elongated relative to the other, the phase shift between the signals from both arms results in some constructive interference; thus the amplitude of a gravitational wave passing through the plane of the detector arms is converted to an amplitude in laser light measured at the output port. Sensitivity scales with interferometer arm length, but the incredible length required to detect gravitational waves from even the loudest sources (100s of km in order to observe black hole binary mergers) makes this infeasible. However, the effective arm length can be increased by making the arms Fabry-Perot cavities, so that light travels many ($\sim300$) times back and forth in each arm before leaving through the beam splitter.
 
-{\color{red}Probably talk about a bunch of instrument noise sources here, e.g. shot noise and thermal noise.}
+\section{GW interferometry}
 
-Other methods that have been implemented to dramatically improve the sensitivity current-generation of \ac{aLIGO} and Advanced Virgo include increasing laser power or injecting squeezed light to reduce the effects of photon shot noise; implementing a power recycling cavity at the symmetric output that sends the constructively-interfering light leaving in that direction back into the interferometer; implementing a signal recycling cavity at the anti-symmetric output to tune the most sensitive frequency band of the detector; larger mirrors to combat radiation pressure on the mirrors due to high laser power~\citep{Creighton_2011}.
+
+To understand how an interferometer detects gravitational waves, consider a simple Michelson interferometer with arm lengths $L_x$ and $L_y$.
+The interferometer measures the difference in the changes of its arm lengths, $\Delta L = \Delta L_x - \Delta L_y$, by splitting a laser beam down each arm via a beam splitter placed at the vertex, having the light reflected back by a mirror (called a \textit{test mass}) at the end of each arm, and producing an interference pattern when the beams reunite.
+Differential changes in arm length manifest as phase shifts in the output.
+In a LIGO detector, a photodetector is placed at the anti-symmetric output port (the output not leading back to the laser source).
+The detector is tuned (by the choice of arm length) to operate at its dark fringe, i.e. the photodetector observes no signal due to destructive interference.
+If one interferometer arm is elongated relative to the other, the phase shift between the signals from both arms results in some constructive interference; thus the amplitude of a gravitational wave passing through the plane of the detector arms is converted to an amplitude in laser light measured at the output port.
+
+A gravitational wave passing through the instrument induces a \textit{strain} $h = \Delta L / L$.
+Our ability to measure gravitational waves therefore depends on how precisely we can measure $\Delta L$ and how long we construct the interferometer arms to be.
+The photodiode is ultimately limited by \textit{shot noise}, the random fluctuations in the number of photons observed.
+This is a Poisson process, so the fluctuations scale with the square root of the photon count $N_{\mathrm{photon}}$, which itself is dependent on the laser power and wavelength and the frequency of the GW signal we are searching for:
+\begin{equation}
+  N_{\mathrm{photon}} \sim \frac{P_{\mathrm{laser}} \lambda_{\mathrm{laser}}}{h c f_{\mathrm{GW}}}.
+\end{equation}
+The minimum detectable differential arm length change for a photodiode limited by shot noise is
+\begin{equation}
+  \Delta L \sim \frac{N_{\mathrm{photon}}^{1/2}}{N_{\mathrm{photon}}} \lambda_{\mathrm{laser}}
+\end{equation}
+which gives a minimum detectable strain, for a kilometer-scale interferometer with a 1-$\mathrm{\mu}$m, 1-W laser observing 300-Hz gravitational waves is $h \sim 10^{-17}$.
+This is impressive but still a ways from being able to observe the GW sources discussed in the previous chapter ($h \lesssim 10^{-20}$).
+
+We can also extend the interferometer, but to get an order of magnitude improvement requires an order of magnitude extension of the arms, which is not entirely practical.
+Instead, we can increase the \textit{effective arm length} by designing the arms as Fabry-P\'erot cavities, forcing the light in the arms to bounce back and forth many times before returning to the beam splitter.
+This works as long as the light does not spend an amount of time comparable to the passing of a full gravitational wave, so the effective arm length should not exceed $L_{\mathrm{eff}} \sim \lambda_{\mathrm{GW}}$.
+For signals in the hundreds of Hertz, this limits the effective arm length to a few hundred kilometers, or a few hundred round trips for a LIGO detector.
+Nevertheless, combined with the optimal photodiode above, this setup can detect a strain of $h \sim 10^{-20}$.
+
+
+\section{Advanced LIGO}
 
 The two \ac{LIGO} detectors began \ac{O1} on September 12, 2015, and made the first detection of a \ac{GW} from a \ac{BBH} merger on September 14, 2015~\citep{gw150914}.
 This was followed by two more \ac{BBH} detections before the end of the run on January 16, 2016~\citep{gwtc1}.
@@ -19,3 +47,35 @@ Throughout \ac{O3}, \ac{LIGO} and Virgo observed a total of 74 \ac{GW} events~\c
 These include a second \ac{BNS} merger~\citep{gw190425} and the first two detections of \ac{NSBH} mergers~\citep{nsbh_o3}.
 The rest are associated with \ac{BBH} mergers, some of which have been considered to have exceptional source properties.
 There has yet to be a detection of a \ac{GW} signal with a significant probability of having a non-\ac{CBC} origin.
+
+A number technological advances building on top of the basic Fabry-P\'erot interferometer design have allowed current-generation detectors to achieve incredible sensitivity~\citep{aLIGO_design}.
+Increasing laser power and injecting squeezed light reduces the effects of shot noise.
+A power recycling cavity at the symmetric output sends the constructively-interfering light leaving in that direction back into the interferometer (essentially increasing laser power).
+A signal recycling cavity at the anti-symmetric output is used to tune the most sensitive frequency band of the detector.
+
+Increasing laser power brings up a second noise source limiting the sensitivity of the interferometric detectors: the force of the laser light hitting the test masses causes fluctuations in the test mass positions, referred to as \textit{radiation pressure noise}.
+This can be addressed by increasing the size of the test masses themselves.
+
+In addition to these fundamental limitations of shot noise and radiation pressure noise, there are a plethora of noise sources not intrinsic to the design of an interferometer.
+At low frequencies there is \textit{seismic noise}, the ground motion caused by seismic and human activity.
+The core optics must be suspended on multi-stage isolation systems to dampen these movements; otherwise they would completely swamp out the tiny fluctuations induced by gravitational waves.
+The transfer function of a pendulum, derived by taking the Fourier transform of the simple pendulum equation of motion, describes the attenuation of motion it provides:
+\begin{equation}
+  A(f) = \frac{1}{1 - (f / f_{\mathrm{pend}})^2}
+\end{equation}
+where $f_{\mathrm{pend}} \equiv \sqrt{g/l} / (2\pi)$ is its natural frequency.
+Designing a pendulum with low $f_{\mathrm{pend}}$, i.e. a long one, allows substantial attenuation above that frequency, but it can be physically impractical to go too long.
+Rather, stacking multiple pendulums each with a low enough $f_{\mathrm{pend}} \lesssim 1\,Hz$, each providing a $\propto f^{-2}$ attenuation, results in much better damping in the tens of Hertz.
+This construction suppresses the contribution of seismic noise to orders of magnitude below that of other noise sources, except at the very low frequencies outside of the LIGO detection band.
+
+Brownian motion of molecules in the test masses themselves results in \textit{thermal noise}, which is dependent on the temperature of the optics.
+Thermal noise excites the internal vibrational modes of the test masses, as well as the ``violin'' modes of the glass fiber suspensions that make up the final pendulum stage.
+
+\textit{Scattered light noise} occurs when the laser beam reflecting off the beam spot on a test mass or other optic ends up hitting surfaces that are moving relative to the optic, like vacuum chamber walls.
+A very small fraction of the light reaching the moving surface is reflected to the originating or another beam spot, where it scatters back into the main interferometer beam.
+As the distance to the moving surface changes, the phase of the returning light changes relative to the main beam, producing fluctuations in the amplitude of the beam, that, at 1 part in $10^{20}$ can be on the scale of those produced by gravitational waves.
+In addition to this sensitivity to recombined scattered light, the scattering noise is problematic because of non-linear coupling when the path length modulation becomes comparable to the wavelength of the light, producing noise at harmonics of modulation frequencies~\citep{Soni_2020}.
+
+The input laser system can itself be a source of \textit{beam jitter noise}.
+Alignment fluctuations in the beam, called jitter, cause variations in the coupling of the fundamental optical mode to the arm cavities.
+In principle the symmetry of the interferometer arms should reject the effects of jitter, but defects in the test masses can break this symmetry, resulting in significant noise at the jitter frequencies, which are typically associated with mechanical resonances of optic mounts the input laser table.
