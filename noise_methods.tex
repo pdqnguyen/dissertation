@@ -1,30 +1,26 @@
 \chapter{Methods for studying environmental noise}\label{ch:noise-methods}
 
 Environmental noise refers to any signal originating from outside the structure of a \ac{GW} detector that can impact the detector's sensitivity or disrupt its ability to achieve and maintain lock~\citep{Effler_2015,Nguyen_2021}.
-The effects of environmental noise on detector sensitivity can range from persistent excess noise in the \ac{GW} strain data, to short-duration transient signals, or \textit{glitches}.
+Some of the most problematic environmental influences were introduced in Section~\ref{sec:noise-sources}.
+Their effects on detector sensitivity can range from persistent excess noise in the \ac{GW} strain data, to short-duration transient signals, or \textit{glitches}.
 
-One goal of studying environmental noise is to aid in the validation of \ac{GW} events.
+One goal of studying environmental noise is to directly aid in the validation of \ac{GW} events.
 Due to the sophisticated nature of the search pipelines used to detect gravitational waves in the \ac{LIGO} data, environmental glitches are highly unlikely to fully account for a \ac{GW} event candidate.
-That said, glitches capable of influencing analyses occur frequently at both observatories.
+However, glitches capable of influencing analyses occur frequently at both observatories.
 
 Unlike instrumental noise, environmental noise can potentially be correlated between different detectors, i.e. stemming from a common source as opposed to stemming from chance coincidence.
+For example a sufficiently strong lightning strike can produce magnetic field noise in both LIGO detectors.
 Such correlated noise is not accounted for in the estimation of false-alarm probabilities, which is done by time-shifting background data from each \ac{LIGO} detector to produce long stretches of coincident background.
 
 Environmental noise is particularly important in searches for unmodeled sources of gravitational waves, as these look for excess power without the use of waveform templates.
-Even for highly significant \ac{CBC} events, contamination of the strain data can be detrimental to parameter estimation analyses that infer source properties from the morphology of the event.
-Thus it is important to have a quantitative solution for identifying and evaluating the impact of environmental transients when they occur coincide with candidate events.
+Even for highly significant \ac{CBC} events, contamination of the strain data can bias parameter estimation analyses that infer source properties from the morphology of the event.
+Thus it is critical that we have a quantitative solution for identifying and evaluating the impact of environmental transients when they coincide with candidate events.
 
-The second goal is to improve the sensitivity and performance of the detector by localizing noise sources and coupling mechanisms. Once tracked down, they can be mitigated by eliminating the noise sources, attenuating the propagation of the signal, or modifying the detector itself.
+The second goal is to improve the sensitivity and performance of the detector by localizing noise sources and coupling mechanisms. Once tracked down, coupling can be mitigated in three ways: eliminating the noise source, attenuating the propagation of the signal, or modifying the detector itself.
 
-In this chapter I introduce sources of environmental noise (Section~\ref{sec:noise-sources}), describe the hardware used to monitor those noise sources (Section~\ref{sec:pem-channels}) and to reproduce them experimentally (Section~\ref{sec:injections}).
+In this chapter I describe the hardware used to monitor environmental noise sources (Section~\ref{sec:pem-channels}) and to reproduce them experimentally (Section~\ref{sec:injections}).
 I present a method for quantifying environmental coupling (Section~\ref{sec:cf}), then I discuss the limitations (Section~\ref{sec:uncertainties}) and software implementation (Section~\ref{sec:pemcoupling}) of the method.
 
-\section{Sources of environmental noise}\label{sec:noise-sources}
-
-The environment can influence a \ac{GW} detector through physical contact (via vibrations or temperature fluctuations), electromagnetic waves, static electric and magnetic fields, and possibly high-energy radiation.
-
-Vibrations can affect the data by directly moving the test masses.
-They can also modulate the paths of light that is scattered off of surfaces inside the interferometer, or introduce fluctuations in the alignment of the input laser beam.
 
 \section{The PEM sensor array}\label{sec:pem-channels}
 
