@@ -9,7 +9,7 @@ plt.style.use('./custom-style.mplstyle')
 
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/injection-wallcoil')
-OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures')
+OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/noise-methods/')
 
 
 def plot_wallcoil():

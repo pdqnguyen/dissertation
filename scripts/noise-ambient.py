@@ -15,7 +15,7 @@ VIB_LLO_PATH = os.path.join(DATA_DIR, 'ambient-vib-llo-post-o3.txt')
 MAG_LHO_PATH = os.path.join(DATA_DIR, 'ambient-mag-lho-post-o3.txt')
 MAG_LLO_PATH = os.path.join(DATA_DIR, 'ambient-mag-llo-post-o3.txt')
 
-OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/')
+OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/noise-studies')
 
 with h5py.File(ALIGO_SENS_PATH, 'r') as f:
     aligo_sens = (f['Freq'][()], f['traces']['Total'][()])

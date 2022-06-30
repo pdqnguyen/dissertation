@@ -8,7 +8,7 @@ plt.style.use('./custom-style.mplstyle')
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/cf-example')
 PSL_INJECTION_PATH = os.path.join(DATA_DIR, 'psl-injection.txt')
 
-OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/')
+OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/noise-methods')
 
 
 data = pd.read_csv(PSL_INJECTION_PATH, comment='#')[::3]

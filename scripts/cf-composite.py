@@ -17,7 +17,7 @@ FILES = [
     'HAM5_speaker_30-2000_Hz.txt',
     'HAM6_speaker_30-2000_Hz.txt',
 ]
-OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures')
+OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/noise-methods/')
 COLORS = ['#056BA3', '#f0e442', '#a2c8ec', '#c35e08', '#A1D99B']
 
 
