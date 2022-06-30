@@ -8,7 +8,7 @@ plt.style.use('./custom-style.mplstyle')
 
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data/cf-locations-vib/')
-OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures')
+OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/noise-methods/')
 
 
 def plot_injection_locations():
@@ -30,8 +30,8 @@ def plot_injection_locations():
     }
 
     frange = (50, 100)
-    fig, ax = plt.subplots(1, 1, figsize=(5, 3))
-    plt.subplots_adjust(left=0.15, bottom=0.15, right=0.97, top=0.99)
+    fig, ax = plt.subplots(1, 1, figsize=(6, 3))
+    plt.subplots_adjust(left=0.13, bottom=0.15, right=0.97, top=0.99)
     ymin, ymax = 1, 0
     labels = []
     for name, (color, marker, cols) in injection_groups.items():
