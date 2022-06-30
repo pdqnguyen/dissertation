@@ -38,12 +38,12 @@ Nevertheless, combined with the optimal photodiode above, this setup can detect 
 
 \section{Advanced LIGO}
 
-The two \ac{LIGO} detectors began \ac{O1} on September 12, 2015, and made the first detection of a \ac{GW} from a \ac{BBH} merger on September 14, 2015~\citep{gw150914}.
+The two \ac{LIGO} detectors began their first observing run \acs{O1} on September 12, 2015, and made the first detection of a \ac{GW} from a \ac{BBH} merger on September 14, 2015~\citep{gw150914}.
 This was followed by two more \ac{BBH} detections before the end of the run on January 16, 2016~\citep{gwtc1}.
-\Ac{O2} began on November 30, 2016 after a period of detector upgrades and ended on August 25, 2017.
+\Ac{O2} started on November 30, 2016 after a period of detector upgrades and ended on August 25, 2017.
 During that run, in addition to several more \ac{BBH} detections, the \ac{LIGO} network (with the addition of Virgo towards the end of the run) observed the first \ac{BNS} merger on August 17, 2017~\citep{gw170817}.
 \Ac{O3}, which spanned April 1, 2019 to March 27, 2020, came after another round of major improvements in the performance of the detectors~\citep{Buikema_2020} and the full inclusion of the Virgo detector in the \ac{GW} network.
-Throughout \ac{O3}, \ac{LIGO} and Virgo observed a total of 74 \ac{GW} events~\citep{gwtc2,gwtc3}.
+Throughout \ac{O3}, \ac{LIGO} and Virgo observed a total of 74 \ac{GW} events, bringing the lifetime total to 90~\citep{gwtc2,gwtc3}.
 These include a second \ac{BNS} merger~\citep{gw190425} and the first two detections of \ac{NSBH} mergers~\citep{nsbh_o3}.
 The rest are associated with \ac{BBH} mergers, some of which have been considered to have exceptional source properties.
 There has yet to be a detection of a \ac{GW} signal with a significant probability of having a non-\ac{CBC} origin.
@@ -56,7 +56,20 @@ A signal recycling cavity at the anti-symmetric output is used to tune the most 
 Increasing laser power brings up a second noise source limiting the sensitivity of the interferometric detectors: the force of the laser light hitting the test masses causes fluctuations in the test mass positions, referred to as \textit{radiation pressure noise}.
 This can be addressed by increasing the size of the test masses themselves.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{figures/detectors/budget-lho.pdf}
+  \includegraphics[width=\textwidth]{figures/detectors/budget-llo.pdf}
+  \caption
+  [Full noise budgets of the LIGO Hanford (top) and Livingston (bottom) observatories at the end of the third observing run.]
+  {Full noise budgets of the LIGO Hanford (top) and Livingston (bottom) observatories at the end of the third observing run. ``Quantum'' noise refers to both shot noise and radiation pressure noise. Reproduced from~\protect\citet{Buikema_2020}.}
+  \label{fig:detectors-budget}
+\end{figure}
+
+
 In addition to these fundamental limitations of shot noise and radiation pressure noise, there are a plethora of noise sources not intrinsic to the design of an interferometer.
+Figure~\ref{fig:detectors-budget} shows measurements and estimates of all known noise sources affecting both LIGO detectors at the end of \ac{O3}.
+
 At low frequencies there is \textit{seismic noise}, the ground motion caused by seismic and human activity.
 The core optics must be suspended on multi-stage isolation systems to dampen these movements; otherwise they would completely swamp out the tiny fluctuations induced by gravitational waves.
 The transfer function of a pendulum, derived by taking the Fourier transform of the simple pendulum equation of motion, describes the attenuation of motion it provides:
@@ -77,5 +90,5 @@ As the distance to the moving surface changes, the phase of the returning light 
 In addition to this sensitivity to recombined scattered light, the scattering noise is problematic because of non-linear coupling when the path length modulation becomes comparable to the wavelength of the light, producing noise at harmonics of modulation frequencies~\citep{Soni_2020}.
 
 The input laser system can itself be a source of \textit{beam jitter noise}.
-Alignment fluctuations in the beam, called jitter, cause variations in the coupling of the fundamental optical mode to the arm cavities.
+Alignment fluctuations in the beam, called jitter, cause variations in the coupling of the fundamental optical mode to the arm cavities~\citep{Mueller_2005, Hardwick_2019}.
 In principle the symmetry of the interferometer arms should reject the effects of jitter, but defects in the test masses can break this symmetry, resulting in significant noise at the jitter frequencies, which are typically associated with mechanical resonances of optic mounts the input laser table.
