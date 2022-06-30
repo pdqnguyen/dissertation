@@ -38,23 +38,43 @@ Nevertheless, combined with the optimal photodiode above, this setup can detect 
 
 \section{Advanced LIGO}
 
-The two \ac{LIGO} detectors began their first observing run \acs{O1} on September 12, 2015, and made the first detection of a \ac{GW} from a \ac{BBH} merger on September 14, 2015~\citep{gw150914}.
+The LIGO detectors completed the transition to their current design stage, \ac{aLIGO}, in 2015, and began began first observing run (\acs{O1}) on September 12 that year, making the first detection of a \ac{GW} from a \ac{BBH} merger on September 14~\citep{gw150914}.
 This was followed by two more \ac{BBH} detections before the end of the run on January 16, 2016~\citep{gwtc1}.
 \Ac{O2} started on November 30, 2016 after a period of detector upgrades and ended on August 25, 2017.
-During that run, in addition to several more \ac{BBH} detections, the \ac{LIGO} network (with the addition of Virgo towards the end of the run) observed the first \ac{BNS} merger on August 17, 2017~\citep{gw170817}.
+During that run, in addition to several more \ac{BBH} detections, the \ac{LIGO} network (with the addition of the Virgo detector in Italy towards the end of the run) observed the first \ac{BNS} merger on August 17, 2017~\citep{gw170817}.
 \Ac{O3}, which spanned April 1, 2019 to March 27, 2020, came after another round of major improvements in the performance of the detectors~\citep{Buikema_2020} and the full inclusion of the Virgo detector in the \ac{GW} network.
-Throughout \ac{O3}, \ac{LIGO} and Virgo observed a total of 74 \ac{GW} events, bringing the lifetime total to 90~\citep{gwtc2,gwtc3}.
-These include a second \ac{BNS} merger~\citep{gw190425} and the first two detections of \ac{NSBH} mergers~\citep{nsbh_o3}.
-The rest are associated with \ac{BBH} mergers, some of which have been considered to have exceptional source properties.
-There has yet to be a detection of a \ac{GW} signal with a significant probability of having a non-\ac{CBC} origin.
+By the end of O3, the LIGO and Virgo detectors had observed an all-time total of 90 GW events~\citep{gwtc2,gwtc3}.
 
-A number technological advances building on top of the basic Fabry-P\'erot interferometer design have allowed current-generation detectors to achieve incredible sensitivity~\citep{aLIGO_design}.
+The performance of the LIGO detectors can be assessed in terms of its astrophysical range and its duty cycle.
+The range is the distance at which a detector can observe a given GW source; in O3, LHO and LLO had binary neutron star inspiral ranges of about 111\,Mpc and 134\,Mpc, respectively.
+Their duty cycles, the percentage of time each was in science observation mode, were 75\% and 77\%, with a joint-observing duty cycle of 62\%.
+
+A number of technological advances building on top of the basic Fabry-P\'erot interferometer design have allowed the current generation of detectors to achieve their incredible sensitivity~\citep{aLIGO_design}.
 Increasing laser power and injecting squeezed light reduces the effects of shot noise.
 A power recycling cavity at the symmetric output sends the constructively-interfering light leaving in that direction back into the interferometer (essentially increasing laser power).
-A signal recycling cavity at the anti-symmetric output is used to tune the most sensitive frequency band of the detector.
+A signal recycling cavity at the anti-symmetric output is used to modify the shape the of detector response function, effectively tuning it to be more sensitive to a specific frequency band.
 
-Increasing laser power brings up a second noise source limiting the sensitivity of the interferometric detectors: the force of the laser light hitting the test masses causes fluctuations in the test mass positions, referred to as \textit{radiation pressure noise}.
-This can be addressed by increasing the size of the test masses themselves.
+We now walk through the full journey on which the interferometer laser embarks, giving names to the various components of the aLIGO detector as these will be relevant in later discussions of detector noise and instrumentation.
+The laser is produced at the start of the \textit{input arm}.
+In O3, this \ac{PSL} is amplified to 70\,W before entering the main beam tube of the interferometer, where it then passes through an \ac{IMC} optical cavity that filters out higher-order spatial beam modes.
+The \ac{IMC} optics are located inside two vacuum chambers called \acp{HAM} (namely HAM2 and HAM3) spanning the mode cleaner tube, which comprises the majority of the input arm length.
+As it reaches the interferometer vertex, the beam is split into two by the beam splitter.
+In each arm, it passes through an \ac{ITM}, beyond which it has entered a 4-km-long Fabry-P\'erot cavity.
+The beams now leave the \textit{corner station} en route to the \textit{end stations} (End-X and End-Y) where the \acp{ETM} are housed.
+Between the \acp{ITM} and \acp{ETM} the laser bounces some 300 times before returning to the beam splitter.
+The carrier light exits along the input arm and enters the power recycling cavity, whose optics are located in the same \ac{HAM} chambers as the \ac{IMC} optics.
+In the \textit{output arm}, the signal recycling cavity (in HAM4 and HAM5) extracts the GW signal from the exiting signal sidebands, transmitting them to the \ac{OMC} (in HAM6) which again filters out higher-order modes.
+This is also where squeezed vacuum state is injected into the interferometer to reduce shot noise.
+Finally, the output photodiode in HAM6 receives the signal light, which is converted by the calibration system into a gravitational wave strain measurement.
+
+
+\section{Noise sources}
+
+We have seen that photon shot noise limits the sensitivity of any GW interferometer, and is reduced by using a high-power input laser.
+However, increasing laser power brings up a second noise source, similarly associated with the quantum mechanical behavior of light.
+The force of the laser light hitting the test masses causes fluctuations in the test mass positions, referred to as \textit{radiation pressure noise}.
+These random displacements similarly limit the sensitivity, although in contrast with shot noise they fall off with the GW frequency.
+Radiation pressure is addressed by increasing the size of the test masses themselves (40\,kg in the aLIGO detectors).
 
 \begin{figure}
   \centering
@@ -66,8 +86,7 @@ This can be addressed by increasing the size of the test masses themselves.
   \label{fig:detectors-budget}
 \end{figure}
 
-
-In addition to these fundamental limitations of shot noise and radiation pressure noise, there are a plethora of noise sources not intrinsic to the design of an interferometer.
+In addition to the quantum mechanical limitations of shot noise and radiation pressure noise, there are a plethora of noise sources not intrinsic to the design of an interferometer.
 Figure~\ref{fig:detectors-budget} shows measurements and estimates of all known noise sources affecting both LIGO detectors at the end of \ac{O3}.
 
 At low frequencies there is \textit{seismic noise}, the ground motion caused by seismic and human activity.
