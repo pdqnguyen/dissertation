@@ -24,10 +24,10 @@ This is a Poisson process, so the fluctuations scale with the square root of the
 \end{equation}
 The minimum detectable differential arm length change for a photodiode limited by shot noise is
 \begin{equation}
-  \Delta L \sim \frac{N_{\mathrm{photon}}^{1/2}}{N_{\mathrm{photon}}} \lambda_{\mathrm{laser}}
+  \Delta L \sim \frac{N_{\mathrm{photon}}^{1/2}}{N_{\mathrm{photon}}} \lambda_{\mathrm{laser}} = \sqrt{ \frac{h c \lambda_{\mathrm{laser}} f_{\mathrm{GW}}}{P_{\mathrm{laser}}} }
 \end{equation}
-which gives a minimum detectable strain, for a kilometer-scale interferometer with a 1-$\mathrm{\mu}$m, 1-W laser observing 300-Hz gravitational waves is $h \sim 10^{-17}$.
-This is impressive but still a ways from being able to observe the GW sources discussed in the previous chapter ($h \lesssim 10^{-20}$).
+which gives a minimum detectable strain, for a 4-km interferometer with a 1-W, 1-$\mathrm{\mu}$m infrared laser observing 300-Hz gravitational waves, of $h \sim 10^{-17}$.
+This is impressive but orders of magnitude away from being able to observe at high \ac{SNR} the GW sources discussed in the previous chapter ($h \lesssim 10^{-20}$).
 
 We can also extend the interferometer, but to get an order of magnitude improvement requires an order of magnitude extension of the arms, which is not entirely practical.
 Instead, we can increase the \textit{effective arm length} by designing the arms as Fabry-P\'erot cavities, forcing the light in the arms to bounce back and forth many times before returning to the beam splitter.
@@ -56,7 +56,7 @@ A signal recycling cavity at the anti-symmetric output is used to modify the sha
 
 We now walk through the full journey on which the interferometer laser embarks, giving names to the various components of the aLIGO detector as these will be relevant in later discussions of detector noise and instrumentation.
 The laser is produced at the start of the \textit{input arm}.
-In O3, this \ac{PSL} is amplified to 70\,W before entering the main beam tube of the interferometer, where it then passes through an \ac{IMC} optical cavity that filters out higher-order spatial beam modes.
+In O3, this \ac{PSL} is a 1064\,nm infrared source amplified to 70\,W before entering the main beam tube of the interferometer, where it then passes through an \ac{IMC} optical cavity that filters out higher-order spatial beam modes.
 The \ac{IMC} optics are located inside two vacuum chambers called \acp{HAM} (namely HAM2 and HAM3) spanning the mode cleaner tube, which comprises the majority of the input arm length.
 As it reaches the interferometer vertex, the beam is split into two by the beam splitter.
 In each arm, it passes through an \ac{ITM}, beyond which it has entered a 4-km-long Fabry-P\'erot cavity.
@@ -65,7 +65,8 @@ Between the \acp{ITM} and \acp{ETM} the laser bounces some 300 times before retu
 The carrier light exits along the input arm and enters the power recycling cavity, whose optics are located in the same \ac{HAM} chambers as the \ac{IMC} optics.
 In the \textit{output arm}, the signal recycling cavity (in HAM4 and HAM5) extracts the GW signal from the exiting signal sidebands, transmitting them to the \ac{OMC} (in HAM6) which again filters out higher-order modes.
 This is also where squeezed vacuum state is injected into the interferometer to reduce shot noise.
-Finally, the output photodiode in HAM6 receives the signal light, which is converted by the calibration system into a gravitational wave strain measurement.
+Finally, the output photodiode in HAM6 receives the signal light, which is converted by the calibration system into a measurement of $\Delta L$, referred to as \ac{DARM}.
+From that we compute the strain $h = \Delta L / 4000$\,m.
 
 
 \section{Noise sources}\label{sec:noise-sources}
@@ -88,6 +89,10 @@ Radiation pressure is addressed by increasing the size of the test masses themse
 
 In addition to the quantum mechanical limitations of shot noise and radiation pressure noise, there are a plethora of noise sources not intrinsic to the design of an interferometer.
 Figure~\ref{fig:detectors-budget} shows measurements and estimates of all known noise sources affecting both LIGO detectors at the end of \ac{O3}.
+Each detector is fitted with thousands of auxiliary instruments for monitoring the internal and external state of the interferometer.
+For sources whose effects are well understood this allows estimates to be made of their contributions to the overall \ac{DARM} sensitivity.
+Still, some sources are unknown: note that in the few tens of Hertz at either detector there is a significant discrepancy between the sum of known noises and the measured noise.
+Constant study of the interferometers is necessary to identify new noise effects so that performance improvements can be made.
 
 At low frequencies there is \textit{seismic noise}, which comes from ground motion caused by seismic and human activity.
 The core optics must be suspended on multi-stage isolation systems to dampen these movements; otherwise they would completely swamp out the tiny fluctuations induced by gravitational waves.
