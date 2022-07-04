@@ -42,9 +42,9 @@ markersizes = dict(
     mag=5,
 )
 for coupling_type in ambient_dict.keys():
-    fig, ax = plt.subplots(2, 1, figsize=(5, 4))
-    plt.subplots_adjust(left=0.2, bottom=0.12, right=0.99, top=0.95, hspace=0.2)
-    path = os.path.join(OUT_DIR, f"noise-ambient-{coupling_type}.pdf")
+    fig, ax = plt.subplots(2, 1, figsize=(6, 6))
+    plt.subplots_adjust(left=0.15, bottom=0.1, right=0.99, top=0.99, hspace=0.2)
+    path = os.path.join(OUT_DIR, f"{coupling_type}-ambient.pdf")
     for i, (observatory, df) in enumerate(ambient_dict[coupling_type].items()):
         darm = darm_dict[observatory]
         ax[i].loglog(darm.frequency, darm.darm, 'k-')
@@ -70,50 +70,50 @@ for coupling_type in ambient_dict.keys():
         ax[i].grid(which='major', axis='both', lw=1)
         ax[i].grid(which='minor', axis='both', lw=0.7, ls='--')
         ax[i].set_axisbelow(True)
-        ax[i].set_ylabel(observatory.upper() + r' DARM $\left[\mathrm{m}/\mathrm{Hz}^{1/2}\right]$')
+        ax[i].set_ylabel(observatory.upper() + r' DARM $\left[\mathrm{m}/\sqrt{\mathrm{Hz}}\right]$')
     ax[-1].set_xlabel('Frequency [Hz]')
     plt.savefig(path)
 
-# all-in-one-figure plot
-coupling_names = dict(
-    vib='Vibrational',
-    mag='Magnetic',
-)
-markersizes = dict(
-    vib=2,
-    mag=5,
-)
-fig, ax = plt.subplots(2, 2, figsize=(6, 4))
-plt.subplots_adjust(left=0.14, bottom=0.12, right=0.99, top=0.93, wspace=0.05, hspace=0.2)
-for j, coupling_type in enumerate(ambient_dict.keys()):
-    for i, (observatory, df) in enumerate(ambient_dict[coupling_type].items()):
-        darm = darm_dict[observatory]
-        ax[i, j].loglog(darm.frequency, darm.darm / 4000, 'k-')
-        ax[i, j].plot(
-            df.frequency[df.flag == 'Measured'],
-            df.amb[df.flag == 'Measured'] / 4000,
-            '.',
-            color=colors[0],
-            markersize=markersizes[coupling_type],
-            zorder=3,
-        )
-        ax[i, j].plot(
-            df.frequency[df.flag == 'Upper Limit'],
-            df.amb[df.flag == 'Upper Limit'] / 4000,
-            '.',
-            color=colors[1],
-            markersize=markersizes[coupling_type],
-            zorder=2,
-        )
-        ax[i, j].plot(aligo_sens[0], np.sqrt(aligo_sens[1]), lw=3, color=colors[2], zorder=1)
-        ax[i, j].set_xlim(5, 2048)
-        ax[i, j].set_ylim(1e-26, 1e-21)
-        ax[i, j].grid(which='major', axis='both', lw=1)
-        ax[i, j].grid(which='minor', axis='both', lw=0.7, ls='--')
-        ax[i, j].set_axisbelow(True)
-        ax[-1, j].set_xlabel('Frequency [Hz]')
-        ax[i, 0].set_ylabel(observatory.upper() + r' strain $\left[\mathrm{Hz}^{-1/2}\right]$')
-        ax[0, j].set_xticklabels([])
-        ax[i, -1].set_yticklabels([])
-        ax[0, j].set_title(coupling_names[coupling_type])
-    plt.savefig(os.path.join(OUT_DIR, 'noise-ambient.pdf'))
+# # all-in-one-figure plot
+# coupling_names = dict(
+#     vib='Vibrational',
+#     mag='Magnetic',
+# )
+# markersizes = dict(
+#     vib=2,
+#     mag=5,
+# )
+# fig, ax = plt.subplots(2, 2, figsize=(6, 4))
+# plt.subplots_adjust(left=0.14, bottom=0.12, right=0.99, top=0.93, wspace=0.05, hspace=0.2)
+# for j, coupling_type in enumerate(ambient_dict.keys()):
+#     for i, (observatory, df) in enumerate(ambient_dict[coupling_type].items()):
+#         darm = darm_dict[observatory]
+#         ax[i, j].loglog(darm.frequency, darm.darm / 4000, 'k-')
+#         ax[i, j].plot(
+#             df.frequency[df.flag == 'Measured'],
+#             df.amb[df.flag == 'Measured'] / 4000,
+#             '.',
+#             color=colors[0],
+#             markersize=markersizes[coupling_type],
+#             zorder=3,
+#         )
+#         ax[i, j].plot(
+#             df.frequency[df.flag == 'Upper Limit'],
+#             df.amb[df.flag == 'Upper Limit'] / 4000,
+#             '.',
+#             color=colors[1],
+#             markersize=markersizes[coupling_type],
+#             zorder=2,
+#         )
+#         ax[i, j].plot(aligo_sens[0], np.sqrt(aligo_sens[1]), lw=3, color=colors[2], zorder=1)
+#         ax[i, j].set_xlim(5, 2048)
+#         ax[i, j].set_ylim(1e-26, 1e-21)
+#         ax[i, j].grid(which='major', axis='both', lw=1)
+#         ax[i, j].grid(which='minor', axis='both', lw=0.7, ls='--')
+#         ax[i, j].set_axisbelow(True)
+#         ax[-1, j].set_xlabel('Frequency [Hz]')
+#         ax[i, 0].set_ylabel(observatory.upper() + r' strain $\left[\mathrm{Hz}^{-1/2}\right]$')
+#         ax[0, j].set_xticklabels([])
+#         ax[i, -1].set_yticklabels([])
+#         ax[0, j].set_title(coupling_names[coupling_type])
+#     plt.savefig(os.path.join(OUT_DIR, 'noise-ambient.pdf'))

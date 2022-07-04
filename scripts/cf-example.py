@@ -32,8 +32,8 @@ cf[uppr] = darm_inj[uppr] / np.sqrt((sens_inj[uppr]**2 - sens_bkg[uppr]**2))
 
 colors = ['#f5793a', '#85c0f9', '#056BA3', '#0f2080']
 
-fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(5, 6))
-plt.subplots_adjust(left=0.17, bottom=0.1, right=0.98, top=0.95, hspace=0.5)
+fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(6, 6))
+plt.subplots_adjust(left=0.15, bottom=0.1, right=0.97, top=0.95, hspace=0.5)
 ax1.plot(freqs, sens_inj, lw=2, color=colors[0])
 ax1.plot(freqs, sens_bkg, lw=2, color='black')
 ax2.plot(freqs, darm_inj, lw=2, color=colors[0])
@@ -83,8 +83,8 @@ ax3.grid(True, which='major', axis='both')
 # ax2.set_xlabel('Frequency [Hz]')
 ax3.set_xlabel('Frequency [Hz]')
 
-ax1.set_ylabel(r'Displacement $\left[\mathrm{m}/\mathrm{Hz}^{1/2}\right]$')
-ax2.set_ylabel('DARM ASD ' + r'$\left[\mathrm{m}/\mathrm{Hz}^{1/2}\right]$')
+ax1.set_ylabel(r'Displacement $\left[\mathrm{m}/\sqrt{\mathrm{Hz}}\right]$')
+ax2.set_ylabel('DARM ASD ' + r'$\left[\mathrm{m}/\sqrt{\mathrm{Hz}}\right]$')
 ax3.set_ylabel(r'Vibrational coupling [m/m]')
 
 # ax1.set_title('HAM6 accelerometer')

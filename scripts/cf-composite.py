@@ -70,9 +70,9 @@ def plot_composite():
         comp_inj[i] = injections[j]
 
     # Create plot
-    fig, ax = plt.subplots(1, 1, figsize=(5, 4))
+    fig, ax = plt.subplots(1, 1, figsize=(6, 4))
     # plt.subplots_adjust(left=0.18, bottom=0.15, right=0.5, top=0.95)
-    plt.subplots_adjust(left=0.18, bottom=0.12, right=0.99, top=0.78)
+    plt.subplots_adjust(left=0.15, bottom=0.12, right=0.99, top=0.78)
     # ax = fig.add_axes([0.11, 0.15, 0.55, 0.8])
     ax.plot(freqs_b, darm_b, 'k', lw=2, zorder=1)
     handles = [Patch(fc='k')]
@@ -89,12 +89,12 @@ def plot_composite():
     ax.set_xlim(20, 2048)
     ax.set_ylim(5e-23, 1e-18)
     ax.set_xlabel('Frequency [Hz]')
-    ax.set_ylabel(r'DARM ASD $\left[\mathrm{m}/\mathrm{Hz}^{1/2}\right]$')
+    ax.set_ylabel(r'DARM ASD $\left[\mathrm{m}/\sqrt{\mathrm{Hz}}\right]$')
     ax.set_xticks([50, 100, 500, 1000])
     ax.grid(True, which='both', axis='x')
     ax.grid(True, which='major', axis='y')
     # ax.legend(handles, labels, loc='upper left', bbox_to_anchor=(1, 1))
-    ax.legend(handles, labels, ncol=2, loc='lower right', bbox_to_anchor=(1, 1.02))
+    ax.legend(handles, labels, ncol=2, loc='lower left', bbox_to_anchor=(0, 1.02))
     fig.savefig(os.path.join(OUT_DIR, 'cf-composite.pdf'))
     return
 
