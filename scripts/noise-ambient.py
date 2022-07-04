@@ -58,8 +58,8 @@ markersizes = dict(
     mag=5,
 )
 for coupling_type in ambient_dict.keys():
-    fig, ax = plt.subplots(2, 1, figsize=(6, 6))
-    plt.subplots_adjust(left=0.15, bottom=0.1, right=0.99, top=0.99, hspace=0.2)
+    fig, ax = plt.subplots(2, 1, figsize=(6, 7))
+    plt.subplots_adjust(left=0.15, bottom=0.07, right=0.98, top=0.98, hspace=0.13)
     path = os.path.join(OUT_DIR, f"{coupling_type}-ambient.pdf")
     for i, (observatory, df) in enumerate(ambient_dict[coupling_type].items()):
         darm = darm_dict[observatory]
@@ -81,10 +81,14 @@ for coupling_type in ambient_dict.keys():
             zorder=2
         )
         ax[i].plot(aligo_sens[0], 4000 * np.sqrt(aligo_sens[1]), lw=3, color=colors[2], zorder=1)
-        ax[i].set_xlim(5, 2048)
-        ax[i].set_ylim(1e-23, 1e-16)
-        ax[i].grid(which='major', axis='both', lw=1)
-        ax[i].grid(which='minor', axis='both', lw=0.7, ls='--')
+        if coupling_type == 'vib':
+            ax[i].set_xlim(10, 2048)
+            ax[i].set_ylim(1e-22, 1e-17)
+        else:
+            ax[i].set_xlim(5, 2048)
+            ax[i].set_ylim(1e-22, 1e-16)
+        ax[i].grid(which='major', axis='both', lw=1, alpha=0.6)
+        ax[i].grid(which='minor', axis='both', lw=0.5, ls='--', alpha=0.6)
         ax[i].set_axisbelow(True)
         ax[i].set_ylabel(observatory.upper() + r' DARM $\left[\mathrm{m}/\sqrt{\mathrm{Hz}}\right]$')
     ax[-1].set_xlabel('Frequency [Hz]')
