@@ -107,7 +107,7 @@ Will make sure to discuss impact of test mass defect on jitter noise.}
 
 \section{Magnetic noise studies during O3}\label{sec:mag}
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics{figures/noise-studies/mag-ambient.pdf}
 	\caption{
@@ -125,9 +125,9 @@ Mitigation of coupling to cables and connectors has required a continuing progra
 This program consists of making weekly, broadband magnetic field injections using the large wall-mounted coils described in Section~\ref{sec:injections-magnetic}.
 Since the injections are scheduled for every Tuesday morning before the routine detector maintenance period, the interferometer may or may not be in a locked state at the time, so an injections were not always performed.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-studies/mag-weekly-cf.png}
+	\includegraphics[width=0.9\textwidth]{figures/noise-studies/mag-weekly-cf.png}
 	\caption{
 		LHO magnetic coupling measured by the last five wall-mounted coil injections performed in O3.}
 	\label{fig:mag-weekly-cf}
@@ -141,9 +141,9 @@ Just within these five weeks, the level of broadband coupling varied by as much 
 Since the injection is produced from a same location and at the same amplitude every time, uncertainties due to the injection source as discussed in Section~\ref{sec:uncertainties} do not account for these variations.
 Broadband changes over specific frequency ranges tracked over the full course of \ac{O3} (Figure~\ref{fig:mag-weekly-bands}) show significant fluctuations throughout the run.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-studies/mag-weekly-bands.png}
+	\includegraphics[width=0.9\textwidth]{figures/noise-studies/mag-weekly-bands.png}
 	\caption{Time-lines of magnetic coupling changes relative to the start of the observing run.}
 	\label{fig:mag-weekly-bands}
 \end{figure}
@@ -154,9 +154,9 @@ Figure~\ref{fig:mag-weekly-peaks} shows frequency and amplitude fluctuations in 
 Although the coupling of the $\sim100$\,Hz peak is still well below the level that would produce excess noise in the \ac{GW} channel, its presence gives reason to be concerned that similar peaks could arise in the future that do couple significantly.
 These weekly injections would help in identifying when the coupling changed, so instrumentalists can deduce what changes to the electronics may have affected it.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{figures/noise-studies/mag-weekly-peaks.png}
+	\includegraphics[width=0.9\textwidth]{figures/noise-studies/mag-weekly-peaks.png}
 	\caption{Weekly trends in frequency (top) and amplitude (top) of peaks in the magnetic coupling functions.}
 	\label{fig:mag-weekly-peaks}
 \end{figure}
@@ -257,7 +257,7 @@ This is computed for every time-frequency pixel of a spectrogram, producing a pr
 We can then search for the highest probability within pixels that overlap a \ac{GW} transient in order to report the probability that environmental noise in the vicinity of the \ac{PEM} sensor is contaminating the signal of interest.
 This algorithm is run on every \ac{PEM} sensor with an available coupling function and the highest probability among all sensors is reported.
 
-\begin{figure}[h!]
+\begin{figure}
 	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-spectrogram1.png}
 	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-spectrogram2.png}
 	\caption
@@ -287,7 +287,7 @@ This is done by simply treating background noise in a long stretch of time befor
 Rather than re-measuring the coupling function, we can check for frequencies where projections estimate ambient coupling to exceed the \ac{GW} background, dividing the coupling function by the ratio by which it is overestimating.
 The result is a coupling function that at most projects noise at background levels.
 
-\begin{figure}[h!]
+\begin{figure}
 	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-tuning1.png}
 	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-tuning2.png}
 	\caption

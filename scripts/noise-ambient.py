@@ -14,8 +14,22 @@ VIB_LHO_PATH = os.path.join(DATA_DIR, 'ambient-vib-lho-post-o3.txt')
 VIB_LLO_PATH = os.path.join(DATA_DIR, 'ambient-vib-llo-post-o3.txt')
 MAG_LHO_PATH = os.path.join(DATA_DIR, 'ambient-mag-lho-post-o3.txt')
 MAG_LLO_PATH = os.path.join(DATA_DIR, 'ambient-mag-llo-post-o3.txt')
+JITTER_LHO_PATH = os.path.join(DATA_DIR, '../noise-jitter/new.txt')
 
 OUT_DIR = os.path.join(os.path.dirname(__file__), '../figures/noise-studies')
+
+
+def merge_jitter(full, jitter):
+    jitter = jitter[['frequency', 'ambient', 'flag']]
+    jitter.columns = ['frequency', 'jitter_amb', 'jitter_flag']
+    jitter.loc[jitter.jitter_flag == 'No data', 'jitter_amb'] = np.nan
+    full = full.merge(jitter, how='left', on='frequency')
+    is_psl = full.channel.str.contains('_PSL_')
+    which_lower = full.loc[:, ['amb', 'jitter_amb']].idxmin(axis=1)
+    use_jitter = is_psl & (which_lower == 'jitter_amb')
+    full.loc[use_jitter, ['amb', 'flag']] = full.loc[use_jitter, ['jitter_amb', 'jitter_flag']].values
+    return full
+
 
 with h5py.File(ALIGO_SENS_PATH, 'r') as f:
     aligo_sens = (f['Freq'][()], f['traces']['Total'][()])
@@ -33,6 +47,8 @@ ambient_dict = dict(
         llo=pd.read_csv(MAG_LLO_PATH)
     ),
 )
+jitter_df = pd.read_csv(JITTER_LHO_PATH, comment='#')
+ambient_dict['vib']['lho'] = merge_jitter(ambient_dict['vib']['lho'], jitter_df)
 
 colors = ['#015d8e', '#85c0f9', '#f5793a']
 
