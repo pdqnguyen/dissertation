@@ -94,14 +94,26 @@ Figure~\ref{fig:vib-48hz} shows the noise reduction in the \ac{GW} channel after
 
 \subsection{Input beam jitter}\label{sec:vib-jitter}
 
-{\color{red}
-Short discussion, summarize measurements and improvement.
-Will make sure to discuss impact of test mass defect on jitter noise.}
+Jitter noise was a dominant noise source for both detectors in the hundreds of Hertz frequency range.
+The impact was much greater at LHO than at LLO.
+Around 480\,Hz, a peak associated with jitter noise could be seen in the LHO DARM spectrum.
+It was hypothesized that the higher coupling at LHO was due to a point absorber that was identified on the Y-arm \ac{ITM}.
+Point absorbers are defects usually less than a millimeter across found in the test mass coatings.
+They are heated by the intense laser power in the Fabry-P\'erot arm cavities, deforming the test mass and increasing the cavity optical loss.
+As discussed in Section~\ref{sec:noise-sources}, such defects enhance the coupling of jitter noise since they introduce an asymmetry between the arms.
+Point absorbers can be avoided by offsetting the beam spot on the test mass, but the only perfect solution is to completely change out the test mass.
+
+In December 2020, the affected ITM was replaced with a new one, as part of the upgrades for \ac{O4}.
+Thus far no point absorbers have been found on the new test mass.
+Jitter coupling functions measured some months later show a dramatic order-of-magnitude reduction compared to the O3 results (Figure~\ref{fig:vib-jitter}).
+The ambient noise contribution is now roughly equivalent to that of LLO.
+These measurements emphasize the importance of point absorbers: the existence of one on any of the test masses enhances jitter coupling to the point where individual vibrational resonances of optic mounts on the PSL table can introduce excess DARM noise, requiring new measurements every time some part of the input optics changes.
+
 
 \begin{figure}
 	\centering
 	\includegraphics{figures/noise-studies/noise-jitter.pdf}
-	\caption{Improvement in jitter coupling at LHO between the start and end of O3.}
+	\caption{Improvement in jitter coupling at LHO after test mass replacement.}
 	\label{fig:vib-jitter}
 \end{figure}
 

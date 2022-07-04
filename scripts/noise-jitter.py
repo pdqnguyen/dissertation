@@ -47,11 +47,13 @@ def logbin_df(df, binwidth):
         i += 1 + i * (binwidth / 100.)
     freqs = logbin(df.frequency.values, bins)
     flags = logbin_flags(df.flag.values, bins)
+    factor = logbin(df.factor.values, bins)
     ambient = logbin(df.ambient.values, bins)
     darm = logbin(df.darm.values, bins)
     out = pd.DataFrame(dict(
         frequency=freqs,
         flag=flags,
+        factor=factor,
         ambient=ambient,
         darm=darm,
     ))
@@ -80,26 +82,46 @@ def main():
         new.frequency[(new.flag == 'Measured') | (new.flag == 'Upper Limit')].min()
     )
 
-    fig, ax = plt.subplots(figsize=(6, 3))
-    fig.subplots_adjust(left=0.15, bottom=0.16, right=0.97, top=0.97)
-    line_darm, = ax.plot(new.frequency.values, new.darm.values, 'k')
-    line_old_uppr, = ax.plot(old_uppr.frequency, old_uppr.ambient, 'x', alpha=0.1, label=None)
-    line_new_uppr, = ax.plot(new_uppr.frequency, new_uppr.ambient, 'x', alpha=0.1, label=None)
+    fig, ax = plt.subplots(2, 1, figsize=(6, 6))
+    fig.subplots_adjust(left=0.15, bottom=0.1, right=0.97, top=0.97)
+    line_old_uppr, = ax[0].plot(old_uppr.frequency, old_uppr.factor, 'x', alpha=0.1, label=None)
+    line_new_uppr, = ax[0].plot(new_uppr.frequency, new_uppr.factor, 'x', alpha=0.1, label=None)
     color_old = line_old_uppr.get_color()
     color_new = line_new_uppr.get_color()
-    line_old_meas, = ax.plot(old_meas.frequency, old_meas.ambient, '.', color=color_old)
-    line_new_meas, = ax.plot(new_meas.frequency, new_meas.ambient, '.', color=color_new)
-    ax.set_xscale('log')
-    ax.set_yscale('log')
-    ax.set_xlim(fmin, 1024)
-    ax.set_ylim(1e-22, 1e-18)
-    ax.set_xlabel('Frequency [Hz]')
-    # ax.set_ylabel('Jitter coupling\n[m/beam diameters]')
-    ax.set_ylabel(r'DARM $\left[\mathrm{m}/\mathrm{Hz}^{1/2}\right]$')
-    ax.grid(which='minor', axis='both', ls=':', alpha=0.6)
-    ax.grid(which='major', axis='both', ls=':')
-    ax.legend([line_darm, line_old_meas, line_new_meas], ["DARM", "Apr 2019", "May 2021"], loc='upper left')
-    plt.savefig(outfile)
+    line_old_meas, = ax[0].plot(old_meas.frequency, old_meas.factor, '.', color=color_old)
+    line_new_meas, = ax[0].plot(new_meas.frequency, new_meas.factor, '.', color=color_new)
+    ax[0].set_xscale('log')
+    ax[0].set_yscale('log')
+    ax[0].set_xlim(fmin, 1024)
+    ax[0].set_ylim(1e-16, 1e-13)
+    ax[0].set_xlabel('Frequency [Hz]')
+    ax[0].set_ylabel('Jitter coupling\n[m/beam diameters]')
+    ax[0].grid(which='minor', axis='both', ls=':', alpha=0.6)
+    ax[0].grid(which='major', axis='both', ls=':')
+    ax[0].legend(
+        [line_old_meas, line_new_meas],
+        ["During O3", "After ITMY replacement"],
+        loc='upper left',
+        framealpha=0.6
+    )
+
+    line_darm, = ax[1].plot(old.frequency.values, old.darm.values, 'k')
+    line_old_uppr, = ax[1].plot(old_uppr.frequency, old_uppr.ambient, 'x', alpha=0.1, label=None)
+    line_new_uppr, = ax[1].plot(new_uppr.frequency, new_uppr.ambient, 'x', alpha=0.1, label=None)
+    color_old = line_old_uppr.get_color()
+    color_new = line_new_uppr.get_color()
+    line_old_meas, = ax[1].plot(old_meas.frequency, old_meas.ambient, '.', color=color_old)
+    line_new_meas, = ax[1].plot(new_meas.frequency, new_meas.ambient, '.', color=color_new)
+    ax[1].set_xscale('log')
+    ax[1].set_yscale('log')
+    ax[1].set_xlim(fmin, 1024)
+    ax[1].set_ylim(1e-22, 1e-18)
+    ax[1].set_xlabel('Frequency [Hz]')
+    ax[1].set_ylabel(r'DARM $\left[\mathrm{m}/\sqrt{\mathrm{Hz}}\right]$')
+    ax[1].grid(which='minor', axis='both', ls=':', alpha=0.6)
+    ax[1].grid(which='major', axis='both', ls=':')
+    ax[1].legend([line_darm], ["DARM"], loc='upper left', framealpha=0.6)
+    fig.savefig(outfile)
     return
 
 
