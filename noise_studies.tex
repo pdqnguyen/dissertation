@@ -16,11 +16,64 @@ Of course, one could do this by applying coupling functions to a set of ``test''
 Furthermore, since the intention of the coupling functions is to estimate the impact of noise signals originating from a broad variety of sources, it make sense to use non-laboratory signals when evaluating coupling estimates.
 Therefore, we use noise events not produced by injection equipment to evaluate how accurately the coupling functions recover the actual excess noise observed in the \ac{GW} strain data.
 
-Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz.
-At \ac{LLO}, coupling functions for several accelerometers at the Y end station, where vibrational coupling was the highest, are capable of estimating the amplitude of multiple noise transients to within a factor two during a particularly loud thunderstorm~\citep{alog_thunder}.
+Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz by exciting vibrational coupling associated with scattered light.
+S190510g, a long-duratioon GW trigger observed while a thunderstorm was underway at LLO, overlapped many such noise artifacts throughout its 255-s time span.
+We can rule out any astrophysical origins for these signals: they are observed by accelerometers at all stations with reasonable delays for sound propagation, they sound like thunder on the microphone channels, and they have the right frequency content and duration. One of the loud events was alsoconsistent with the time put in by an operator for a loud thunder clap.
+Figure~\ref{fig:evaluation-thunder} shows constant-Q transforms of one of these thunder noises as seen in the LLO strain channel as well as one of the End-Y accelerometers, where scattered light coupling was a dominant noise source.
+Coupling functions for this accelerometer and several others at the End-Y station, are capable of estimating the amplitude of multiple noise transients to within a factor two during a particularly loud thunderstorm~\citep{alog_thunder}.
 
-Helicopter flyovers can produce narrow-band features up to tens of seconds long.
-Coupling functions of various sensors at both observatories can predict the amplitudes of lines produced by multiple helicopter flyovers during O3 to within a factor of two in most cases~\citep{alog_helicopter}.
+\begin{figure}
+	\includegraphics[width=0.49\textwidth]{figures/noise-studies/evaluation-thunder-strain.png}
+	\includegraphics[width=0.49\textwidth]{figures/noise-studies/evaluation-thunder-acc.png}
+	\caption{Constant-Q transforms of the GW strain channel (left) and an accelerometer (right) during thunder noise at LLO.}
+	\label{fig:evaluation-thunder}
+\end{figure}
+
+Helicopter flyovers can produce narrow-band features up to tens of seconds long at harmonics of the main helicopter rotor frequency.
+These are reported by site operators if they are loud enough to be heard even within the observatory buildings.
+At each site, three flyovers were reporting during O3.
+Table~\ref{tab:evaluation-helicopter} presents the noise estimates from coupling functions for various sensors during these events~\citep{alog_helicopter}.
+One of the events at LLO was omitted because no excess noise was visible in DARM spectrograms.
+For each flyover, the sensor with the highest projection in DARM is reported.
+The last column shows the ratio between the estimated projection amplitude and the actual amplitude, confirming that coupling functions can predict the amplitudes of lines produced by helicopter flyovers to within a factor of two in most cases.
+
+\begin{table}
+	\caption{\label{tab:evaluation-helicopter}
+	Noise projections for five helicopter flyovers at the LIGO detectors.}
+	\begin{tabular}{|c c c c|}
+		\hline
+		& Frequency & Channel & Estimated noise / \\
+		& [Hz] & & Actual noise \\
+		\hline
+		\multicolumn{4}{|c|}{Observatory: LHO \hskip 2em Time: 2019-05-09 21:30 UTC}\\
+		\hline
+		& 27 & \verb|H1:PEM-CS_ACC_HAM6_OMC_Y_DQ| & 0.7 \\
+		& 27 & \verb|H1:PEM-EY_ACC_BSC10_ETMY_X_DQ| & 0.5 (upper limit) \\
+		& 90-100 & \verb|H1:PEM-CS_ACC_HAM6_OMC_X_DQ| & 0.8 \\
+		& 90-100 & \verb|H1:PEM-EY_ACC_BSC10_ETMY_X_DQ| & 0.8 (upper limit) \\
+		\hline
+		\multicolumn{4}{|c|}{Observatory: LHO \hskip 2em Time: 2019-05-21 03:11 UTC}\\
+		\hline
+		& 26 & \verb|H1:PEM-CS_ACC_HAM6_OMC_Y_DQ| & 0.4 \\
+		& 39 & \verb|H1:PEM-CS_ACC_HAM6_OMC_Y_DQ| & 1.4 \\
+		& 52 & \verb|H1:PEM-CS_ACC_HAM6_OMC_X_DQ| & 0.3 \\
+		& 75 & \verb|H1:PEM-CS_ACC_HAM6_OMC_X_DQ| & 0.4 \\
+		\hline
+		\multicolumn{4}{|c|}{Observatory: LHO \hskip 5em Time: 2019-06-08 17:24 UTC}\\
+		\hline
+		& 33-40 & \verb|H1:PEM-CS_ACC_HAM6VAC_SEPTUM_Y_DQ| & 1.8 \\
+		\hline
+		\multicolumn{4}{|c|}{Observatory: LLO \hskip 5em Time: 2019-09-02 17:34 UTC}\\
+		\hline
+		& 70-80 & \verb|L1:PEM-CS_ACC_HAM6_OMC_X_DQ| & 2 \\
+		\hline
+		\multicolumn{4}{|c|}{Observatory: LLO \hskip 5em Time: 2020-01-22 22:25 UTC}\\
+		\hline
+		& 40-44 & \verb|L1:PEM-CS_ACC_HAM6_OMC_X_DQ| & 0.6 \\
+		& 90-95 & \verb|L1:PEM-CS_ACC_HAM6VAC_SEPTUM_Y_DQ| & 1.8 \\
+		\hline
+	\end{tabular}
+\end{table}
 
 Long-duration noise due to vibrations from rain and the building \ac{HVAC} is also well characterized by coupling functions at \ac{LHO}~\citep{alog_rain, alog_hvac_coupling}.
 
@@ -29,8 +82,12 @@ Long-duration noise due to vibrations from rain and the building \ac{HVAC} is al
 \begin{figure}
 	\centering
 	\includegraphics{figures/noise-studies/vib-ambient.pdf}
-	\caption{
-		Ambient estimate of vibrational noise levels at LHO (top) and LLO (bottom).}
+	\caption
+	[DARM noise from all \textit{vibrational} coupling sources at LHO (top) and LLO (bottom).]
+	{DARM noise from all \textit{vibrational} coupling sources at LHO (top) and LLO (bottom).
+	 Dark blue dots represent measurements, while light blue dots represent upper limits.
+	 The black and orange curves show the O3 sensitivity and design sensitivity, respectively.
+	 }
 	\label{fig:vib-ambient}
 \end{figure}
 
@@ -122,8 +179,12 @@ These measurements emphasize the importance of point absorbers: the existence of
 \begin{figure}
 	\centering
 	\includegraphics{figures/noise-studies/mag-ambient.pdf}
-	\caption{
-		Ambient estimate of magnetic noise levels at LHO (top) and LLO (bottom).}
+	\caption
+	[DARM noise from all \textit{magnetic} coupling sources at LHO (top) and LLO (bottom).]
+	{DARM noise from all \textit{magnetic} coupling sources at LHO (top) and LLO (bottom).
+	 Dark blue dots represent measurements, while light blue dots represent upper limits.
+	 The black and orange curves show the O3 sensitivity and design sensitivity, respectively.
+	 }
 	\label{fig:mag-ambient}
 \end{figure}
 
