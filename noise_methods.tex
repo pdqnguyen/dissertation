@@ -509,29 +509,14 @@ Paragraph or two on the CF calculation step.}
 For each $\mathcal{C}_{ij}(f)$, the data are saved in the following forms:
 \begin{enumerate}
 	\item comma-separated text file consisting of coupling measurements, flags, and raw spectra
-	\item plot of the  raw coupling function (units of meters per analog-to-digital counts)
 	\item plot of the coupling function in physical units (meters per calibrated sensor unit, e.g. Tesla for magnetometers)
+	\item plot of the  raw coupling function (units of meters per analog-to-digital counts)
 	\item figure containing two subplots: one showing the background and injection spectra of the auxiliary sensor, and one showing the background and injection spectra of the \ac{GW} strain data and the estimated environmental noise projection.
 \end{enumerate}
 
-\begin{table}\label{tab:pemcoupling-format}
-	\renewcommand{\arraystretch}{1.5}
-	\begin{tabular}{|ll|}
-		\hline
-		\multicolumn{1}{|l}{\textbf{column}} & \multicolumn{1}{l|}{\textbf{description}}\\ \hline
-		\code{frequency}      & bin center frequency {[}Hz{]}\\
-		\code{factor}         & coupling factor in {[}m/calibrated sensor unit{]}\\
-		\code{factor\_counts} & coupling factor in {[}m/ADC count{]}\\
-		\code{flag}           & ``Measured", ``Upper Limit", ``Thresholds not met", or ``No data"\\
-		\code{sensINJ}        & sensor amplitude at injection time {[}calibrated sensor unit$/\rthz${]}\\
-		\code{sensBG}         & sensor amplitude at background time {[}calibrated sensor unit$/\rthz${]}\\
-		\code{darmINJ}        & \ac{GW} channel amplitude at injection time $[\meter/\rthz]$\\
-		\code{darmBG}         & \ac{GW} channel amplitude at background time $[\meter/\rthz]$\\ \hline
-	\end{tabular}
-	\caption{Column descriptions for the single-injection coupling function output of the \pemcoupling package.}
-\end{table}
-
 Post-processing, to aggregate single-injection coupling functions into coupling functions, and produce site-wide coupling plots, is done via additional commands, \code{pemcoupling-composite} and \code{pemcoupling-summary}.
+
+See Appendix~\ref{app:pemcoupling} for examples of figures produced by the \pemcoupling code.
 
 {\color{red}
 Expand on these final steps a bit.}

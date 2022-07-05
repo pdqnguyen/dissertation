@@ -1,0 +1,119 @@
+\appendix
+
+% Changes the table and figure counting to A.1 style
+\renewcommand\thefigure{\thechapter.\arabic{figure}}
+\renewcommand\thetable{\thechapter.\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+\chapter{PEMcoupling examples}\label{app:pemcoupling}
+
+This appendix presents examples of files produced by the \pemcoupling package to give readers some guidance on interpreting the outputs.
+
+There are two types of figures produced by \pemcoupling at the single-injection, single-sensor level: a coupling function plot and an estimated ambient plot.
+Coupling function plots are produced in the physical, calibrated, sensor units (Figure~\ref{fig:pemcoupling-cf-physical}), as well as in raw counts (Figure~\ref{fig:pemcoupling-cf-raw}).
+In the former case the units will look like [m/T] for magnetometers, while in the latter the units are [m/counts], regardless of sensor type.
+Estimated ambients are always shown in calibrated units (Figure~\ref{fig:pemcoupling-cf-ambient}).
+Table~\ref{tab:pemcoupling-format} summarizes the contents of the output ASCII data output file.
+The data will be preceded by a commented line (starting with a \code{\#} character) denoting the comb fundamental frequency if the injection was a comb injection, e.g. \code{\#combfreq:7.10}.
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-cf-physical}
+\end{figure}
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-cf-raw}
+\end{figure}
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-cf-ambient}
+\end{figure}
+
+\begin{table}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|ll|}
+		\hline
+		\multicolumn{1}{|l}{\textbf{column}} & \multicolumn{1}{l|}{\textbf{description}}\\ \hline
+		\code{frequency}      & bin center frequency {[}Hz{]}\\
+		\code{factor}         & coupling factor in {[}m/calibrated sensor unit{]}\\
+		\code{factor\_counts} & coupling factor in {[}m/ADC count{]}\\
+		\code{flag}           & ``Measured", ``Upper Limit", ``Thresholds not met", or ``No data"\\
+		\code{sensINJ}        & sensor amplitude at injection time {[}calibrated sensor unit$/\rthz${]}\\
+		\code{sensBG}         & sensor amplitude at background time {[}calibrated sensor unit$/\rthz${]}\\
+		\code{darmINJ}        & \ac{GW} channel amplitude at injection time $[\meter/\rthz]$\\
+		\code{darmBG}         & \ac{GW} channel amplitude at background time $[\meter/\rthz]$\\ \hline
+	\end{tabular}
+	\caption{Column descriptions for the single-injection coupling function output of the \pemcoupling package.}
+  \label{tab:pemcoupling-format}
+\end{table}
+
+Figures for composite coupling functions produced by \pemcoupling follow the same organization: a physical coupling function (with colors representing different injections, Figure~\ref{fig:pemcoupling-ccf-physical}), a raw coupling function (Figure~\ref{fig:pemcoupling-ccf-raw}), and an estimated ambient. (Figure~\ref{fig:pemcoupling-ccf-ambient}).
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-ccf-physical}
+\end{figure}
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-ccf-raw}
+\end{figure}
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-ccf-ambient}
+\end{figure}
+
+Lastly I include examples of the coupling function (Figures~\ref{fig:pemcoupling-sitewide-physical} and~\ref{fig:pemcoupling-sitewide-raw}) and estimated ambient (Figure~\ref{fig:pemcoupling-sitewide-ambient}) plots.
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-sitewide-physical}
+\end{figure}
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-sitewide-raw}
+\end{figure}
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcoupling-sitewide-ambient}
+\end{figure}
+
+
+% Restart counting to B.1, B.2...
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+\chapter{PEMcheck examples}\label{app:pemcheck}
+
+This appendix presents screenshots of \code{pemcheck} output pages tested on GW events and environmental noise transients.
+
+\begin{figure}
+  \centering
+  % \includegraphics[width=\textwidth]{/path/to/figure}
+  \caption{}
+  \label{fig:pemcheck-GW190510g}
+\end{figure}
