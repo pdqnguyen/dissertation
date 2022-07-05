@@ -365,7 +365,16 @@ The \ac{PEM} website provides coupling functions for all accelerometers, microph
 	\label{fig:cf-composite}
 \end{figure}
 
+Once enough injections are performed and reliable coupling functions are measured for the complete array of PEM sensor, the results from all sensors for a single coupling type are aggregated once more, into a single \textit{site-wide} coupling function.
+A site-wide coupling function is produced for each coupling type and interferometer: vibrational noise at LHO, magnetic noise at LHO, vibrational noise at LLO, and magnetic noise at LLO.
+These are made by choosing, in each frequency bin, the highest coupling value across all sensors.
+This aggregation method can be applied to the estimated ambients as well, picking the highest ambient noise estimated by all sensors.
+The site-wide estimated ambient is usually more useful, as it summarizes the coupling mechanisms that affect the interferometer the most, with the sensor chosen in each frequency bin indicating the rough location of the dominant coupling site at that frequency.
+These site-wide estimated ambients represent the environmental noise budget of the LIGO detectors and are therefore the primary data products of an extensive injection campaigns.
+
+
 \section{Uncertainties and limitations of coupling functions}\label{sec:uncertainties}
+
 
 \subsection{Comparison to transfer functions}
 
@@ -373,6 +382,7 @@ Environmental coupling is characterized using coupling functions instead of tran
 Low coherence can arise either due to non-linearity in the coupling or due to the spacing between the sensor and coupling site.
 On a superficial level, a coupling function lacks a phase response component, representing only the magnitude response in the system.
 Coupling functions also differ fundamentally from transfer functions in the sense that they do not assume the input signal to be the true actuation signal, but rather merely a witness of the actuation, while the actuation is in fact occurring at the location of the true coupling site.
+
 
 \subsection{Assumptions about coupling mechanisms}
 
@@ -385,6 +395,7 @@ One way to check for non-linear coupling is by sweeping single frequency injecti
 Frequency changes from non-linear coupling can be an issue in broadband injections where up- or down-converted noise in the interferometer readout appears in the injection band, resulting in artificially higher estimates at those frequencies.
 We split broadband injections into smaller frequency bands to avoid this effect when necessary.
 One approach for quantifying non-linear coupling is presented in \citet{Washimi_2020}.
+
 
 \subsection{Hardware limitations}\label{sec:uncertainties-hardware}
 
@@ -461,6 +472,7 @@ On the other hand, smoothing of spectra can also result in less accurate couplin
 For accelerometer spectra, analyzing injections with various smoothing parameters show that a logarithmically-scaled window which is \XX\,Hz wide at 100\,Hz and \XX\,Hz wide at 1000\,Hz best satisfy these constraints.
 Since microphones are much more sensitive to nodal artifacts while being less sensitive to narrow mechanical resonances (they would have to be strong enough to produce audible signals), their spectra can be smoothed much more aggressively: a logarithmically-scaled window is used which is 15\,Hz wide at 100\,Hz and 150\,Hz wide at 1000\,Hz.
 
+
 \section{The {\fontfamily{pcr}\selectfont pemcoupling}\xspace package}
 \label{sec:pemcoupling}
 
@@ -469,11 +481,6 @@ This section covers the technical details of the \pemcoupling python package~\ci
 The package uses the \code{gwpy} library for fetching raw time series data and producing \acp{ASD} of the \ac{GW} strain channel and auxiliary channels from user-provided background and injection times.
 
 \subsection{Processing steps}
-
-{\color{red}
-This subsection is quite messy.
-The confusion comes from talking about different sensors at different steps.
-I think I could try splitting it by sensor type, like list all steps for accelerometers and microphones, then all steps for magnetometers.}
 
 A number of pre-processing steps are performed to condition the data for analysis.
 First, the auxiliary channel time series are examined for evidence of saturation.
@@ -485,24 +492,35 @@ In either case, intermodulation distortion occurs, generating peaks at sums and 
 If the saturation is occurring at the actuator, the measured coupling is still accurate, but upper limits are higher due to the reduced signal power.
 On the other hand, sensor saturation results in inaccurate coupling measurements, because the line amplitudes no longer reflect the true magnetic signal at the sensor location.
 
-Accelerometers can saturate in the presence of broadband vibrational injections.
-This results in artificial broadband noise in the amplitude spectra.
+During vibrational injections, the high number of accelerometers means it is often possible that the nearest ones saturate.
+This results in artificial white noise in the amplitude spectra.
 The consequence is measuring a lower coupling function at frequencies where the saturation artifact dominates.
+For most accelerometers, the highest background noise levels are observed in the hundreds of Hertz, so usually accelerometer saturation mainly affects measurements at the quieter low frequencies.
+In more extreme cases that affect the entire spectrum, distinguish between real signals and artificial saturation noise is not feasible, so no reliable measurements can be made at all.
 
-For these reasons, coupling functions are only measured for sensors that do not exceed 32,000 counts, as this is the sign of sensor saturation.
+To avoid these negative effects, coupling functions are only measured for sensors whose time series do not exceed 32,000 \ac{ADC} counts in absolute amplitude, close to the maximum amplitude of the raw sensor data processed by the data acquisition system.
 
-Once the time series are converted to \acp{ASD}, triaxial magnetometer channels are combined in quadrature.
+Once the valid time series have been selected, they are converted to \acp{ASD}.
+At this point, triaxial magnetometer channels are combined in quadrature.
 Each magnetometer measures the $x$, $y$, and $z$ components of its local magnetic field independently.
-An artificial channel is produced to represent the absolute magnitude of the field.
+The directions of magnetic signals are not important to coupling, however.
+Instead we are concerned with the absolute magnitude of the field.
+Thus, a new channel is produced by summing the ASDs of the individual components in quadrature.
+Note that when measuring coupling using the field magnitude in the frequency domain the quadrature sum has to be performed in the frequency domain, not the time domain prior to Fourier transforming.
+This is because there may be DC offsets to the raw time series, which are removed when taking the Fourier transform of the signals.
+The quadrature sum of two time domain signals with DC offsets, on the other hand, will have cross-terms between the DC offset component and the AC components.
 
 All \ac{PEM} channels have accompanying calibration measurements~\citep{PEM_website}. Calibration for microphones and magnetometers is simply a constant conversion of Pa/count or T/count, respectively.
-Accelerometer \acp{ASD} are converted to acceleration ($\mathrm{m/s^2}$), then to displacement ($\meter$) by dividing each bin by $(2\pi f)^2$ where $f$ is the bin frequency.
+Accelerometer \acp{ASD} are calibrated to acceleration units ($\mathrm{m/s^2}$); additionally, they are converted to displacement ($\meter$) by dividing each bin by $(2\pi f)^2$ where $f$ is the bin frequency.
+The calibration factors for all sensors are not always constant with respect to frequency, but coupling measurements are always in the range where they are.
 
 For acoustic injections, spectral smoothing is applied at this point, in order to suppress nodal artifacts as explained in Section~\ref{sec:uncertainties-hardware}.
-Finally, the single-injection coupling functions $\mathcal{C}_{ij}(f)$ and upper limits $\mathcal{C}_{ul}(f)$ are measured as in~\cref{eq:sicf}.
+A ``boxcar'' smoothing window is used: at each frequency bin, we average the values within the range $(f - \Delta f, f + \Delta f)$, where $\Delta f$ is the smoothing window that itself is frequency-dependent when performing logarithmic smoothing.
 
-{\color{red}
-Paragraph or two on the CF calculation step.}
+Finally, the single-injection coupling functions and upper limits are measured as in~\crefrange{eq:sicf}{eq:sinull}.
+For comb or line injections, user input defines the frequencies to analyze and the width, in Hz, of the frequency-domain window around each frequency to analyze.
+If there is more than one bin in each search window, as is usually the case given the high frequency resolution we use to analyze narrowband injections, only the highest coupling computed from among the bins is kept so that each line produces one measurement or upper limit.
+
 
 \subsection{Data products}
 
@@ -514,9 +532,11 @@ For each $\mathcal{C}_{ij}(f)$, the data are saved in the following forms:
 	\item figure containing two subplots: one showing the background and injection spectra of the auxiliary sensor, and one showing the background and injection spectra of the \ac{GW} strain data and the estimated environmental noise projection.
 \end{enumerate}
 
-Post-processing, to aggregate single-injection coupling functions into coupling functions, and produce site-wide coupling plots, is done via additional commands, \code{pemcoupling-composite} and \code{pemcoupling-summary}.
+Post-processing, to aggregate single-injection coupling functions into coupling functions, is done with the \code{pemcoupling-composite} command.
+For each sensor, the composite coupling code takes all coupling functions measured and builds a new one using the nearest-sensor (highest-amplitude) method.
+For sensors for which the coupling functions are measured from comb injections, i.e. magnetometers, again a frequency search window around each line frequency is used to check for coupling measurements within the windows, as opposed to processing all bins individually.
+
+Lastly, the composite coupling functions are combined to produce the site-wide results using the \code{pemcoupling-summary} command.
+The site-wide coupling plots are produced in two ways: by taking the sensor with the highest coupling value in each bin, and by taking the sensor with the highest estimated ambient value in each bin.
 
 See Appendix~\ref{app:pemcoupling} for examples of figures produced by the \pemcoupling code.
-
-{\color{red}
-Expand on these final steps a bit.}
