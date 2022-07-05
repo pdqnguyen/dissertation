@@ -11,15 +11,10 @@ A multitude of models have been proposed throughout the decades to explain the o
 
 Photometry and spectroscopy data provide evidence that long \acp{GRB} originate from \acp{CCSN}, whereas short \acp{GRB} are believed to be associated with compact binary mergers, such as the \ac{BNS} merger GW170817~\citep{gw170817_grb}.
 
-In the case of long \acp{GRB}, some models predict the emission of \acp{GW} as a result of asymmetries in the core-collapse phase.
-Such \acp{GW} would be short, lasting less than a second.
-Extreme emission models predict a wide variety of signals, often longer in duration.
-Matter surrounding the remnant of a \ac{CCSN} forms an accretion disk, in which turbulent behavior can arise.
-For instance, instabilities in the accretion disk can lead to the formation of a clump of matter which can then migrate inwards, shedding angular momentum in the form of gravitational waves.
 
-\section{GW searches}\label{sec:grb-searches}
+\subsection{Short gamma-ray bursts}
 
-In 2017, the first binary neutron star merger GW170817 was detected by advanced LIGO and Virgo, immediately accompanied by the detection of a relatively low-luminosity gamma-ray burst GRB170817A by Fermi \ac{GBM} two seconds later~\citep{gw170817}.
+In 2017, the first binary neutron star merger GW170817 was detected by advanced LIGO and Virgo, immediately accompanied by the detection of a relatively low-luminosity, short gamma-ray burst GRB170817A by Fermi \ac{GBM} two seconds later~\citep{gw170817}.
 This prompted a global effort to find an optical, UV, and infrared counterpart that would make up the signature of a kilonova.
 The localization provided by the joint detection was sufficient to locate a counterpart near NGC 4993.
 
@@ -49,16 +44,33 @@ These observations instead favored a wide-angled, structured jet model for GRB17
 A structured jet model may refer to any luminosity function that decreases gradually with $\theta_{\mathrm{obs}}$ rather than abruptly, e.g. a Gaussian or power-law with uniform center.
 One mechanism that would explain such a model is a cocoon emission, in which the relativistic jet interacts dissipatively with the surrounding merger ejecta, depositing its energy into a cocoon fireball that results in a structured jet~\citep{gw170817_grb}.
 
-{\color{red}Discuss other lessons learned from GW170817 kilonova.}
 
-{\color{red}Motivate using a targeted search: justify w/ astrophysics and better sensitivity.}
+\subsection{Long gamma-ray bursts}
+
+In the case of long \acp{GRB}, some models predict the emission of \acp{GW} as a result of asymmetries in the core-collapse phase.
+Such \acp{GW} would be short, lasting less than a second.
+Extreme emission models predict a wide variety of signals, often longer in duration.
+Matter surrounding the remnant of a \ac{CCSN} forms an accretion disk, in which turbulent behavior can arise.
+For instance, instabilities in the accretion disk can lead to the formation of a clump of matter which can then migrate inwards, shedding angular momentum in the form of gravitational waves~\citep{Piro_2007}.
+Disk fragments are eventually torn apart by tidal disruption as they get too close to the central black hole, placing a maximum limit on the duration of potential GW emissions.
+
+In an even more extreme scenario, two clumps could form as compact objects that merge within the disk, producing a CBC-like chirp~\citep{vanPutten_2001, vanPutten_2004}.
+
+Accretion disk instability models are particular interesting due to their potential connection to X-ray flares.
+Many GRBs exhibit a diverse range of X-ray flaring behavior that could be attributed to disk fragments falling in at different times after the formation of the central black hole~\citep{Dallosso_2017}.
+
+Some long GRBs may even originate from compact mergers: some short GRBs have been observed to exhibit extended emissions that can last much longer than the initial short GRB impulse~\citep{Norris_2006, vanPutten_2014}.
+These, too, may be associated with X-ray flaring~\citep{Mu_2018}.
+
+
+\section{GW searches}\label{sec:grb-searches}
 
 The \ac{LIGO}-Virgo collaboration searches for gravitational waves associated with \acp{GRB} detected by Fermi \ac{GBM} and Swift \ac{BAT} using two analyses: a template-based matched-filter search using the \pygrb pipeline and a generic transient search using \xpip.
 The \pygrb pipeline is used for analyzing short and ambiguous \acp{GRB}, while \xpip is used for all \acp{GRB}, short, ambiguous or long.
 The \acp{GRB} sample for a LIGO-Virgo observing run is collected from the Fermi and Swift \ac{GRB} catalogs, and the best sky localization and timing information is used.
 The \ac{GRB} classifications are determined based on $T_{90}$ (and their associated $\delta T_{90}$), the time interval over which 90\% of the total background-subtracted photon counts are observed by the reporting \ac{GRB} detector.
 \Acp{GRB} are considered short if $T_{90} + \abs{\delta T_{90}} < 2\,\text{s}$, long if $T_{90} - \abs{\delta T_{90}} > 4\,\text{s}$, and ambiguous if they lie in between.
-In particular, it does not account for short GRBs that are followed by periods of extended emission~\citep{Norris_2006, vanPutten_2014}, for which measures of $T_{90}$ may substantially exceed these thresholds.
+In particular, it does not account for short GRBs that are followed by periods of extended emissio, for which measures of $T_{90}$ may substantially exceed these thresholds.
 For more robust classification one must also consider spectral properties, most commonly the spectral hardness or peak energy of the event, but since our sample consists of observations from multiple observatories with different spectral sensitivities we do not employ such quantities when organizing our sample.
 
 \subsection{X-Pipeline}\label{sec:grb-x}
