@@ -154,14 +154,14 @@ Analogous to the Lorenz gauge choice in electromagnetism, we assert the conditio
 \begin{equation}
 	\Box \xi_{\beta} = \partial_{\mu} \Bar{h}^{\mu}_{\beta}.
 \end{equation}
-Indeed solutions to this exists, therefore we are safe to make the gauge transformation.
+Indeed solutions to this exist, therefore we are safe to make the gauge transformation.
 The Lorenz gauge condition is chosen because it results in the divergence terms (all but the $\Box$ term) of \cref{eq:gr-einstein-lin} vanish.
 In doing so, we reduce the linearized Einstein field equations to simply
 \begin{equation}\label{eq:gr-linear}
 	-\Box \Bar{h}_{\mu\nu} + \order{h^2} = \frac{16\pi G}{c^4} T_{\mu\nu}.
 \end{equation}
 
-In the Newtonian (slowly-varying) limit, the D'Alembertian operator becomes a spatial Laplace operator, and it can be shown that the trace-reversed perturbation reduces to the Newtonian gravitational potential $\Phi$ and the energy-momentum tensor reduces to just the mass density, recovering the Poisson equation for Newtonian gravity: $\nabla^2\Phi = 4\pi G\rho$.
+In the Newtonian (slowly-varying) limit, the D'Alembertian operator becomes a spatial Laplace operator, and it can be shown~\citep{Creighton_2011} that the trace-reversed perturbation reduces to the Newtonian gravitational potential $\Phi$ and the energy-momentum tensor reduces to just the mass density, recovering the Poisson equation for Newtonian gravity: $\nabla^2\Phi = 4\pi G\rho$.
 
 
 \subsection{Gravitational wave solutions}
@@ -244,7 +244,7 @@ Clearly much higher masses and rotational speeds are needed to produce observabl
 \subsection{Compact binary mergers}
 
 Consider a binary system of massive, compact objects $m_1$ and $m_2$ (with total mass $M = m_1 + m_2$), orbiting about their common center of mass.
-These could be neutron stars, black holes, or white dwarf stars.
+The most compact examples are \ac{BBH}, \ac{BNS}, and \ac{NSBH} binaries.
 For most of its lifetime, the binary generates continuous \acp{GW} at a frequency twice the orbital frequency $\omega$:
 \begin{align}
 	\label{eq:gw-cbc-hplus}
@@ -259,7 +259,7 @@ It turns out that this time-evolution scales quite dramatically:
 	\dot{f}_{\textrm{GW}} = \frac{96}{5}\pi^{8/3} \left(\frac{G \mathcal{M}}{c^3}\right)^{5/3} (f_{\textrm{GW}})^{11/3}
 \end{equation}
 where $\mathcal{M} \equiv \mu^{3/5} M^{2/5}$ is called the chirp mass.
-The coalescence of the two objects therefore creates a distinct \ac{GW} signature, characterized by a relatively short-duration ($\lesssim$1\,s for \acp{BBH}, tens to hundreds of seconds for \acp{NSBH} and \acp{BNS}), high frequency ($\sim$10-1000\,Hz) chirp.
+The coalescence of the two objects therefore creates a distinct \ac{GW} signature, characterized by a relatively short-duration ($\lesssim$1\,s for \acp{BBH}, tens to hundreds of seconds for \acp{NSBH} and \acp{BNS}) upwards sweep in frequency (from tens to hundreds of Hertz) and amplitude, known as a \textit{chirp} signal.
 The characteristic GW amplitude is:
 \begin{equation}\label{eq:gw-cbc-h0}
 	h_0 = 2.6 \times 10^{-23} \left( \frac{\mathcal{M}}{\msol} \right)^{5/3} \left( \frac{f_{\mathrm{GW}}}{100\,\mathrm{Hz}} \right)^{2/3} \left( \frac{r}{100\,\mathrm{Mpc}} \right)^{-1}.
@@ -339,7 +339,8 @@ At cosmological distances, relic gravitational waves from the very early univers
 
 \section{Multi-messenger astronomy}\label{sec:mma}
 
-In addition to being the first ever detection of a merger between two neutron stars, GW170817 ushered forth a new era of astronomy, making history as the first astronomical event observed by both gravitational waves and electromagnetic waves.
+In addition to being the first ever detection of a merger between two neutron stars, GW170817 made history as the first astronomical event observed by both gravitational waves and electromagnetic waves.
+This was a major step forward for the field of multi-messenger astronomy, in which the only joint detection until then was that of SN 1987A by electromagnetic and neutrino observatories~\citep{Hirata_1987, Bionta_1987, Alekseev_1988}.
 The combined localization of the LIGO-Virgo network and Fermi-GBM prompted a world-wide follow-up campaign from observatories across the electromagnetic spectrum.
 This led to identification of an optical counterpart near NGC 4993, which in turn allowed astronomers to make the first confirmed observation of a kilonova, the multi-band emission of electromagnetic waves resulting from the radioactive decay of r-process material formed and ejected in all directions by the merger.
 
@@ -349,6 +350,7 @@ A mass ratio between the black hole and the neutron star is not too unequal, due
 
 Whereas the GRBs associated with \acp{CBC} are believed to be those classified as \textit{short}, GRBs classified as \textit{long} are believed to come from \acp{CCSN}, which as discussed above have many models predicting GW emission.
 The majority (about 70\%) of GRBs are long GRBs, so although the expected GW amplitudes are quite weak they present an abundance of electromagnetic sources that each hold the potential of a GW counterpart.
-Since these events also are expected to emit neutrinos, they present the most likely candidates for a joint detection between all three branches of multi-messenger astronomy: GW interferometers, EM telescopes, and neutrino detectors.
+Since these events also are expected to emit neutrinos, and neutrinos have been observed from one nearby supernova, SN 1987A, marking the first joint detection between EM and neutrino observatories.
+Another nearby supernova would be the most likely candidate for a joint detection between all three branches of multi-messenger astronomy: GWs, EM waves, and neutrinos.
 
 There is clearly much to be gained by using the time and sky localizations of GRB observatories to conduct \textit{targeted} searches for GW signals that can be much more sensitive than the uninformed all-sky searches.
