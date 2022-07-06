@@ -2,15 +2,28 @@
 
 Noise plays a profound role in the field of gravitational wave astronomy.
 Understanding how the many sources of noise affect the sensitivity and data quality of the LIGO detectors is crucial to improving our ability to detect astrophysical signals.
-Even in the absence of detections, having better sensitivity allows us to make stronger constraints on models of gravitational wave emission.
+Even in the absence of detections, having better sensitivity allows us to make stronger constraints on models of GW emission.
 
 In this dissertation I have summarized my contributions to the characterization various vibrational and magnetic noise sources.
 I have presented methods for measuring coupling functions, and produced noise budgets representing their effects on both of the LIGO detectors.
-The vibrational noise budgets have shown that scattering noise is a dominant issue in the detection band of both interferometers.
-The magnetic noise budgets have shown that coupling in the detection band can arise and shift in frequency and amplitude due to changes in hardware around the detectors.
+The vibrational noise budgets have shown that scattering noise is a dominant issue in the detection band of both interferometers, influencing future plans for mitigating stray light beams in O4 and beyond.
+Through the magnetic noise budgets we have seen that coupling in the detection band can arise and shift in frequency and amplitude due to changes in hardware around the detectors.
 Our newly implemented software and hardware infrastructure for making routine magnetic field injections will allow careful monitoring of these changes.
+At low frequencies, the magnetic noise budgets also suggest that coupling via permanent magnets may become an issue once more in the future, as LIGO comes closer to design sensitivity.
 
 These coupling functions measured for individual sensors have also been essential in developing an automated event validation system for GW candidates.
-Excess noise estimates computed from coupling functions have allowed us to quantitatively confirm that environmental signals did not account for any of the gravitational wave detections made by the LIGO collaboration in the third observing run.
+Excess noise estimates computed from coupling functions have allowed us to quantitatively confirm that environmental signals did not account for any of the GW detections made by the LIGO collaboration in the third observing run.
 The pipeline for O4 has been expanded to incorporate time-frequency information of a GW event and the local background noise of the environmental sensors to produce p-values representing the statistical significance of noise transients overlapping the event.
 As the rate of detections continues to increase in the coming years, innovations like these will only become more important, especially if we detect phenomena that have yet to be observed by GW detectors, such as core-collapse supernovae.
+
+The search for GWs associated with GRBs during O3 yielded no new joint detections.
+However, we set new upper limit exclusion distances on both short and long duration GW emission models.
+The \xpip analysis in O3b was able to exclude the existence of GW emissions up to 140\,Mpc for the most extreme accretion disk instability waveform (ADI-B), and up to 166\,Mpc for the lowest-frequency sine-Gaussian waveform.
+These upper limits are far better than the ones set in the O3a search.
+We showed that the improvements were attributable to both software-based noise subtraction, as well as reductions in transient scattered light noise.
+
+Although much can still be done to develop better astrophysical search pipelines, this dissertation has shown that achieving the scientific goals of the LIGO collaboration requires dedicated studies of noise sources and their impacts on GW searches.
+The methods for characterizing environmental noise and validating GW events are relevant to any ground-based interferometer.
+LIGO has already been joined by collaborators at Virgo in Italy and KAGRA in Japan, who have incorporated some of our methods in developing their own noise monitoring systems.
+LIGO India, although still in its planning phase will hopefully find this work helpful as well.
+Looking forward, the planned next-generation detector Cosmic Explorer will push the frontier of GW astronomy even further and likewise require a new generation of noise characterization methods.
