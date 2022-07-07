@@ -48,7 +48,7 @@ Worse yet, sensors, their power supplies, their \acp{ADC}, and the data acquisit
 The \ac{LIGO} channel activity monitor, or \ligocam, is a program that checks for various signs of unusual sensor behavior using a number of spectral cues~\citep{ligocam}.
 The goal of \ligocam is to produce human-readable summaries of sensor behavior for the entire \ac{PEM} network at an observatory, and send email alerts to experts when significant malfunctions are identified.
 
-Leveraging the \ac{LIGO} data grid computing clusters, \ligocam parallelizes its analysis by splitting the full channel list (over 100 channels), processing only five per job.
+Leveraging the \ac{LIGO} data grid computing clusters, \ligocam parallelizes its analysis by splitting the full channel list (over 100 channels and potentially increasing in future runs), processing only five per job.
 This allows it to run hourly, scheduled by a \code{cron} job, outputting a summary page and transmitting email alerts (if applicable) within minutes.
 A \code{cron} job is scheduled at each of the \ac{LIGO} observatories.
 Although such expediency is not necessary for fixing malfunctioning hardware, it is important to have up-to-date channel status when validating recently detected \ac{GW} event candidates, as discussed in Section~\ref{sec:vetting}.
@@ -73,8 +73,11 @@ Anomalies are identified and reported in a number of ways.
 Noise far above or below the reference is a sign of changes to hardware or infrastructure in the vicinity of the sensor, which may not adversely affect coverage of the area but could adversely affect noise estimates as described in Section~\ref{sec:vetting}.
 If $X_t(f)$ is many orders of magnitude below the reference but still above the electronic noise background of the \ac{ADC}, the sensor is considered to be faulty.
 Some sensors, especially magnetometers, can have background noise levels low enough to be near the \ac{ADC} noise floor.
-For this reason, checks for magnetometers are performed specifically on the 60\,Hz mains signal, while other sensors (accelerometers, microphones, etc.) are analyzed for broadband variations.
+For this reason, \ligocam checks for magnetometers are performed specifically on the 60\,Hz mains signal, while other sensors (accelerometers, microphones, etc.) are analyzed for broadband variations.
 If the signal is even weaker than the electronic noise background, then the data acquisition system is blamed for the failure.
+
+Leading up to O3, \ligocam was also redesigned for improved user and developer accessibility, including organizing the various thresholds and options for customizing the reporting of anomalous spectra into a single configuration file for each observatory and subsystem.
+
 
 \section{Environmental noise injections}\label{sec:injections}
 
@@ -173,7 +176,7 @@ Finally, if the accelerometer is at the coupling site, the impulse in the \ac{GW
 
 \subsection{Magnetic injections}\label{sec:injections-magnetic}
 
-Improvements have also been made to the magnetic field injection equipment. In order to generate fields strong enough to couple into the \ac{GW} channel using the 1\,m magnetic field coils built during \ac{iLIGO}, we must focus the power of the coil into narrow bands and combs instead of injecting broadband signals. This was sufficient in \ac{iLIGO} when strong magnetic coupling occurred primarily through permanent magnets. However, due to the removal of permanent magnets from the test masses, coupling from those sources has decreased and cables and connectors have become the dominant coupling sites above about 80\,Hz, introducing more structure to the coupling functions and requiring stronger injections.
+Improvements have also been made to the magnetic field injection equipment. In order to generate fields strong enough to couple into the \ac{GW} channel using the 1-m magnetic field coils built during \ac{iLIGO}, we must focus the power of the coil into narrow bands and combs instead of injecting broadband signals. This was sufficient in \ac{iLIGO} when strong magnetic coupling occurred primarily through permanent magnets. However, due to the removal of permanent magnets from the test masses, coupling from those sources has decreased and cables and connectors have become the dominant coupling sites above about 80\,Hz, introducing more structure to the coupling functions and requiring stronger injections.
 
 \begin{figure}[h!]
 	\centering
@@ -183,7 +186,8 @@ Improvements have also been made to the magnetic field injection equipment. In o
 	\label{fig:injection-wallcoil}
 \end{figure}
 
-To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics. Figure~\ref{fig:injection-wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3 (discussed in Section~\ref{sec:mag}); the project will be completed by the start of O4.
+To achieve high-amplitude broadband magnetic injections, seven wall-mounted coils, each one a 3\,m x 3\,m or 5\,m x 5\,m square of 80-100\,turns, are being installed at each site; three at the corner station and two at each end station. These coils are fixed in place and can be operated remotely, allowing for weekly injections to monitor variations in magnetic coupling caused by changes to electronics.
+Figure~\ref{fig:injection-wallcoil} compares the old and new magnetic injections. Some coils were installed and operated at the sites during O3 (discussed in Section~\ref{sec:mag}); the project will be completed by the start of O4.
 
 
 
@@ -409,17 +413,18 @@ If a further injection was performed using a much larger amplitude, its measured
 To prevent this issue, once $\mathcal{C}_{ij}$ is computed for all sensors for a single injection, an additional sensor threshold is applied that is a fraction of the highest amplitude observed by all sensors.
 This threshold is used only to demote measurements to upper limits.
 By doing so, this injection-dependent threshold vetoes measurements produced by sensors that are far from the injection.
+The lower it is, the more it will limit measurements to only those we are most confident of.
 For the \ac{O3} injections, the threshold was set at one third, meaning that a coupling measurement is demoted to an upper limit if the sensor measuring it observes the injection at less than a third of the amplitude observed by the sensor closest to the injection.
 
-{\color{red}
-Need to talk about this a lot more.
-Injection-depended thresholding reflects a fundamental issue with the distribution of sensors and injections.
-In principle if you have many one-to-one correspondence b/w sensors and injections,
-you would just have each injection produce measurements in its nearest sensor, which is effectively what you get by setting this threshold to one.
-But in absence of that ideal injection distribution you have to lower the threshold by some amount and it's not obvious how to operationalize this.
-Nevertheless some even as an ad hoc thresholding scheme it works very well for preventing inaccurate coupling functions from misattributing the nearest injection to a sensor.
-
-I need to emphasize that this is basically a way of normalizing injections.}
+% {\color{red}
+% Need to talk about this a lot more.
+% Injection-depended thresholding reflects a fundamental issue with the distribution of sensors and injections.
+% In principle if you have many one-to-one correspondence b/w sensors and injections,
+% you would just have each injection produce measurements in its nearest sensor, which is effectively what you get by setting this threshold to one.
+% But in absence of that ideal injection distribution you have to lower the threshold by some amount and it's not obvious how to operationalize this.
+% Nevertheless some even as an ad hoc thresholding scheme it works very well for preventing inaccurate coupling functions from misattributing the nearest injection to a sensor.
+%
+% I need to emphasize that this is basically a way of normalizing injections.}
 
 \textit{Uncertainty due to injection locations}.
 As mentioned above, the model in \cref{eq:cf_full} relies on the assumption that the environment is monitored at the coupling site.
@@ -469,8 +474,8 @@ Consequently, this effect imprints troughs and peaks onto the coupling function.
 The artifacts can be smoothed out of the spectra by applying a moving average over $x_{ij,\mathrm{inj}}(f)$ before computing $\mathcal{C}_{ij}(f)$.
 The moving average window must be on the scale of a few Hz since this is typically the scale of the peak-to-peak distances.
 On the other hand, smoothing of spectra can also result in less accurate coupling measurements when narrow mechanical resonances are present, so the window must balance the smoothing of artifacts against this disadvantage.
-For accelerometer spectra, analyzing injections with various smoothing parameters show that a logarithmically-scaled window which is \XX\,Hz wide at 100\,Hz and \XX\,Hz wide at 1000\,Hz best satisfy these constraints.
-Since microphones are much more sensitive to nodal artifacts while being less sensitive to narrow mechanical resonances (they would have to be strong enough to produce audible signals), their spectra can be smoothed much more aggressively: a logarithmically-scaled window is used which is 15\,Hz wide at 100\,Hz and 150\,Hz wide at 1000\,Hz.
+For accelerometer spectra, analyzing injections with various smoothing parameters show that the best smoothing window is a frequency-scaled window (which we call ``logarithmic smoothing'') with a width of $\Delta f = 0.005 f$ (e.g. the amplitude of the 100-Hz frequency bin is an average of the bins in the range $100 \pm 0.5$\,Hz).
+Since microphones are much more sensitive to nodal artifacts while being less sensitive to narrow mechanical resonances (they would have to be strong enough to produce audible signals), their spectra can be smoothed much more aggressively: we use a window of width $\Delta f = 0.15 f$ (e.g. the amplitude of the 100-Hz frequency bin is an average of the bins in the range $100 \pm 15$\,Hz).
 
 
 \section{The {\fontfamily{pcr}\selectfont pemcoupling}\xspace package}
@@ -515,8 +520,6 @@ Accelerometer \acp{ASD} are calibrated to acceleration units ($\mathrm{m/s^2}$);
 The calibration factors for all sensors are not always constant with respect to frequency, but coupling measurements are always in the range where they are.
 
 For acoustic injections, spectral smoothing is applied at this point, in order to suppress nodal artifacts as explained in Section~\ref{sec:uncertainties-hardware}.
-A ``boxcar'' smoothing window is used: at each frequency bin, we average the values within the range $(f - \Delta f, f + \Delta f)$, where $\Delta f$ is the smoothing window that itself is frequency-dependent when performing logarithmic smoothing.
-
 Finally, the single-injection coupling functions and upper limits are measured as in~\crefrange{eq:sicf}{eq:sinull}.
 For comb or line injections, user input defines the frequencies to analyze and the width, in Hz, of the frequency-domain window around each frequency to analyze.
 If there is more than one bin in each search window, as is usually the case given the high frequency resolution we use to analyze narrowband injections, only the highest coupling computed from among the bins is kept so that each line produces one measurement or upper limit.
