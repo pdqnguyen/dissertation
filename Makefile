@@ -12,7 +12,7 @@ $(MAIN).pdf: *.tex $(MAIN).bib
 	$(LATEX) $(LATEXFLAGS) $(MAIN).tex
 	$(LATEX) $(LATEXFLAGS) $(MAIN).tex
 
-short: *.tex 
+short: *.tex
 	$(LATEX) $(LATEXFLAGS) $(MAIN).tex
 
 findref:
@@ -30,4 +30,3 @@ findref:
 
 clean:
 	$(RM) *.aux *.log *.out *.lof *.lot *.toc *.lbl *.brf *.fls *.fdb_latexmk $(MAIN).dvi $(MAIN).ps $(MAIN).pdf $(MAIN).bbl $(MAIN).blg $(MAIN).synctex.gz $(MAIN).tdo acs-$(MAIN).bib
-
