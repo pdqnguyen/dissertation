@@ -23,10 +23,9 @@ While some GW emissions, such as from \ac{CCSN}, are expected to reach frequenci
 \xpip produces time–frequency maps of the \ac{GW} data coherently combined between the detectors.
 These maps give access to the temporal evolution of the spectral properties of the signal and enable the pipeline to search for clusters of pixels containing excess energy.
 The pipeline assigns each cluster a detection statistic based on energy and ranks them accordingly.
-A coherent consistency test, based on correlations between data in different detectors, then vetoes clusters that are associated with noise transients.
-The surviving cluster with the largest ranking statistic is the best candidate for a GW detection, and the search quantifies its significance as the probability of the event being produced by the background alone.
+The cluster with the largest ranking statistic is the best candidate for a GW detection, and the search quantifies its significance as the probability of the event being produced by the background alone.
 This is determined by comparing the \ac{SNR} of the trigger within the 660\,s on-source window to the distribution of the \acp{SNR} of the loudest triggers in the 660\,s off-source windows.
-As a requirement, the off-source data consist of at least \~1.5\,hr of coincident data from at least two detectors around the time of a \ac{GRB}.
+As a requirement, the off-source data consist of at least $\sim$1.5\,hr of coincident data from at least two detectors around the time of a \ac{GRB}.
 This is small enough to select data where the detectors should be in a similar state of operation as during the \ac{GRB} on-source window, and large enough so that probability estimates using artificial time-shifting of the data are at the sub-percent level.
 
 We quantify the sensitivity of the generic transient search by injecting simulated signals into off-source data.
@@ -69,13 +68,31 @@ The parameters used to generate the five families of \ac{ADI} signals are shown 
 	\end{tabular}
 \end{table}
 
-\section{O3b search for GWs associated with GRBs}\label{sec:grb-o3b}
 
-Since \ac{O3} was split into two halves, O3a and O3b, the \ac{LIGO}-Virgo \ac{GRB} search was also split in two.
-Changes in the detector during the in-between commissioning phase resulted in minor improvements to the sensitivity of the LIGO detectors, and a major change was made to \xpip to deal with noise issues.
+\subsection{Vetoing noise signals}
+
+Combining the detector data streams coherently does not guarantee that chance coincidence between noise transients in the individual detectors can happen.
+Before combining the data, \textit{data quality} (DQ) vetoes are applied to the single-detector signals.
+DQ vetoes are observation periods flagged as problematic for various reasons.
+Each detector has its own set of DQ vetoes, which are separated into different categories~\citep{Davis_2021, Davis_2021b}.
+Category 1 DQ vetoes represent times during which detectors were not operating in their nominal state.
+Many of these times correspond to large machines like forklifts and cranes being operated, for example.
+Category 2 vetoes indicate periods where excess noise likely to be caused by known instrumental effects is present.
+Examples include periodic 70\,Hz glitches caused by vibrations of a camera shutter at the LLO End-Y station, thunder noise identified by microphones at LLO during storms, and large earthquakes at LHO.
+Category 3 flags are based on statistical correlations with auxiliary sensors.
+Category 4 flags indicate times when hardware injections were being performed.
+The \xpip search completely removes times flagged by Category 1 vetoes before performing any analysis.
+Category 2 and 4 flags are applied to the single-detector data streams prior to combining them.
+
+After generating the coherent energy data stream and ranking the time-frequency pixel clusters, another step is taken to further deal with non-astrophysical transients.
+A coherent consistency test vetoes clusters based on a \textit{null energy} stream $E_{\mathrm{null}}$.
+This null energy is the difference between the total combined energy and the ranking statistic energy, and can be written as a sum of cross-correlation and auto-correlation terms.
+The auto-correlation part $I_{\mathrm{null}}$, called the \textit{incoherent energy}, is compared to the null energy.
+For a non-astrophysical glitch, $I_{\mathrm{null}} / E_{\mathrm{null}} \simeq 1$, whereas for a GW, $I_{\mathrm{null}} / E_{\mathrm{null}} \gg 1$.
+The coherent consistency cut applies a threshold on this ratio, below which clusters are vetoed.
 
 In the O3a search, the sensitivity to long-duration ($\geq 10\,\text{s}$) GW signals was often limited by loud background noise transients.
-While X-Pipeline's coherent consistency tests easily veto these glitches, many long-duration simulated signals would overlap such a glitch by chance.
+While the coherent consistency tests easily veto these glitches, many long-duration simulated signals would overlap such a glitch by chance.
 In these cases the simulated signal and glitch would be clustered together and subsequently vetoed together.
 To address this problem, an ``autogating'' procedure was implemented for O3b. For each detector, the total energy in the whitened data stream is computed over a 1\,s window.
 If this total fluctuates by more than 50 standard deviations above the median value, then the data is zeroed out over the interval where the threshold is exceeded.
@@ -84,21 +101,75 @@ To minimize the possibility of a loud GW transient triggering a gate, the proced
 The threshold of 50 standard deviations is low enough to gate the most problematic loud glitches, while being high enough that the only GWs zeroed out by the gate would have been detectable by all-sky searches.
 Empirically we find that this procedure is effective at reducing the impact of loud glitches without affecting the sensitivity to low-amplitude GW signals.
 
-In the O3b search, autogating was performed on more than half of the \acp{GRB} analyzed by \xpip.
-Even though loud injections zeroed out by the glitch would have been detectable by all-sky searches, we ran \xpip on each \ac{GRB} without autogating first, and performed an autogated rerun only if the closed box results suggest that autogating would improve the sensitivity of the search.
+
+\section{O3b search for GWs associated with GRBs}\label{sec:grb-o3b}
+
+Since \ac{O3} was split into two halves, O3a and O3b, the \ac{LIGO}-Virgo \ac{GRB} search was also split in two.
+The main differences in O3b where changes in the detector during the in-between commissioning phase resulted in improvements to the sensitivity of the LIGO detectors, and as mentioned above the autogating algorithm was introduced.
+
+The full sample of \acp{GRB} occurring in O3b consists of seven short \acp{GRB}, 12 ambiguous \acp{GRB}, and 89 long \acp{GRB}.
+Of these, only two have known redshifts: GRB 191221B ($z = 1.148$)~\citep{Kuin_2019, Vielfaure_2019} and GRB 200205B ($z = 1.465$)~\citep{Vielfaure_2020}.
+Since \xpip searches for coincident excess power, we perform the generic transient search for \acp{GRB} where at least two of the three LIGO-Virgo detectors were active.
+This leads to 86 GRBs to analyze and is also compatible with the network observing time of at least two detectors (85.3\%).
+
+We ran \xpip on each \ac{GRB} without autogating first, and performed an autogated rerun only if the closed box results suggest that autogating would improve the sensitivity of the search.
 Running \xpip itself produces a ``closed-box'' results page, which summarizes the results of the search on a ``dummy'' on-source window chosen from among the off-source windows.
 This allows us to tune the parameters of the search, the injections, or the pre- and postprocessing to produce the most sensitive closed-box results before actually analyzing the on-source data (the ``open-box'' analysis).
 The glitches targeted by autogating affect the ability of \xpip to detect long-duration signals, so we can determine if a closed-box analysis would perform better with autogating applied by looking for a clear plateau or dip in the detection efficiency curves of the long-duration \ac{ADI} waveforms.
 If such a problem does exist, then the closed-box analysis is rerun with autogating, and the box with better efficiency curves (usually the autogated version) is opened.
 Otherwise, if autogating is not likely to affect the results, then we open the box for the non-autogated analysis.
 
+As an example of this procedure, we will consider the analysis of GRB191101A, an extreme case of noisy background data.
+This is a long GRB observed by Swift during which LHO, LLO, and Virgo were all active.
+% The normalized amplitude spectra for LLO during all of the off-source trials (Figure~\ref{fig:noise-spec}) indicate excess noise at low frequency, possibly associated with scattered light noise.
+The Gaussianity measures, representing the ratios between the variance of the detector spectra to their means, show extreme non-Gaussianity in LLO across all frequencies (Figure~\ref{fig:gauss-before}).
+The low-frequency excess is likely associated with scattered light noise, whereas the flat component is typical of the broadband glitches that autogating is designed to combat.
+The LHO and Virgo measures, meanwhile, lie within the normal levels of non-Gaussianity.
 
-\subsection{GRB sample}\label{sec:grb-o3b-sample}
+\begin{figure}[htb]
+	\includegraphics[trim={2cm 1.2cm 2cm 1.5cm}, clip, width=\textwidth]{figures/grb/gauss-before.png}
+	\caption{Gaussianity measures around the time of GRB191101A without autogating. The dotted lines represent the expected levels of non-Gaussianity.}
+	\label{fig:gauss-before}
+\end{figure}
 
-The full sample of \acp{GRB} occurring in O3b consists of seven short \acp{GRB}, 12 ambiguous \acp{GRB}, and 89 long \acp{GRB}.
-Of these, only two have known redshifts: GRB 191221B ($z = 1.148$)~\citep{Kuin_2019, Vielfaure_2019} and GRB 200205B ($z = 1.465$)~\citep{Vielfaure_2020}.
-Since \xpip searches for coincident excess power, we perform the generic transient search for \acp{GRB} where at least two of the three LIGO-Virgo detectors were active.
-This leads to 86 GRBs to analyze and is also compatible with the network observing time of at least two detectors (85.3\%).
+Figure~\ref{fig:triggers-before} shows the distribution of triggers in LLO and LHO after applying data quality vetoes but before applying coherent consistency vetoes.
+The most problematic glitches appear as triggers with energies in the tens of thousands.
+They make up a small minority of all the triggers, but their impact on the pipeline's ability to detect injected signals is tremendous.
+
+\begin{figure}[htb]
+	\includegraphics[trim={2cm 1.2cm 2cm 1.2cm}, clip, width=0.9\textwidth]{figures/grb/triggers-before.png}
+	\caption{Distribution of off-source triggers in the LIGO detectors without autogating.}
+	\label{fig:triggers-before}
+\end{figure}
+
+Figure~\ref{fig:eff-before-after} shows a major dip in the detection efficiency for a long-duration injection, ADI-C, when autogating is not applied.
+The dip is entirely fixed with autogating active, leaving only a small, acceptable plateau in the efficiency curve around 95\%.
+
+\begin{figure}[htb]
+	\includegraphics[trim={1.1cm 0 1.6cm 0}, clip, width=0.5\textwidth]{figures/grb/eff-before.png}
+		\includegraphics[trim={1.1cm 0 1.6cm 0}, clip, width=0.5\textwidth]{figures/grb/eff-after.png}
+	\caption{Detection efficiency of ADI-C injected waveforms without (left) and with (right) autogating.}
+	\label{fig:eff-before-after}
+\end{figure}
+
+% \begin{figure}[htb]
+% 	\includegraphics[trim={2cm 1.2cm 2cm 1.2cm}, clip, width=\textwidth]{figures/grb/triggers-after.png}
+% 	\caption{Distribution of off-source triggers in the LIGO detectors with autogating.}
+% 	\label{fig:triggers-after}
+% \end{figure}
+
+% \begin{figure}[htb]
+% 	\includegraphics[trim={1cm 0 1.5cm 0}, clip, width=\textwidth]{figures/grb/eff-after.png}
+% 	\caption{Detection efficiency of ADI-C injected waveforms with autogating.}
+% 	\label{fig:eff-after}
+% \end{figure}
+
+Ultimately, autogating was performed on more than half of the 86 O3b GRB triggers analyzed by \xpip.
+This seems to suggest that it would be better to have autogating active by default, but it is not clear from an autogated closed box result page if it was needed in the first place.
+Therefore it is recommended that in future searches we continue to run \xpip without autogating first and only apply it when needed.
+Even though the negative trade-off of autogating (reducing detection efficiency for very high amplitude signals) is not too concerning, keeping the analysis as simple as possible may be a preferable route.
+Nevertheless, this will have to be weighed against the greater computing time spent for autogating reruns, since having to rerun most of the closed box analyses roughly doubles the amount of time before final results are produced.
+
 
 \subsection{Results of the O3b search}\label{sec:grb-o3b-results}
 
@@ -120,7 +191,7 @@ The lowest reported p-value found during O3b for the generic transient search wa
   \label{fig:grb-o3b-x-pval}
 \end{figure}
 
-Given that no loud \ac{GW} signals are observed coincident with any of the \acp{GRB} in this search, we perform a weighted binomial test to determine the probability of observing our set of p-values assuming a uniform background distribution~\citep{grb_s6}.
+Given that no loud \ac{GW} signals are observed coincident with any of the \acp{GRB} in this search, we perform a weighted binomial test to determine the probability of observing our set of p-values assuming a uniform background distribution~\citep{grb_s4, grb_s6}.
 A small probability would suggest that there may be a population of subthreshold \ac{GW} signals that our search did not identify.
 This type of weighted binomial test uses the lowest re-weighted p-values from the searches.
 For the generic transient search, the test gives a probability of 0.76.
