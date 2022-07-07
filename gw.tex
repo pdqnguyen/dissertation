@@ -339,18 +339,120 @@ At cosmological distances, relic gravitational waves from the very early univers
 
 \section{Multi-messenger astronomy}\label{sec:mma}
 
-In addition to being the first ever detection of a merger between two neutron stars, GW170817 made history as the first astronomical event observed by both gravitational waves and electromagnetic waves.
-This was a major step forward for the field of multi-messenger astronomy, in which the only joint detection until then was that of SN 1987A by electromagnetic and neutrino observatories~\citep{Hirata_1987, Bionta_1987, Alekseev_1988}.
-The combined localization of the LIGO-Virgo network and Fermi-GBM prompted a world-wide follow-up campaign from observatories across the electromagnetic spectrum.
-This led to identification of an optical counterpart near NGC 4993, which in turn allowed astronomers to make the first confirmed observation of a kilonova, the multi-band emission of electromagnetic waves resulting from the radioactive decay of r-process material formed and ejected in all directions by the merger.
+In 2017, the first binary neutron star merger GW170817 was detected by the Advanced LIGO and Virgo detectors, immediately accompanied by the detection of a relatively low-luminosity, short gamma-ray burst GRB170817A by the space-based Fermi \ac{GBM} two seconds later~\citep{gw170817}.
+The combined sky localizations of the LIGO-Virgo network and Fermi GBM prompted a world-wide follow-up campaign from observatories across the electromagnetic spectrum.
+Within a day this led to the identification of an optical counterpart near NGC 4993 that would become the first confirmed observation of a kilonova, the multi-band emission of electromagnetic waves resulting from the radioactive decay of r-process material formed and ejected in all directions by the merger.
 
-The connection between GWs and GRBs may extend beyond binary neutron star systems like GW170817.
+This was a major step forward for the field of \textit{multi-messenger astronomy}, in which joint detections between independent observational methods allow scientists to answer questions that cannot be tackled by probing just one type of signal.
+They can also be critical in confirming detections by observatories that have yet to detect a particular phenomenon.
+Before GW170817 the only multi-messenger detection of a distant astrophysical event was that of the type II supernova SN 1987A in the Large Magellanic Cloud by electromagnetic and neutrino observatories~\citep{Hirata_1987, Bionta_1987, Alekseev_1988}.
+
+There is much to be gained by using the time and sky localizations of non-GW observatories to conduct \textit{targeted} searches for GW signals that can be much more sensitive than the uninformed all-sky searches.
+Searching around the time of a known EM or neutrino counterpart already permits a much more computationally intensive analysis, since we can focus on short periods of time ranging from seconds to hours, as opposed to searching over an entire observing run.
+The sky localizations also allow us to ``point'' our GW detectors.
+The delay in the time-of-arrival of a GW signal at two or more detectors is dependent on its direction of propagation, so we can specifically search for signals matching the expected delay based on the known sky location of the source.
+Furthermore, the response of an interferometer to GWs is not isotropic, but instead is strongest along its $z$-axis and weakest along its $xy$-plane.
+This ``antenna response'' can be used to combine the data streams of multiple interferometers in a way that maximizes sensitivity to a specific sky location.
+
+Although there are many possible associations between GWs and other types of signals, the association with \acp{GRB} has already been confirmed and will likely continue to be a dominant avenue for multi-messenger detections involving the LIGO detectors.
+Distance measurements of GRBs~\citep{swift_archive} place most well beyond LIGO's range, so golden events like GW170817 are likely to not be common among joint detections.
+There could therefore be GWs detectable only through targeted searches.
+
+
+\section{GWs associated with GRBs}\label{sec:gw-grb}
+
+\Acp{GRB} are energetic bursts of gamma rays in the MeV range, first discovered in 1967~\citep{Klebesadel_1973}.
+Observations throughout the following decades revealed that \acp{GRB} could be classified based on duration and spectral hardness~\citep{Kouveliotou_1993}.
+This classification has become the most used to describe \acp{GRB}: long bursts last $\gtrsim2$\,s and have soft emission spectra, i.e. lacking in higher energy photons, while short bursts last $\lesssim2$\,s and have harder emission spectra (Figure~\ref{fig:grb-classification}).
+GRB durations are defined based on their $T_{90}$, the time interval over which 90\% of the total background-subtracted photon counts are observed by the reporting GRB detector.
+Spectral hardness is described using the ratio of the flux density in the 50–300 keV band to the flux density in the 10–50 keV band~\citep{fermi_2020}.
+Photometry and spectroscopy data have provided evidence that long \acp{GRB} originate from \acp{CCSN}, whereas short \acp{GRB} are believed to be associated with compact binary mergers like GW170817.
+
+\begin{figure}[htb]
+	\includegraphics[trim={0 0 0 6cm}, clip, width=0.9\textwidth]{figures/gw/grb-classification.jpg}
+	\caption{Hardness ratios (HR) vs. $T_{90}$s of Fermi GRBs, showing the distinction between short and long bursts. Reproduced from~\protect\citet{fermi_2016}}
+	\label{fig:grb-classification}
+\end{figure}
+
+A multitude of models have been proposed throughout the decades to explain the origins of \acp{GRB}.
+It is believed that the ultra-relativistic jets required to produce \acp{GRB} come from either black holes~\citep{Woosley_1993} or magnetars~\citep{Dai_1998}.
+{\color{red}Go through a few more refs and review papers on GRB progenitors.}
+
+
+\subsection{Short gamma-ray bursts}
+
+\ac{GW} parameter estimation suffers from a degeneracy between distance and orbital plane inclination; increasing the distance of the merger and orienting its orbital plane would both result in a lower \ac{GW} amplitude.
+This degeneracy can be broken if either one could be measured externally.
+If the joint detection localization were good enough to determine a host galaxy, this would greatly help resolve the distance, however this will more likely require observation of an optical or UV counterpart due to the poor localization provided by current \ac{GRB} and \ac{GW} detectors.
+In the case of GW170817, the host galaxy whose redshift was known was used to determine the distance, which then allowed for a more precise measurement of the inclination angle.
+A separate analysis using the distance measured from the \ac{GW} detection combined with the known redshift made the first joint \ac{GW}-EM measurement of the Hubble constant, albeit with very large uncertainty due to the small sample size~\citep{gw170817_hubble}.
+
+{\color{red}Discuss background and disagreement among Hubble constant measurements.}
+
+One of the many unanswered questions surrounding \acp{GRB} pertains to their jet profile, the luminosity as a function of viewing angle (the angle between the observer and the symmetric axis of the jet; the profile is assumed to be axially symmetric and independent of distance).
+When information about the jet profile is required, e.g. for making rate estimates for \ac{GRB} detections, the profile is typically modeled as a top-hat (uniform within some opening angle and dropping sharply beyond it) for simplicity, but the true profile may be different.
+
+Determining the viewing angle $\theta_{\mathrm{obs}}$ of a \ac{GRB} is essential for distinguishing between different jet profile models, but it relies on the ability to observe an afterglow emission.
+These emissions, ranging from radio to X-rays, follow the prompt emission of $\gamma$-rays and are generated by the interaction between the relativistic outflow and the surrounding medium.
+The observation of these afterglows was crucial in improving localization of the \ac{GRB} sources and provided valuable information about the energy scale of the jet, as well as measurements of $\theta_{\mathrm{obs}}$.
+The latter came from observing the signature jet break in the afterglow light curve, resulting from the lateral spreading of jet material as it expands; the opening angle can be determined from the timing of the jet break.
+However, few jet breaks have been observed for short \acp{GRB}, so existing observations do not place tight constraints on opening angle~\citep{Biscoveanu_2020}.
+
+Joint GW-GRB observations can provide much more information on jet properties~\citep{Mogushi_2019, Farah_2020}.
+GRB170817 was orders of magnitude less energetic than most short \acp{GRB}, so it likely would have been ignored in the absence of a \ac{GW} coincidence.
+Its low luminosity immediately ruled out an on-axis top-hat jet.
+An off-axis top-hat jet was considered unlikely as well because the narrow opening angle predicted for top-hat jets based on theory and past \ac{GRB} measurements only allowed for $\theta_{\mathrm{obs}} \lesssim 10\deg$.
+More evidence against an off-axis top-hat model arose when the bright afterglow expected to emerge after $\sim$1 day was not observed.
+These observations instead favored a wide-angled, structured jet model for GRB170817.
+A structured jet model may refer to any luminosity function that decreases gradually with $\theta_{\mathrm{obs}}$ rather than abruptly, e.g. a Gaussian or power-law with uniform center.
+One mechanism that would explain such a model is a cocoon emission, in which the relativistic jet interacts dissipatively with the surrounding merger ejecta, depositing its energy into a cocoon fireball that results in a structured jet~\citep{gw170817_grb}.
+
+The connection between GWs and short GRBs may extend beyond binary neutron star systems like GW170817.
 Some \ac{NSBH} mergers may be capable of producing GRBs in the right conditions.
-A mass ratio between the black hole and the neutron star is not too unequal, due to a low black hole mass, and a high prograde black hole spin could result in the \textit{tidal disruption} of the neutron star, which would produce a short GRB in much the same way as a in a \ac{BNS} merger.
+A mass ratio between the black hole and the neutron star is not too unequal, due to a low black hole mass, and a high prograde black hole spin could result in the \textit{tidal disruption} of the neutron star, which would produce a short GRB in much the same way as in a \ac{BNS} merger.
 
-Whereas the GRBs associated with \acp{CBC} are believed to be those classified as \textit{short}, GRBs classified as \textit{long} are believed to come from \acp{CCSN}, which as discussed above have many models predicting GW emission.
+
+\subsection{Long gamma-ray bursts}
+
+Long GRBs are believed to come from \acp{CCSN}, which as discussed above have many models predicting GW emission.
 The majority (about 70\%) of GRBs are long GRBs, so although the expected GW amplitudes are quite weak they present an abundance of electromagnetic sources that each hold the potential of a GW counterpart.
-Since these events also are expected to emit neutrinos, and neutrinos have been observed from one nearby supernova, SN 1987A, marking the first joint detection between EM and neutrino observatories.
-Another nearby supernova would be the most likely candidate for a joint detection between all three branches of multi-messenger astronomy: GWs, EM waves, and neutrinos.
+Since these events are also expected to emit neutrinos, as was the case during SN 1987A, they are the primary candidate for a potential triple-messenger detection in which GWs, EM waves, and neutrinos are all observed from the same source.
 
-There is clearly much to be gained by using the time and sky localizations of GRB observatories to conduct \textit{targeted} searches for GW signals that can be much more sensitive than the uninformed all-sky searches.
+Some models predict GW emission would occur as a result of asymmetries in the core-collapse phase.
+Such \acp{GW} would be short, lasting less than a second.
+Extreme emission models predict a wide variety of signals, often longer in duration.
+Matter surrounding the remnant of a \ac{CCSN} forms an accretion disk, in which turbulent behavior can arise.
+For instance, instabilities in the accretion disk can lead to the formation of a clump of matter which can then migrate inwards, shedding angular momentum in the form of gravitational waves~\citep{Piro_2007}.
+Disk fragments are eventually torn apart by tidal disruption as they get too close to the central black hole, placing a maximum limit on the duration of potential GW emissions.
+
+In an even more extreme scenario, two clumps could form as compact objects that merge within the disk, producing a CBC-like chirp~\citep{vanPutten_2001, vanPutten_2004}.
+
+Accretion disk instability models are particular interesting due to their potential connection to X-ray flares.
+Many GRBs exhibit a diverse range of X-ray flaring behavior that could be attributed to disk fragments falling in at different times after the formation of the central black hole~\citep{Dallosso_2017}.
+
+Some long GRBs may even originate from compact mergers: some short GRBs have been observed to exhibit extended emissions that can last much longer than the initial short GRB impulse~\citep{Norris_2006, vanPutten_2014}.
+These, too, may be associated with X-ray flaring, as accretion disks formed around NSBH mergers could likewise produce infalling clumps~\citep{Mu_2018}.
+These scenarios raise questions about the simplistic short/long classification of GRBs.
+
+
+
+
+
+
+% \section{Multi-messenger astronomy}\label{sec:mma}
+%
+% In addition to being the first ever detection of a merger between two neutron stars, GW170817 made history as the first astronomical event observed by both gravitational waves and electromagnetic waves.
+% This was a major step forward for the field of multi-messenger astronomy, in which the only joint detection until then was that of SN 1987A by electromagnetic and neutrino observatories~\citep{Hirata_1987, Bionta_1987, Alekseev_1988}.
+% The combined localization of the LIGO-Virgo network and Fermi-GBM prompted a world-wide follow-up campaign from observatories across the electromagnetic spectrum.
+% This led to identification of an optical counterpart near NGC 4993, which in turn allowed astronomers to make the first confirmed observation of a kilonova, the multi-band emission of electromagnetic waves resulting from the radioactive decay of r-process material formed and ejected in all directions by the merger.
+%
+% The connection between GWs and GRBs may extend beyond binary neutron star systems like GW170817.
+% Some \ac{NSBH} mergers may be capable of producing GRBs in the right conditions.
+% A mass ratio between the black hole and the neutron star is not too unequal, due to a low black hole mass, and a high prograde black hole spin could result in the \textit{tidal disruption} of the neutron star, which would produce a short GRB in much the same way as a in a \ac{BNS} merger.
+%
+% Whereas the GRBs associated with \acp{CBC} are believed to be those classified as \textit{short}, GRBs classified as \textit{long} are believed to come from \acp{CCSN}, which as discussed above have many models predicting GW emission.
+% The majority (about 70\%) of GRBs are long GRBs, so although the expected GW amplitudes are quite weak they present an abundance of electromagnetic sources that each hold the potential of a GW counterpart.
+% Since these events also are expected to emit neutrinos, and neutrinos have been observed from one nearby supernova, SN 1987A, marking the first joint detection between EM and neutrino observatories.
+% Another nearby supernova would be the most likely candidate for a joint detection between all three branches of multi-messenger astronomy: GWs, EM waves, and neutrinos.
+%
+% There is clearly much to be gained by using the time and sky localizations of GRB observatories to conduct \textit{targeted} searches for GW signals that can be much more sensitive than the uninformed all-sky searches.
