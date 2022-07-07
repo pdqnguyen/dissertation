@@ -30,15 +30,15 @@ which gives a minimum detectable strain, for a 4-km interferometer with a 1-W, 1
 This is impressive but orders of magnitude away from being able to observe at high \ac{SNR} the GW sources discussed in the previous chapter ($h \lesssim 10^{-20}$).
 
 We can also extend the interferometer, but to get an order of magnitude improvement requires an order of magnitude extension of the arms, which is not entirely practical.
-Instead, we can increase the \textit{effective arm length} by designing the arms as Fabry-P\'erot cavities, forcing the light in the arms to bounce back and forth many times before returning to the beam splitter.
+Instead, we can increase the \textit{effective arm length} by designing the arms as Fabry-P\'erot cavities, forcing the light in the arms to bounce back and forth many times before returning to the beam splitter, as shown in Figure~\ref{fig:detectors-basic}.
 This works as long as the light does not spend an amount of time comparable to the passing of a full gravitational wave, so the effective arm length should not exceed $L_{\mathrm{eff}} \sim \lambda_{\mathrm{GW}}$.
 For signals in the hundreds of Hertz, this limits the effective arm length to a few hundred kilometers, or a few hundred round trips for a LIGO detector.
 Nevertheless, combined with the optimal photodiode above, this setup can detect a strain of $h \sim 10^{-20}$.
-The layout of a basic GW interferometric detector is shown in Figure~\ref{fig:detectors-basic}.
 
-\begin{figure}
-  % \includegraphics{/path/to/figure}
-  \caption{Layout of a Michelson interferometer with Fabry-P\'erot arm cavities.}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/detectors/basic.png}
+  \caption{Layout of a Michelson interferometer with Fabry-P\'erot arm cavities~\protect\citep{LIGO_layout_basic}.}
   \label{fig:detectors-basic}
 \end{figure}
 
@@ -62,6 +62,15 @@ A power recycling cavity at the symmetric output sends the constructively-interf
 A signal recycling cavity at the anti-symmetric output is used to modify the shape the of detector response function, effectively tuning it to be more sensitive to a specific frequency band.
 
 We now walk through the full journey on which the interferometer laser embarks, giving names to the various components of the aLIGO detector as these will be relevant in later discussions of detector noise and instrumentation.
+A detailed optical layout is shown in Figure~\ref{fig:detectors-layout}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[trim={0 0 9cm 0}, clip, width=\textwidth]{figures/detectors/layout.pdf}
+  \caption{Full optical layout of an Advanced LIGO interferometer~\protect\citep{LIGO_layout_advanced}.}
+  \label{fig:detectors-layout}
+\end{figure}
+
 The laser is produced at the start of the \textit{input arm}.
 In O3, this \ac{PSL} is a 1064\,nm infrared source amplified to 70\,W before entering the main beam tube of the interferometer, where it then passes through an \ac{IMC} optical cavity that filters out higher-order spatial beam modes.
 The \ac{IMC} optics are located inside two vacuum chambers called \acp{HAM} (namely HAM2 and HAM3) spanning the mode cleaner tube, which comprises the majority of the input arm length.
@@ -69,6 +78,7 @@ As it reaches the interferometer vertex, the beam is split into two by the beam 
 In each arm, it passes through an \ac{ITM}, beyond which it has entered a 4-km-long Fabry-P\'erot cavity.
 The beams now leave the \textit{corner station} en route to the \textit{end stations} (End-X and End-Y) where the \acp{ETM} are housed.
 Between the \acp{ITM} and \acp{ETM} the laser bounces some 300 times before returning to the beam splitter.
+
 The carrier light exits along the input arm and enters the power recycling cavity, whose optics are located in the same \ac{HAM} chambers as the \ac{IMC} optics.
 In the \textit{output arm}, the signal recycling cavity (in HAM4 and HAM5) extracts the GW signal from the exiting signal sidebands, transmitting them to the \ac{OMC} (in HAM6) which again filters out higher-order modes.
 This is also where squeezed vacuum state is injected into the interferometer to reduce shot noise.
