@@ -240,38 +240,78 @@ On average, the median values for the O3b generic transient search are about 50\
   \end{tabular}
 \end{table}
 
-We can primarily attribute this improvement to the use of autogating in O3b: the increase in exclusion distances is highest (up to a factor of 2) for the longest-duration waveforms, which are most impacted by the glitches removed by autogating.
+
+\subsection{Noise effects in the generic transient search}\label{sec:grb-o3b-noise}
+
+Comparing the exclusion distances of the O3a and O3b search sheds some light on the impact of detector and search pipeline improvements on the sensitivity of the \xpip analysis.
+Table~\ref{tab:grb-o3b-compare-o3a} presents the improvement in the median $D_{90}$ for each waveform model as a fraction of the O3a value.
 The exclusion distances for the shorter-duration CSG waveforms, which are not expected to be affected by autogating, increased by about 30\% on average.
-This is more than could be accounted for by chance differences in the LIGO–Virgo antenna factors between the two samples.
-Rather, the increase is likely due to improvements in the performance of the detectors themselves, such as through the reduction of noise caused by scattered light in the LIGO detectors~\citep{Soni_2020} or the improvement in sensitivity of the Virgo detector~\citep{Davis_2021}.
-% The $D_90$ values found for each GRB in the case of simulated ADI-A and 150-Hz CSG signals in Table~\ref{tab:grb-o3b-full}.
 
+\begin{table}[h]
+  \hspace{0.5cm}
+  \caption
+  {\label{tab:grb-o3b-compare-o3a} Relative increase in median $D_{90}$ for each \xpip simulated waveform.}
+  \begin{tabular}{c c c c c}
+    \hline
+    \hline
+    \rule{0pt}{4ex}
+    & CSG 70\,Hz & CSG 100\,Hz & CSG 150\,Hz & CSG 300\,Hz \\
+    \hline
+    \rule[-2ex]{0pt}{4ex}
+		$\Delta D_{90} / D_{90, \text{O3a}}$ & 0.12 & 0.19 & 0.25 & 0.49
+  \end{tabular}
+  %
+  \begin{tabular}{c c c c c c}
+    \hline
+    \hline
+    \rule{0pt}{4ex}
+    & ADI-A & ADI-B & ADI-C & ADI-D & ADI-E \\
+    \hline
+    \rule[-2ex]{0pt}{4ex}
+    $\Delta D_{90} / D_{90, \text{O3a}}$ & 0.43 & 0.14 & 0.85 & 0.92 & 0.55 \\
+    \hline
+  \end{tabular}
+\end{table}
 
-% \begin{table}
-%   \caption{\label{tab:grb-o3b-full}%
-%     GRB details and associated GW emission limits for
-%     each of the Fermi and Swift GRBs followed up on
-%     during O3b.}
-%     % The GRB Name column reports each GRB's formal designation
-%     % or the Fermi GBM trigger ID when a formal designation has not been assigned.
-%     % The UTC times reported are rounded to the earlier integer second.
-%     % The Satellite column gives the satellite that provided the
-%     % GRB sky localization used in the GW analysis. The
-%     % Network column lists the GW detector network used: H1 = LIGO
-%     % Hanford, L1 = LIGO Livingston, V1 = Virgo.
-%     % The $^\dagger$ symbol indicates that the GRB's $T_{90} > 60\,\mathrm{s}$,
-%     % so the generic transient search's on-source window was extended.
-%     % Where the generic transient search and the modeled search used a different
-%     % IFO network, the network used by the modeled search is shown in parentheses.
-%     % The last 5 columns show the 90\% confidence exclusion distances
-%     % for each GRB ($D_{90}$) for the following emission scenarios:
-%     % BNS, generic and aligned-spin NSBH from the modeled search,
-%     % and from the generic transient search, ADI-A, and CSG
-%     % GW burst at 150\,HZ with total radiated energy $E_{\text{GW}} = 10^{-2}\,\msol c^2$.}%
-%   \begin{tabular}{c c c c c c c c c c c c}
-%     \input{figures/grb/grb_table}
-%   \end{tabular}
-% \end{table}
+Given the large number of GRBs analyzed, it would be unlikely for the difference to be explained by chance improvement in antenna response (i.e. due to more GRBs lining up with the sky region where the GW detector network is most sensitive).
+\xpip reports the antenna response of the GW detectors for each GRB analyzed.
+These can be summed up over the active detectors for each GRB and averaged over the full GRB sample.
+The result is a 9.2\% improvement in antenna response, which is not negligible but can only account for a small portion of the differences in exclusion distances.
+
+For the longest duration ADI-C, ADI-D, and ADI-E waveforms, we see the greatest improvements, over 50\% higher than in O3a (Figure~\ref{fig:grb-o3b-compare-o3a}, top).
+For short-duration waveforms, the highest-frequency 300-Hz sine-Gaussian injections show the greatest change (Figure~\ref{fig:grb-o3b-compare-o3a}, bottom).
+These are all well above the change expected from a chance difference in antenna response.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{figures/grb/compare-o3a.pdf}
+  \caption
+	[Cumulative distributions of O3a and O3b exclusion distances for the ADI-C (top) and 300-Hz sine-Gaussian (bottom) waveforms.]
+	{Cumulative distributions of O3a and O3b exclusion distances for the ADI-C (top) and 300-Hz sine-Gaussian (bottom) waveforms.
+	These show the greatest improvement between O3a and O3b among their respective waveform sets.}
+  \label{fig:grb-o3b-compare-o3a}
+\end{figure}
+
+Considering that longer-duration waveforms see greater improvement, the most obvious likely contributor is the implementation of autogating.
+However, autogating cannot account for the changes in the $D_{90}$ of short-duration models.
+These can only be explained by better GW detector sensitivity and/or reduced rates of short-duration glitches that overlap the injected signal.
+Such glitches cause the entire injection to be vetoed, so it is not recovered by the search pipeline.
+In particular, glitches caused by low-frequency scattering noise (discussed in Section~\ref{sec:vib}) can pepper a stretch of time with short-duration glitches, overlapping injections made at multiple points.
+A method for reducing the occurrence of these glitches, \ac{RC} tracking, was implemented at for O3b, on Jan 7, 2020 at \ac{LLO} and Jan 15, 2020~\citep{Soni_2020}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{figures/grb/compare-rc.pdf}
+  \caption
+	{Cumulative distributions of CSG-300 Hz exclusion distances (top) and the detector network antenna factors (bottom) for GRBs before and after the implementation of RC tracking.}
+  \label{fig:grb-o3b-compare-rc}
+\end{figure}
+
+Figure~\ref{fig:grb-o3b-compare-rc} gives evidence for the effect of glitch mitigation on \xpip sensitivity.
+Although there is clearly a bias towards higher antenna responses after RC tracking, they do not entirely account for the huge substantial increase in exclusion distances.
+In summary, noise mitigation is a crucial part of improving the sensitivity of the generic transient search.
+As discussed above, there may plenty that can be inferred even in the absence of detections.
+Better detector sensitivities in \ac{O4}, along with the development of new glitch subtraction methods, could allow more confident exclusion of GW emission models associated with GRBs.
 
 
 \subsection{Model exclusion}\label{sec:grb-o3b-models}
@@ -332,75 +372,3 @@ If search sensitivity continues to improve in \ac{O4}, we may well be able to be
 The exclusion probability for the ADI-B model is 0.61, making it the only unfavorable ADI model so far.
 This accretion disk instability model is simulated for a central \ac{BH} mass of $M=10\,\msol$, a dimensionless spin parameter of $\chi=0.95$, and a very large clump mass of $\epsilon=0.2$ times that the central \ac{BH}.
 It is the most extreme of the ADI models, and it would not be surprising to see it being ruled out in future searches.
-
-
-\subsection{Noise effects in the generic transient search}\label{sec:grb-o3b-noise}
-
-Comparing the exclusion distances of the O3a and O3b search sheds some light on the impact of detector and search pipeline improvements on the sensitivity of the \xpip analysis.
-Table~\ref{tab:grb-o3b-compare-o3a} presents the improvement in the median $D_{90}$ for each waveform model as a fraction of the O3a value.
-% Two-sample Kolmogorov-Smirnov tests conducted between the O3a and O3b $D_{90}$ distributions for each model show very low p-values for all of them, clearnly rejecting the null hypothesis that the data are drawn from the same distribution.
-Given the large number of GRBs analyzed, it would be unlikely for the difference to be explained by chance improvement in antenna response (i.e. due to more GRBs lining up with the sky region where the GW detector network is most sensitive).
-\xpip reports the antenna response of the GW detectors for each GRB analyzed.
-These can be summed up over the active detectors for each GRB and averaged over the full GRB sample.
-The result is a 9.2\% improvement in antenna response, which is not negligible but can only account for a small portion of the differences in exclusion distances.
-
-\begin{table}[h]
-  \hspace{0.5cm}
-  \caption
-  {\label{tab:grb-o3b-compare-o3a} Relative increase in median $D_{90}$ for each \xpip simulated waveform.}
-  \begin{tabular}{c c c c c}
-    \hline
-    \hline
-    \rule{0pt}{4ex}
-    & CSG 70\,Hz & CSG 100\,Hz & CSG 150\,Hz & CSG 300\,Hz \\
-    \hline
-    \rule[-2ex]{0pt}{4ex}
-		$\Delta D_{90} / D_{90, \text{O3a}}$ & 0.12 & 0.19 & 0.25 & 0.49
-  \end{tabular}
-  %
-  \begin{tabular}{c c c c c c}
-    \hline
-    \hline
-    \rule{0pt}{4ex}
-    & ADI-A & ADI-B & ADI-C & ADI-D & ADI-E \\
-    \hline
-    \rule[-2ex]{0pt}{4ex}
-    $\Delta D_{90} / D_{90, \text{O3a}}$ & 0.43 & 0.14 & 0.85 & 0.92 & 0.55 \\
-    \hline
-  \end{tabular}
-\end{table}
-
-For the longest duration ADI-C, ADI-D, and ADI-E waveforms, we see the greatest improvements, over 50\% higher than in O3a (Figure~\ref{fig:grb-o3b-compare-o3a}, top).
-For short-duration waveforms, the highest-frequency 300-Hz sine-Gaussian injections show the greatest change (Figure~\ref{fig:grb-o3b-compare-o3a}, bottom).
-These are all well above the change expected from a chance difference in antenna response.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics{figures/grb/compare-o3a.pdf}
-  \caption
-	[Cumulative distributions of O3a and O3b exclusion distances for the ADI-C (top) and 300-Hz sine-Gaussian (bottom) waveforms.]
-	{Cumulative distributions of O3a and O3b exclusion distances for the ADI-C (top) and 300-Hz sine-Gaussian (bottom) waveforms.
-	These show the greatest improvement between O3a and O3b among their respective waveform sets.}
-  \label{fig:grb-o3b-compare-o3a}
-\end{figure}
-
-Considering that longer-duration waveforms see greater improvement, the most obvious likely contributor is the implementation of autogating.
-However, autogating cannot account for the changes in the $D_{90}$ of short-duration models.
-These can only be explained by better GW detector sensitivity and/or reduced rates of short-duration glitches that overlap the injected signal.
-Such glitches cause the entire injection to be vetoed, so it is not recovered by the search pipeline.
-In particular, glitches caused by low-frequency scattering noise (such as those discussed in Section~\ref{sec:vib}) can pepper a stretch of time with short-duration glitches, overlapping injections made at multiple points.
-A method for reducing the occurrence of these glitches, \ac{RC} tracking, was implemented at for O3b, on Jan 7, 2020 at \ac{LLO} and Jan 15, 2020~\citep{Soni_2020}.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics{figures/grb/compare-rc.pdf}
-  \caption
-	{Cumulative distributions of CSG-300 Hz exclusion distances (top) and the detector network antenna factors (bottom) for GRBs before and after the implementation of RC tracking.}
-  \label{fig:grb-o3b-compare-rc}
-\end{figure}
-
-Figure~\ref{fig:grb-o3b-compare-rc} gives evidence for the effect of glitch mitigation on \xpip sensitivity.
-Although there is clearly a bias towards higher antenna responses after RC tracking, they do not entirely account for the huge substantial increase in exclusion distances.
-In summary, noise mitigation is a crucial part of improving the sensitivity of the generic transient search.
-As discussed above, there may plenty that can be inferred even in the absence of detections.
-Better detector sensitivities in \ac{O4}, along with the development of new glitch subtraction methods, could allow more confident exclusion of GW emission models associated with GRBs.
