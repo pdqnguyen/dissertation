@@ -5,9 +5,9 @@ The main injection campaigns used to measure coupling for all PEM sensors are pe
 A mid-run commissioning break ER14 took place in the month of October of 2019, during which some of the most crucial coupling measurements were repeated.
 Although the observing run does not end with an engineering run, some time is still made for end-of-run commissioning that assesses changes in detector performance, including PEM noise studies, before the instruments are finally shut down for major upgrades.
 The pre- and post-O3 campaigns are summarized in Table~\ref{tab:noise-campaigns}.
-There were fewer post-O3 injections due to the premature termination of O3 to the
+There were fewer post-O3 injections due to the premature termination of O3 in the wake of the COVID-19 pandemic.
 
-\begin{table}
+\begin{table}[htb]
 	\caption{Number of injections performed at each station and for each injection type throughout the pre-, and post-O3 injection campaigns.}
 	\label{tab:noise-campaigns}
 	\begin{tabular}{|c|ccccc|}
@@ -118,30 +118,36 @@ Long-duration noise due to vibrations from rain and the building \ac{HVAC} is al
 	\label{fig:vib-ambient}
 \end{figure}
 
-Figure~\ref{fig:vib-ambient} shows the ambient contribution of vibrational noise during \ac{O3}, produced by combining the highest coupling factors among accelerometers and microphones measured from an injection campaign at the beginning of \ac{O3}.
-At the end of \ac{O3}, the vibration noise background at both observatories was dominated by input beam jitter above 100\,Hz (discussed in Section~\ref{sec:vib-septum}).
-At \ac{LHO},  the dominant coupling region below 100\,Hz was the output arm.
-At \ac{LLO}, the dominant coupling regions were the Y-end in the 40-60\,Hz band and the output arm in the 60-100\,Hz band.
+Aggregating our coupling measurements made during O3, we arrive at
+Figure~\ref{fig:vib-ambient}, the total ambient contribution of vibrational noise sources during \ac{O3}, produced by combining the highest coupling measurements from accelerometers and microphones and computing their ambient noise projections to the DARM channel.
+At both observatories, scattered light noise dominates at low frequency (below 100\,Hz): at the output arm at LHO and at ETMY at LLO.
+At higher frequencies the input beam jitter noise dominates.
+The physical mechanisms behind these effects were described in Section~\ref{sec:noise-sources}.
+
 
 \subsection{Scattered light at the HAM5/6 septum}\label{sec:vib-septum}
 
-At \ac{LHO}, investigations throughout \ac{O3} showed that scattering noise produces noise near the detector noise background in the frequency range of 38--100\,Hz.
-The sensors with the highest ambient projections in this band were accelerometers located on the HAM 5 and HAM 6 vacuum chambers, which contain the \ac{GW} channel readout, as well as the optics of the output mode cleaner, squeezed light system, and signal recycling cavity.
+At \ac{LHO}, investigations throughout \ac{O3} showed that scattering noise at the output arm produces noise near the detector noise background in the frequency range of 38--100\,Hz.
+The sensors with the highest ambient projections in this band were accelerometers located on the HAM5 and HAM6 vacuum chambers, which contain the \ac{GW} channel readout, as well as the optics of the output mode cleaner, squeezed light system, and signal recycling cavity.
 The coupling was excited most strongly by injections around the output arm, but acoustic noise produced as far as the Y-arm manifold $\approx 50$\,m away produced excess noise in \ac{DARM}.
-Spectra from the nearest injections also show non-linear coupling behavior ({\color{red}Expand on this}).
-Shaker injections were also performed throughout the corner station, confirming that the dominant coupling site was in the HAM 5 and 6 area.
-This evidence suggested that the coupling was caused by scattered light within HAM 5 or HAM 6.
+Shaker injections were also performed throughout the corner station, confirming that the dominant coupling site was in the HAM5/6 area (Figure~\ref{fig:vib-septum-cf}).
+This evidence suggested that the coupling was caused by scattered light within HAM5 or HAM6.
 A more thorough investigation was required to localize the exact scattering surface.
 
-Figure~\ref{fig:vib-impulse} shows time series and spectrograms of a single impulse injection performed in the \ac{HAM} 5/6 area.
+\begin{figure}[htb]
+	% \includegraphics{/figures/noise-studies/vib-septum-cf.png}
+	\caption{{\color{red}To be added. }Spectra of injections exciting scattered light noise at the LHO output arm.}
+	\label{fig:vib-septum-cf}
+\end{figure}
+
+Figure~\ref{fig:vib-impulse} shows time series and spectrograms of a single impulse injection performed in the HAM5/6 area.
 The plots show a single impulse injection signal in the \ac{GW} channel and in various output optics accelerometers.
 Multiple sensors observe an impulse time-of-arrival matching that of the \ac{GW} channel, but repeating the injection from various other locations rules out sensors that do not match it consistently across multiple injections.
 In this case the septum (separating the HAM5 and HAM6 chambers) accelerometer signal matches the \ac{DARM} signal most consistently (other injections not shown for brevity).
-
-Spectrograms of the same impulse injection for \ac{DARM} and the three sensors with the closest matching time-of-arrival to that of \ac{DARM} reveals similarities between the frequency structure of the septum accelerometer signal and that of \ac{DARM}.
+Spectrograms of the same impulse injection for \ac{DARM} and the three sensors with the closest matching time-of-arrival to that of \ac{DARM} reveal similarities between the frequency structure of the septum accelerometer signal and that of \ac{DARM}.
 This provides further support that the septum is the dominant coupling site in the output arm.
 
-\begin{figure}[t]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=\textwidth]{figures/noise-studies/vib-impulse.png}
 	\caption{
@@ -149,15 +155,42 @@ This provides further support that the septum is the dominant coupling site in t
 	\label{fig:vib-impulse}
 \end{figure}
 
+The septum window through which the interferometer beam passes from HAM5 to HAM6 was suspected to be the cause of the scattering and was replaced during the commissioning break.
+Follow-up measurements, however, showed no significant changes in the coupling between the start of O3 and the commissioning break (Figure~\ref{fig:vib-septum-midrun}), suggesting that perhaps the solid septum wall itself was the scattering source.
+Thus the plan for post-O3 upgrades is to install baffles around the septum to fix this.
+{\color{red}More to be added here, studies ongoing.}
+
+\begin{figure}[htb]
+	\includegraphics[width=\textwidth]{figures/noise-studies/vib-septum-midrun.png}
+	\caption{Change in HAM5/6 vibrational coupling before and after the replacement of the septum window.}
+	\label{fig:vib-septum-midrun}
+\end{figure}
+
 
 
 \subsection{Search for the source of a 48-Hz peak}\label{sec:vib-48hz}
 
-Figure~\ref{fig:vib-beat-spectrograms} shows spectrograms of a beating-shakers injection used to localize the coupling site responsible for a 48\hyp Hz noise peak in the \ac{DARM} spectrum.
-The shakers were injecting at 48 and 48.01\,Hz. The Y-axes of the spectrograms are centered along at 48\,Hz and show the combined signal in each sensor modulating at the beat frequency (0.01\,Hz).
-This set of spectrograms suggests that the accelerometers on the \ac{ITM} chambers and the Y-axis HAM2 accelerometer are likely not close to the true coupling location, since the beat envelopes are the furthest offset from the beat envelope in the \ac{DARM} response.
+During O3a, a 48-Hz peak with no known source was visible in the DARM spectrum.
+This peak often fluctuated in amplitude on the time scale of minutes.
+During the pre-O3 injections, we observed that this noise signal was amplified by many vibrational injections in the corner station, especially the input arm acoustic speaker injections (Figure~\ref{fig:vib-48hz-injection}).
+Follow-up impulse injections revealed that it was likely near the vertex, potentially pointing to a scattered light source in one of the beam splitter chambers or in HAM3.
 
-\begin{figure}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=\textwidth]{figures/noise-studies/vib-48hz-injection.pdf}
+	\caption{
+		ASD of a vibrational injection at the LHO input arm exciting a 48-Hz resonance feature in DARM.}
+	\label{fig:vib-48hz-injection}
+\end{figure}
+
+Beating-shakers injections were then used to localize the coupling site.
+The shakers were injecting from different locations near the input arm and vertex.
+One shaker injected at 48\,Hz and and other at 48.01\,Hz.
+Figure~\ref{fig:vib-beat-spectrograms} shows spectrograms of the injection signals measured by DARM and by various nearby accelerometers.
+The Y-axes of the spectrograms are centered along at 48\,Hz and show the combined signal in each sensor modulating at the beat frequency (0.01\,Hz).
+This set of spectrograms suggests that the accelerometers on the \ac{ITM} chambers and the Y-axis HAM2 accelerometer are likely not close to the true coupling location, since the beat envelopes have the greatest phase offset from the beat envelope in the \ac{DARM} response.
+
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=\textwidth]{figures/noise-studies/vib-beat-spectrograms.png}
 	\caption{
@@ -165,16 +198,16 @@ This set of spectrograms suggests that the accelerometers on the \ac{ITM} chambe
 	\label{fig:vib-beat-spectrograms}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{figures/noise-studies/vib-48Hz.png}
-	\caption{LHO DARM spectrum before and after mitigation of the 48-Hz peak.}
-	\label{fig:vib-48hz}
-\end{figure}
-
 Multiple other injections were made (not shown here) with varying shaker locations in order to rule out other sensors until the most likely candidate remaining was the HAM3 Y-axis accelerometer.
 Black glass was used to block scattered light at this location and the peak was eliminated for the second half of the O3 observation run.
-Figure~\ref{fig:vib-48hz} shows the noise reduction in the \ac{GW} channel after the light scattering was mitigated.
+% Figure~\ref{fig:vib-48hz} shows the noise reduction in the \ac{GW} channel after the light scattering was mitigated.
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=0.9\textwidth]{figures/noise-studies/vib-48Hz.png}
+% 	\caption{LHO DARM spectrum before and after mitigation of the 48-Hz peak.}
+% 	\label{fig:vib-48hz}
+% \end{figure}
 
 \subsection{Input beam jitter}\label{sec:vib-jitter}
 
@@ -185,21 +218,22 @@ It was hypothesized that the higher coupling at LHO was due to a point absorber 
 Point absorbers are defects usually less than a millimeter across found in the test mass coatings.
 They are heated by the intense laser power in the Fabry-P\'erot arm cavities, deforming the test mass and increasing the cavity optical loss.
 As discussed in Section~\ref{sec:noise-sources}, such defects enhance the coupling of jitter noise since they introduce an asymmetry between the arms.
-Point absorbers can be avoided by offsetting the beam spot on the test mass, but the only perfect solution is to completely change out the test mass.
 
 In December 2020, the affected ITM was replaced with a new one, as part of the upgrades for \ac{O4}.
 Thus far no point absorbers have been found on the new test mass.
 Jitter coupling functions measured some months later show a dramatic order-of-magnitude reduction compared to the O3 results (Figure~\ref{fig:vib-jitter}).
 The ambient noise contribution is now roughly equivalent to that of LLO.
-These measurements emphasize the importance of point absorbers: the existence of one on any of the test masses enhances jitter coupling to the point where individual vibrational resonances of optic mounts on the PSL table can introduce excess DARM noise, requiring new measurements every time some part of the input optics changes.
 
-
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 	\includegraphics{figures/noise-studies/noise-jitter.pdf}
 	\caption{Improvement in jitter coupling at LHO after test mass replacement.}
 	\label{fig:vib-jitter}
 \end{figure}
+
+Although point absorbers can be avoided by offsetting the beam spot on the test mass, the only perfect solution is to completely change out the test mass.
+Therefore we these jitter coupling measurements emphasize the importance of addressing the issue of point absorbers as soon as possible.
+The existence of just one point absorber on any of the test masses enhances jitter coupling to the point of introducing excess DARM noise, requiring that we new measurements every time some part of the input optics changes.
 
 \section{Magnetic noise studies during O3}\label{sec:mag}
 
@@ -215,10 +249,12 @@ These measurements emphasize the importance of point absorbers: the existence of
 	\label{fig:mag-ambient}
 \end{figure}
 
-Magnetic injections early in \ac{aLIGO} suggested that coupling to permanent magnets in the suspension system  could prevent \ac{LIGO} from reaching design sensitivity in the 10-20\,Hz regions~\citep{Schofield_2013}.
+Figure~\ref{fig:mag-ambient} shows the magnetic noise budget produced from coupling functions for all magnetometers for both LIGO observatories.
+Magnetic injections in previous runs suggested that coupling to permanent magnets in the suspension system could prevent \ac{LIGO} from reaching design sensitivity in the 10-20\,Hz regions~\citep{Schofield_2013}.
 While the test mass actuator is electrostatic and not magnetic (as in \ac{iLIGO}), a number of permanent magnets were used in the suspensions, including for actuation in the first three of the four levels of the isolation chain and for eddy current damping.
 The greatest number of permanent magnets were in the eddy current damping arrays and these were removed.
-Nevertheless, ambient fields are still predicted to produce noise at greater than one-tenth of the design sensitivity in the 10-20\,Hz band (Figure~\ref{fig:mag-ambient}), and may need to be further addressed as we reach design sensitivity in the 10\,Hz region.
+Nevertheless, the current noise budget shows that ambient fields are still predicted to produce noise at at a level close or even equal to the design sensitivity in the 10-20\,Hz range (Figure~\ref{fig:mag-ambient}).
+Thus low-frequency noise from permanent magnet coupling may need to be revisited in future runs.
 
 At higher frequencies, generally above about 30\,Hz, the dominant magnetic coupling appears to be through induction of currents in cables and at connectors, mainly to actuator cabling and other cabling in the control system.
 Mitigation of coupling to cables and connectors has required a continuing program of monitoring coupling since cables are often disconnected and reconnected during runs as electronics are replaced for problems or upgrades.
@@ -236,25 +272,29 @@ Since the injections are scheduled for every Tuesday morning before the routine 
 Figures~\ref{fig:mag-weekly-cf}, \ref{fig:mag-weekly-bands}, and \ref{fig:mag-weekly-peaks} are automatically generated every week by the code that analyzes the injections.
 The first of these shows magnetic coupling functions measured over the last five weeks for which a broadband injection was performed.
 At this point a single injector was implemented at each of the three stations at LHO; the coupling functions show the highest coupling per frequency bin between the three stations.
-Changes can be seen in both the broadband and narrowband structure of the coupling function.
-Just within these five weeks, the level of broadband coupling varied by as much as a factor of about 1.5.
-Since the injection is produced from a same location and at the same amplitude every time, uncertainties due to the injection source as discussed in Section~\ref{sec:uncertainties} do not account for these variations.
-Broadband changes over specific frequency ranges tracked over the full course of \ac{O3} (Figure~\ref{fig:mag-weekly-bands}) show significant fluctuations throughout the run.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/noise-studies/mag-weekly-bands.png}
 	\caption{Time-lines of magnetic coupling changes relative to the start of the observing run.}
 	\label{fig:mag-weekly-bands}
+\end{figure}
+
+\begin{figure}
 	\includegraphics[width=0.9\textwidth]{figures/noise-studies/mag-weekly-peaks.png}
 	\caption{Weekly trends in frequency (top) and amplitude (top) of peaks in the magnetic coupling functions.}
 	\label{fig:mag-weekly-peaks}
 \end{figure}
 
-Furthermore, a large peak in the coupling is seen migrating between 90 and 110 Hz.
+Changes can be seen in both the broadband and narrowband structure of the coupling function.
+Just within these five weeks, the level of broadband coupling varied by as much as a factor of about 1.5.
+Since the injection is produced from a same location and at the same amplitude every time, uncertainties due to the injection source as discussed in Section~\ref{sec:uncertainties} do not account for these variations.
+Broadband changes over specific frequency ranges tracked over the full course of \ac{O3} (Figure~\ref{fig:mag-weekly-bands}) show significant fluctuations throughout the run.
+
+Furthermore, a large peak in the coupling is seen migrating between 90 and 110\,Hz.
 This is precisely the type of feature often missed by comb injections but will be routinely discovered by broadband injections in future observing runs.
 Figure~\ref{fig:mag-weekly-peaks} shows frequency and amplitude fluctuations in coupling peaks such as this.
-Although the coupling of the $\sim100$\,Hz peak is still well below the level that would produce excess noise in the \ac{GW} channel, its presence gives reason to be concerned that similar peaks could arise in the future that do couple significantly.
+Although the coupling of the $\sim$100\,Hz peak is still well below the level that would produce excess noise in the \ac{GW} channel, its presence gives reason to be concerned that similar peaks could arise in the future that do couple significantly.
 These weekly injections would help in identifying when the coupling changed, so instrumentalists can deduce what changes to the electronics may have affected it.
 
 \section{Validation of gravitational wave event candidates}\label{sec:vetting}
@@ -318,15 +358,19 @@ Sensors whose estimated contribution exceed one tenth of the \ac{DARM} backgroun
 If there was sufficient signal overlap, reviewers may advise that analysts perform some noise removal in the data, such as by gating or filtering out the appropriate time or frequency range, before performing further follow up analyses.
 The event could be retracted, if gating or filtering out the environmental contribution would reduce the signal-to-noise ratio of the candidate to a level no longer consistent with a GW detection.
 
-During \ac{O3}, no candidates were retracted on the basis of the environmental coupling check alone.
-Some human input was still required for all of the \XX events reported in~\citep{gwtc2}, although little to no signal overlap of environmental transients was seen.
+To confirm that PEM sensor coverage was sufficient to make a confident statement regarding environmental contamination, an additional DQR task checked for the most recent output from \ligocam, described in Section~\ref{sec:ligocam}.
+This task was used as a supplement to the results reported by \code{pemcheck}.
+
+During \ac{O3}, we confirmed that environmental noise did not account for any of the 74 GW events detected~\citep{gwtc2, gwtc3}.
+Some excess noise was always estimated to potentially exist around the events due to the conservative upper limits we set for our coupling functions, but no signal overlap of any environmental transients with GW candidates was seen even for those worst-case upper limit projections.
+That said, for most events we cannot rule out the possibility of environmental noise affecting parameter estimation pipelines.
 
 
 \subsection{Science Case Study of S200114f}
 
-On January 14, a GW trigger S200114f was detected by the \ac{cWB} pipeline~\citep{imbh_o3}.
-It was the most significant event detected by an unmodeled search and not accompanied by a trigger in any modeled search pipeline.
-Since this meant the possibility of a non-merger detection, a science case study team was put together by the LIGO collaboration to assess the astrophysical nature of the trigger.
+On January 14, 2020, the \ac{cWB} pipeline~\citep{imbh_o3} reported a GW trigger S200114f that was not associated with any triggers from a template-based search pipeline.
+It was the highest significance event detected by an unmodeled search alone.
+Since this meant the possibility of a non-merger source, a science case study team was put together by the LIGO collaboration to assess the astrophysical nature of the trigger.
 Of particular interest was the existence of environmental noise observed by some accelerometers at the LHO output arm.
 This was a known source of noise, associated with fan located on the squeezer optics table by HAM6.
 Ambient fan motion does not produce noticable transient signals, but changes in the fan speed cause a vibrational impulse that is much louder than the ambient motion.
