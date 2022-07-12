@@ -327,7 +327,7 @@ An emission energy of $10^{-2}\,\msol c^2$ lies on the optimistic end of expecta
 Predictions for $E_{\mathrm{GW}}$ from core-collapse models range across a few orders of magnitude.
 
 A number of other non-CBC emission models exist for various astrophysical objects and phenomena.
-For example, neutron stars with extremely strong magnetic fields exhibit X-ray flaring behavior believed to originate from the cracking of their crusts due to magnetic field interactions, which may also produce gravitational waves by exciting oscillatory modes in the neutron star~\citep{Lasky_2015}.
+For example, neutron stars with extremely strong magnetic fields, called \textit{magnetars}, exhibit X-ray flaring behavior believed to originate from the cracking of their crusts due to magnetic field interactions, which may also produce gravitational waves by exciting oscillatory modes in the neutron star~\citep{Lasky_2015}.
 Other potential burst sources include pulsar timing glitches~\citep{pulsar_s5}, nonlinear memory effects~\citep{memory_o2}, and cosmic string cusps~\citep{strings_o3}.
 
 
@@ -371,7 +371,7 @@ There could therefore be GWs detectable only through targeted searches.
 
 \Acp{GRB} are energetic bursts of gamma rays in the MeV range, first discovered in 1967~\citep{Klebesadel_1973}.
 Observations throughout the following decades revealed that \acp{GRB} could be classified based on duration and spectral hardness~\citep{Kouveliotou_1993}.
-This classification has become the most used to describe \acp{GRB}: long bursts last $\gtrsim2$\,s and have soft emission spectra, i.e. lacking in higher energy photons, while short bursts last $\lesssim2$\,s and have harder emission spectra (Figure~\ref{fig:grb-classification}).
+This classification has become the most used to describe \acp{GRB}: long bursts last $\gtrsim$2\,s and have soft emission spectra, i.e. lacking in higher energy photons, while short bursts last $\lesssim$2\,s and have harder emission spectra (Figure~\ref{fig:grb-classification}).
 GRB durations are defined based on their $T_{90}$, the time interval over which 90\% of the total background-subtracted photon counts are observed by the reporting GRB detector.
 Spectral hardness is described using the ratio of the flux density in the 50–300 keV band to the flux density in the 10–50 keV band~\citep{fermi_2020}.
 Photometry and spectroscopy data have provided evidence that long \acp{GRB} originate from \acp{CCSN}, whereas short \acp{GRB} are believed to be associated with compact binary mergers like GW170817.
@@ -382,20 +382,37 @@ Photometry and spectroscopy data have provided evidence that long \acp{GRB} orig
 	\label{fig:grb-classification}
 \end{figure}
 
-A multitude of models have been proposed throughout the decades to explain the origins of \acp{GRB}.
-It is believed that the ultra-relativistic jets required to produce \acp{GRB} come from either black holes~\citep{Woosley_1993} or magnetars~\citep{Dai_1998}.
-{\color{red}Go through a few more refs and review papers on GRB progenitors.}
+It is believed that the ultra-relativistic jets required to produce \acp{GRB} can come from black holes~\citep{Woosley_1993} or magnetars~\citep{Dai_1998}, as they can possess the energy required to act as \textit{central engines}~\citep{Kumar_2015}.
+If the accretion rate around a black hole is sufficiently high, a large amount of neutrinos and anti-neutrinos are emitted as the accretion disk cools.
+Pair annihilation of these particles results a ``fireball'' of photons and electrons-positron pairs, as well as protons accelerated by neutrinos~\citep{Chen_2007}.
+Alternatively, the angular momentum of a rapidly spinning black hole can be extracted by a strong accretion disk magnetic field to create the jet, a process known as the Blanford-Znajek mechanism~\citep{Blanford_1977,Lee_2000}.
+This process likewise believed to be responsible for jets produced by \textit{millisecond} magnetars, which have rotation periods of $\sim$1\,ms~\citep{Metzger_2011}.
+
+Whether the central engine is produced from a core-collapsing star or a merger involving a neutron star, the jet has to propagate through the surrounding material left behind by the progenitor, which is mostly distributed in the plane perpendicular to the central axis (the rotational axis of the star or orbital axis of the merger).
+This results in the jet being collimated, emerging from the envelope as a narrow, bipolar beam along the central axis.
+
+Once the jet has emerged, its kinetic energy must be converted into gamma-rays.
+The internal shock model is widely accepted as the mechanism for producing the initial \textit{prompt emission}~\citep{Rees_1994}.
+In this model, the jet is treated as a series of shells emerging at different speeds.
+When the shells collide, their kinetic energy is converted to thermal energy, and gamma-ray photons are produced via either synchrotron radiation or inverse-Compton scattering.
+At greater distances, the external shock model proposes that the shells eventually coalesce into a single shell that collides with the circum-burst medium~\citep{Blandford_1976}.
+Again kinetic energy is converted into thermal energy, this time radiating photons in the X-ray, visible, and radio bands in addition to gamma-rays.
+This phenomenon is referred to as the GRB \textit{afterglow} and can last days after the prompt emission.
+Observation of afterglows is crucial to localizing the GRBs and identifying source galaxies and measuring redshifts.
 
 
 \subsection{Short gamma-ray bursts}
 
 \ac{GW} parameter estimation suffers from a degeneracy between distance and orbital plane inclination; increasing the distance of the merger and orienting its orbital plane would both result in a lower \ac{GW} amplitude.
 This degeneracy can be broken if either one could be measured externally.
-If the joint detection localization were good enough to determine a host galaxy, this would greatly help resolve the distance, however this will more likely require observation of an optical or UV counterpart due to the poor localization provided by current \ac{GRB} and \ac{GW} detectors.
+If the joint detection localization were good enough to determine a host galaxy, this would greatly help resolve the distance, however this will more likely require observation of an optical or ultraviolet counterpart due to the poor localization provided by current \ac{GRB} and \ac{GW} detectors.
 In the case of GW170817, the host galaxy whose redshift was known was used to determine the distance, which then allowed for a more precise measurement of the inclination angle.
-A separate analysis using the distance measured from the \ac{GW} detection combined with the known redshift made the first joint \ac{GW}-EM measurement of the Hubble constant, albeit with very large uncertainty due to the small sample size~\citep{gw170817_hubble}.
 
-{\color{red}Discuss background and disagreement among Hubble constant measurements.}
+A separate analysis using the distance measured from the \ac{GW} detection combined with the known redshift made the first joint \ac{GW}-EM measurement of the Hubble constant, albeit with very large uncertainty due to the small sample size, of $H_0 = (70.3 \pm 5.0)\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$~\citep{gw170817_hubble}.
+The Hubble constant, which describes the rate of the expansion of the universe, has been measured in other ways.
+The Planck collaboration measured the Hubble constant based on \ac{CMB} data to be $H_0 = (67.4 \pm 0.5)\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$~\citep{Planck_2020},
+which disagrees with the SH0ES team measurement of $H_0 = (73.04 \pm 1.04)\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$, drawn from observations of Cepheid variables in Type Ia supernova host galaxies, to 5$\sigma$~\citep{Shoes_2018}.
+Although the LIGO-Virgo result from GW170817 alone does not disfavor either side of the issue, GW detectors could play a major role in resolving this tension as we detect more binary neutron star mergers in the future.
 
 One of the many unanswered questions surrounding \acp{GRB} pertains to their jet profile, the luminosity as a function of viewing angle (the angle between the observer and the symmetric axis of the jet; the profile is assumed to be axially symmetric and independent of distance).
 When information about the jet profile is required, e.g. for making rate estimates for \ac{GRB} detections, the profile is typically modeled as a top-hat (uniform within some opening angle and dropping sharply beyond it) for simplicity, but the true profile may be different.
@@ -420,7 +437,7 @@ Some \ac{NSBH} mergers may be capable of producing GRBs in the right conditions.
 A mass ratio between the black hole and the neutron star is not too unequal, due to a low black hole mass, and a high prograde black hole spin could result in the \textit{tidal disruption} of the neutron star, which would produce a short GRB in much the same way as in a \ac{BNS} merger.
 
 
-\subsection{Long gamma-ray bursts}
+\subsection{Long gamma-ray bursts}\label{sec:gw-grb-long}
 
 Long GRBs are believed to come from \acp{CCSN}, which as discussed above have many models predicting GW emission.
 The majority (about 70\%) of GRBs are long GRBs, so although the expected GW amplitudes are quite weak they present an abundance of electromagnetic sources that each hold the potential of a GW counterpart.
@@ -430,13 +447,25 @@ Some models predict GW emission would occur as a result of asymmetries in the co
 Such \acp{GW} would be short, lasting less than a second.
 Extreme emission models predict a wide variety of signals, often longer in duration.
 Matter surrounding the remnant of a \ac{CCSN} forms an accretion disk, in which turbulent behavior can arise.
-For instance, instabilities in the accretion disk can lead to the formation of a clump of matter which can then migrate inwards, shedding angular momentum in the form of gravitational waves~\citep{Piro_2007}.
-Disk fragments are eventually torn apart by tidal disruption as they get too close to the central black hole, placing a maximum limit on the duration of potential GW emissions for this scenario.
+For instance, instabilities in the thick outer regions of the accretion disk can lead to the formation of a gravitationally bound clump of matter.
+If the clump is cooled quickly enough (on a time scale less than its orbital period about the central BH), instead of returning to stability it can collapse to form a low-mass NS.
+This NS would then migrate inwards, shedding angular momentum in the form of GWs similar to an NSBH merger~\citep{Piro_2007}.
+The characteristic strain amplitude for this mechanism is
+\begin{equation}
+	h_0 = 6.4 \times 10^{-24} \left( \frac{\mathcal{M}}{\msol} \right)^{5/3} \left( \frac{f_{\mathrm{GW}}}{100\,\mathrm{Hz}} \right)^{2/3} \left( \frac{r}{100\,\mathrm{Mpc}} \right)^{-1}.
+\end{equation}
+Radiative cooling is too slow in the thick outer disk, but the high temperature and density of the accrection environment allows nuclear processes to provide sufficient cooling.
+The disk fragments are eventually torn apart by tidal disruption as they get too close to the central black hole, placing a maximum limit on the duration of potential GW emissions for this scenario of about 1\,s.
 
-In an even more extreme scenario, two clumps could form as compact objects that merge within the disk, producing a CBC-like chirp~\citep{vanPutten_2001, vanPutten_2004}.
+In an even more extreme scenario, instabilities can arise in a magnetized, thick accretion ``torus'' that is strongly coupled to the central BH via magnetohydrodynamic effects~\citep{vanPutten_2001, vanPutten_2004}.
+These instabilities can form quadrupole mass moments in the torus that emit GWs of energy
+\begin{equation}
+	E_{\mathrm{GW}} = 0.2 \msol \left(\frac{\eta}{0.1}\right) \left(\frac{M_{\mathrm{BH}}}{7\msol} \right)
+\end{equation}
+where $\eta$ is the ratio of the torus angular velocity to that of the black hole, which has mass $M_{\mathrm{BH}}$.
 
 Accretion disk instability models are particular interesting due to their potential connection to X-ray flares.
-Many GRBs exhibit a diverse range of X-ray flaring behavior that could be attributed to disk fragments falling in at different times after the formation of the central black hole~\citep{Dallosso_2017}.
+Many GRBs exhibit a diverse range of X-ray flaring behavior that could be attributed to disk fragments falling in at different times after the formation of the central black hole~\citep{Perna_2006, Dallosso_2017}.
 
 A fraction of long GRBs could even originate from compact mergers: some short GRBs have been observed to exhibit extended emissions that can last much longer than the initial short GRB impulse~\citep{Norris_2006, vanPutten_2014}.
 These, too, may be associated with X-ray flaring, as accretion disks formed around NSBH mergers could likewise produce infalling clumps~\citep{Mu_2018}.
