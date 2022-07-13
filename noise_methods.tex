@@ -155,45 +155,52 @@ These two techniques were essential in the localization of coupling sites in \ac
 The beating-shakers technique is narrow-band, and involves vibrating the vacuum enclosure at two slightly different frequencies, each injected from a shaker or a speaker at a different location (e.g. a shaker at one location injects a sine wave at frequency $f$ and a shaker at the other location injections at frequency $f + 0.01$\,Hz).
 The two injections are adjusted in amplitude to produce strong beats in the \ac{GW} channel.
 
-Because the injection locations are different, the relative phase of the two injected signals varies with location on the vacuum enclosure.
+Because the injection locations are different, the relative phase of the two injected signals varies with location on the vacuum enclosure, producing a spatial interference pattern.
 As a result, the phase of the beat envelope varies with position, and different sites experience maximum chamber wall motion at different times.
-Consider two sine waves of unit amplitude injected at frequencies $f_1$ and $f_2$ from two source locations.
+Consider two sine waves of unit amplitude injected at frequencies $f_1$ and $f_2 = f_1 + \delta f$ from two source locations where $\delta f \ll f_1$.
 For simplicity, we can consider that the sources lie along the $x$-axis.
-Let $x_1$ be the location of source 1, $x_2$ the location of source 2, and $x$ the destination.
+Let $r_1$ and $r_2$ be the distances of source 1 and source 2, respectively, to some destination point.
 The individual signals are
 \begin{align}
-	y_1(t) &= \cos(k_1 (x - x_1) + 2 \pi f_1 t)\\
-	y_2(t) &= \cos(k_2 (x - x_2) + 2 \pi f_2 t)
+	y_1(t) &= \cos(k_1 r_1 + 2 \pi f_1 t)\\
+	y_2(t) &= \cos(k_2 r_2 + 2 \pi f_2 t)
 \end{align}
-where $k_1 = 2 \pi f_1 / c_s$ and $k_2 = \pi f_2 / c_s$ with $c_s$ the speed of sound in the injection medium.
-We observe the sum of these signals at their destination:
+where $k_1 = 2 \pi f_1 / c_s$ and $k_2 = \pi f_2 / c_s$ with $c_s$ the speed of sound in the injection medium ($c_s \simeq 3000\,\mathrm{m/s}$ in stainless steel).
+We measure the sum of these signals at their destination:
 \begin{equation}
 	\begin{split}
-	  y_1(t) + y_2(t) = & 2 \cos \left\{ \frac{1}{2} \left[k_1 (x - x_1) + k_2 (x - x_2) + 2 \pi (f_1 + f_2) t \right] \right\}\\
-		& \times \cos \left\{ \frac{1}{2} \left[k_1 (x - x_1) - k_2 (x - x_2) + 2 \pi (f_1 - f_2) t \right] \right\}
+	  y_1(t) + y_2(t) =
+		& 2 \cos \left\{ \frac{1}{2} \left[k_1 r_1 + k_2 r_2 + 2 \pi (f_1 + f_2) t \right] \right\} \\
+		&\qquad \times \cos \left\{ \frac{1}{2} \left[k_1 r_1 - k_2 r_2 + 2 \pi (f_1 - f_2) t \right] \right\}.
 	\end{split}
 \end{equation}
-The first cosine factor is a wave with the average frequency $(f_1 + f_2) / 2$ and a phase determined by the distances $x_1$ and $x_2$.
-The second factor represents the beat envelope, with a beat frequency $\Delta f = f_1 - f_2$.
-The phase of this envelope at the destination is dependent on the locations of the sources:
+The first cosine factor is a wave with the average frequency $f_{\mathrm{avg}} = (f_1 + f_2) / 2$, while the second cosine factor represents a wave with the difference frequency $\delta f / 2$.
+This slowly evolving second factor is the amplitude modulation that results in the familiar beat pattern in the time series of our observation.
+Its spatial phase is dependent on the difference between the sources, $\Delta r = r_1 - r_2$ is the path length difference:
 \begin{align}
-	\varphi & \equiv \frac{1}{2} \left[k_1 (x - x_1) - k_2 (x - x_2)\right] \\
-					& = \frac{\pi}{c_s} \left[f_1 (x - x_1) - f_2 (x - x_2)\right]
+	\varphi &\equiv \frac{1}{2} (k_1 r_1 - k_2 r_2) \\
+	&= \frac{\pi}{c_s} (f_1 r_1 - f_2 r_2) \\
+	&\simeq \pi \left( \frac{f_1}{c_s} \right) \Delta r
 \end{align}
-Consider another destination at a different location $x'$.
-We can write its envelope phase as
-\begin{equation}
-	\varphi' = \frac{\pi}{c_s} \left[ f_1 (x' - x_1) - f_2 (x' - x_2) \right]
-\end{equation}
-so the difference in the envelope phase between the two destinations is
-\begin{equation}
-	\delta \varphi = \varphi - \varphi' = \pi \frac{\Delta f}{c_s} (x - x').
-\end{equation}
-To distinguish two destinations, we need to observe phase differences on the scale of a half-period: $\delta \varphi \sim \pi$. For $\Delta f = 0.01\,\mathrm{Hz}$ and $c_s \simeq 3000\,\mathrm{m/s}$ for a shear wave in stainless steel, we can distinguish destinations of $\sim3\times10^{5}\,\mathrm{m}$ apart.
+where we have invoked the assumption that $\delta f$ is small.
 
+Consider a second destination located $r_1'$ and $r_2'$ away from the same sources.
+Here we observe a similar signal but with a spatial phase $\varphi' \simeq \pi (f_1 / c_s) \Delta r'$ where $\Delta r' = r_1' - r_2'$.
+The phase difference between these observations is dependent on the differential path length:
+\begin{equation}
+	\varphi - \varphi' \simeq \pi \left( \frac{f_1}{c_s} \right) (\Delta r - \Delta r').
+\end{equation}
+We can see that the peaks of the amplitude modulation (where the second cosine factor evaluates to $\pm1$) will be spatially separated by a distance $\simeq 30$\,m for $f_1 = 100$\,Hz in stainless steel.
 
-The sites with accelerometer signals that have the same beat envelope phase as the \ac{DARM} signal are candidates for the scattering sites on the vacuum enclosure walls.
-Other sensors that are not near the coupling site may also match the phase by chance, but these false positives can be rejected by varying the locations of the shakers.
+To observe these amplitude modulations, we can produce spectrograms of the DARM signal, representing the coupling site as one destination, and various sensors as our secondary destinations.
+The signal appears in spectrograms as a line at $f_{\mathrm{avg}}$ rising and fading in amplitude at the beat frequency $\delta f$.
+Realistically we can distinguish the peak arrival times a fraction of a beat period apart, so we can reject the possibility that a sensor less than a few meters from a coupling site if its spectrogram pattern is visibly offset from that of the DARM signal.
+Of course sensors that lie a full peak away from the coupling site would also appear to line up with the DARM peaks, not unlikely considering the scale of the corner station vacuum enclosure area, so based on one test we cannot rule out these false positives.
+
+We reject false positives by varying the locations of the shakers and therefore the shape of the spatial interference pattern.
+A sensor within a few meters of a coupling site will still correlate with DARM, but the phase of far away sensors will change, allowing us to rule out a new set of locations.
+This technique is therefore a deductive one: we vary and repeat the injection until we are left with only the most likely candidate(s).
+
 
 \subsubsection{Impulse injections}~\label{sec:injections-vib-impulse}
 
