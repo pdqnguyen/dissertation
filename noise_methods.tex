@@ -147,7 +147,7 @@ While smaller shakers can be directly clamped to the interferometer supports, a 
 This has an added benefit of being better able to adjust the direction of the actuation by angling the rod and shaker accordingly.
 
 Two new injection techniques have been developed for localizing vibration coupling sites connected to the vacuum enclosure, such as locations on the vacuum enclosure that reflect scattered light.
-The techniques rely on the slow propagation speeds (hundreds of meters per second) of vibrations on the steel vacuum enclosure walls or, for acoustic injections, in air.
+The techniques rely on the slow propagation speeds (hundreds of meters per second) of shear wave vibrations on the steel vacuum enclosure walls, or of sound waves in the case of acoustic injections.
 These two techniques were essential in the localization of coupling sites in \ac{O3}, as discussed in Section~\ref{sec:vib}.
 
 \subsubsection{Beating-shakers technique}~\label{sec:injections-vib-beats}
@@ -157,6 +157,41 @@ The two injections are adjusted in amplitude to produce strong beats in the \ac{
 
 Because the injection locations are different, the relative phase of the two injected signals varies with location on the vacuum enclosure.
 As a result, the phase of the beat envelope varies with position, and different sites experience maximum chamber wall motion at different times.
+Consider two sine waves of unit amplitude injected at frequencies $f_1$ and $f_2$ from two source locations.
+For simplicity, we can consider that the sources lie along the $x$-axis.
+Let $x_1$ be the location of source 1, $x_2$ the location of source 2, and $x$ the destination.
+The individual signals are
+\begin{align}
+	y_1(t) &= \cos(k_1 (x - x_1) + 2 \pi f_1 t)\\
+	y_2(t) &= \cos(k_2 (x - x_2) + 2 \pi f_2 t)
+\end{align}
+where $k_1 = 2 \pi f_1 / c_s$ and $k_2 = \pi f_2 / c_s$ with $c_s$ the speed of sound in the injection medium.
+We observe the sum of these signals at their destination:
+\begin{equation}
+	\begin{split}
+	  y_1(t) + y_2(t) = & 2 \cos \left\{ \frac{1}{2} \left[k_1 (x - x_1) + k_2 (x - x_2) + 2 \pi (f_1 + f_2) t \right] \right\}\\
+		& \times \cos \left\{ \frac{1}{2} \left[k_1 (x - x_1) - k_2 (x - x_2) + 2 \pi (f_1 - f_2) t \right] \right\}
+	\end{split}
+\end{equation}
+The first cosine factor is a wave with the average frequency $(f_1 + f_2) / 2$ and a phase determined by the distances $x_1$ and $x_2$.
+The second factor represents the beat envelope, with a beat frequency $\Delta f = f_1 - f_2$.
+The phase of this envelope at the destination is dependent on the locations of the sources:
+\begin{align}
+	\varphi & \equiv \frac{1}{2} \left[k_1 (x - x_1) - k_2 (x - x_2)\right] \\
+					& = \frac{\pi}{c_s} \left[f_1 (x - x_1) - f_2 (x - x_2)\right]
+\end{align}
+Consider another destination at a different location $x'$.
+We can write its envelope phase as
+\begin{equation}
+	\varphi' = \frac{\pi}{c_s} \left[ f_1 (x' - x_1) - f_2 (x' - x_2) \right]
+\end{equation}
+so the difference in the envelope phase between the two destinations is
+\begin{equation}
+	\delta \varphi = \varphi - \varphi' = \pi \frac{\Delta f}{c_s} (x - x').
+\end{equation}
+To distinguish two destinations, we need to observe phase differences on the scale of a half-period: $\delta \varphi \sim \pi$. For $\Delta f = 0.01\,\mathrm{Hz}$ and $c_s \simeq 3000\,\mathrm{m/s}$ for a shear wave in stainless steel, we can distinguish destinations of $\sim3\times10^{5}\,\mathrm{m}$ apart.
+
+
 The sites with accelerometer signals that have the same beat envelope phase as the \ac{DARM} signal are candidates for the scattering sites on the vacuum enclosure walls.
 Other sensors that are not near the coupling site may also match the phase by chance, but these false positives can be rejected by varying the locations of the shakers.
 
