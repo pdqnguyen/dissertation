@@ -130,22 +130,26 @@ The physical mechanisms behind these effects were described in Section~\ref{sec:
 At \ac{LHO}, investigations throughout \ac{O3} showed that scattering noise at the output arm produces noise near the detector noise background in the frequency range of 38--100\,Hz.
 The sensors with the highest ambient projections in this band were accelerometers located on the HAM5 and HAM6 vacuum chambers, which contain the \ac{GW} channel readout, as well as the optics of the output mode cleaner, squeezed light system, and signal recycling cavity.
 The coupling was excited most strongly by injections around the output arm, but acoustic noise produced as far as the Y-arm manifold $\approx 50$\,m away produced excess noise in \ac{DARM}.
-Shaker injections were also performed throughout the corner station, confirming that the dominant coupling site was in the HAM5/6 area (Figure~\ref{fig:vib-septum-cf}).
-This evidence suggested that the coupling was caused by scattered light within HAM5 or HAM6.
-A more thorough investigation was required to localize the exact scattering surface.
+Figure~\ref{fig:vib-septum-shaker} shows shaker injections performed at the HAM5/6 area.
+Mechanical resonances in the vacuum chamber structure alter the frequency content of the injection signal as it propagates, so the sensitivity of the detector to the shaker injections is not uniform but rather characterized by various peaks and troughs.
+The estimated ambient noise levels of the worst of these peaks reaches within a factor of two below the DARM background in the 50-60\,Hz and 80-100\,Hz bands, higher than observed by other corner station shaker injections.
 
 \begin{figure}[htb]
-	% \includegraphics{/figures/noise-studies/vib-septum-cf.png}
-	\caption{{\color{red}To be added. }Spectra of injections exciting scattered light noise at the LHO output arm.}
-	\label{fig:vib-septum-cf}
+	\includegraphics{figures/noise-studies/vib-septum-shaker.pdf}
+	\caption[Spectra of shaker injections exciting scattered light noise at the LHO output arm.]
+	{Spectra of shaker injections exciting scattered light noise at the LHO output arm.
+	 Top: Injections observed by the HAM5/6 septum accelerometer, stitched together from multiple bandpassed injections (each covering a 20-Hz range).
+	 Bottom: DARM responses to the injections (solid lines) and estimated ambients from coupling functions in dots.}
+	\label{fig:vib-septum-shaker}
 \end{figure}
 
-Figure~\ref{fig:vib-impulse} shows time series and spectrograms of a single impulse injection performed in the HAM5/6 area.
-The plots show a single impulse injection signal in the \ac{GW} channel and in various output optics accelerometers.
-Multiple sensors observe an impulse time-of-arrival matching that of the \ac{GW} channel, but repeating the injection from various other locations rules out sensors that do not match it consistently across multiple injections.
-In this case the septum (separating the HAM5 and HAM6 chambers) accelerometer signal matches the \ac{DARM} signal most consistently (other injections not shown for brevity).
-Spectrograms of the same impulse injection for \ac{DARM} and the three sensors with the closest matching time-of-arrival to that of \ac{DARM} reveal similarities between the frequency structure of the septum accelerometer signal and that of \ac{DARM}.
-This provides further support that the septum is the dominant coupling site in the output arm.
+A more thorough investigation was required to localize the exact scattering surface.
+We carried out impulse injections, as described in Section~\ref{sec:injections-vib-impulse}, at 37 locations throughout the corner station, including a number of spots on the chamber walls and doors of HAM5 and HAM6.
+Figure~\ref{fig:vib-impulse} shows time series and spectrograms the \ac{GW} channel and in various output optics accelerometers during a single impulse injection performed in the HAM5/6 area.
+Multiple sensors observe an impulse time-of-arrival matching that of the \ac{GW} channel, but repeating the injection from several other locations rules out sensors that do not match it consistently across multiple injections.
+In this case we find that the septum (separating the HAM5 and HAM6 chambers) accelerometer signal matches the \ac{DARM} signal most consistently.
+The accompanying spectrograms of the same impulse injection for \ac{DARM} and the three sensors with the closest matching time-of-arrival to that of \ac{DARM} reveal similarities between the frequency structure of the septum accelerometer signal and that of \ac{DARM}.
+
 
 \begin{figure}[htb]
 	\centering
@@ -155,16 +159,28 @@ This provides further support that the septum is the dominant coupling site in t
 	\label{fig:vib-impulse}
 \end{figure}
 
-The septum window through which the interferometer beam passes from HAM5 to HAM6 was suspected to be the cause of the scattering and was replaced during the commissioning break.
-Follow-up measurements, however, showed no significant changes in the coupling between the start of O3 and the commissioning break (Figure~\ref{fig:vib-septum-midrun}), suggesting that perhaps the solid septum wall itself was the scattering source.
-Thus the plan for post-O3 upgrades is to install baffles around the septum to fix this.
-{\color{red}More to be added here, studies ongoing.}
+Additionally, we performed a series of beating-shakers injections during the commissioning break as described in Section~\ref{sec:injections-vib-beats}, attaching the large and small shakers to the HAM5/6 chamber doors, the outside of the septum itself, and the chamber roofs.
+We injected at 100, 200, and 400\,Hz, each time with $\delta f = 100.01$\,Hz and observing for about five minutes.
+Due to a metal scaffolding structure placed around the chambers for commissioning work we were limited in our ability to produce strong enough signals to give a clear beat envelope.
+Nevertheless these injections did not rule out the septum as a coupling site.
+
+The septum wall is a physically likely coupling site because it is highly reflective, exhibits more ambient motion than other surfaces on the HAM chambers, and stands perpendicular to the path of the interferometer beam, which passes through it via a glass window.
+This window was particularly suspected to be the culprit and was replaced during the commissioning break in order to eliminate the scattered beam.
+Follow-up measurements, however, show no significant changes in the coupling between the start of O3 and the commissioning break (Figure~\ref{fig:vib-septum-midrun}), suggesting that perhaps the solid septum wall itself is the scattering surface.
 
 \begin{figure}[htb]
 	\includegraphics[width=\textwidth]{figures/noise-studies/vib-septum-midrun.png}
 	\caption{Change in HAM5/6 vibrational coupling before and after the replacement of the septum window.}
 	\label{fig:vib-septum-midrun}
 \end{figure}
+
+The plan for post-O3 upgrades was to install light baffles, surfaces with low reflectivity, around the septum to block stray light from hitting the wall.
+More recent measurements suggest that even this has not mitigated coupling, however.
+This means that the window is indeed the coupling site but that a higher-quality window is not sufficient to eliminate the scattering, so the window must be entirely removed.
+This has been done at LLO with preliminary analyses showing significant noise reduction.
+
+The investigation on the septum coupling will continue on the road towards O4.
+The results of this investigation and the vibrational noise budget measurements have made it clear that localizing and mitigating coupling due to scattered light beams will be crucial to reaching the design sensitivity of Advanced LIGO.
 
 
 
