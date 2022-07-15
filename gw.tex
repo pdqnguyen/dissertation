@@ -23,7 +23,7 @@ General relativity relates the geometry of spacetime to the density and flux of 
 \begin{equation}\label{eq:gr-einstein}
 	G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
 \end{equation}
-where $G_{\mu\nu}$ is the Einstein tensor, analogous to the Newtonian potential $\Phi$, and $T_{\mu\nu}$ is the energy-momentum tensor, analogous to $\rho$.
+where $c$ and $G$ are the speed of light and gravitational constant, respectively, $G_{\mu\nu}$ is the Einstein tensor, analogous to the Newtonian potential $\Phi$, and $T_{\mu\nu}$ is the energy-momentum tensor, analogous to $\rho$.
 Since the tensors are 4-by-4 and symmetric, \cref{eq:gr-einstein} represents ten separate equations, as opposed to the single Newtonian equation.
 The energy-momentum tensor represents not just the mass density (which is described by the $T^{00}$ component alone) but also the momentum density ($T^{i0}$ and $T^{0j}$ terms, where $i,j = 1, 2, 3$) and the mechanical stress tensor ($T^{ij}$).
 
@@ -43,7 +43,7 @@ In a flat Minkowski spacetime, where the metric is
 			\end{matrix}
 		\right)
 \end{equation}
-the line element is that of special relativity: $ds^2 = -cdt^2 + dx^2 + dy^2 + dz^2$.
+the line element is that of special relativity: $ds^2 = -c^2 dt^2 + dx^2 + dy^2 + dz^2$.
 Analogous to Newton's laws of motion in classical mechanics, the geodesic equations dictate how free-falling particles in general relativity move through spacetime along geodesics
 \begin{equation}\label{eq:gr-geodesic}
 	\frac{d^2x^{\mu}}{ds^2} + \Gamma_{\alpha \beta}^{\mu} \frac{dx^{\alpha}}{ds} \frac{dx^{\beta}}{ds} = 0
@@ -232,7 +232,7 @@ Finally, we can once again project to the TT gauge using the projection operator
 \section{Sources of gravitational waves}\label{sec:gw-sources}
 
 \Crefrange{eq:gr-hTT}{eq:gr-ITT} show that any system whose quadrupole moment has a non-vanishing second derivative can generate \acp{GW}, which requires some non-spherically symmetric motion of masses.
-We can make an order-of-magnitude estimate of the GW amplitude by thinking of the quadrupole tensor in terms of the velocity of the non-spherically symmetric motion of the source: $\ddot{I} \sim d^2/dt^2 (M R^2) \sim M v_{\textrm{NS}}^2$.
+We can make an order-of-magnitude estimate of the GW amplitude by thinking of the quadrupole tensor in terms of the velocity of the non-spherically symmetric motion of the source~\citep{Misner_1973}: $\ddot{I} \sim d^2/dt^2 (M R^2) \sim M v_{\textrm{NS}}^2$.
 Then the GW amplitude is
 \begin{equation}
 	h_0 \sim \frac{GM v_{\textrm{NS}}^2}{c^4 r}.
@@ -273,7 +273,7 @@ As is evident from \cref{eq:gw-cbc-fdot}, the rate of the frequency evolution pr
 Naively one might infer from \cref{eq:gw-cbc-h0} that the luminosity distance can be determined directly from the observed GW amplitude.
 However, \crefrange{eq:gw-cbc-hplus}{eq:gw-cbc-hcross} assume a ``face-on'' observation of the gravitational waves.
 Emissions from a compact merger are not isotropic, but diminish by a factor $(1 + \cos^2 \iota) / 2$, where $\iota$ is the \textit{inclination angle} between the orbital axis of the binary and the path to the observer.
-This results in a degeneracy between the estimation of the source inclination angle and its distance from us, which can only be resolved with independent observations by non-GW observatories, as discussed later (Section~\ref{sec:mma}).
+This results in a degeneracy between the estimation of the source inclination angle and its distance from us, which can be resolved with independent observations by non-GW observatories, as discussed later (Section~\ref{sec:mma}).
 
 Furthermore, there are many source properties we cannot yet infer from \crefrange{eq:gw-cbc-hplus}{eq:gw-cbc-fdot}, as they are computed in the Newtonian limit.
 More properties are introduced by expanding the theory to include \textit{post-Newtonian} correction terms to the multipole expansion of the energy-momentum tensor, i.e. beyond the $\tau^{00}$ quadrupole term of \cref{eq:gr-h}.
@@ -300,13 +300,13 @@ Since many of these \ac{NS} sources are well studied by electromagnetic astronom
 \subsection{Burst sources}
 
 GW bursts are short-duration events not associated with well-characterized waveforms; their time evolution is too difficult to model in a confined parameter space due to their unpredictable or poorly understood dynamical behavior.
-\Acp{CCSN} are the most promising burst source to be detected, although their \ac{GW} emission is still expected to be too weak for detecting events outside the galactic neighborhood, and the rate of galactic \acp{CCSN} is expected to be only one to a few per century~\citep{Adams_2013, Maoz_2010}.
+The most promising burst source to be detected are \acp{CCSN}, although their \ac{GW} emission is still expected to be too weak for detecting events outside the galactic neighborhood, and the rate of galactic \acp{CCSN} is expected to be only one to a few per century~\citep{Adams_2013, Maoz_2010}.
 Nonetheless there is evidence from electromagnetic observations that many CCSN exhibit the necessary asymmetries for GW emission.
 
 There are many proposed scenarios for how such asymmetries could manifest, many supported by simulations~\citep{Fryer_2011, Fryer_2002}.
 These simulations also face many hurdles that limit their accuracy: they have to capture the effects of general relativity, neutrino transport, and magnetic field interactions.
 Different models also focus on different phases of the collapse, and account for different supernova remnants (either a neutron star or a black hole).
-In summary, models have been formulated predicting GW emission from asymmetries in the core bounce phase due to stellar rotation or an asymmetric core; from convection processes, or bar-mode instabilities in the proto-neutron star (if one forms); from fragmentation of the core itself, or within a massive accreting disk if the remnant becomes a black hole; and from Rossby wave (r-mode) instabilities in a cooling proto-neutron star.
+In summary, models have been formulated to predict GW emission from asymmetries in the core bounce phase due to stellar rotation or an asymmetric core; from convection processes, or bar-mode instabilities in the proto-neutron star (if one forms); from fragmentation of the core itself, or within a massive accreting disk if the remnant becomes a black hole; and from Rossby wave (r-mode) instabilities in a cooling proto-neutron star.
 The result is a wide range of predictions for the amplitude, frequency evolution, and duration of the gravitational waves produced by CCSN.
 
 That said, we can still roughly estimate a characteristic GW amplitude for core-collapse emission.
@@ -370,18 +370,6 @@ There could therefore be GWs detectable only through targeted searches.
 \section{GWs associated with GRBs}\label{sec:gw-grb}
 
 \Acp{GRB} are energetic bursts of gamma rays in the MeV range, first discovered in 1967~\citep{Klebesadel_1973}.
-Observations throughout the following decades revealed that \acp{GRB} could be classified based on duration and spectral hardness~\citep{Kouveliotou_1993}.
-This classification has become the most used to describe \acp{GRB}: long bursts last $\gtrsim$2\,s and have soft emission spectra, i.e. lacking in higher energy photons, while short bursts last $\lesssim$2\,s and have harder emission spectra (Figure~\ref{fig:grb-classification}).
-GRB durations are defined based on their $T_{90}$, the time interval over which 90\% of the total background-subtracted photon counts are observed by the reporting GRB detector.
-Spectral hardness is described using the ratio of the flux density in the 50–300 keV band to the flux density in the 10–50 keV band~\citep{fermi_2020}.
-Photometry and spectroscopy data have provided evidence that long \acp{GRB} originate from \acp{CCSN}, whereas short \acp{GRB} are believed to be associated with compact binary mergers like GW170817.
-
-\begin{figure}[htb]
-	\includegraphics[trim={0 0 0 6cm}, clip, width=0.9\textwidth]{figures/gw/grb-classification.jpg}
-	\caption{Hardness ratios (HR) vs. $T_{90}$s of Fermi GRBs, showing the distinction between short and long bursts. Reproduced from~\protect\citet{fermi_2016}}
-	\label{fig:grb-classification}
-\end{figure}
-
 It is believed that the ultra-relativistic jets required to produce \acp{GRB} can come from black holes~\citep{Woosley_1993} or magnetars~\citep{Dai_1998}, as they can possess the energy required to act as \textit{central engines}~\citep{Kumar_2015}.
 If the accretion rate around a black hole is sufficiently high, a large amount of neutrinos and anti-neutrinos are emitted as the accretion disk cools.
 Pair annihilation of these particles results a ``fireball'' of photons and electrons-positron pairs, as well as protons accelerated by neutrinos~\citep{Chen_2007}.
@@ -400,9 +388,26 @@ Again kinetic energy is converted into thermal energy, this time radiating photo
 This phenomenon is referred to as the GRB \textit{afterglow} and can last days after the prompt emission.
 Observation of afterglows is crucial to localizing the GRBs and identifying source galaxies and measuring redshifts.
 
+GRBs vary widely in their temporal and spectral properties, but there is a bimodality in the distribution that has led to them being classified as either short/hard or long/soft~\citep{Kouveliotou_1993}.
+GRB durations are defined based on their $T_{90}$, the time interval over which 90\% of the total background-subtracted photon counts are observed by the reporting GRB detector.
+Spectral hardness is described using the ratio of the flux density in the 50–300 keV band to the flux density in the 10–50 keV band, therefore representing the abundance of high energy photons~\citep{fermi_2020}.
+GRBs with $T_{90}\lesssim$2\,s and hard emission spectra are classified as short, while long bursts last $\gtrsim$2\,s and have soft emission spectra (Figure~\ref{fig:grb-classification}).
+Photometry and spectroscopy data have provided evidence that long \acp{GRB} originate from the deaths of massive stars, whereas short \acp{GRB} are believed to be associated with compact binary mergers involving neutron stars, like GW170817.
+
+\begin{figure}[htb]
+	\includegraphics[trim={0 0 0 6cm}, clip, width=0.9\textwidth]{figures/gw/grb-classification.jpg}
+	\caption{Hardness ratios (HR) vs. $T_{90}$s of Fermi GRBs, showing the distinction between short and long bursts. Reproduced from~\protect\citet{fermi_2016}}
+	\label{fig:grb-classification}
+\end{figure}
+
 
 \subsection{Short gamma-ray bursts}
 
+In a compact binary merger, a viable central engine is produced once an neutron star has coalesced with a black hole or another neutron star, leaving behind either a more massive black hole or a hypermassive neutron star~\citep{Eichler_1989,Nakar_2007}.
+Material stripped from the neutron star(s) by \textit{tidal disruption} forms an accretion disk around the central engine, fueling the emission of a GRB.
+The mass of the disk would only be a fraction of a solar mass, since neutron stars are themselves are only $sim 1.4\,\msol$, resulting in a short window for engine activity before accretion subsides and the fuel is spent.
+
+A lot can be learned from joint observations of short GRBs and their GW counterparts.
 \ac{GW} parameter estimation suffers from a degeneracy between distance and orbital plane inclination; increasing the distance of the merger and orienting its orbital plane would both result in a lower \ac{GW} amplitude.
 This degeneracy can be broken if either one could be measured externally.
 If the joint detection localization were good enough to determine a host galaxy, this would greatly help resolve the distance, however this will more likely require observation of an optical or ultraviolet counterpart due to the poor localization provided by current \ac{GRB} and \ac{GW} detectors.
@@ -415,7 +420,7 @@ which disagrees with the SH0ES team measurement of $H_0 = (73.04 \pm 1.04)\,\mat
 Although the LIGO-Virgo result from GW170817 alone does not disfavor either side of the issue, GW detectors could play a major role in resolving this tension as we detect more binary neutron star mergers in the future.
 
 One of the many unanswered questions surrounding \acp{GRB} pertains to their jet profile, the luminosity as a function of viewing angle (the angle between the observer and the symmetric axis of the jet; the profile is assumed to be axially symmetric and independent of distance).
-When information about the jet profile is required, e.g. for making rate estimates for \ac{GRB} detections, the profile is typically modeled as a top-hat (uniform within some opening angle and dropping sharply beyond it) for simplicity, but the true profile may be different.
+When information about the jet profile is required, e.g. for making rate estimates for \ac{GRB} detections, the profile is historically modeled as a top-hat (uniform within some opening angle and dropping sharply beyond it) for simplicity, but the true profile may be different.
 
 Determining the viewing angle $\theta_{\mathrm{obs}}$ of a \ac{GRB} is essential for distinguishing between different jet profile models, but it relies on the ability to observe an afterglow emission.
 These emissions, ranging from radio to X-rays, follow the prompt emission of $\gamma$-rays and are generated by the interaction between the relativistic outflow and the surrounding medium.
@@ -430,23 +435,24 @@ An off-axis top-hat jet was considered unlikely as well because the narrow openi
 More evidence against an off-axis top-hat model arose when the bright afterglow expected to emerge after $\sim$1 day was not observed.
 These observations instead favored a wide-angled, structured jet model for GRB170817.
 A structured jet model may refer to any luminosity function that decreases gradually with $\theta_{\mathrm{obs}}$ rather than abruptly, e.g. a Gaussian or power-law with uniform center.
-One mechanism that would explain such a model is a cocoon emission, in which the relativistic jet interacts dissipatively with the surrounding merger ejecta, depositing its energy into a cocoon fireball that results in a structured jet~\citep{gw170817_grb}.
+One mechanism that would explain such a model is a \textit{coccoon} emission, in which the relativistic jet interacts dissipatively with the surrounding merger ejecta, depositing its energy into a cocoon fireball that results in a structured jet~\citep{gw170817_grb}.
 
 The connection between GWs and short GRBs may extend beyond binary neutron star systems like GW170817.
 Some \ac{NSBH} mergers may be capable of producing GRBs in the right conditions.
-A mass ratio between the black hole and the neutron star is not too unequal, due to a low black hole mass, and a high prograde black hole spin could result in the \textit{tidal disruption} of the neutron star, which would produce a short GRB in much the same way as in a \ac{BNS} merger.
+The neutron star could be tidally disrupted if the mass ratio between the black hole and the neutron star is not too unequal, due to a low black hole mass, and the black hole has a high prograde spin.
+These conditions would produce a short GRB in much the same way as in a \ac{BNS} merger.
 
 
 \subsection{Long gamma-ray bursts}\label{sec:gw-grb-long}
 
-Long GRBs are believed to come from \acp{CCSN}, which as discussed above have many models predicting GW emission.
+Long GRBs are believed to come from the core collapse of massive stars, which as discussed above have many models predicting GW emission.
 The majority (about 70\%) of GRBs are long GRBs, so although the expected GW amplitudes are quite weak they present an abundance of electromagnetic sources that each hold the potential of a GW counterpart.
-Since these events are also expected to emit neutrinos, as was the case during SN 1987A, they are the primary candidate for a potential triple-messenger detection in which GWs, EM waves, and neutrinos are all observed from the same source.
+Since these events could also emit high energy neutrinos, they hold the potential of a triple-messenger detection in which GWs, EM waves, and neutrinos are all observed from the same source.
 
 Some models predict GW emission would occur as a result of asymmetries in the core-collapse phase.
 Such \acp{GW} would be short, lasting less than a second.
 Extreme emission models predict a wide variety of signals, often longer in duration.
-Matter surrounding the remnant of a \ac{CCSN} forms an accretion disk, in which turbulent behavior can arise.
+Matter surrounding the core-collapse remnant forms an accretion disk, in which turbulent behavior can arise.
 For instance, instabilities in the thick outer regions of the accretion disk can lead to the formation of a gravitationally bound clump of matter.
 If the clump is cooled quickly enough (on a time scale less than its orbital period about the central BH), instead of returning to stability it can collapse to form a low-mass NS.
 This NS would then migrate inwards, shedding angular momentum in the form of GWs similar to an NSBH merger~\citep{Piro_2007}.
