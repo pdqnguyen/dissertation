@@ -114,7 +114,7 @@ Of these, only two have known redshifts: GRB 191221B ($z = 1.148$)~\citep{Kuin_2
 Since \xpip searches for coincident excess power, we perform the generic transient search for \acp{GRB} where at least two of the three LIGO-Virgo detectors were active.
 This leads to 86 GRBs to analyze and is also compatible with the network observing time of at least two detectors (85.3\%).
 
-We ran \xpip on each \ac{GRB} without autogating first, and performed an autogated rerun only if the closed box results suggest that autogating would improve the sensitivity of the search.
+We run \xpip on each \ac{GRB} without autogating first, and perform an autogated rerun only if the closed box results suggest that autogating would improve the sensitivity of the search.
 Running \xpip itself produces a ``closed-box'' results page, which summarizes the results of the search on a ``dummy'' on-source window chosen from among the off-source windows.
 This allows us to tune the parameters of the search, the injections, or the pre- and postprocessing to produce the most sensitive closed-box results before actually analyzing the on-source data (the ``open-box'' analysis).
 The glitches targeted by autogating affect the ability of \xpip to detect long-duration signals, so we can determine if a closed-box analysis would perform better with autogating applied by looking for a clear plateau or dip in the detection efficiency curves of the long-duration \ac{ADI} waveforms.
@@ -123,14 +123,15 @@ Otherwise, if autogating is not likely to affect the results, then we open the b
 
 As an example of this procedure, we will consider the analysis of GRB191101A, an extreme case of noisy background data.
 This is a long GRB observed by Swift during which LHO, LLO, and Virgo were all active.
-% The normalized amplitude spectra for LLO during all of the off-source trials (Figure~\ref{fig:noise-spec}) indicate excess noise at low frequency, possibly associated with scattered light noise.
-The Gaussianity measures, representing the ratios between the variance of the detector spectra to their means, show extreme non-Gaussianity in LLO across all frequencies (Figure~\ref{fig:gauss-before}).
+Figure~\ref{fig:gauss-before} shows the Gaussianity measures for the three detectors (LHO, LLO, and Virgo represented as H1, L1, and V1).
+The Gaussianity measures, representing the ratios between the variance of the detector spectra to their means; high values correspond to high deviations from Gaussian behavior.
 The low-frequency excess is likely associated with scattered light noise, whereas the flat component is typical of the broadband glitches that autogating is designed to combat.
 The LHO and Virgo measures, meanwhile, lie within the normal levels of non-Gaussianity.
 
 \begin{figure}[htb]
 	\includegraphics[trim={2cm 1.2cm 2cm 1.5cm}, clip, width=\textwidth]{figures/grb/gauss-before.png}
-	\caption{Gaussianity measures around the time of GRB191101A without autogating. The dotted lines represent the expected levels of non-Gaussianity.}
+	\caption[Gaussianity measures around the time of GRB191101A without autogating.]
+	{Gaussianity measures around the time of GRB191101A without autogating. The black horizontal dashed lines represent the expected levels of non-Gaussianity. LHO (H1) and Virgo (V1) are both within these bounds, while LLO (L1) far exceeds them.}
 	\label{fig:gauss-before}
 \end{figure}
 
@@ -140,7 +141,7 @@ They make up a small minority of all the triggers, but their impact on the pipel
 
 \begin{figure}[htb]
 	\includegraphics[trim={2cm 1.2cm 2cm 1.2cm}, clip, width=0.9\textwidth]{figures/grb/triggers-before.png}
-	\caption{Distribution of off-source triggers in the LIGO detectors without autogating.}
+	\caption{Distribution of off-source triggers in the LIGO detectors without autogating. The x- and y-axes are the signal energy in H1 and L1, respectively.}
 	\label{fig:triggers-before}
 \end{figure}
 
