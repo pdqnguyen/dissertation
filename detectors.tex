@@ -16,8 +16,8 @@ The detector is tuned (by the choice of arm length) to operate at its dark fring
 If one interferometer arm is elongated relative to the other, the phase shift between the signals from both arms results in some constructive interference; thus the amplitude of a gravitational wave passing through the plane of the detector arms is converted to an amplitude in laser light measured at the output port.
 
 A gravitational wave passing through the instrument induces a \textit{strain} $h = \Delta L / L$.
-Our ability to measure gravitational waves therefore depends on how precisely we can measure $\Delta L$ and how long we construct the interferometer arms to be.
-The photodiode is ultimately limited by \textit{shot noise}, the random fluctuations in the number of photons observed.
+Our ability to measure gravitational waves therefore depends on how precisely we can measure $\Delta L$ and the length of the interferometer arms.
+The photodiode measurement is ultimately limited by \textit{shot noise}, the random fluctuations in the number of photons observed.
 This is a Poisson process, so the fluctuations scale with the square root of the photon count $N_{\mathrm{photon}}$, which itself is dependent on the laser power and wavelength and the frequency of the GW signal we are searching for:
 \begin{equation}
   N_{\mathrm{photon}} \sim \frac{P_{\mathrm{laser}} \lambda_{\mathrm{laser}}}{h c f_{\mathrm{GW}}}.
@@ -31,7 +31,7 @@ This is impressive but orders of magnitude away from being able to observe at hi
 
 We can also extend the interferometer, but to get an order of magnitude improvement requires an order of magnitude extension of the arms, which is not entirely practical.
 Instead, we can increase the \textit{effective arm length} by designing the arms as Fabry-P\'erot cavities, forcing the light in the arms to bounce back and forth many times before returning to the beam splitter, as shown in Figure~\ref{fig:detectors-basic}.
-This works as long as the light does not spend an amount of time comparable to the passing of a full gravitational wave, so the effective arm length should not exceed $L_{\mathrm{eff}} \sim \lambda_{\mathrm{GW}}$.
+This works as long as the light does not spend an amount of time comparable to the passing of a full gravitational wavelength, so the effective arm length should not exceed $L_{\mathrm{eff}} \sim \lambda_{\mathrm{GW}}$.
 For signals in the hundreds of Hertz, this limits the effective arm length to a few hundred kilometers, or a few hundred round trips for a LIGO detector.
 Nevertheless, combined with the optimal photodiode above, this setup can detect a strain of $h \sim 10^{-20}$.
 We will see in the following discussion of the \ac{aLIGO} design how we can extend our sensitivity even further.
@@ -101,7 +101,7 @@ Radiation pressure is addressed by increasing the size of the test masses themse
   \includegraphics[width=\textwidth]{figures/detectors/budget-llo.pdf}
   \caption
   [Full noise budgets of the LIGO Hanford (top) and Livingston (bottom) observatories at the end of the third observing run.]
-  {Full noise budgets of the LIGO Hanford (top) and Livingston (bottom) observatories at the end of the third observing run. ``Quantum'' noise refers to both shot noise and radiation pressure noise. Reproduced from~\protect\citet{Buikema_2020}.}
+  {Full noise budgets of the LIGO Hanford (top) and Livingston (bottom) observatories at the end of the third observing run. Quantum noise refers to both shot noise and radiation pressure noise. Reproduced from~\protect\citet{Buikema_2020}.}
   \label{fig:detectors-budget}
 \end{figure}
 
