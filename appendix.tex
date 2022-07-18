@@ -117,10 +117,26 @@ Last is an example of a site-wide estimated ambient (Figure~\ref{fig:pemcoupling
 \chapter{PEMcheck examples}\label{app:pemcheck}
 
 This appendix presents screenshots of \code{pemcheck} output pages tested on GW events and environmental noise transients.
+The report page is sorted by likelihood of excess noise in the strain channel, and the top channel is shown alongside a constant-Q transform of the stain channel.
+Input parameters, chosen based on properties of the GW candidate, are shown, as well as the time and frequency of the peak-probability pixel.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=\textwidth]{figures/appendix/pemcheck-gw190510g.png}
-  \caption{Example report page produced by \protect\code{pemcheck} for a long duration GW event.}
-  \label{fig:pemcheck-GW190510g}
+  \includegraphics[width=\textwidth]{figures/appendix/pemcheck-s190510g.png}
+  \caption{Example for a long duration CBC merger candidate S190510g, overlapping with excess noise that is almost certainly associated with vibrational noise at ETMY.}
+  \label{fig:pemcheck-s190510g}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{figures/appendix/pemcheck-s190804qr.png}
+  \caption{Example for a burst candidate S190804qr reported by cWB, showing that a loud noise observed near ETMY could contribute to the GW event candidate signal but not with a high probability.}
+  \label{fig:pemcheck-s190804qr}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\textwidth]{figures/appendix/pemcheck-s200112r.png}
+  \caption{Example of a typical short-duration CBC merger candidate S200112r, with no excess noise expected to appear in the GW channel.}
+  \label{fig:pemcheck-s200112r}
 \end{figure}

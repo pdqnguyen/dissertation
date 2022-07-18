@@ -439,6 +439,7 @@ We can write the probability that the projected noise actually exceeds some \ac{
 This is computed for every time-frequency pixel of a spectrogram, producing a probability spectrogram image that shows how likely there is to be excess noise within each pixel.
 We can then search for the highest probability within pixels that overlap a \ac{GW} transient in order to report the probability that environmental noise in the vicinity of the \ac{PEM} sensor is contaminating the signal of interest.
 This algorithm is run on every \ac{PEM} sensor with an available coupling function and the highest probability among all sensors is reported.
+We report the p-value of consistency with the null hypothesis as one minus the highest probability, so if a low p-value ($\lesssim$0.1) is reported for a GW event candidate then we cannot rule out the possibility of excess noise contributing to the GW data.
 
 \begin{figure}
 	\includegraphics[width=\textwidth]{figures/noise-studies/vetting-spectrogram1.png}
