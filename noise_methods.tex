@@ -453,16 +453,6 @@ By doing so, this injection-dependent threshold vetoes measurements produced by 
 The lower it is, the more it will limit measurements to only those we are most confident of.
 For the \ac{O3} injections, the threshold was set at one third, meaning that a coupling measurement is demoted to an upper limit if the sensor measuring it observes the injection at less than a third of the amplitude observed by the sensor closest to the injection.
 
-% {\color{red}
-% Need to talk about this a lot more.
-% Injection-depended thresholding reflects a fundamental issue with the distribution of sensors and injections.
-% In principle if you have many one-to-one correspondence b/w sensors and injections,
-% you would just have each injection produce measurements in its nearest sensor, which is effectively what you get by setting this threshold to one.
-% But in absence of that ideal injection distribution you have to lower the threshold by some amount and it's not obvious how to operationalize this.
-% Nevertheless some even as an ad hoc thresholding scheme it works very well for preventing inaccurate coupling functions from misattributing the nearest injection to a sensor.
-%
-% I need to emphasize that this is basically a way of normalizing injections.}
-
 \textit{Uncertainty due to injection locations}.
 As mentioned above, the model in \cref{eq:cf_full} relies on the assumption that the environment is monitored at the coupling site.
 The density of sensors is not great enough for this to be strictly true, especially if the source of the environmental signal is closer to the coupling site than the sensor is.
