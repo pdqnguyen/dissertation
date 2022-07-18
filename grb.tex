@@ -32,23 +32,25 @@ For a network of detectors, the data measured by a set of $D$ detectors is
 \begin{equation}
 	\mathbf{d} = \mathbf{F h} + \mathbf{n}
 \end{equation}
-where each component of the vectors $\mathbf{d}$ and $\mathbf{n}$ is the output of a detector and its noise, respectively,
+where each component of the vectors $\mathbf{d}$ and $\mathbf{n}$ is the Fourier-transformed output of a detector and its noise, respectively,
 \begin{equation}
 	\mathbf{h} = \left( \begin{array}{c} h_+ \\ h_{\times} \end{array} \right)
 \end{equation}
-represents the plus and cross polarizations of the GW signal, and $\mathbf{F} = [\mathbf{F_+}\,\,\mathbf{F_\times}]$ is the matrix whose rows represent the antenna response of each detector to the plus and cross polarizations of the GW signal.
-The antenna response matrix is dependent on sky location.
+represents the plus and cross polarizations of the GW signal, and $\mathbf{F} = [\mathbf{F_+}\,\,\mathbf{F_\times}]$ is a matrix whose rows represent the antenna response of each detector to the plus and cross polarizations of the GW signal, respectively.
+These matrix components are dependent on the sky location of interest, e.g. of a GRB trigger.
+The components of $\mathbf{d}$, $\mathbf{n}$, and $\mathbf{F}$ are noise-spectrum-weighted, i.e. the raw value is divided by the one-sided noise power spectral density of the detector, such that $\mathbf{n}$ is normalized.
+We refer to the noise-spectrum-weighted $\mathbf{d}$ as the energy measured in the detector.
 We define the \textit{standard likelihood energy}
 \begin{equation}\label{eq:grb-esl}
 	E_{\mathrm{SL}} \equiv \sum_k^D \mathbf{d}^{\dagger} P^{\mathrm{GW}} \mathbf{d}
 \end{equation}
-where $P^{\mathrm{GW}} \equiv \mathbf{F} (\mathbf{F}^{\dagger} \mathbf{F})^{-1} \mathbf{F} \mathbf{F}^{\dagger}$.
+where $P^{\mathrm{GW}} \equiv \mathbf{F} (\mathbf{F}^{\dagger} \mathbf{F})^{-1} \mathbf{F} \mathbf{F}^{\dagger}$ is a projection operator that projects the data into the subspace spanned by the antenna response vectors $\mathbf{F_+}$ and $\mathbf{F_\times}$.
 
-To identify signals, \xpip Fourier transforms the individual detector streams to produce time–frequency maps representing $\mathbf{d}$.
-These maps give access to the temporal evolution of the spectral properties of the signal and enable the pipeline to search for clusters of pixels containing excess energy.
-The time-frequency maps are combined over the detector network via \cref{eq:grb-esl} to form a single map of pixels representing the coherent energy.
-Clusters are identified by selecting the 1\% of pixels with the highest coherent energy and grouping together adjacent selected pixels.
-Each cluster is assigned an overall detection statistic which is the sum of the coherent energies of its pixels, and the cluster with the largest statistic is the best candidate for a GW detection.
+To identify signals, \xpip Fourier transforms the individual detector streams over many time windows to produce time–frequency maps where each pixel represents the energy $d_k$ of detector $k$ for a particular time and frequency.
+These maps give access to the temporal evolution of the spectral properties of the signal.
+They are combined over the detector network via \cref{eq:grb-esl} to form a single map of pixels representing the standard likelihood energy.
+Clusters are identified by selecting the 1\% of pixels with the highest standard likelihood energies and grouping together adjacent selected pixels.
+Each cluster is assigned an overall detection statistic which is the sum of the standard likelihood energies of its pixels, and the cluster with the largest statistic is the best candidate for a GW detection.
 
 The significance of a candidate is determined based on the probability of the event being produced by the background alone.
 The data around the GRB trigger is divided into a 660\,s \textit{on-source} segment and many equally-long \textit{off-source} segments before and after the on-source.
@@ -69,12 +71,20 @@ We choose simulated waveforms to cover the search parameter space of three disti
 In all cases, we assume an optimistic emission of energy in \acp{GW} of $E_{\text{GW}} = 10^{-2} \msol c^2$.
 This set of waveforms closely represents a number of emission models for short-duration \acp{GW} occurring during the collapse of the star.
 
-Binary inspiral injections are chirp-like waveforms generated based on masses sampled from a Gaussian distribution centered at 1.4\,$\msol$, with a width of 0.2\,$\msol$ for an \ac{NS} in a \ac{BNS}, and with a width of 0.4\,$\msol$ for an \ac{NS} in an \ac{NSBH}.
+Binary inspiral injections are chirp-like waveforms (similar to that of GW170817 as seen in Figure~\ref{fig:mma-gw170817}, top left).
+They are generated based on masses sampled from a Gaussian distribution centered at 1.4\,$\msol$, with a width of 0.2\,$\msol$ for an \ac{NS} in a \ac{BNS} merger, and with a width of 0.4\,$\msol$ for an \ac{NS} in an \ac{NSBH} merger.
 The distribution for \acp{GW} emitted by \ac{BNS} mergers addresses the case of short \ac{GRB} events as in~\citet{grb_o1} and adopted in the \pygrb search.
 
 Long-duration \ac{ADI} injections are used to represent \acp{GW} produced by instabilities in the magnetically suspended torus around a rapidly spinning \ac{BH} formed by a massive core-collapsing star, as described in Section~\ref{sec:gw-grb-long}~\citep{vanPutten_2001, vanPutten_2004}.
 Although the quadrupole mass moments within the torus can take on many forms, the waveforms used for the \xpip search are based on an approximation in which two overdense regions are formed on opposite sides of the torus and extract angular momentum from the central BH until the BH is no longer spinning, after which the lumps disperse and the torus returns to stability~\citep{Santamaria_2013}.
-The spin-down produces GWs following a downwards-sweeping signal, different from the chirp that would be seen if the binary was simply spiraling inwards.
+The spin-down produces GWs following a downwards-sweeping signal, different from the chirp that would be seen if the binary was simply spiraling inwards (Figure~\ref{fig:vanputten}).
+
+\begin{figure}[h]
+	\includegraphics{figures/grb/vanputten.pdf}
+	\caption{Example waveform of a ADI-B injection at 100\,Mpc. Parameters are given in Table~\protect\ref{tab:adi}.}
+	\label{fig:vanputten}
+\end{figure}
+
 The ADI waveforms are parameterized by the mass $M$ and dimensionless spin parameter $\chi$ of the central \ac{BH}, and the fraction $\epsilon$ of the  accretion disk mass (which is fixed at $1.5\,\msol$) that forms into lumps.
 The parameters used to generate the five families of \ac{ADI} signals are shown in Table~\ref{tab:adi}, along with the duration, frequency, and $E_{\text{GW}}$ of each waveform.
 
@@ -115,11 +125,31 @@ The \xpip search completely removes times flagged by Category 1 vetoes before pe
 Category 2 and 4 flags are applied to the single-detector data streams prior to combining them.
 
 After generating the coherent energy data stream and ranking the time-frequency pixel clusters, another step is taken by \xpip to further deal with non-astrophysical transients.
-A coherent consistency test vetoes clusters based on a \textit{null energy} stream $E_{\mathrm{null}}$.
-This null energy is the difference between the total combined energy and the ranking statistic energy, and can be written as a sum of cross-correlation and auto-correlation terms.
-The auto-correlation part $I_{\mathrm{null}}$, called the \textit{incoherent energy}, is compared to the null energy.
-For a non-astrophysical glitch, $I_{\mathrm{null}} / E_{\mathrm{null}} \simeq 1$, whereas for a GW, $I_{\mathrm{null}} / E_{\mathrm{null}} \gg 1$.
-The coherent consistency cut applies a threshold on this ratio, below which clusters are vetoed.
+A coherent consistency test vetoes clusters based on the \textit{null energy} stream that is the difference between the total energy in the data $E_{\mathrm{tot}} = \sum_k \norm{d}^2$ and the standard likelihood energy defined in \cref{eq:grb-esl}:
+\begin{equation}
+	E_{\mathrm{null}} \equiv E_{\mathrm{tot}} - E_{\mathrm{SL}} = \sum_k^D \mathbf{d}^{\dagger} \mathbf{P}^{\textrm{null}} \mathbf{d}
+\end{equation}
+where $\mathbf{P}^{\textrm{null}} = (\mathbf{I} - \mathbf{P}^{\mathrm{GW}})$ is a projection operator orthogonal to $\mathbf{P}^{\mathrm{GW}}$ ($\mathbf{I}$ is the identity operator).
+The null energy can be written as
+\begin{equation}
+	E_{\mathrm{null}} = \sum_k \sum_{\alpha, \beta} d_{\alpha}^{\dagger}  \mathbf{P}^{\textrm{null}}_{\alpha \beta} d_{\beta}
+\end{equation}
+which consists of cross-correlation terms ($\alpha \neq \beta$) and auto-correlation terms ($\alpha = \beta$).
+The auto-correlation part is the \textit{incoherent energy}
+\begin{equation}
+	I_{\mathrm{null}} \equiv \sum_k \sum_{\alpha} \mathbf{P}^{\textrm{null}}_{\alpha \alpha} \norm{d_\alpha}^2
+\end{equation}
+which dominates $E_{\mathrm{null}}$ for a non-astrophysical signal.
+Therefore $I_{\mathrm{null}} / E_{\mathrm{null}} \gg 1$ if a candidate is a GW and $I_{\mathrm{null}} / E_{\mathrm{null}} \simeq 1$ if it is a noise artifact.
+The coherent consistency cut applies a threshold on this ratio, determined by a tuning procedure, and candidates falling below the threshold are vetoed.
+Figure~\ref{fig:coh-cut} shows the results of this step being applied to the on-source segment of a GRB analysis.
+The ratio cut is applied in this case about a factor of two above the diagonal, where $I_{\mathrm{null}} = E_{\mathrm{null}}$.
+
+\begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{figures/grb/coh-cut.png}
+	\caption[Coherent consistency cut performed by \xpip to veto noise triggers.]{Coherent consistency cut performed by \xpip to veto noise triggers. The $x$- and $y$-axes represent $E_{\mathrm{null}}$ and $I_{\mathrm{null}}$, respectively.}
+	\label{fig:coh-cut}
+\end{figure}
 
 In the O3a search, the sensitivity to long-duration ($\geq 10\,\text{s}$) GW signals was often limited by loud background noise transients.
 While the coherent consistency tests easily veto these glitches, many long-duration simulated signals would overlap such a glitch by chance.
