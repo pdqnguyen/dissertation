@@ -255,11 +255,11 @@ where $h(f)$ is the \ac{ASD} of the detector (strain) response, $x$ is the \ac{A
 By convention, the strain is typically converted to \ac{DARM}, in meters, in which case $C(f)$ represents  test mass displacement per unit of sensor amplitude.
 If the injection signal is an acoustic signal and the sensor is a microphone measuring amplitude in Pa, for instance, then the acoustic coupling function is in units of m/Pa.
 
-In both the witness sensor and the detector, some ambient background noise is always present whether or not an injection is produced. Let $h\bkg(f)$ and $h\inj(f)$ be the \acp{ASD} of the detector during a period of background noise and during the injection, respectively. Likewise let $x\bkg(f)$ and $h\inj(f)$ be the background and injection \acp{ASD} of the sensor. Since the noise adds linearly in the power spectral domain, the actual signal in each is the difference between the injection-time and background-time \acp{PSD}:
+In both the witness sensor and the detector, some ambient background noise is always present whether or not an injection is produced. Let $h\bkg(f)$ and $h\inj(f)$ be the \acp{ASD} of the detector during a period of background noise and during the injection, respectively. Likewise let $x\bkg(f)$ and $x\inj(f)$ be the background and injection \acp{ASD} of the sensor. Since the noise adds linearly in the power spectral domain, the actual signal in each is the difference between the injection-time and background-time \acp{PSD}:
 
 \begin{align}
-	\left[h(f)\right]^2 &= \left[h\bkg(f)\right]^2 - \left[h\bkg(f)\right]^2 \label{eq:h_inj}\\
-	\left[x(f)\right]^2 &= \left[x\bkg(f)\right]^2 - \left[x\bkg(f)\right]^2 \label{eq:x_inj}
+	\left[h(f)\right]^2 &= \left[h\inj(f)\right]^2 - \left[h\bkg(f)\right]^2 \label{eq:h_inj}\\
+	\left[x(f)\right]^2 &= \left[x\inj(f)\right]^2 - \left[x\bkg(f)\right]^2 \label{eq:x_inj}
 \end{align}
 
 Combining~\crefrange{eq:cf_model}{eq:x_inj}, we can measure the coupling function from the background and injection \acp{ASD}~\citep{Kruk_2016, pem_code}:
