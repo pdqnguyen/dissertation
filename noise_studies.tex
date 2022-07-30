@@ -40,10 +40,10 @@ There were fewer post-O3 injections due to the premature termination of O3 in th
 
 Before discussing results of injection studies and coupling function measurements in \ac{O3}, it is necessary that we take a moment to assess how well they estimate excess noise in the interferometer when the noise source is known to be the result of environmental coupling.
 Of course, one could do this by applying coupling functions to a set of ``test'' injections, but this would require performing more injections, which as mentioned before is typically not feasible.
-Furthermore, since the intention of the coupling functions is to estimate the impact of noise signals originating from a broad variety of sources, it make sense to use non-laboratory signals when evaluating coupling estimates.
+Furthermore, since the intention of the coupling functions is to estimate the impact of noise signals originating from a broad variety of sources, it makes sense to use non-laboratory signals when evaluating coupling estimates.
 Therefore, we use noise events not produced by injection equipment to evaluate how accurately the coupling functions recover the actual excess noise observed in the \ac{GW} strain data.
 
-Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz by exciting vibrational coupling associated with scattered light.
+Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz by exciting vibrational coupling.
 S190510g, a long-duration GW trigger observed while a thunderstorm was underway at LLO, overlapped many such noise artifacts throughout its 255-s time span.
 We can rule out any astrophysical origins for these signals: they are observed by accelerometers at all stations with reasonable delays for sound propagation, they sound like thunder on the microphone channels, and they have the right frequency content and duration. One of the loud events was also consistent with the time put in by an operator for a loud thunder clap.
 Figure~\ref{fig:evaluation-thunder} shows constant-Q transforms of one of these thunder noises as seen in the LLO strain channel as well as one of the End-Y accelerometers, where scattered light coupling was a dominant noise source.
@@ -174,10 +174,10 @@ Follow-up measurements, however, show no significant changes in the coupling bet
 	\label{fig:vib-septum-comparison}
 \end{figure}
 
-The plan for post-O3 upgrades was to install light baffles, surfaces with low reflectivity, around the septum to block stray light from hitting the wall.
-More recent measurements suggest that even this has not mitigated coupling, however.
-This means that the window is indeed the coupling site but that a higher-quality window is not sufficient to eliminate the scattering, so the window must be entirely removed.
-This has been done at LLO with preliminary analyses showing significant noise reduction.
+The plan for post-O3 upgrades was to install light baffles around the septum to block stray light from hitting the wall.
+More recent measurements show that even this has not mitigated coupling, however, suggesting that the issue is indeed the septum window but cannot be solved by angling the window~\citep{alog_septum}.
+It is likely that the septum window is modulating light scattered back from the \ac{OMC} in HAM 6, in which case the window must be entirely removed.
+This has been done at LLO with preliminary analyses showing significant reduction in the coupling.
 
 The investigation on the septum coupling will continue on the road towards O4.
 The results of this investigation and the vibrational noise budget measurements have made it clear that localizing and mitigating coupling due to scattered light beams will be crucial to reaching the design sensitivity of Advanced LIGO.
@@ -461,7 +461,7 @@ There are still limitations to how well this method can predict the presence of 
 \subsubsection{Coupling function tuning}
 
 Coupling function projections often overestimate the \ac{GW} background level for a number of reasons.
-The most common causes are all linked to the fact that coupling functions can only be measured during extended periods of detector maintenance, usually at the start of an observing run, leaving them vulnerable to becoming outdated as noise sources are introduced, changed, or mitigated.
+The most common cause is linked to the fact that coupling functions can only be measured during extended periods of detector maintenance, usually at the start of an observing run, leaving them vulnerable to becoming outdated as noise sources are introduced, changed, or mitigated.
 If a noise source is introduced near a sensor, such as through the installation of new hardware, the sensor ambient can increase dramatically whether or not the noise source actually couples to the \ac{GW} channel.
 If the new noise does not couple, then the projection overestimates the detector amplitude, leading to a spurious claim that a \ac{GW} candidate signal may be affected by environmental noise.
 Conversely, if an existing noise source is removed or its coupling mechanism mitigated, then the \ac{GW} background drops, potentially below the level of estimated ambient noise projections.

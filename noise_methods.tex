@@ -8,7 +8,7 @@ One goal of studying environmental noise is to directly aid in the validation of
 Due to the sophisticated nature of the search pipelines used to detect gravitational waves in the \ac{LIGO} data, environmental glitches are highly unlikely to fully account for a \ac{GW} event candidate.
 However, glitches capable of influencing analyses occur frequently at both observatories.
 
-Unlike instrumental noise, environmental noise can potentially be correlated between different detectors, i.e. stemming from a common source as opposed to stemming from chance coincidence.
+Unlike most instrumental noise, environmental noise can potentially be correlated between different detectors, i.e. stemming from a common source as opposed to stemming from chance coincidence.
 For example a sufficiently strong lightning strike can produce magnetic field noise in both LIGO detectors.
 Such correlated noise is not accounted for in the estimation of false-alarm probabilities, which is done by time-shifting background data from each LIGO detector to generate long stretches of artificial joint-observing data under the assumption that the backgrounds are non-correlated.
 
@@ -143,7 +143,7 @@ Typically, the injection signal is white noise band-passed between 20-2000\,Hz, 
 Seismic injections at low frequency (up to tens of Hertz) during \ac{iLIGO} were performed with small electromagnetic and piezoelectric shakers and a weighted cart.
 A large shaker has been used since the beginning of noise studies for \ac{O3}.
 The large shaker can impart up to 133\,N of sine force and a peak-to-peak displacement of 158\,mm~\citep{big_shaker}, compared to the electromagnetic shaker which imparts up to 45\,N of force and a displacement of 8\,mm~\citep{bk}.
-While smaller shakers can be directly clamped to the interferometer supports, a rigid fiberglass rod is used to connect the large shaker to the interferometer.
+While smaller shakers can be directly clamped to the interferometer supports, a rigid fiberglass tube is used to connect the large shaker to the interferometer.
 This has an added benefit of being better able to adjust the direction of the actuation by angling the rod and shaker accordingly.
 
 Two new injection techniques have been developed for localizing vibration coupling sites connected to the vacuum enclosure, such as locations on the vacuum enclosure that reflect scattered light.
@@ -285,10 +285,10 @@ Solving for the coupling function now would require producing multiple injection
 Here $h_i(f)$ is the detector response during injection $i$, $x_{ij}(f)$ is the amplitude measured by sensor $j$ during injection $i$, and $\mathrm{C}_j(f)$ is the coupling function of sensor $j$.
 If $n = m$,~\cref{eq:cf_full} could be solved to determine the coupling functions of all sensors.
 
-Thus far it has been assumed that the witness sensors are placed precisely at the locations of the coupling mechanisms, but such perfect placement is not realistically feasible given that there are an unknown number of coupling sites at unknown locations.
+Thus far it has been assumed that the witness sensors are placed precisely at the coupling locations, but such perfect placement is not realistically feasible given that there are an unknown number of coupling sites at unknown locations.
 A sensor, even if it is near a coupling site, only measures the injection amplitude at its own location, not at the coupling location.
 Therefore, when using real-world sensors,~\cref{eq:x_inj} is not exact, so~\cref{eq:cf} does not exactly describe the coupling at the coupling site.
-Nevertheless, as explained above, sensors are distributed in order to maximize coverage of coupling sites and this has been sufficient for producing reliable coupling functions for all sensors, as discussed further in Section~\ref{sec:uncertainties}.
+Nevertheless, as explained above, sensors are distributed in order to maximize coverage of coupling sites and this has been sufficient for producing reliable (within a factor of 2) coupling functions for all sensors, as discussed further in Section~\ref{sec:uncertainties}.
 As seen in Figure~\ref{fig:cf-cartoon-simple}, the sensor coupling function $C_j(f)$ is a good approximation to the true coupling $C(f)$ if the injection distance from the sensor $r_{ij}$ is much greater than the distance between the coupling site and sensor.
 This allows us to estimate excess noise in the \ac{GW} channel $h_i(f)$ without directly measuring the coupling actuation $A_i(f)$.
 
@@ -392,7 +392,7 @@ The higher choice of $t_x$ is due to the environmental sensors being much more s
 
 The coupling function as approximated in \cref{eq:ccf} is used for comparing coupling between different sensor locations and producing estimates of interferometer noise levels, e.g. as part of event validation (see Section~\ref{sec:vetting}).
 References to a sensor's coupling function will hereafter refer to this approximate quantity.
-Figure~\ref{fig:cf-composite} provides an example of an estimated ambient for an accelerometer on the HAM6 vacuum chamber (which houses the interferometer output optics).
+Figure~\ref{fig:cf-composite} provides an example of an estimated ambient projection for an accelerometer on the HAM6 vacuum chamber (which houses the interferometer output optics).
 The \ac{PEM} website provides coupling functions for all accelerometers, microphones, and magnetometers produced from the most recent campaign of injections~\citep{PEM_website}.
 
 \begin{figure}[h!]
@@ -406,7 +406,7 @@ The \ac{PEM} website provides coupling functions for all accelerometers, microph
 	\label{fig:cf-composite}
 \end{figure}
 
-Once enough injections are performed and reliable coupling functions are measured for the complete array of PEM sensor, the results from all sensors for a single coupling type are aggregated once more, into a single \textit{site-wide} coupling function.
+Once enough injections are performed and reliable coupling functions are measured for the complete array of PEM sensors, the results from all sensors for a single coupling type are aggregated once more, into a single \textit{site-wide} coupling function.
 A site-wide coupling function is produced for each coupling type and interferometer: vibrational noise at LHO, magnetic noise at LHO, vibrational noise at LLO, and magnetic noise at LLO.
 These are made by choosing, in each frequency bin, the highest coupling value across all sensors.
 This aggregation method can be applied to the estimated ambients as well, picking the highest ambient noise estimated by all sensors.
@@ -502,7 +502,7 @@ The artifacts can be smoothed out of the spectra by applying a moving average ov
 The moving average window must be on the scale of a few Hz since this is typically the scale of the peak-to-peak distances.
 On the other hand, smoothing of spectra can also result in less accurate coupling measurements when narrow mechanical resonances are present, so the window must balance the smoothing of artifacts against this disadvantage.
 For accelerometer spectra, analyzing injections with various smoothing parameters show that the best smoothing window is a frequency-scaled window (which we call ``logarithmic smoothing'') with a width of $\Delta f = 0.005 f$ (e.g. the amplitude of the 100-Hz frequency bin is an average of the bins in the range $100 \pm 0.5$\,Hz).
-Since microphones are much more sensitive to nodal artifacts while being less sensitive to narrow mechanical resonances (they would have to be strong enough to produce audible signals), their spectra can be smoothed much more aggressively: we use a window of width $\Delta f = 0.15 f$ (e.g. the amplitude of the 100-Hz frequency bin is an average of the bins in the range $100 \pm 15$\,Hz).
+Since microphones are much more sensitive to nodal artifacts, their spectra can be smoothed much more aggressively: we use a window of width $\Delta f = 0.15 f$ (e.g. the amplitude of the 100-Hz frequency bin is an average of the bins in the range $100 \pm 15$\,Hz).
 
 
 \section{The {\fontfamily{pcr}\selectfont pemcoupling}\xspace package}
@@ -518,15 +518,15 @@ A number of pre-processing steps are performed to condition the data for analysi
 First, the auxiliary channel time series are examined for evidence of saturation.
 Injections can cause saturation in two ways: actuator saturation due to over-driven amplifiers, or sensor saturation due to hitting the maximum amplitude the sensor can record.
 
-During magnetic injections, the injection amplitude typically has to exceed background by a few orders of magnitude to produce noise in the \ac{GW} channel, so comb magnetic injections are the most likely to saturate at the actuator.
+During magnetic injections, the injection amplitude typically has to exceed background by a few orders of magnitude to produce noise in the \ac{GW} channel, so magnetic injections using the weak 1-m coils are the most likely to saturate at the actuator.
 They are also capable of saturating the sensors if performed too close (such as in the electronics racks).
 In either case, intermodulation distortion occurs, generating peaks at sums and differences of the comb line frequencies while also reducing signal power in the injection lines.
 If the saturation is occurring at the actuator, the measured coupling is still accurate, but upper limits are higher due to the reduced signal power.
-On the other hand, sensor saturation results in inaccurate coupling measurements, because the line amplitudes no longer reflect the true magnetic signal at the sensor location.
+On the other hand, sensor saturation results in inaccurate coupling measurements, because the sensor signal under estimates the actual magnetic field.
 
 During vibrational injections, the high number of accelerometers means it is often possible that the nearest ones saturate.
 This results in artificial white noise in the amplitude spectra.
-The consequence is measuring a lower coupling function at frequencies where the saturation artifact dominates.
+The consequence is measuring an inaccurately lower coupling function at frequencies where the saturation artifact dominates.
 For most accelerometers, the highest background noise levels are observed in the hundreds of Hertz, so usually accelerometer saturation mainly affects measurements at the quieter low frequencies.
 In more extreme cases that affect the entire spectrum, distinguish between real signals and artificial saturation noise is not feasible, so no reliable measurements can be made at all.
 
@@ -539,7 +539,7 @@ The directions of magnetic signals are not important to coupling, however.
 Instead we are concerned with the absolute magnitude of the field.
 Thus, a new channel is produced by summing the ASDs of the individual components in quadrature.
 Note that when measuring coupling using the field magnitude in the frequency domain the quadrature sum has to be performed in the frequency domain, not the time domain prior to Fourier transforming.
-This is because there may be DC offsets to the raw time series, which are removed when taking the Fourier transform of the signals.
+One reason for this is that there may be DC offsets to the raw time series, which are removed when taking the Fourier transform of the signals.
 The quadrature sum of two time domain signals with DC offsets, on the other hand, will have cross-terms between the DC offset component and the AC components.
 
 All \ac{PEM} channels have accompanying calibration measurements~\citep{PEM_website}. Calibration for microphones and magnetometers is simply a constant conversion of Pa/count or T/count, respectively.

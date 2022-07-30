@@ -128,23 +128,24 @@ Brownian motion of molecules in the test masses themselves results in \textit{th
 Thermal noise excites the internal vibrational modes of the test masses, as well as the ``violin'' modes of the glass fiber suspensions that make up the final pendulum stage.
 These modes have very high Q-factors, resulting in the very loud, narrow lines at their resonances ($\sim 500$\,Hz).
 
-\textit{Scattered light noise} occurs when the laser beam reflecting off the beam spot on a test mass or other optic ends up hitting surfaces that are moving relative to the optic, like vacuum chamber walls.
+\textit{Scattered light noise} occurs when the laser light scatters from imperfections on an optic, like a test mass, and ends up hitting surfaces that are moving relative to the optic, like vacuum chamber walls.
 A very small fraction of the light reaching the moving surface is reflected to the originating or another beam spot, where it scatters back into the main interferometer beam.
 When the distance to the moving surface is modulated by vibrations, the phase of the returning light changes relative to the main beam, producing fluctuations in the amplitude of the beam, that, at just 1 part in $10^{20}$ can be on the scale of those produced by gravitational waves.
 In addition to this sensitivity to recombined scattered light, the scattering noise is problematic because of non-linear coupling when the path length modulation becomes comparable to the wavelength of the light, producing noise at harmonics of modulation frequencies~\citep{Soni_2020}.
 
 The input laser system can itself be a source of \textit{beam jitter noise}.
 Alignment fluctuations in the beam, called jitter, cause variations in the coupling of the fundamental optical mode to the arm cavities~\citep{Mueller_2005, Hardwick_2019}.
-In principle the symmetry of the interferometer arms should reject the effects of jitter, but defects in the test masses can break this symmetry, resulting in significant noise at the jitter frequencies, which are typically associated with mechanical resonances of optic mounts the input laser table.
+In principle the symmetry of the interferometer arms should reject the effects of jitter, but defects in the test masses can break this symmetry, resulting in significant noise at the jitter frequencies, which are typically associated with mechanical resonances of optic mounts on the input laser table.
 
 All of the above represent mechanical influences on the strain measurement.
 However, even oscillating magnetic fields can affect components of the detector, causing \textit{magnetic field noise}.
 The fields can couple by directly affecting permanent magnets on or near the test masses.
-In Initial LIGO, permanent magnets were placed on the test mass suspensions as well as on the test masses themselves; the test mass ones were removed prior to \ac{LIGO}, so only the magnets on the suspension systems remain.
-The suspension system suppresses permanent magnet displacement $\propto f^{-2}$, so it is only likely to dominate at low frequencies.
+In Initial LIGO, permanent magnets were placed on the test masses themselves; in \ac{aLIGO} these were moved onto the test mass suspension systems instead.
+The suspension system suppresses permanent magnet displacement $\propto f^{-2}$, or greater for the upper suspension stages, so it is only likely to dominate at low frequencies.
 At higher frequencies, magnetic noise is dominated by the induction of currents in the various cables and connectors that are part of the interferometer control system.
 These effects may be unpredictable: changes to electronic hardware are made frequently, each time potentially introducing a new source of noise or modifying an existing one.
 
 There are still many noise sources shown in the noise budget that are beyond the scope of this dissertation.
-The noise investigations carried out through the duration of this PhD mainly covered noise effects associated with external vibrations and magnetic fields.
+\textit{Length control} and \textit{alignment control} noise are associated with the control systems keeping the interferometer stable; \textit{laser intensity} and \textit{laser frequency} noise originate from the interferometer laser itself; \textit{Newtonian noise} comes from local gravitational field fluctuations caused by ground motion; \textit{residual gas noise} is caused by gas molecules in the vacuum chambers passing through the interferometer beam.
+The noise investigations carried out through the duration of this PhD mainly covered noise effects associated with external vibrations (particularly scattered light and beam jitter) and magnetic fields.
 For the sake of brevity we will stop here and turn our focus towards methods used to perform these investigations.

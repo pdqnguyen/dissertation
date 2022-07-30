@@ -69,7 +69,8 @@ We choose simulated waveforms to cover the search parameter space of three disti
 
 \Ac{CSG} injections represent GW emission from stellar collapses defined in Equation (1) of~\citet{grb_o1} with a $Q$ factor of 9 and varying center frequency of 70, 100, 150, and 300\,Hz.
 In all cases, we assume an optimistic emission of energy in \acp{GW} of $E_{\text{GW}} = 10^{-2} \msol c^2$.
-This set of waveforms closely represents a number of emission models for short-duration \acp{GW} occurring during the collapse of the star.
+These waveforms are sine-waves modulated by a Gaussian envelope and are commonly used to represent short-duration bursts.
+In this case they allow us to estimate our sensitivity to GWs associated with stellar collapse~\citep{Fryer_2011, Fryer_2002}.
 
 Binary inspiral injections are chirp-like waveforms (similar to that of GW170817 as seen in Figure~\ref{fig:mma-gw170817}, top left).
 They are generated based on masses sampled from a Gaussian distribution centered at 1.4\,$\msol$, with a width of 0.2\,$\msol$ for an \ac{NS} in a \ac{BNS} merger, and with a width of 0.4\,$\msol$ for an \ac{NS} in an \ac{NSBH} merger.
@@ -121,8 +122,8 @@ Category 2 vetoes indicate periods where excess noise likely to be caused by kno
 Examples from O3 include periodic 70\,Hz glitches caused by vibrations of a camera shutter at the LLO End-Y station, thunder noise identified by microphones at LLO during storms, and large earthquakes at LHO.
 Category 3 flags are based on statistical correlations with auxiliary sensors.
 Category 4 flags indicate times when hardware injections (signals intentionally generated in the interferometer to test search analyses or quantify correlations between the GW channel and auxiliary channels) were being performed.
-The \xpip search completely removes times flagged by Category 1 vetoes before performing any analysis.
-Category 2 and 4 flags are applied to the single-detector data streams prior to combining them.
+The \xpip search completely removes times flagged by Category 1 vetoes (comprising less than 2\% of analyzeable data at each detector) before performing any analysis.
+Category 2 and 4 flags (comprising less than 1\% of analyzeable data at each detector) are applied to the single-detector data streams prior to combining them.
 
 After generating the coherent energy data stream and ranking the time-frequency pixel clusters, another step is taken by \xpip to further deal with non-astrophysical transients.
 A coherent consistency test vetoes clusters based on the \textit{null energy} stream that is the difference between the total energy in the data $E_{\mathrm{tot}} = \sum_k \norm{d}^2$ and the standard likelihood energy defined in \cref{eq:grb-esl}:
@@ -154,12 +155,12 @@ The ratio cut is applied in this case about a factor of two above the diagonal, 
 In the O3a search, the sensitivity to long-duration ($\geq 10\,\text{s}$) GW signals was often limited by loud background noise transients.
 While the coherent consistency tests easily veto these glitches, many long-duration simulated signals would overlap such a glitch by chance.
 In these cases the simulated signal and glitch would be clustered together and subsequently vetoed together.
-To address this problem, an ``autogating'' procedure was implemented for O3b. For each detector, the total energy in the whitened data stream is computed over a 1\,s window.
-If this total fluctuates by more than 50 standard deviations above the median value, then the data is zeroed out over the interval where the threshold is exceeded.
-A 1\,s inverse Tukey window is applied at each end of the zeroed interval to transition smoothly between the whitened and zeroed data.
+To address this problem, an \textit{autogating} procedure was implemented for O3b. For each detector, the total energy in the whitened data stream is computed over a 1\,s window.
+The median and standard deviation of total energies of all the time windows is computed in order to set a noise threshold: if the total energy in a window exceeds the median by 50 standard deviations, then the data is zeroed out in that window.
+A 1\,s inverse Tukey window is applied at each end of the zeroed data to transition smoothly between the whitened and zeroed data.
 To minimize the possibility of a loud GW transient triggering a gate, the procedure cancels a gate if there is a simultaneous energy excursion above 10 standard deviations in any other detector.
-The threshold of 50 standard deviations is low enough to gate the most problematic loud glitches, while being high enough that the only GWs zeroed out by the gate would have been detectable by all-sky searches.
-Empirically we find that this procedure is effective at reducing the impact of loud glitches without affecting the sensitivity to low-amplitude GW signals.
+The threshold of 50 standard deviations is low enough to gate the most problematic loud glitches, while being high enough that the only GWs zeroed out by the gate would have been detectable by all-sky searches, as confirmed by detection efficiency curves for various waveform injections showing a dip only at very high injection amplitudes when autogating is applied.
+Based on tests using \ac{CSG} and \ac{ADI} waveform injections, this procedure is effective at reducing the impact of loud glitches without affecting the sensitivity to low-amplitude GW signals.
 
 
 \section{O3b search for GWs associated with GRBs}\label{sec:grb-o3b}
