@@ -46,8 +46,12 @@ Therefore, we use noise events not produced by injection equipment to evaluate h
 Thunderstorms are known to produce short-duration transients in the strain data at tens of Hz by exciting vibrational coupling.
 S190510g, a long-duration GW trigger observed while a thunderstorm was underway at LLO, overlapped many such noise artifacts throughout its 255-s time span.
 We can rule out any astrophysical origins for these signals: they are observed by accelerometers at all stations with reasonable delays for sound propagation, they sound like thunder on the microphone channels, and they have the right frequency content and duration. One of the loud events was also consistent with the time put in by an operator for a loud thunder clap.
-Figure~\ref{fig:evaluation-thunder} shows constant-Q transforms of one of these thunder noises as seen in the LLO strain channel as well as one of the End-Y accelerometers, where scattered light coupling was a dominant noise source.
-Coupling functions for this accelerometer and several others at the End-Y station, are capable of estimating the amplitude of multiple noise transients to within a factor two during a particularly loud thunderstorm~\citep{alog_thunder}.
+Figure~\ref{fig:evaluation-thunder} shows Q-scan of one of these thunder noises as seen in the LLO strain channel as well as one of the End-Y accelerometers, where scattered light coupling was a dominant noise source.
+These Q-scans are commonly used for visualizing noise and GW signals in the LIGO data~\citep{Chatterji_2004,Davis_2021}.
+The Q-scan algorithm produces a logarithmically-tiled time-frequency representation of a channel, in contrast to a spectrogram which bins the frequency range linearly.
+It also tunes the tile aspect ratio, parameterized by the Q-factor, to maximize the significance of excess power present in the data.
+The result is interpolated for a smooth representation of the signal.
+Coupling functions for the End-Y accelerometer shown here, as well as for several others at the LLO End-Y station, are capable of estimating the amplitude of multiple noise transients to within a factor two during a particularly loud thunderstorm during O3~\citep{alog_thunder}.
 
 \begin{figure}
 	\includegraphics[width=0.49\textwidth]{figures/noise-studies/evaluation-thunder-strain.png}
@@ -155,7 +159,7 @@ The accompanying spectrograms of the same impulse injection for \ac{DARM} and th
 	\centering
 	\includegraphics[width=\textwidth]{figures/noise-studies/vib-impulse.png}
 	\caption{
-		Time series (left) and spectrograms (right) of a vibrational impulse injection produced at the output arm of the LHO detector.}
+		Time series (left) and spectrograms (right) of DARM and various accelerometers observing a vibrational impulse injection produced at the output arm of the LHO detector.}
 	\label{fig:vib-impulse}
 \end{figure}
 
@@ -195,7 +199,7 @@ Follow-up impulse injections revealed that it was likely near the vertex, potent
 	\centering
 	\includegraphics[width=\textwidth]{figures/noise-studies/vib-48hz-injection.pdf}
 	\caption{
-		ASD of a vibrational injection at the LHO input arm exciting a 48-Hz resonance feature in DARM.}
+		ASD of a vibrational injection measured by a HAM3 accelerometer (top) at the LHO input arm exciting a 48-Hz resonance feature in DARM (bottom).}
 	\label{fig:vib-48hz-injection}
 \end{figure}
 
@@ -216,14 +220,6 @@ This set of spectrograms suggests that the accelerometers on the \ac{ITM} chambe
 
 Multiple other injections were made (not shown here) with varying shaker locations in order to rule out other sensors until the most likely candidate remaining was the HAM3 Y-axis accelerometer.
 Black glass was used to block scattered light at this location and the peak was eliminated for the second half of the O3 observation run.
-% Figure~\ref{fig:vib-48hz} shows the noise reduction in the \ac{GW} channel after the light scattering was mitigated.
-
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=0.9\textwidth]{figures/noise-studies/vib-48Hz.png}
-% 	\caption{LHO DARM spectrum before and after mitigation of the 48-Hz peak.}
-% 	\label{fig:vib-48hz}
-% \end{figure}
 
 \subsection{Input beam jitter}\label{sec:vib-jitter}
 
@@ -340,8 +336,7 @@ The event, a short-duration binary black hole merger designated GW150914, requir
 This included an examination of the status of all \ac{PEM} sensors and any significant signals they observed for possible contamination of the GW signal~\citep{Schofield_150914}.
 A few of the \ac{PEM} sensors were not working, but because of redundancy, coverage was sufficient.
 
-Comparisons between constant-Q transform spectrograms~\citep{Chatterji_2004} of all coincident events in environmental sensors to the time-frequency path of the event revealed that no environmental signals had paths similar to the event candidate.
-Q-transforms produce a quality-factor-optimized logarithmic tiling of the time-frequency space, making them useful for visualizing transients.
+Comparisons between constant-Q transforms of all coincident events in environmental sensors to the time-frequency path of the event revealed that no environmental signals had paths similar to the event candidate.
 The \acp{SNR} of the matching signals were also compared to that of the event, showing that even if there were overlapping time-frequency paths, none of the environmental signals were large enough to influence the strain data at the \ac{SNR} level of the event, based on multiplying the environmental signals by their respective sensor coupling functions.
 
 The validation process for novel events such as GW150914 also includes redundant checks for global sources of environmental noise.
@@ -364,7 +359,7 @@ Furthermore, none of them had a time-frequency morphology that correlated with a
 Since the start of \ac{O3}, most of the procedure described above has been automated in order to handle the increase in detection rate.
 The automated vetting is performed by the \code{pemcheck} routine, which is a part of the \ac{DQR}.
 When an event is detected by the astrophysical search pipelines, a \ac{DQR} is initiated and assembles a plethora of tasks for assessing the data quality at each observatory during the time of the event.
-Among these tasks, an \textit{omega scan pipeline}~\citep{Davis_2021, Chatterji_2004} is used to search for transient noise in all \ac{PEM} sensors in the time window spanning the event candidate.
+Among these tasks, an \textit{omega scan pipeline}~\citep{Davis_2021,Chatterji_2004} is used to search for transient noise in all \ac{PEM} sensors in the time window spanning the event candidate.
 It does so by producing a Q-transform for each sensor and reporting those in which there is a transient signal with a false-alarm rate below $10^{-3}$\,Hz.
 The omega scan also reports the frequency and amplitude of the most significant tile for each sensor.
 The \code{pemcheck} in \ac{O3} used the output of the omega scan to estimate each sensor's potential affect on the data quality of the detector.
@@ -379,7 +374,7 @@ This task was used as a supplement to the results reported by \code{pemcheck}.
 
 During \ac{O3}, we confirmed that environmental noise did not account for any of the 74 GW events detected~\citep{gwtc2, gwtc3}.
 Some excess noise was always estimated to potentially exist around the events due to the conservative upper limits we set for our coupling functions, but no signal overlap of any environmental transients with GW candidates was seen even for those worst-case upper limit projections.
-That said, for most events we cannot rule out the possibility of environmental noise affecting parameter estimation pipelines.
+That said, for most events we cannot rule out the possibility of environmental noise affecting parameter estimation pipelines. A number of improvements are needed to produce more informative results when we have noise projections near the DARM background level, which we will discuss in Section~\ref{sec:vetting-o4}.
 
 
 \subsection{Science Case Study of S200114f}
@@ -400,7 +395,7 @@ This rejects the possibility that the environmental transient accounts for the L
 However, the estimated projection for the 152\,Hz harmonic was only a factor of two below background, so we could not rule out the impact of this noise on any parameter estimation that might be attempted on the full \ac{cWB} signal.
 
 
-\subsection{Event validation in O4}
+\subsection{Event validation in O4}\label{sec:vetting-o4}
 
 With the \ac{GW} detection rate expected to increase in \ac{O4}, a more sophisticated and streamlined vetting routine is necessary.
 The \ac{DQR} in \ac{O4} will report a p-value for each vetting task, including the \code{pemcheck} task.

@@ -46,7 +46,7 @@ We will see in the following discussion of the \ac{aLIGO} design how we can exte
 
 \section{Advanced LIGO}
 
-The LIGO detectors completed the transition to their current \ac{aLIGO} design stage in 2015, and began began first observing run (\acs{O1}) on September 12 that year, making the first detection of a \ac{GW} from a \ac{BBH} merger on September 14~\citep{gw150914}.
+The LIGO detectors completed the transition to their current \ac{aLIGO} design stage in 2015, and began their first observing run (\acs{O1}) on September 12 that year, making the first detection of a \ac{GW} from a \ac{BBH} merger on September 14~\citep{gw150914}.
 This was followed by two more \ac{BBH} detections before the end of the run on January 16, 2016~\citep{gwtc1}.
 \Ac{O2} started on November 30, 2016 after a period of detector upgrades and ended on August 25, 2017.
 During that run, in addition to several more \ac{BBH} detections, the \ac{LIGO} network (with the addition of the Virgo detector in Italy towards the end of the run) observed the first \ac{BNS} merger on August 17, 2017~\citep{gw170817}.
@@ -106,8 +106,10 @@ Radiation pressure is addressed by increasing the size of the test masses themse
 \end{figure}
 
 In addition to the quantum mechanical limitations of shot noise and radiation pressure noise, there are a plethora of noise sources not intrinsic to the design of an interferometer.
+We study detector noise in the frequency domain by computing the DARM signal \ac{ASD}, which is the square root of the \ac{PSD}.
+Since the PSD represents the variance of the signal per frequency bin, it is expressed in DARM units squared per unit frequency, or m$^2$/Hz, so the ASD has units m/$\sqrt{\mathrm{Hz}}$.
 Figure~\ref{fig:detectors-budget} is the \textit{noise budget} of the LHO and LLO detectors.
-It shows measurements and estimates of all known noise sources affecting both LIGO detectors at the end of \ac{O3}, including those presented in this dissertation (scattered light and input beam jitter).
+It shows the DARM ASD and estimates of all known noise sources affecting both LIGO detectors at the end of \ac{O3}, including those presented in this dissertation (scattered light and input beam jitter).
 Each detector is fitted with thousands of auxiliary instruments for monitoring the internal and external state of the interferometer.
 For sources whose effects are well understood this allows estimates to be made of their contributions to the overall \ac{DARM} sensitivity.
 Still, some sources are unknown: note that in the few tens of Hertz at either detector there is a significant discrepancy between the sum of known noises and the measured noise.
