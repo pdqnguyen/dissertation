@@ -146,7 +146,7 @@ While smaller shakers can be directly clamped to the interferometer supports, a 
 This has an added benefit of being better able to adjust the direction of the actuation by angling the rod and shaker accordingly.
 
 Two new injection techniques have been developed for localizing vibration coupling sites connected to the vacuum enclosure, such as locations on the vacuum enclosure that reflect scattered light.
-The techniques rely on the slow propagation speeds (hundreds of meters per second) of shear wave vibrations on the steel vacuum enclosure walls, or of sound waves in the case of acoustic injections.
+The techniques rely on the slow propagation speeds (hundreds of meters per second) of transverse waves in the steel vacuum enclosure walls, or of sound waves in the case of acoustic injections.
 These two techniques were essential in the localization of coupling sites in \ac{O3}, as discussed in Section~\ref{sec:vib}.
 
 \subsubsection{Beating-shakers technique}~\label{sec:injections-vib-beats}
@@ -164,7 +164,7 @@ The individual signals are
 	y_1(t) &= \cos(k_1 r_1 + 2 \pi f_1 t)\\
 	y_2(t) &= \cos(k_2 r_2 + 2 \pi f_2 t)
 \end{align}
-where $k_1 = 2 \pi f_1 / c_s$ and $k_2 = \pi f_2 / c_s$ with $c_s$ the speed of sound in the injection medium ($c_s \simeq 3000\,\mathrm{m/s}$ in stainless steel).
+where $k_1 = 2 \pi f_1 / c_s$ and $k_2 = \pi f_2 / c_s$ with $c_s$ the speed of sound in the injection medium.
 We measure the sum of these signals at their destination:
 \begin{equation}
 	\begin{split}
@@ -189,17 +189,15 @@ The phase difference between these observations is
 \begin{equation}
 	\varphi - \varphi' \simeq \pi \left( \frac{f_1}{c_s} \right) (\Delta r - \Delta r').
 \end{equation}
-The amplitude modulations observed at two locations will be anti-phase if the path length difference for one location differs from that of the other by $\simeq 30$\,m for $f_1 = 100$\,Hz in stainless steel.
-We can say that, for instance, the locations are more than a few meters apart if they observe beats arriving over a tenth of a beat period out of phase.
+The amplitude modulations observed at two locations will be anti-phase if the path length difference for one location differs from that of the other by $\simeq 3$\,m for $f_1 = 100$\,Hz in stainless steel ($c_s \simeq 300$\,m/s).
 
 To observe these amplitude modulations in practice, we produce spectrograms of the DARM signal, representing the coupling site as one destination, and spectrograms of various sensors as our secondary destinations.
 The beating signal appears in the spectrograms as a line at $f_{\mathrm{avg}}$ rising and fading in amplitude at the beat frequency $\delta f$.
-For each sensor, if the phase of this pattern is significantly offset from that of the DARM signal, then we reject the possibility that it is located close (within a few meters) to a coupling site.
+For each sensor, if the phase of this pattern is significantly offset from that of the DARM signal, then we reject the possibility that it is located close (within about a meter) to a coupling site.
 
-Some sensors very far away from the coupling site can have an offset that is a multiple of a beat period, causing them to also line up with DARM.
-This is not unlikely in the large observatory buildings, so based on one beating-shakers injection we cannot rule out these false positives.
-We reject false positives by varying the locations of the shakers and therefore the shape of the spatial interference pattern.
-A sensor within a few meters of a coupling site will still correlate with DARM, but the phase of far away sensors will change, allowing us to rule out a new subset of sensors with each unique injection configuration.
+For a given injection configuration, there can be multiple sensors that have a beat envelope in phase with the envelope in DARM, because the phase difference is dependent only on path length differences (not on the distance between the sensors), and because phase differences near multiples of the beat period also appear to be aligned with DARM.
+We reject these false positives by varying the locations of the shakers and therefore the shape of the spatial interference pattern.
+A sensor within a few meters of a coupling site will correlate with DARM regardless of where the injection sources are placed, but the relative beating phase of far away sensors will vary, allowing us to rule out a new set of sensors with each unique injection configuration.
 This technique is therefore a deductive one: we vary and repeat the injection until we are left with only the most likely candidate(s) for the coupling site.
 
 
@@ -209,7 +207,7 @@ The second localizationg technique, which is broadband, involves propagation del
 Impulse injections are performed by striking the vacuum enclosure directly with enough force to produce a transient in the \ac{GW} channel and in nearby accelerometers.
 The vibrational impulse propagates through the structure of the vacuum enclosure, arriving at different accelerometers and coupling sites at different times.
 
-We can distinguish these arrival times because the propagation velocity along the chamber walls is only roughly 300\,m/s in our case. Using time series plots, the arrival time of the impulse in the \ac{GW} channel is compared to the arrival time of the impulse in multiple accelerometers.
+Using time series plots, the arrival time of the impulse in the \ac{GW} channel is compared to the arrival time of the impulse in multiple accelerometers.
 The accelerometers that show the same arrival time as in the \ac{GW} channel are more likely to be near a coupling site than those that observe the impulse much earlier or later.
 Again, varying the location of the injection eliminates sensors that match the detector time-of-arrival by chance but are actually far from the coupling site.
 
